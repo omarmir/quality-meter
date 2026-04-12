@@ -82,6 +82,8 @@ This avoids destabilizing the current English benchmark.
 
 The working assumption should be that French needs its own model profile unless the benchmark proves otherwise.
 
+The latest English bakeoff supports that separation. This model improved the hard-negative benchmark, but regressed the main English benchmark too sharply to justify replacing the current English default.
+
 ## Core Implementation Changes
 
 ### Structured criteria

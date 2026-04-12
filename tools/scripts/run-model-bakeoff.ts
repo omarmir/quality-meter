@@ -134,6 +134,11 @@ const MODEL_CANDIDATES: ModelCandidate[] = [
     label: 'DistilBART MNLI',
     note: 'Older MNLI baseline. Included to test whether architecture differences help despite the larger payload.',
   },
+  {
+    id: 'onnx-community/multilingual-MiniLMv2-L6-mnli-xnli-ONNX',
+    label: 'Multilingual MiniLMv2 L6 MNLI/XNLI',
+    note: 'Multilingual zero-shot candidate proposed for French support. Included here to measure English-regression risk before any profile split.',
+  },
 ]
 
 const ROOT_DIR = process.cwd()

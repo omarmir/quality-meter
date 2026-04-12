@@ -50,7 +50,7 @@ That stack was chosen because it gave the best overall balance across:
 
 - Off-topic answers are handled well.
 - Comparison tasks are the most stable major task type.
-- The `xsmall` baseline is clearly better than the earlier `small` baseline while also cutting payload size roughly in half.
+- The `xsmall` baseline remains the best default tradeoff: it stays close to the best main-benchmark result while keeping the smallest payload and much stronger hard-negative behavior than `small`.
 - Task-type structure checks improve hard-negative behavior enough to justify keeping them in the default stack.
 
 ## Main Weakness
@@ -72,11 +72,11 @@ The model bakeoff did not produce a perfect model. It produced the best tradeoff
 
 `Xenova/nli-deberta-v3-xsmall` won because it:
 
-- had the best main benchmark result in the bakeoff
-- beat the earlier `small` baseline on hard negatives too
+- stayed within `0.2` MAE of the best main-benchmark model in the rerun
+- beat the earlier `small` baseline on hard negatives by a wide margin
 - had the smallest q8 payload in the group
 
-Some other candidates were stronger on hard negatives, but not strong enough overall to replace it.
+Some other candidates were stronger on hard negatives, but not strong enough overall to replace it. The latest example is `onnx-community/multilingual-MiniLMv2-L6-mnli-xnli-ONNX`: much better hard negatives, too much regression on the main English benchmark.
 
 ## What The Tuning Work Changed
 
