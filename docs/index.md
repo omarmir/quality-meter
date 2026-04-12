@@ -17,7 +17,7 @@ hero:
       text: API Documentaton
       link: /guide/api
   image:
-    src: /assets/fluent-color--gauge-32.svg
+    src: ./assets/fluent-color--gauge-32.svg
     alt: gauge
 
 features:

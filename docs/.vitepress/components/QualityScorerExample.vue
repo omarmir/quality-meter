@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue"
 import type {
+  QualityModelProgressEvent,
   QualityRefinementDecision,
   QualityScoreMode,
   QualityScoreResult,
@@ -69,6 +70,7 @@ const criteria = ref<CriterionRow[]>([
 const scorerClient = ref<QualityScorerWorkerClient | null>(null)
 const modelPhase = ref<"idle" | "loading" | "ready" | "error">("idle")
 const modelMessage = ref("Preparing the in-browser model.")
+const modelProgress = ref<QualityModelProgressEvent | null>(null)
 const isScoring = ref(false)
 const scoringPhase = ref<"idle" | "fast" | "full">("idle")
 const errorMessage = ref("")
@@ -183,6 +185,36 @@ const isRefiningAfterQuickPass = computed(
   () => isScoring.value && scoringPhase.value === "full" && scoreMode.value === "fast" && Boolean(result.value),
 )
 const isAnswerCalculating = computed(() => isScoring.value && (isResultStale.value || !result.value))
+const modelProgressPercent = computed(() => {
+  if (modelProgress.value?.total && modelProgress.value.total > 0) {
+    return Math.max(
+      0,
+      Math.min(100, Math.round((modelProgress.value.loaded / modelProgress.value.total) * 100)),
+    )
+  }
+
+  if (typeof modelProgress.value?.progress === "number") {
+    return Math.max(0, Math.min(100, Math.round(modelProgress.value.progress)))
+  }
+
+  return 0
+})
+const modelProgressLabel = computed(() => {
+  if (!modelProgress.value) return ""
+
+  const loaded = formatBytes(modelProgress.value.loaded)
+  const total = formatBytes(modelProgress.value.total)
+
+  if (loaded && total) {
+    return `${loaded} / ${total}`
+  }
+
+  if (total) {
+    return total
+  }
+
+  return ""
+})
 
 onMounted(() => {
   void initializeScorer()
@@ -267,6 +299,17 @@ async function initializeScorer() {
     onModelStatus: (status) => {
       modelPhase.value = status.phase
       modelMessage.value = status.message
+
+      if (status.phase === "loading" && !modelProgress.value) {
+        modelProgress.value = { progress: 0, loaded: 0, total: 0 }
+      }
+
+      if (status.phase === "ready") {
+        modelProgress.value = { progress: 100, loaded: modelProgress.value?.total ?? 0, total: modelProgress.value?.total ?? 0 }
+      }
+    },
+    onModelProgress: (progress) => {
+      modelProgress.value = progress
     },
   })
 
@@ -279,6 +322,7 @@ async function loadModel() {
   errorMessage.value = ""
   modelPhase.value = "loading"
   modelMessage.value = "Loading the in-browser model."
+  modelProgress.value = { progress: 0, loaded: 0, total: 0 }
 
   try {
     await scorerClient.value.loadModel()
@@ -288,6 +332,22 @@ async function loadModel() {
       error instanceof Error ? error.message : "The model could not be loaded."
     errorMessage.value = modelMessage.value
   }
+}
+
+function formatBytes(value: number) {
+  if (!Number.isFinite(value) || value <= 0) return ""
+
+  const units = ["B", "KB", "MB", "GB"]
+  let size = value
+  let unitIndex = 0
+
+  while (size >= 1024 && unitIndex < units.length - 1) {
+    size /= 1024
+    unitIndex += 1
+  }
+
+  const digits = size >= 100 || unitIndex === 0 ? 0 : size >= 10 ? 1 : 2
+  return `${size.toFixed(digits)} ${units[unitIndex]}`
 }
 
 function scoreResponse() {
@@ -477,6 +537,18 @@ function scoreTone(percent: number) {
         }}</strong>
         {{ " " }}{{ modelMessage }}
       </p>
+      <div v-if="modelPhase === 'loading' || modelProgressPercent > 0" class="mt-4">
+        <div
+          class="h-2 overflow-hidden rounded-full bg-[color-mix(in_srgb,var(--vp-c-text-1)_10%,transparent)]">
+          <div
+            class="h-full rounded-full bg-[linear-gradient(90deg,var(--vp-c-brand-1),var(--vp-c-brand-2))] transition-[width] duration-300"
+            :style="{ width: `${modelProgressPercent}%` }" />
+        </div>
+        <p class="mt-2 text-sm text-(--vp-c-text-2)">
+          {{ modelProgressPercent }}%
+          <span v-if="modelProgressLabel">{{ ` (${modelProgressLabel})` }}</span>
+        </p>
+      </div>
       <p v-if="modelPhase === 'error'">
         <button
           class="inline-flex min-h-11 items-center justify-center rounded-full border border-(--vp-button-brand-border) bg-(--vp-button-brand-bg) px-5 text-sm font-semibold text-(--vp-button-brand-text) transition-colors hover:border-(--vp-button-brand-hover-border) hover:bg-(--vp-button-brand-hover-bg)"
