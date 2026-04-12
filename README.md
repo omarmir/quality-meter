@@ -1,8 +1,8 @@
-[Live documentation](https://omarmir.github.io/quality-meter/)
-
 # Quality Meter
 
 Quality Meter is a monorepo for a rubric-based response scoring library and its documentation.
+
+[Example and Live documentation](https://omarmir.github.io/quality-meter/)
 
 ## Contents
 
