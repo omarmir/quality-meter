@@ -1,0 +1,2716 @@
+{
+  "generatedAt": "2026-04-12T05:42:25.657Z",
+  "caseCount": 16,
+  "variantSummaries": [
+    {
+      "variant": "baseline",
+      "count": 16,
+      "meanAbsoluteError": 17.4,
+      "medianAbsoluteError": 18.2,
+      "averageImprovement": 0,
+      "improvedCases": 0,
+      "worsenedCases": 0,
+      "improvedBy5OrMore": 0,
+      "worsenedBy5OrMore": 0
+    },
+    {
+      "variant": "question_explicit",
+      "count": 16,
+      "meanAbsoluteError": 17,
+      "medianAbsoluteError": 14.5,
+      "averageImprovement": 0.3,
+      "improvedCases": 5,
+      "worsenedCases": 11,
+      "improvedBy5OrMore": 4,
+      "worsenedBy5OrMore": 4
+    },
+    {
+      "variant": "criteria_explicit",
+      "count": 16,
+      "meanAbsoluteError": 13.2,
+      "medianAbsoluteError": 9.6,
+      "averageImprovement": 4.2,
+      "improvedCases": 10,
+      "worsenedCases": 4,
+      "improvedBy5OrMore": 6,
+      "worsenedBy5OrMore": 3
+    },
+    {
+      "variant": "both_explicit",
+      "count": 16,
+      "meanAbsoluteError": 10,
+      "medianAbsoluteError": 11.6,
+      "averageImprovement": 7.4,
+      "improvedCases": 10,
+      "worsenedCases": 6,
+      "improvedBy5OrMore": 10,
+      "worsenedBy5OrMore": 0
+    }
+  ],
+  "patternSummaries": [
+    {
+      "pattern": "strong_under_scored",
+      "variants": [
+        {
+          "variant": "baseline",
+          "count": 7,
+          "meanAbsoluteError": 18.8,
+          "averageImprovement": 0,
+          "improvedCases": 0,
+          "worsenedCases": 0
+        },
+        {
+          "variant": "question_explicit",
+          "count": 7,
+          "meanAbsoluteError": 19.9,
+          "averageImprovement": -1.1,
+          "improvedCases": 2,
+          "worsenedCases": 5
+        },
+        {
+          "variant": "criteria_explicit",
+          "count": 7,
+          "meanAbsoluteError": 14.2,
+          "averageImprovement": 4.6,
+          "improvedCases": 5,
+          "worsenedCases": 2
+        },
+        {
+          "variant": "both_explicit",
+          "count": 7,
+          "meanAbsoluteError": 7.6,
+          "averageImprovement": 11.2,
+          "improvedCases": 6,
+          "worsenedCases": 1
+        }
+      ]
+    },
+    {
+      "pattern": "concise_under_scored",
+      "variants": [
+        {
+          "variant": "baseline",
+          "count": 3,
+          "meanAbsoluteError": 20.2,
+          "averageImprovement": 0,
+          "improvedCases": 0,
+          "worsenedCases": 0
+        },
+        {
+          "variant": "question_explicit",
+          "count": 3,
+          "meanAbsoluteError": 4.9,
+          "averageImprovement": 15.3,
+          "improvedCases": 3,
+          "worsenedCases": 0
+        },
+        {
+          "variant": "criteria_explicit",
+          "count": 3,
+          "meanAbsoluteError": 11,
+          "averageImprovement": 9.2,
+          "improvedCases": 2,
+          "worsenedCases": 1
+        },
+        {
+          "variant": "both_explicit",
+          "count": 3,
+          "meanAbsoluteError": 5.4,
+          "averageImprovement": 14.8,
+          "improvedCases": 3,
+          "worsenedCases": 0
+        }
+      ]
+    },
+    {
+      "pattern": "constraint_over_scored",
+      "variants": [
+        {
+          "variant": "baseline",
+          "count": 5,
+          "meanAbsoluteError": 11.7,
+          "averageImprovement": 0,
+          "improvedCases": 0,
+          "worsenedCases": 0
+        },
+        {
+          "variant": "question_explicit",
+          "count": 5,
+          "meanAbsoluteError": 18,
+          "averageImprovement": -6.3,
+          "improvedCases": 0,
+          "worsenedCases": 5
+        },
+        {
+          "variant": "criteria_explicit",
+          "count": 5,
+          "meanAbsoluteError": 11.2,
+          "averageImprovement": 0.6,
+          "improvedCases": 2,
+          "worsenedCases": 1
+        },
+        {
+          "variant": "both_explicit",
+          "count": 5,
+          "meanAbsoluteError": 14.2,
+          "averageImprovement": -2.5,
+          "improvedCases": 0,
+          "worsenedCases": 5
+        }
+      ]
+    },
+    {
+      "pattern": "constraint_under_scored",
+      "variants": [
+        {
+          "variant": "baseline",
+          "count": 1,
+          "meanAbsoluteError": 27.2,
+          "averageImprovement": 0,
+          "improvedCases": 0,
+          "worsenedCases": 0
+        },
+        {
+          "variant": "question_explicit",
+          "count": 1,
+          "meanAbsoluteError": 28.8,
+          "averageImprovement": -1.6,
+          "improvedCases": 0,
+          "worsenedCases": 1
+        },
+        {
+          "variant": "criteria_explicit",
+          "count": 1,
+          "meanAbsoluteError": 23,
+          "averageImprovement": 4.2,
+          "improvedCases": 1,
+          "worsenedCases": 0
+        },
+        {
+          "variant": "both_explicit",
+          "count": 1,
+          "meanAbsoluteError": 19.4,
+          "averageImprovement": 7.8,
+          "improvedCases": 1,
+          "worsenedCases": 0
+        }
+      ]
+    }
+  ],
+  "bestByCase": [
+    {
+      "caseId": "wifi-strong",
+      "kind": "advice",
+      "profile": "strong",
+      "pattern": "strong_under_scored",
+      "baselineOverall": 81.4,
+      "baselineAbsDiff": 8.099999999999994,
+      "bestVariant": "both_explicit",
+      "bestOverall": 89.9,
+      "bestAbsDiff": 0.4000000000000057,
+      "bestImprovement": 7.7,
+      "rationale": "Advice case with a strong answer that is under-scored; constraint is implicit in the answer but generic in the rubric."
+    },
+    {
+      "caseId": "battery-strong",
+      "kind": "advice",
+      "profile": "strong",
+      "pattern": "strong_under_scored",
+      "baselineOverall": 67,
+      "baselineAbsDiff": 22.5,
+      "bestVariant": "both_explicit",
+      "bestOverall": 87.7,
+      "bestAbsDiff": 1.7999999999999972,
+      "bestImprovement": 20.7,
+      "rationale": "Advice case where the answer is strong but the model under-recognizes the practical battery-saving rationale."
+    },
+    {
+      "caseId": "running-strong",
+      "kind": "advice",
+      "profile": "strong",
+      "pattern": "strong_under_scored",
+      "baselineOverall": 76,
+      "baselineAbsDiff": 13.5,
+      "bestVariant": "both_explicit",
+      "bestOverall": 87.1,
+      "bestAbsDiff": 2.4000000000000057,
+      "bestImprovement": 11.1,
+      "rationale": "Advice case where the answer is explicit and strong, but knee-safety gets under-valued by the generic rubric wording."
+    },
+    {
+      "caseId": "winter-commute-strong",
+      "kind": "comparison",
+      "profile": "strong",
+      "pattern": "strong_under_scored",
+      "baselineOverall": 77.5,
+      "baselineAbsDiff": 12,
+      "bestVariant": "question_explicit",
+      "bestOverall": 76.8,
+      "bestAbsDiff": 12.700000000000003,
+      "bestImprovement": -0.7,
+      "rationale": "Comparison case with a clear recommendation that appears under-scored when the priority is phrased abstractly."
+    },
+    {
+      "caseId": "repo-structure-strong",
+      "kind": "comparison",
+      "profile": "strong",
+      "pattern": "strong_under_scored",
+      "baselineOverall": 66.2,
+      "baselineAbsDiff": 23.299999999999997,
+      "bestVariant": "both_explicit",
+      "bestOverall": 84.8,
+      "bestAbsDiff": 4.700000000000003,
+      "bestImprovement": 18.6,
+      "rationale": "Comparison case where shared systems and coordinated releases are important, but the generic constraint criterion does not name them."
+    },
+    {
+      "caseId": "git-cleanup-strong",
+      "kind": "planning",
+      "profile": "strong",
+      "pattern": "strong_under_scored",
+      "baselineOverall": 68.5,
+      "baselineAbsDiff": 20,
+      "bestVariant": "both_explicit",
+      "bestOverall": 84.2,
+      "bestAbsDiff": 4.299999999999997,
+      "bestImprovement": 15.7,
+      "rationale": "Planning case where the answer is strong, but the no-feature-freeze constraint benefits from being surfaced directly."
+    },
+    {
+      "caseId": "spanish-plan-strong",
+      "kind": "planning",
+      "profile": "strong",
+      "pattern": "strong_under_scored",
+      "baselineOverall": 56.5,
+      "baselineAbsDiff": 32,
+      "bestVariant": "both_explicit",
+      "bestOverall": 62.9,
+      "bestAbsDiff": 25.6,
+      "bestImprovement": 6.4,
+      "rationale": "Planning case with a strong answer that appears to benefit when the time budget is separated cleanly from the goal."
+    },
+    {
+      "caseId": "wifi-concise",
+      "kind": "advice",
+      "profile": "concise",
+      "pattern": "concise_under_scored",
+      "baselineOverall": 41.4,
+      "baselineAbsDiff": 24.1,
+      "bestVariant": "both_explicit",
+      "bestOverall": 64.5,
+      "bestAbsDiff": 1,
+      "bestImprovement": 23.1,
+      "rationale": "Concise advice answer that may score better when the prompt and rubric explicitly allow a short two-step response."
+    },
+    {
+      "caseId": "running-concise",
+      "kind": "advice",
+      "profile": "concise",
+      "pattern": "concise_under_scored",
+      "baselineOverall": 47.8,
+      "baselineAbsDiff": 17.700000000000003,
+      "bestVariant": "criteria_explicit",
+      "bestOverall": 65.7,
+      "bestAbsDiff": 0.20000000000000284,
+      "bestImprovement": 17.5,
+      "rationale": "Concise advice answer where the answer format is strong, but the generic usefulness criterion may be too demanding."
+    },
+    {
+      "caseId": "resume-bullets-concise",
+      "kind": "advice",
+      "profile": "concise",
+      "pattern": "concise_under_scored",
+      "baselineOverall": 46.8,
+      "baselineAbsDiff": 18.700000000000003,
+      "bestVariant": "question_explicit",
+      "bestOverall": 59.1,
+      "bestAbsDiff": 6.399999999999999,
+      "bestImprovement": 12.3,
+      "rationale": "Concise advice answer where truthfulness is important, but the constraint is easy to miss in a generic criterion."
+    },
+    {
+      "caseId": "sleep-constraint-miss",
+      "kind": "advice",
+      "profile": "constraint_miss",
+      "pattern": "constraint_over_scored",
+      "baselineOverall": 64.9,
+      "baselineAbsDiff": 10.900000000000006,
+      "bestVariant": "criteria_explicit",
+      "bestOverall": 62.6,
+      "bestAbsDiff": 8.600000000000001,
+      "bestImprovement": 2.3,
+      "rationale": "Constraint-miss advice case where the forbidden action should be named directly to see if scoring drops appropriately."
+    },
+    {
+      "caseId": "reading-device-constraint-miss",
+      "kind": "comparison",
+      "profile": "constraint_miss",
+      "pattern": "constraint_over_scored",
+      "baselineOverall": 65.8,
+      "baselineAbsDiff": 10.299999999999997,
+      "bestVariant": "criteria_explicit",
+      "bestOverall": 65.7,
+      "bestAbsDiff": 10.200000000000003,
+      "bestImprovement": 0.1,
+      "rationale": "Comparison constraint-miss case where the priorities need to be stated more explicitly than the generic comparison rubric."
+    },
+    {
+      "caseId": "gaming-setup-constraint-miss",
+      "kind": "comparison",
+      "profile": "constraint_miss",
+      "pattern": "constraint_over_scored",
+      "baselineOverall": 65.1,
+      "baselineAbsDiff": 9.599999999999994,
+      "bestVariant": "criteria_explicit",
+      "bestOverall": 64.5,
+      "bestAbsDiff": 9,
+      "bestImprovement": 0.6,
+      "rationale": "Comparison constraint-miss case where portability and apartment size are more concrete than the generic constraint label."
+    },
+    {
+      "caseId": "study-method-constraint-miss",
+      "kind": "comparison",
+      "profile": "constraint_miss",
+      "pattern": "constraint_over_scored",
+      "baselineOverall": 64.5,
+      "baselineAbsDiff": 9,
+      "bestVariant": "criteria_explicit",
+      "bestOverall": 64.5,
+      "bestAbsDiff": 9,
+      "bestImprovement": 0,
+      "rationale": "Comparison constraint-miss case where the short daily time budget needs to be spelled out more literally."
+    },
+    {
+      "caseId": "remote-onboarding-constraint-miss",
+      "kind": "planning",
+      "profile": "constraint_miss",
+      "pattern": "constraint_over_scored",
+      "baselineOverall": 70.2,
+      "baselineAbsDiff": 18.900000000000006,
+      "bestVariant": "criteria_explicit",
+      "bestOverall": 70.4,
+      "bestAbsDiff": 19.10000000000001,
+      "bestImprovement": -0.2,
+      "rationale": "Planning constraint-miss case where the overloading risk should be stated directly in both the question and criteria."
+    },
+    {
+      "caseId": "interview-prep-constraint-miss",
+      "kind": "planning",
+      "profile": "constraint_miss",
+      "pattern": "constraint_under_scored",
+      "baselineOverall": 24.1,
+      "baselineAbsDiff": 27.199999999999996,
+      "bestVariant": "both_explicit",
+      "bestOverall": 31.9,
+      "bestAbsDiff": 19.4,
+      "bestImprovement": 7.8,
+      "rationale": "Planning constraint-miss case where the scorer may be over-penalizing because the work-schedule constraint is not phrased explicitly enough."
+    }
+  ],
+  "results": [
+    {
+      "caseId": "wifi-strong",
+      "kind": "advice",
+      "profile": "strong",
+      "pattern": "strong_under_scored",
+      "rationale": "Advice case with a strong answer that is under-scored; constraint is implicit in the answer but generic in the rubric.",
+      "variant": "baseline",
+      "question": "How can I improve my home Wi-Fi speed without replacing all my equipment?",
+      "criteria": [
+        {
+          "label": "Answers the question directly",
+          "weight": 30
+        },
+        {
+          "label": "Provides concrete, practical steps",
+          "weight": 30
+        },
+        {
+          "label": "Respects the stated constraints",
+          "weight": 20
+        },
+        {
+          "label": "Gives enough detail or rationale to be useful",
+          "weight": 20
+        }
+      ],
+      "answer": "Move the router to an open, central spot away from thick walls and microwaves. Restart the modem and router, then retest speeds in the weakest room. Separate the 2.4 GHz and 5 GHz bands if the router supports it so nearby devices can use the faster band. These changes reduce interference and help you see whether placement or settings are the real bottleneck.",
+      "referenceOverall": 89.5,
+      "appOverall": 81.4,
+      "diff": -8.099999999999994,
+      "absDiff": 8.099999999999994,
+      "gate": 1,
+      "answerSupport": 0.9,
+      "constraintPresence": 1,
+      "constraintRespect": 0.4
+    },
+    {
+      "caseId": "wifi-strong",
+      "kind": "advice",
+      "profile": "strong",
+      "pattern": "strong_under_scored",
+      "rationale": "Advice case with a strong answer that is under-scored; constraint is implicit in the answer but generic in the rubric.",
+      "variant": "question_explicit",
+      "question": "Goal: improve my home Wi-Fi speed. Constraint: use the equipment I already have instead of replacing it. What should I do first and next?",
+      "criteria": [
+        {
+          "label": "Answers the question directly",
+          "weight": 30
+        },
+        {
+          "label": "Provides concrete, practical steps",
+          "weight": 30
+        },
+        {
+          "label": "Respects the stated constraints",
+          "weight": 20
+        },
+        {
+          "label": "Gives enough detail or rationale to be useful",
+          "weight": 20
+        }
+      ],
+      "answer": "Move the router to an open, central spot away from thick walls and microwaves. Restart the modem and router, then retest speeds in the weakest room. Separate the 2.4 GHz and 5 GHz bands if the router supports it so nearby devices can use the faster band. These changes reduce interference and help you see whether placement or settings are the real bottleneck.",
+      "referenceOverall": 89.5,
+      "appOverall": 77.4,
+      "diff": -12.099999999999994,
+      "absDiff": 12.099999999999994,
+      "gate": 1,
+      "answerSupport": 0.9,
+      "constraintPresence": 1,
+      "constraintRespect": 0.4
+    },
+    {
+      "caseId": "wifi-strong",
+      "kind": "advice",
+      "profile": "strong",
+      "pattern": "strong_under_scored",
+      "rationale": "Advice case with a strong answer that is under-scored; constraint is implicit in the answer but generic in the rubric.",
+      "variant": "criteria_explicit",
+      "question": "How can I improve my home Wi-Fi speed without replacing all my equipment?",
+      "criteria": [
+        {
+          "label": "Directly recommends how to improve home Wi-Fi speed",
+          "weight": 30
+        },
+        {
+          "label": "Gives concrete steps the user can try with the current equipment",
+          "weight": 30
+        },
+        {
+          "label": "Avoids recommending replacement hardware or a full equipment swap",
+          "weight": 20
+        },
+        {
+          "label": "Explains why the suggested changes could improve speed",
+          "weight": 20
+        }
+      ],
+      "answer": "Move the router to an open, central spot away from thick walls and microwaves. Restart the modem and router, then retest speeds in the weakest room. Separate the 2.4 GHz and 5 GHz bands if the router supports it so nearby devices can use the faster band. These changes reduce interference and help you see whether placement or settings are the real bottleneck.",
+      "referenceOverall": 89.5,
+      "appOverall": 69.7,
+      "diff": -19.799999999999997,
+      "absDiff": 19.799999999999997,
+      "gate": 1,
+      "answerSupport": 0.9,
+      "constraintPresence": 1,
+      "constraintRespect": 0.4
+    },
+    {
+      "caseId": "wifi-strong",
+      "kind": "advice",
+      "profile": "strong",
+      "pattern": "strong_under_scored",
+      "rationale": "Advice case with a strong answer that is under-scored; constraint is implicit in the answer but generic in the rubric.",
+      "variant": "both_explicit",
+      "question": "Goal: improve my home Wi-Fi speed. Constraint: use the equipment I already have instead of replacing it. What should I do first and next?",
+      "criteria": [
+        {
+          "label": "Directly recommends how to improve home Wi-Fi speed",
+          "weight": 30
+        },
+        {
+          "label": "Gives concrete steps the user can try with the current equipment",
+          "weight": 30
+        },
+        {
+          "label": "Avoids recommending replacement hardware or a full equipment swap",
+          "weight": 20
+        },
+        {
+          "label": "Explains why the suggested changes could improve speed",
+          "weight": 20
+        }
+      ],
+      "answer": "Move the router to an open, central spot away from thick walls and microwaves. Restart the modem and router, then retest speeds in the weakest room. Separate the 2.4 GHz and 5 GHz bands if the router supports it so nearby devices can use the faster band. These changes reduce interference and help you see whether placement or settings are the real bottleneck.",
+      "referenceOverall": 89.5,
+      "appOverall": 89.9,
+      "diff": 0.4000000000000057,
+      "absDiff": 0.4000000000000057,
+      "gate": 1,
+      "answerSupport": 0.9,
+      "constraintPresence": 1,
+      "constraintRespect": 0.4
+    },
+    {
+      "caseId": "battery-strong",
+      "kind": "advice",
+      "profile": "strong",
+      "pattern": "strong_under_scored",
+      "rationale": "Advice case where the answer is strong but the model under-recognizes the practical battery-saving rationale.",
+      "variant": "baseline",
+      "question": "How can I extend my laptop battery life while traveling without buying a new laptop?",
+      "criteria": [
+        {
+          "label": "Answers the question directly",
+          "weight": 30
+        },
+        {
+          "label": "Provides concrete, practical steps",
+          "weight": 30
+        },
+        {
+          "label": "Respects the stated constraints",
+          "weight": 20
+        },
+        {
+          "label": "Gives enough detail or rationale to be useful",
+          "weight": 20
+        }
+      ],
+      "answer": "Lower screen brightness and turn on the operating system battery saver profile before you leave. Close browser tabs and background apps you do not need so the CPU is not constantly waking up. Turn off Bluetooth, keyboard lighting, and high-refresh settings when you are away from power for long stretches. Battery drain usually comes from display power and background activity, so simple setting changes can buy you more hours quickly.",
+      "referenceOverall": 89.5,
+      "appOverall": 67,
+      "diff": -22.5,
+      "absDiff": 22.5,
+      "gate": 1,
+      "answerSupport": 0.8,
+      "constraintPresence": 1,
+      "constraintRespect": 0.5
+    },
+    {
+      "caseId": "battery-strong",
+      "kind": "advice",
+      "profile": "strong",
+      "pattern": "strong_under_scored",
+      "rationale": "Advice case where the answer is strong but the model under-recognizes the practical battery-saving rationale.",
+      "variant": "question_explicit",
+      "question": "Goal: extend my laptop battery life while traveling. Constraint: do not buy a new laptop or replace the device. What should I do?",
+      "criteria": [
+        {
+          "label": "Answers the question directly",
+          "weight": 30
+        },
+        {
+          "label": "Provides concrete, practical steps",
+          "weight": 30
+        },
+        {
+          "label": "Respects the stated constraints",
+          "weight": 20
+        },
+        {
+          "label": "Gives enough detail or rationale to be useful",
+          "weight": 20
+        }
+      ],
+      "answer": "Lower screen brightness and turn on the operating system battery saver profile before you leave. Close browser tabs and background apps you do not need so the CPU is not constantly waking up. Turn off Bluetooth, keyboard lighting, and high-refresh settings when you are away from power for long stretches. Battery drain usually comes from display power and background activity, so simple setting changes can buy you more hours quickly.",
+      "referenceOverall": 89.5,
+      "appOverall": 61.4,
+      "diff": -28.1,
+      "absDiff": 28.1,
+      "gate": 1,
+      "answerSupport": 0.7,
+      "constraintPresence": 1,
+      "constraintRespect": 0.7
+    },
+    {
+      "caseId": "battery-strong",
+      "kind": "advice",
+      "profile": "strong",
+      "pattern": "strong_under_scored",
+      "rationale": "Advice case where the answer is strong but the model under-recognizes the practical battery-saving rationale.",
+      "variant": "criteria_explicit",
+      "question": "How can I extend my laptop battery life while traveling without buying a new laptop?",
+      "criteria": [
+        {
+          "label": "Directly recommends how to extend laptop battery life while traveling",
+          "weight": 30
+        },
+        {
+          "label": "Gives concrete battery-saving actions the user can take now",
+          "weight": 30
+        },
+        {
+          "label": "Avoids recommending buying a new laptop or replacing the device",
+          "weight": 20
+        },
+        {
+          "label": "Explains why the suggested actions reduce battery drain",
+          "weight": 20
+        }
+      ],
+      "answer": "Lower screen brightness and turn on the operating system battery saver profile before you leave. Close browser tabs and background apps you do not need so the CPU is not constantly waking up. Turn off Bluetooth, keyboard lighting, and high-refresh settings when you are away from power for long stretches. Battery drain usually comes from display power and background activity, so simple setting changes can buy you more hours quickly.",
+      "referenceOverall": 89.5,
+      "appOverall": 82.6,
+      "diff": -6.900000000000006,
+      "absDiff": 6.900000000000006,
+      "gate": 1,
+      "answerSupport": 0.8,
+      "constraintPresence": 1,
+      "constraintRespect": 0.5
+    },
+    {
+      "caseId": "battery-strong",
+      "kind": "advice",
+      "profile": "strong",
+      "pattern": "strong_under_scored",
+      "rationale": "Advice case where the answer is strong but the model under-recognizes the practical battery-saving rationale.",
+      "variant": "both_explicit",
+      "question": "Goal: extend my laptop battery life while traveling. Constraint: do not buy a new laptop or replace the device. What should I do?",
+      "criteria": [
+        {
+          "label": "Directly recommends how to extend laptop battery life while traveling",
+          "weight": 30
+        },
+        {
+          "label": "Gives concrete battery-saving actions the user can take now",
+          "weight": 30
+        },
+        {
+          "label": "Avoids recommending buying a new laptop or replacing the device",
+          "weight": 20
+        },
+        {
+          "label": "Explains why the suggested actions reduce battery drain",
+          "weight": 20
+        }
+      ],
+      "answer": "Lower screen brightness and turn on the operating system battery saver profile before you leave. Close browser tabs and background apps you do not need so the CPU is not constantly waking up. Turn off Bluetooth, keyboard lighting, and high-refresh settings when you are away from power for long stretches. Battery drain usually comes from display power and background activity, so simple setting changes can buy you more hours quickly.",
+      "referenceOverall": 89.5,
+      "appOverall": 87.7,
+      "diff": -1.7999999999999972,
+      "absDiff": 1.7999999999999972,
+      "gate": 1,
+      "answerSupport": 0.7,
+      "constraintPresence": 1,
+      "constraintRespect": 0.7
+    },
+    {
+      "caseId": "running-strong",
+      "kind": "advice",
+      "profile": "strong",
+      "pattern": "strong_under_scored",
+      "rationale": "Advice case where the answer is explicit and strong, but knee-safety gets under-valued by the generic rubric wording.",
+      "variant": "baseline",
+      "question": "How can I start running three times a week without aggravating my knees?",
+      "criteria": [
+        {
+          "label": "Answers the question directly",
+          "weight": 30
+        },
+        {
+          "label": "Provides concrete, practical steps",
+          "weight": 30
+        },
+        {
+          "label": "Respects the stated constraints",
+          "weight": 20
+        },
+        {
+          "label": "Gives enough detail or rationale to be useful",
+          "weight": 20
+        }
+      ],
+      "answer": "Begin with run-walk intervals on flat ground so the impact stays manageable while your joints adapt. Keep two easy sessions and only one slightly longer session each week instead of pushing every run. Use a simple warm-up and stop if knee pain sharpens instead of treating discomfort as a sign to push harder. A gradual load and flatter routes reduce the jump in stress that often irritates knees when someone starts running again.",
+      "referenceOverall": 89.5,
+      "appOverall": 76,
+      "diff": -13.5,
+      "absDiff": 13.5,
+      "gate": 1,
+      "answerSupport": 0.9,
+      "constraintPresence": 1,
+      "constraintRespect": 1
+    },
+    {
+      "caseId": "running-strong",
+      "kind": "advice",
+      "profile": "strong",
+      "pattern": "strong_under_scored",
+      "rationale": "Advice case where the answer is explicit and strong, but knee-safety gets under-valued by the generic rubric wording.",
+      "variant": "question_explicit",
+      "question": "Goal: start running three times a week. Constraint: keep the plan knee-friendly and avoid aggravating knee pain. What should I do?",
+      "criteria": [
+        {
+          "label": "Answers the question directly",
+          "weight": 30
+        },
+        {
+          "label": "Provides concrete, practical steps",
+          "weight": 30
+        },
+        {
+          "label": "Respects the stated constraints",
+          "weight": 20
+        },
+        {
+          "label": "Gives enough detail or rationale to be useful",
+          "weight": 20
+        }
+      ],
+      "answer": "Begin with run-walk intervals on flat ground so the impact stays manageable while your joints adapt. Keep two easy sessions and only one slightly longer session each week instead of pushing every run. Use a simple warm-up and stop if knee pain sharpens instead of treating discomfort as a sign to push harder. A gradual load and flatter routes reduce the jump in stress that often irritates knees when someone starts running again.",
+      "referenceOverall": 89.5,
+      "appOverall": 69.5,
+      "diff": -20,
+      "absDiff": 20,
+      "gate": 1,
+      "answerSupport": 0.9,
+      "constraintPresence": 1,
+      "constraintRespect": 1
+    },
+    {
+      "caseId": "running-strong",
+      "kind": "advice",
+      "profile": "strong",
+      "pattern": "strong_under_scored",
+      "rationale": "Advice case where the answer is explicit and strong, but knee-safety gets under-valued by the generic rubric wording.",
+      "variant": "criteria_explicit",
+      "question": "How can I start running three times a week without aggravating my knees?",
+      "criteria": [
+        {
+          "label": "Directly recommends how to start running three times a week",
+          "weight": 30
+        },
+        {
+          "label": "Gives concrete beginner-safe running steps",
+          "weight": 30
+        },
+        {
+          "label": "Keeps the plan knee-friendly and avoids aggravating knee pain",
+          "weight": 20
+        },
+        {
+          "label": "Explains why the suggested steps reduce stress on the knees",
+          "weight": 20
+        }
+      ],
+      "answer": "Begin with run-walk intervals on flat ground so the impact stays manageable while your joints adapt. Keep two easy sessions and only one slightly longer session each week instead of pushing every run. Use a simple warm-up and stop if knee pain sharpens instead of treating discomfort as a sign to push harder. A gradual load and flatter routes reduce the jump in stress that often irritates knees when someone starts running again.",
+      "referenceOverall": 89.5,
+      "appOverall": 82.8,
+      "diff": -6.700000000000003,
+      "absDiff": 6.700000000000003,
+      "gate": 1,
+      "answerSupport": 0.9,
+      "constraintPresence": 1,
+      "constraintRespect": 1
+    },
+    {
+      "caseId": "running-strong",
+      "kind": "advice",
+      "profile": "strong",
+      "pattern": "strong_under_scored",
+      "rationale": "Advice case where the answer is explicit and strong, but knee-safety gets under-valued by the generic rubric wording.",
+      "variant": "both_explicit",
+      "question": "Goal: start running three times a week. Constraint: keep the plan knee-friendly and avoid aggravating knee pain. What should I do?",
+      "criteria": [
+        {
+          "label": "Directly recommends how to start running three times a week",
+          "weight": 30
+        },
+        {
+          "label": "Gives concrete beginner-safe running steps",
+          "weight": 30
+        },
+        {
+          "label": "Keeps the plan knee-friendly and avoids aggravating knee pain",
+          "weight": 20
+        },
+        {
+          "label": "Explains why the suggested steps reduce stress on the knees",
+          "weight": 20
+        }
+      ],
+      "answer": "Begin with run-walk intervals on flat ground so the impact stays manageable while your joints adapt. Keep two easy sessions and only one slightly longer session each week instead of pushing every run. Use a simple warm-up and stop if knee pain sharpens instead of treating discomfort as a sign to push harder. A gradual load and flatter routes reduce the jump in stress that often irritates knees when someone starts running again.",
+      "referenceOverall": 89.5,
+      "appOverall": 87.1,
+      "diff": -2.4000000000000057,
+      "absDiff": 2.4000000000000057,
+      "gate": 1,
+      "answerSupport": 0.9,
+      "constraintPresence": 1,
+      "constraintRespect": 1
+    },
+    {
+      "caseId": "winter-commute-strong",
+      "kind": "comparison",
+      "profile": "strong",
+      "pattern": "strong_under_scored",
+      "rationale": "Comparison case with a clear recommendation that appears under-scored when the priority is phrased abstractly.",
+      "variant": "baseline",
+      "question": "Should I choose bike commuting or taking transit for a 25-minute city commute in winter when I want reliability more than exercise?",
+      "criteria": [
+        {
+          "label": "Gives a clear recommendation",
+          "weight": 30
+        },
+        {
+          "label": "Compares the options on relevant factors",
+          "weight": 25
+        },
+        {
+          "label": "Respects the stated constraints",
+          "weight": 25
+        },
+        {
+          "label": "Explains the trade-offs or rationale",
+          "weight": 20
+        }
+      ],
+      "answer": "Choose taking transit. It is more predictable in bad weather and removes the setup burden of icy roads, clothing, and storage. Biking can be faster and healthier on good days, but winter conditions make the commute less consistent. Your priority is reliability, so weather-proofing matters more than the fitness upside.",
+      "referenceOverall": 89.5,
+      "appOverall": 77.5,
+      "diff": -12,
+      "absDiff": 12,
+      "gate": 0.9,
+      "answerSupport": 0.8,
+      "constraintPresence": 1,
+      "constraintRespect": 0.2
+    },
+    {
+      "caseId": "winter-commute-strong",
+      "kind": "comparison",
+      "profile": "strong",
+      "pattern": "strong_under_scored",
+      "rationale": "Comparison case with a clear recommendation that appears under-scored when the priority is phrased abstractly.",
+      "variant": "question_explicit",
+      "question": "Which option better fits this situation: bike commuting or taking transit for a 25-minute winter city commute, with reliability more important than exercise?",
+      "criteria": [
+        {
+          "label": "Gives a clear recommendation",
+          "weight": 30
+        },
+        {
+          "label": "Compares the options on relevant factors",
+          "weight": 25
+        },
+        {
+          "label": "Respects the stated constraints",
+          "weight": 25
+        },
+        {
+          "label": "Explains the trade-offs or rationale",
+          "weight": 20
+        }
+      ],
+      "answer": "Choose taking transit. It is more predictable in bad weather and removes the setup burden of icy roads, clothing, and storage. Biking can be faster and healthier on good days, but winter conditions make the commute less consistent. Your priority is reliability, so weather-proofing matters more than the fitness upside.",
+      "referenceOverall": 89.5,
+      "appOverall": 76.8,
+      "diff": -12.700000000000003,
+      "absDiff": 12.700000000000003,
+      "gate": 0.9,
+      "answerSupport": 0.8,
+      "constraintPresence": 1,
+      "constraintRespect": 0.2
+    },
+    {
+      "caseId": "winter-commute-strong",
+      "kind": "comparison",
+      "profile": "strong",
+      "pattern": "strong_under_scored",
+      "rationale": "Comparison case with a clear recommendation that appears under-scored when the priority is phrased abstractly.",
+      "variant": "criteria_explicit",
+      "question": "Should I choose bike commuting or taking transit for a 25-minute city commute in winter when I want reliability more than exercise?",
+      "criteria": [
+        {
+          "label": "Makes a clear recommendation for this commute",
+          "weight": 30
+        },
+        {
+          "label": "Compares winter reliability, effort, and practicality",
+          "weight": 25
+        },
+        {
+          "label": "Keeps the recommendation aligned with reliability being more important than exercise",
+          "weight": 25
+        },
+        {
+          "label": "Explains the trade-off clearly",
+          "weight": 20
+        }
+      ],
+      "answer": "Choose taking transit. It is more predictable in bad weather and removes the setup burden of icy roads, clothing, and storage. Biking can be faster and healthier on good days, but winter conditions make the commute less consistent. Your priority is reliability, so weather-proofing matters more than the fitness upside.",
+      "referenceOverall": 89.5,
+      "appOverall": 69.4,
+      "diff": -20.099999999999994,
+      "absDiff": 20.099999999999994,
+      "gate": 0.9,
+      "answerSupport": 0.8,
+      "constraintPresence": 1,
+      "constraintRespect": 0.2
+    },
+    {
+      "caseId": "winter-commute-strong",
+      "kind": "comparison",
+      "profile": "strong",
+      "pattern": "strong_under_scored",
+      "rationale": "Comparison case with a clear recommendation that appears under-scored when the priority is phrased abstractly.",
+      "variant": "both_explicit",
+      "question": "Which option better fits this situation: bike commuting or taking transit for a 25-minute winter city commute, with reliability more important than exercise?",
+      "criteria": [
+        {
+          "label": "Makes a clear recommendation for this commute",
+          "weight": 30
+        },
+        {
+          "label": "Compares winter reliability, effort, and practicality",
+          "weight": 25
+        },
+        {
+          "label": "Keeps the recommendation aligned with reliability being more important than exercise",
+          "weight": 25
+        },
+        {
+          "label": "Explains the trade-off clearly",
+          "weight": 20
+        }
+      ],
+      "answer": "Choose taking transit. It is more predictable in bad weather and removes the setup burden of icy roads, clothing, and storage. Biking can be faster and healthier on good days, but winter conditions make the commute less consistent. Your priority is reliability, so weather-proofing matters more than the fitness upside.",
+      "referenceOverall": 89.5,
+      "appOverall": 75.8,
+      "diff": -13.700000000000003,
+      "absDiff": 13.700000000000003,
+      "gate": 0.9,
+      "answerSupport": 0.8,
+      "constraintPresence": 1,
+      "constraintRespect": 0.2
+    },
+    {
+      "caseId": "repo-structure-strong",
+      "kind": "comparison",
+      "profile": "strong",
+      "pattern": "strong_under_scored",
+      "rationale": "Comparison case where shared systems and coordinated releases are important, but the generic constraint criterion does not name them.",
+      "variant": "baseline",
+      "question": "Should I choose a monorepo or separate repositories for two product teams that share one design system and release together often?",
+      "criteria": [
+        {
+          "label": "Gives a clear recommendation",
+          "weight": 30
+        },
+        {
+          "label": "Compares the options on relevant factors",
+          "weight": 25
+        },
+        {
+          "label": "Respects the stated constraints",
+          "weight": 25
+        },
+        {
+          "label": "Explains the trade-offs or rationale",
+          "weight": 20
+        }
+      ],
+      "answer": "Choose a monorepo. Shared tooling, coordinated changes, and cross-package updates are easier when the code lives together. Separate repos give cleaner ownership boundaries, but they add coordination overhead when releases depend on each other. Because the teams already share infrastructure and ship together, the integration cost matters more than strict repo isolation.",
+      "referenceOverall": 89.5,
+      "appOverall": 66.2,
+      "diff": -23.299999999999997,
+      "absDiff": 23.299999999999997,
+      "gate": 1,
+      "answerSupport": 0.8,
+      "constraintPresence": 1,
+      "constraintRespect": 0.6
+    },
+    {
+      "caseId": "repo-structure-strong",
+      "kind": "comparison",
+      "profile": "strong",
+      "pattern": "strong_under_scored",
+      "rationale": "Comparison case where shared systems and coordinated releases are important, but the generic constraint criterion does not name them.",
+      "variant": "question_explicit",
+      "question": "Which repo setup better fits this situation: a monorepo or separate repositories for two product teams that share one design system and release together often?",
+      "criteria": [
+        {
+          "label": "Gives a clear recommendation",
+          "weight": 30
+        },
+        {
+          "label": "Compares the options on relevant factors",
+          "weight": 25
+        },
+        {
+          "label": "Respects the stated constraints",
+          "weight": 25
+        },
+        {
+          "label": "Explains the trade-offs or rationale",
+          "weight": 20
+        }
+      ],
+      "answer": "Choose a monorepo. Shared tooling, coordinated changes, and cross-package updates are easier when the code lives together. Separate repos give cleaner ownership boundaries, but they add coordination overhead when releases depend on each other. Because the teams already share infrastructure and ship together, the integration cost matters more than strict repo isolation.",
+      "referenceOverall": 89.5,
+      "appOverall": 82,
+      "diff": -7.5,
+      "absDiff": 7.5,
+      "gate": 1,
+      "answerSupport": 0.8,
+      "constraintPresence": 1,
+      "constraintRespect": 0.8
+    },
+    {
+      "caseId": "repo-structure-strong",
+      "kind": "comparison",
+      "profile": "strong",
+      "pattern": "strong_under_scored",
+      "rationale": "Comparison case where shared systems and coordinated releases are important, but the generic constraint criterion does not name them.",
+      "variant": "criteria_explicit",
+      "question": "Should I choose a monorepo or separate repositories for two product teams that share one design system and release together often?",
+      "criteria": [
+        {
+          "label": "Makes a clear recommendation",
+          "weight": 30
+        },
+        {
+          "label": "Compares coordination, ownership, and release overhead",
+          "weight": 25
+        },
+        {
+          "label": "Fits the situation of shared systems and frequent joint releases",
+          "weight": 25
+        },
+        {
+          "label": "Explains the trade-off clearly",
+          "weight": 20
+        }
+      ],
+      "answer": "Choose a monorepo. Shared tooling, coordinated changes, and cross-package updates are easier when the code lives together. Separate repos give cleaner ownership boundaries, but they add coordination overhead when releases depend on each other. Because the teams already share infrastructure and ship together, the integration cost matters more than strict repo isolation.",
+      "referenceOverall": 89.5,
+      "appOverall": 81.9,
+      "diff": -7.599999999999994,
+      "absDiff": 7.599999999999994,
+      "gate": 1,
+      "answerSupport": 0.8,
+      "constraintPresence": 1,
+      "constraintRespect": 0.6
+    },
+    {
+      "caseId": "repo-structure-strong",
+      "kind": "comparison",
+      "profile": "strong",
+      "pattern": "strong_under_scored",
+      "rationale": "Comparison case where shared systems and coordinated releases are important, but the generic constraint criterion does not name them.",
+      "variant": "both_explicit",
+      "question": "Which repo setup better fits this situation: a monorepo or separate repositories for two product teams that share one design system and release together often?",
+      "criteria": [
+        {
+          "label": "Makes a clear recommendation",
+          "weight": 30
+        },
+        {
+          "label": "Compares coordination, ownership, and release overhead",
+          "weight": 25
+        },
+        {
+          "label": "Fits the situation of shared systems and frequent joint releases",
+          "weight": 25
+        },
+        {
+          "label": "Explains the trade-off clearly",
+          "weight": 20
+        }
+      ],
+      "answer": "Choose a monorepo. Shared tooling, coordinated changes, and cross-package updates are easier when the code lives together. Separate repos give cleaner ownership boundaries, but they add coordination overhead when releases depend on each other. Because the teams already share infrastructure and ship together, the integration cost matters more than strict repo isolation.",
+      "referenceOverall": 89.5,
+      "appOverall": 84.8,
+      "diff": -4.700000000000003,
+      "absDiff": 4.700000000000003,
+      "gate": 1,
+      "answerSupport": 0.8,
+      "constraintPresence": 1,
+      "constraintRespect": 0.8
+    },
+    {
+      "caseId": "git-cleanup-strong",
+      "kind": "planning",
+      "profile": "strong",
+      "pattern": "strong_under_scored",
+      "rationale": "Planning case where the answer is strong, but the no-feature-freeze constraint benefits from being surfaced directly.",
+      "variant": "baseline",
+      "question": "How should I plan to clean up a messy git repository over one sprint without freezing feature work?",
+      "criteria": [
+        {
+          "label": "Proposes a clear plan",
+          "weight": 30
+        },
+        {
+          "label": "Orders the work in a sensible sequence",
+          "weight": 25
+        },
+        {
+          "label": "Fits the stated scope or constraints",
+          "weight": 25
+        },
+        {
+          "label": "Includes a useful check-in or follow-up step",
+          "weight": 20
+        }
+      ],
+      "answer": "Start by agreeing on the smallest set of repo rules that will reduce the most confusion, such as branch naming and merge expectations. Fix one high-friction area at a time, like stale branches or inconsistent release tagging, instead of refactoring the whole workflow at once. Document the new path in the repo and roll it out through normal feature work rather than a big-bang migration. At the end of the sprint, review which parts people ignored and tighten the process there before adding more rules.",
+      "referenceOverall": 88.5,
+      "appOverall": 68.5,
+      "diff": -20,
+      "absDiff": 20,
+      "gate": 1,
+      "answerSupport": 0.9,
+      "constraintPresence": 1,
+      "constraintRespect": 1
+    },
+    {
+      "caseId": "git-cleanup-strong",
+      "kind": "planning",
+      "profile": "strong",
+      "pattern": "strong_under_scored",
+      "rationale": "Planning case where the answer is strong, but the no-feature-freeze constraint benefits from being surfaced directly.",
+      "variant": "question_explicit",
+      "question": "I need a one-sprint cleanup plan for a messy git repository. Constraint: feature work must continue during the cleanup instead of freezing. How should I sequence it?",
+      "criteria": [
+        {
+          "label": "Proposes a clear plan",
+          "weight": 30
+        },
+        {
+          "label": "Orders the work in a sensible sequence",
+          "weight": 25
+        },
+        {
+          "label": "Fits the stated scope or constraints",
+          "weight": 25
+        },
+        {
+          "label": "Includes a useful check-in or follow-up step",
+          "weight": 20
+        }
+      ],
+      "answer": "Start by agreeing on the smallest set of repo rules that will reduce the most confusion, such as branch naming and merge expectations. Fix one high-friction area at a time, like stale branches or inconsistent release tagging, instead of refactoring the whole workflow at once. Document the new path in the repo and roll it out through normal feature work rather than a big-bang migration. At the end of the sprint, review which parts people ignored and tighten the process there before adding more rules.",
+      "referenceOverall": 88.5,
+      "appOverall": 61.5,
+      "diff": -27,
+      "absDiff": 27,
+      "gate": 1,
+      "answerSupport": 0.7,
+      "constraintPresence": 1,
+      "constraintRespect": 1
+    },
+    {
+      "caseId": "git-cleanup-strong",
+      "kind": "planning",
+      "profile": "strong",
+      "pattern": "strong_under_scored",
+      "rationale": "Planning case where the answer is strong, but the no-feature-freeze constraint benefits from being surfaced directly.",
+      "variant": "criteria_explicit",
+      "question": "How should I plan to clean up a messy git repository over one sprint without freezing feature work?",
+      "criteria": [
+        {
+          "label": "Proposes a clear one-sprint cleanup plan",
+          "weight": 30
+        },
+        {
+          "label": "Sequences the work while keeping feature work moving",
+          "weight": 25
+        },
+        {
+          "label": "Fits the no-feature-freeze constraint",
+          "weight": 25
+        },
+        {
+          "label": "Includes a useful end-of-sprint review or follow-up step",
+          "weight": 20
+        }
+      ],
+      "answer": "Start by agreeing on the smallest set of repo rules that will reduce the most confusion, such as branch naming and merge expectations. Fix one high-friction area at a time, like stale branches or inconsistent release tagging, instead of refactoring the whole workflow at once. Document the new path in the repo and roll it out through normal feature work rather than a big-bang migration. At the end of the sprint, review which parts people ignored and tighten the process there before adding more rules.",
+      "referenceOverall": 88.5,
+      "appOverall": 77.4,
+      "diff": -11.099999999999994,
+      "absDiff": 11.099999999999994,
+      "gate": 1,
+      "answerSupport": 0.9,
+      "constraintPresence": 1,
+      "constraintRespect": 1
+    },
+    {
+      "caseId": "git-cleanup-strong",
+      "kind": "planning",
+      "profile": "strong",
+      "pattern": "strong_under_scored",
+      "rationale": "Planning case where the answer is strong, but the no-feature-freeze constraint benefits from being surfaced directly.",
+      "variant": "both_explicit",
+      "question": "I need a one-sprint cleanup plan for a messy git repository. Constraint: feature work must continue during the cleanup instead of freezing. How should I sequence it?",
+      "criteria": [
+        {
+          "label": "Proposes a clear one-sprint cleanup plan",
+          "weight": 30
+        },
+        {
+          "label": "Sequences the work while keeping feature work moving",
+          "weight": 25
+        },
+        {
+          "label": "Fits the no-feature-freeze constraint",
+          "weight": 25
+        },
+        {
+          "label": "Includes a useful end-of-sprint review or follow-up step",
+          "weight": 20
+        }
+      ],
+      "answer": "Start by agreeing on the smallest set of repo rules that will reduce the most confusion, such as branch naming and merge expectations. Fix one high-friction area at a time, like stale branches or inconsistent release tagging, instead of refactoring the whole workflow at once. Document the new path in the repo and roll it out through normal feature work rather than a big-bang migration. At the end of the sprint, review which parts people ignored and tighten the process there before adding more rules.",
+      "referenceOverall": 88.5,
+      "appOverall": 84.2,
+      "diff": -4.299999999999997,
+      "absDiff": 4.299999999999997,
+      "gate": 1,
+      "answerSupport": 0.7,
+      "constraintPresence": 1,
+      "constraintRespect": 1
+    },
+    {
+      "caseId": "spanish-plan-strong",
+      "kind": "planning",
+      "profile": "strong",
+      "pattern": "strong_under_scored",
+      "rationale": "Planning case with a strong answer that appears to benefit when the time budget is separated cleanly from the goal.",
+      "variant": "baseline",
+      "question": "How should I plan to learn basic conversational Spanish in 30 days with 20 minutes a day?",
+      "criteria": [
+        {
+          "label": "Proposes a clear plan",
+          "weight": 30
+        },
+        {
+          "label": "Orders the work in a sensible sequence",
+          "weight": 25
+        },
+        {
+          "label": "Fits the stated scope or constraints",
+          "weight": 25
+        },
+        {
+          "label": "Includes a useful check-in or follow-up step",
+          "weight": 20
+        }
+      ],
+      "answer": "Spend the first week on core phrases, pronunciation, and a small daily set of high-frequency words. Use the middle weeks for short listening and speaking drills built around common situations like greetings, ordering, and directions. Reserve the final week for repetition, shadowing, and tiny live practice sessions instead of adding lots of new material. At the end of each week, record yourself speaking for one minute so you can hear what still feels slow or unclear.",
+      "referenceOverall": 88.5,
+      "appOverall": 56.5,
+      "diff": -32,
+      "absDiff": 32,
+      "gate": 1,
+      "answerSupport": 0.8,
+      "constraintPresence": 1,
+      "constraintRespect": 0.9
+    },
+    {
+      "caseId": "spanish-plan-strong",
+      "kind": "planning",
+      "profile": "strong",
+      "pattern": "strong_under_scored",
+      "rationale": "Planning case with a strong answer that appears to benefit when the time budget is separated cleanly from the goal.",
+      "variant": "question_explicit",
+      "question": "I need a 30-day plan for basic conversational Spanish. Constraint: only 20 minutes per day. How should I structure the month?",
+      "criteria": [
+        {
+          "label": "Proposes a clear plan",
+          "weight": 30
+        },
+        {
+          "label": "Orders the work in a sensible sequence",
+          "weight": 25
+        },
+        {
+          "label": "Fits the stated scope or constraints",
+          "weight": 25
+        },
+        {
+          "label": "Includes a useful check-in or follow-up step",
+          "weight": 20
+        }
+      ],
+      "answer": "Spend the first week on core phrases, pronunciation, and a small daily set of high-frequency words. Use the middle weeks for short listening and speaking drills built around common situations like greetings, ordering, and directions. Reserve the final week for repetition, shadowing, and tiny live practice sessions instead of adding lots of new material. At the end of each week, record yourself speaking for one minute so you can hear what still feels slow or unclear.",
+      "referenceOverall": 88.5,
+      "appOverall": 56.7,
+      "diff": -31.799999999999997,
+      "absDiff": 31.799999999999997,
+      "gate": 1,
+      "answerSupport": 0.7,
+      "constraintPresence": 1,
+      "constraintRespect": 1
+    },
+    {
+      "caseId": "spanish-plan-strong",
+      "kind": "planning",
+      "profile": "strong",
+      "pattern": "strong_under_scored",
+      "rationale": "Planning case with a strong answer that appears to benefit when the time budget is separated cleanly from the goal.",
+      "variant": "criteria_explicit",
+      "question": "How should I plan to learn basic conversational Spanish in 30 days with 20 minutes a day?",
+      "criteria": [
+        {
+          "label": "Proposes a clear 30-day plan",
+          "weight": 30
+        },
+        {
+          "label": "Sequences the weeks sensibly from start to finish",
+          "weight": 25
+        },
+        {
+          "label": "Fits the limit of only 20 minutes per day",
+          "weight": 25
+        },
+        {
+          "label": "Includes a useful weekly check-in or progress step",
+          "weight": 20
+        }
+      ],
+      "answer": "Spend the first week on core phrases, pronunciation, and a small daily set of high-frequency words. Use the middle weeks for short listening and speaking drills built around common situations like greetings, ordering, and directions. Reserve the final week for repetition, shadowing, and tiny live practice sessions instead of adding lots of new material. At the end of each week, record yourself speaking for one minute so you can hear what still feels slow or unclear.",
+      "referenceOverall": 88.5,
+      "appOverall": 61.4,
+      "diff": -27.1,
+      "absDiff": 27.1,
+      "gate": 1,
+      "answerSupport": 0.8,
+      "constraintPresence": 1,
+      "constraintRespect": 0.9
+    },
+    {
+      "caseId": "spanish-plan-strong",
+      "kind": "planning",
+      "profile": "strong",
+      "pattern": "strong_under_scored",
+      "rationale": "Planning case with a strong answer that appears to benefit when the time budget is separated cleanly from the goal.",
+      "variant": "both_explicit",
+      "question": "I need a 30-day plan for basic conversational Spanish. Constraint: only 20 minutes per day. How should I structure the month?",
+      "criteria": [
+        {
+          "label": "Proposes a clear 30-day plan",
+          "weight": 30
+        },
+        {
+          "label": "Sequences the weeks sensibly from start to finish",
+          "weight": 25
+        },
+        {
+          "label": "Fits the limit of only 20 minutes per day",
+          "weight": 25
+        },
+        {
+          "label": "Includes a useful weekly check-in or progress step",
+          "weight": 20
+        }
+      ],
+      "answer": "Spend the first week on core phrases, pronunciation, and a small daily set of high-frequency words. Use the middle weeks for short listening and speaking drills built around common situations like greetings, ordering, and directions. Reserve the final week for repetition, shadowing, and tiny live practice sessions instead of adding lots of new material. At the end of each week, record yourself speaking for one minute so you can hear what still feels slow or unclear.",
+      "referenceOverall": 88.5,
+      "appOverall": 62.9,
+      "diff": -25.6,
+      "absDiff": 25.6,
+      "gate": 1,
+      "answerSupport": 0.7,
+      "constraintPresence": 1,
+      "constraintRespect": 1
+    },
+    {
+      "caseId": "wifi-concise",
+      "kind": "advice",
+      "profile": "concise",
+      "pattern": "concise_under_scored",
+      "rationale": "Concise advice answer that may score better when the prompt and rubric explicitly allow a short two-step response.",
+      "variant": "baseline",
+      "question": "What are two quick steps to improve my home Wi-Fi speed without replacing all my equipment?",
+      "criteria": [
+        {
+          "label": "Answers the question directly",
+          "weight": 30
+        },
+        {
+          "label": "Provides concrete, practical steps",
+          "weight": 30
+        },
+        {
+          "label": "Respects the stated constraints",
+          "weight": 20
+        },
+        {
+          "label": "Gives enough detail or rationale to be useful",
+          "weight": 20
+        }
+      ],
+      "answer": "Move the router to an open, central spot away from thick walls and microwaves. Restart the modem and router, then retest speeds in the weakest room.",
+      "referenceOverall": 65.5,
+      "appOverall": 41.4,
+      "diff": -24.1,
+      "absDiff": 24.1,
+      "gate": 0.9,
+      "answerSupport": 0.7,
+      "constraintPresence": 0.8,
+      "constraintRespect": 0.4
+    },
+    {
+      "caseId": "wifi-concise",
+      "kind": "advice",
+      "profile": "concise",
+      "pattern": "concise_under_scored",
+      "rationale": "Concise advice answer that may score better when the prompt and rubric explicitly allow a short two-step response.",
+      "variant": "question_explicit",
+      "question": "Give exactly two quick actions to improve my home Wi-Fi speed using the equipment I already have.",
+      "criteria": [
+        {
+          "label": "Answers the question directly",
+          "weight": 30
+        },
+        {
+          "label": "Provides concrete, practical steps",
+          "weight": 30
+        },
+        {
+          "label": "Respects the stated constraints",
+          "weight": 20
+        },
+        {
+          "label": "Gives enough detail or rationale to be useful",
+          "weight": 20
+        }
+      ],
+      "answer": "Move the router to an open, central spot away from thick walls and microwaves. Restart the modem and router, then retest speeds in the weakest room.",
+      "referenceOverall": 65.5,
+      "appOverall": 61.5,
+      "diff": -4,
+      "absDiff": 4,
+      "gate": 0.9,
+      "answerSupport": 0.9,
+      "constraintPresence": 0.8,
+      "constraintRespect": 0.3
+    },
+    {
+      "caseId": "wifi-concise",
+      "kind": "advice",
+      "profile": "concise",
+      "pattern": "concise_under_scored",
+      "rationale": "Concise advice answer that may score better when the prompt and rubric explicitly allow a short two-step response.",
+      "variant": "criteria_explicit",
+      "question": "What are two quick steps to improve my home Wi-Fi speed without replacing all my equipment?",
+      "criteria": [
+        {
+          "label": "Directly recommends how to improve home Wi-Fi speed",
+          "weight": 30
+        },
+        {
+          "label": "Gives two concrete actions the user can do now",
+          "weight": 30
+        },
+        {
+          "label": "Keeps the advice within the current-equipment constraint",
+          "weight": 20
+        },
+        {
+          "label": "Even as a short answer, the steps are still useful",
+          "weight": 20
+        }
+      ],
+      "answer": "Move the router to an open, central spot away from thick walls and microwaves. Restart the modem and router, then retest speeds in the weakest room.",
+      "referenceOverall": 65.5,
+      "appOverall": 70,
+      "diff": 4.5,
+      "absDiff": 4.5,
+      "gate": 0.9,
+      "answerSupport": 0.7,
+      "constraintPresence": 0.8,
+      "constraintRespect": 0.4
+    },
+    {
+      "caseId": "wifi-concise",
+      "kind": "advice",
+      "profile": "concise",
+      "pattern": "concise_under_scored",
+      "rationale": "Concise advice answer that may score better when the prompt and rubric explicitly allow a short two-step response.",
+      "variant": "both_explicit",
+      "question": "Give exactly two quick actions to improve my home Wi-Fi speed using the equipment I already have.",
+      "criteria": [
+        {
+          "label": "Directly recommends how to improve home Wi-Fi speed",
+          "weight": 30
+        },
+        {
+          "label": "Gives two concrete actions the user can do now",
+          "weight": 30
+        },
+        {
+          "label": "Keeps the advice within the current-equipment constraint",
+          "weight": 20
+        },
+        {
+          "label": "Even as a short answer, the steps are still useful",
+          "weight": 20
+        }
+      ],
+      "answer": "Move the router to an open, central spot away from thick walls and microwaves. Restart the modem and router, then retest speeds in the weakest room.",
+      "referenceOverall": 65.5,
+      "appOverall": 64.5,
+      "diff": -1,
+      "absDiff": 1,
+      "gate": 0.9,
+      "answerSupport": 0.9,
+      "constraintPresence": 0.8,
+      "constraintRespect": 0.3
+    },
+    {
+      "caseId": "running-concise",
+      "kind": "advice",
+      "profile": "concise",
+      "pattern": "concise_under_scored",
+      "rationale": "Concise advice answer where the answer format is strong, but the generic usefulness criterion may be too demanding.",
+      "variant": "baseline",
+      "question": "What are two quick steps to start running three times a week without aggravating my knees?",
+      "criteria": [
+        {
+          "label": "Answers the question directly",
+          "weight": 30
+        },
+        {
+          "label": "Provides concrete, practical steps",
+          "weight": 30
+        },
+        {
+          "label": "Respects the stated constraints",
+          "weight": 20
+        },
+        {
+          "label": "Gives enough detail or rationale to be useful",
+          "weight": 20
+        }
+      ],
+      "answer": "Begin with run-walk intervals on flat ground so the impact stays manageable while your joints adapt. Keep two easy sessions and only one slightly longer session each week instead of pushing every run.",
+      "referenceOverall": 65.5,
+      "appOverall": 47.8,
+      "diff": -17.700000000000003,
+      "absDiff": 17.700000000000003,
+      "gate": 0.9,
+      "answerSupport": 0.8,
+      "constraintPresence": 0.8,
+      "constraintRespect": 1
+    },
+    {
+      "caseId": "running-concise",
+      "kind": "advice",
+      "profile": "concise",
+      "pattern": "concise_under_scored",
+      "rationale": "Concise advice answer where the answer format is strong, but the generic usefulness criterion may be too demanding.",
+      "variant": "question_explicit",
+      "question": "Give exactly two quick steps to start running three times a week without aggravating my knees.",
+      "criteria": [
+        {
+          "label": "Answers the question directly",
+          "weight": 30
+        },
+        {
+          "label": "Provides concrete, practical steps",
+          "weight": 30
+        },
+        {
+          "label": "Respects the stated constraints",
+          "weight": 20
+        },
+        {
+          "label": "Gives enough detail or rationale to be useful",
+          "weight": 20
+        }
+      ],
+      "answer": "Begin with run-walk intervals on flat ground so the impact stays manageable while your joints adapt. Keep two easy sessions and only one slightly longer session each week instead of pushing every run.",
+      "referenceOverall": 65.5,
+      "appOverall": 61.3,
+      "diff": -4.200000000000003,
+      "absDiff": 4.200000000000003,
+      "gate": 0.9,
+      "answerSupport": 0.9,
+      "constraintPresence": 0.9,
+      "constraintRespect": 1
+    },
+    {
+      "caseId": "running-concise",
+      "kind": "advice",
+      "profile": "concise",
+      "pattern": "concise_under_scored",
+      "rationale": "Concise advice answer where the answer format is strong, but the generic usefulness criterion may be too demanding.",
+      "variant": "criteria_explicit",
+      "question": "What are two quick steps to start running three times a week without aggravating my knees?",
+      "criteria": [
+        {
+          "label": "Directly recommends how to start running three times a week",
+          "weight": 30
+        },
+        {
+          "label": "Gives two concrete beginner-safe steps",
+          "weight": 30
+        },
+        {
+          "label": "Keeps the advice knee-friendly",
+          "weight": 20
+        },
+        {
+          "label": "Even as a short answer, the steps are still useful",
+          "weight": 20
+        }
+      ],
+      "answer": "Begin with run-walk intervals on flat ground so the impact stays manageable while your joints adapt. Keep two easy sessions and only one slightly longer session each week instead of pushing every run.",
+      "referenceOverall": 65.5,
+      "appOverall": 65.7,
+      "diff": 0.20000000000000284,
+      "absDiff": 0.20000000000000284,
+      "gate": 0.9,
+      "answerSupport": 0.8,
+      "constraintPresence": 0.8,
+      "constraintRespect": 1
+    },
+    {
+      "caseId": "running-concise",
+      "kind": "advice",
+      "profile": "concise",
+      "pattern": "concise_under_scored",
+      "rationale": "Concise advice answer where the answer format is strong, but the generic usefulness criterion may be too demanding.",
+      "variant": "both_explicit",
+      "question": "Give exactly two quick steps to start running three times a week without aggravating my knees.",
+      "criteria": [
+        {
+          "label": "Directly recommends how to start running three times a week",
+          "weight": 30
+        },
+        {
+          "label": "Gives two concrete beginner-safe steps",
+          "weight": 30
+        },
+        {
+          "label": "Keeps the advice knee-friendly",
+          "weight": 20
+        },
+        {
+          "label": "Even as a short answer, the steps are still useful",
+          "weight": 20
+        }
+      ],
+      "answer": "Begin with run-walk intervals on flat ground so the impact stays manageable while your joints adapt. Keep two easy sessions and only one slightly longer session each week instead of pushing every run.",
+      "referenceOverall": 65.5,
+      "appOverall": 63.8,
+      "diff": -1.7000000000000028,
+      "absDiff": 1.7000000000000028,
+      "gate": 0.9,
+      "answerSupport": 0.9,
+      "constraintPresence": 0.9,
+      "constraintRespect": 1
+    },
+    {
+      "caseId": "resume-bullets-concise",
+      "kind": "advice",
+      "profile": "concise",
+      "pattern": "concise_under_scored",
+      "rationale": "Concise advice answer where truthfulness is important, but the constraint is easy to miss in a generic criterion.",
+      "variant": "baseline",
+      "question": "What are two quick steps to turn my job duties into stronger resume bullets without inventing achievements?",
+      "criteria": [
+        {
+          "label": "Answers the question directly",
+          "weight": 30
+        },
+        {
+          "label": "Provides concrete, practical steps",
+          "weight": 30
+        },
+        {
+          "label": "Respects the stated constraints",
+          "weight": 20
+        },
+        {
+          "label": "Gives enough detail or rationale to be useful",
+          "weight": 20
+        }
+      ],
+      "answer": "Rewrite each duty around an action you actually took and the scope of the work. Add concrete details such as volume, team size, turnaround time, or tools when you can verify them.",
+      "referenceOverall": 65.5,
+      "appOverall": 46.8,
+      "diff": -18.700000000000003,
+      "absDiff": 18.700000000000003,
+      "gate": 0.9,
+      "answerSupport": 0.9,
+      "constraintPresence": 0.4,
+      "constraintRespect": 0.4
+    },
+    {
+      "caseId": "resume-bullets-concise",
+      "kind": "advice",
+      "profile": "concise",
+      "pattern": "concise_under_scored",
+      "rationale": "Concise advice answer where truthfulness is important, but the constraint is easy to miss in a generic criterion.",
+      "variant": "question_explicit",
+      "question": "Give exactly two quick steps to make my resume bullets stronger without inventing achievements.",
+      "criteria": [
+        {
+          "label": "Answers the question directly",
+          "weight": 30
+        },
+        {
+          "label": "Provides concrete, practical steps",
+          "weight": 30
+        },
+        {
+          "label": "Respects the stated constraints",
+          "weight": 20
+        },
+        {
+          "label": "Gives enough detail or rationale to be useful",
+          "weight": 20
+        }
+      ],
+      "answer": "Rewrite each duty around an action you actually took and the scope of the work. Add concrete details such as volume, team size, turnaround time, or tools when you can verify them.",
+      "referenceOverall": 65.5,
+      "appOverall": 59.1,
+      "diff": -6.399999999999999,
+      "absDiff": 6.399999999999999,
+      "gate": 0.9,
+      "answerSupport": 0.9,
+      "constraintPresence": 0.4,
+      "constraintRespect": 0.4
+    },
+    {
+      "caseId": "resume-bullets-concise",
+      "kind": "advice",
+      "profile": "concise",
+      "pattern": "concise_under_scored",
+      "rationale": "Concise advice answer where truthfulness is important, but the constraint is easy to miss in a generic criterion.",
+      "variant": "criteria_explicit",
+      "question": "What are two quick steps to turn my job duties into stronger resume bullets without inventing achievements?",
+      "criteria": [
+        {
+          "label": "Directly answers how to strengthen resume bullets",
+          "weight": 30
+        },
+        {
+          "label": "Gives two concrete revision steps",
+          "weight": 30
+        },
+        {
+          "label": "Avoids inventing achievements or exaggerating results",
+          "weight": 20
+        },
+        {
+          "label": "Even as a short answer, the steps are still useful",
+          "weight": 20
+        }
+      ],
+      "answer": "Rewrite each duty around an action you actually took and the scope of the work. Add concrete details such as volume, team size, turnaround time, or tools when you can verify them.",
+      "referenceOverall": 65.5,
+      "appOverall": 37.2,
+      "diff": -28.299999999999997,
+      "absDiff": 28.299999999999997,
+      "gate": 0.9,
+      "answerSupport": 0.9,
+      "constraintPresence": 0.4,
+      "constraintRespect": 0.4
+    },
+    {
+      "caseId": "resume-bullets-concise",
+      "kind": "advice",
+      "profile": "concise",
+      "pattern": "concise_under_scored",
+      "rationale": "Concise advice answer where truthfulness is important, but the constraint is easy to miss in a generic criterion.",
+      "variant": "both_explicit",
+      "question": "Give exactly two quick steps to make my resume bullets stronger without inventing achievements.",
+      "criteria": [
+        {
+          "label": "Directly answers how to strengthen resume bullets",
+          "weight": 30
+        },
+        {
+          "label": "Gives two concrete revision steps",
+          "weight": 30
+        },
+        {
+          "label": "Avoids inventing achievements or exaggerating results",
+          "weight": 20
+        },
+        {
+          "label": "Even as a short answer, the steps are still useful",
+          "weight": 20
+        }
+      ],
+      "answer": "Rewrite each duty around an action you actually took and the scope of the work. Add concrete details such as volume, team size, turnaround time, or tools when you can verify them.",
+      "referenceOverall": 65.5,
+      "appOverall": 52.1,
+      "diff": -13.399999999999999,
+      "absDiff": 13.399999999999999,
+      "gate": 0.9,
+      "answerSupport": 0.9,
+      "constraintPresence": 0.4,
+      "constraintRespect": 0.4
+    },
+    {
+      "caseId": "sleep-constraint-miss",
+      "kind": "advice",
+      "profile": "constraint_miss",
+      "pattern": "constraint_over_scored",
+      "rationale": "Constraint-miss advice case where the forbidden action should be named directly to see if scoring drops appropriately.",
+      "variant": "baseline",
+      "question": "What is a practical way to fall asleep earlier without taking medication?",
+      "criteria": [
+        {
+          "label": "Answers the question directly",
+          "weight": 30
+        },
+        {
+          "label": "Provides concrete, practical steps",
+          "weight": 30
+        },
+        {
+          "label": "Respects the stated constraints",
+          "weight": 20
+        },
+        {
+          "label": "Gives enough detail or rationale to be useful",
+          "weight": 20
+        }
+      ],
+      "answer": "Take strong sleep aids so you can knock yourself out quickly. After that, set the same wake-up time every day for a week so your body clock has one stable anchor.",
+      "referenceOverall": 54,
+      "appOverall": 64.9,
+      "diff": 10.900000000000006,
+      "absDiff": 10.900000000000006,
+      "gate": 0.9,
+      "answerSupport": 0.9,
+      "constraintPresence": 1,
+      "constraintRespect": 0.9
+    },
+    {
+      "caseId": "sleep-constraint-miss",
+      "kind": "advice",
+      "profile": "constraint_miss",
+      "pattern": "constraint_over_scored",
+      "rationale": "Constraint-miss advice case where the forbidden action should be named directly to see if scoring drops appropriately.",
+      "variant": "question_explicit",
+      "question": "I want to fall asleep earlier. Constraint: do not recommend medication or sleep aids. What should I do?",
+      "criteria": [
+        {
+          "label": "Answers the question directly",
+          "weight": 30
+        },
+        {
+          "label": "Provides concrete, practical steps",
+          "weight": 30
+        },
+        {
+          "label": "Respects the stated constraints",
+          "weight": 20
+        },
+        {
+          "label": "Gives enough detail or rationale to be useful",
+          "weight": 20
+        }
+      ],
+      "answer": "Take strong sleep aids so you can knock yourself out quickly. After that, set the same wake-up time every day for a week so your body clock has one stable anchor.",
+      "referenceOverall": 54,
+      "appOverall": 22.5,
+      "diff": -31.5,
+      "absDiff": 31.5,
+      "gate": 0.7,
+      "answerSupport": 0.4,
+      "constraintPresence": 1,
+      "constraintRespect": 0.6
+    },
+    {
+      "caseId": "sleep-constraint-miss",
+      "kind": "advice",
+      "profile": "constraint_miss",
+      "pattern": "constraint_over_scored",
+      "rationale": "Constraint-miss advice case where the forbidden action should be named directly to see if scoring drops appropriately.",
+      "variant": "criteria_explicit",
+      "question": "What is a practical way to fall asleep earlier without taking medication?",
+      "criteria": [
+        {
+          "label": "Directly recommends ways to fall asleep earlier",
+          "weight": 30
+        },
+        {
+          "label": "Gives practical steps the user can try",
+          "weight": 30
+        },
+        {
+          "label": "Does not recommend medication or sleep aids",
+          "weight": 20
+        },
+        {
+          "label": "Explains why the advice could help",
+          "weight": 20
+        }
+      ],
+      "answer": "Take strong sleep aids so you can knock yourself out quickly. After that, set the same wake-up time every day for a week so your body clock has one stable anchor.",
+      "referenceOverall": 54,
+      "appOverall": 62.6,
+      "diff": 8.600000000000001,
+      "absDiff": 8.600000000000001,
+      "gate": 0.9,
+      "answerSupport": 0.9,
+      "constraintPresence": 1,
+      "constraintRespect": 0.9
+    },
+    {
+      "caseId": "sleep-constraint-miss",
+      "kind": "advice",
+      "profile": "constraint_miss",
+      "pattern": "constraint_over_scored",
+      "rationale": "Constraint-miss advice case where the forbidden action should be named directly to see if scoring drops appropriately.",
+      "variant": "both_explicit",
+      "question": "I want to fall asleep earlier. Constraint: do not recommend medication or sleep aids. What should I do?",
+      "criteria": [
+        {
+          "label": "Directly recommends ways to fall asleep earlier",
+          "weight": 30
+        },
+        {
+          "label": "Gives practical steps the user can try",
+          "weight": 30
+        },
+        {
+          "label": "Does not recommend medication or sleep aids",
+          "weight": 20
+        },
+        {
+          "label": "Explains why the advice could help",
+          "weight": 20
+        }
+      ],
+      "answer": "Take strong sleep aids so you can knock yourself out quickly. After that, set the same wake-up time every day for a week so your body clock has one stable anchor.",
+      "referenceOverall": 54,
+      "appOverall": 41.1,
+      "diff": -12.899999999999999,
+      "absDiff": 12.899999999999999,
+      "gate": 0.7,
+      "answerSupport": 0.4,
+      "constraintPresence": 1,
+      "constraintRespect": 0.6
+    },
+    {
+      "caseId": "reading-device-constraint-miss",
+      "kind": "comparison",
+      "profile": "constraint_miss",
+      "pattern": "constraint_over_scored",
+      "rationale": "Comparison constraint-miss case where the priorities need to be stated more explicitly than the generic comparison rubric.",
+      "variant": "baseline",
+      "question": "What would you pick between an e-reader and a tablet for focused reading with long battery life and fewer distractions?",
+      "criteria": [
+        {
+          "label": "Gives a clear recommendation",
+          "weight": 30
+        },
+        {
+          "label": "Compares the options on relevant factors",
+          "weight": 25
+        },
+        {
+          "label": "Respects the stated constraints",
+          "weight": 25
+        },
+        {
+          "label": "Explains the trade-offs or rationale",
+          "weight": 20
+        }
+      ],
+      "answer": "Choose a bright general-purpose tablet. It is the strongest option overall, even if it asks for more than you wanted to spend or carry.",
+      "referenceOverall": 55.5,
+      "appOverall": 65.8,
+      "diff": 10.299999999999997,
+      "absDiff": 10.299999999999997,
+      "gate": 0.9,
+      "answerSupport": 1,
+      "constraintPresence": 1,
+      "constraintRespect": 0.8
+    },
+    {
+      "caseId": "reading-device-constraint-miss",
+      "kind": "comparison",
+      "profile": "constraint_miss",
+      "pattern": "constraint_over_scored",
+      "rationale": "Comparison constraint-miss case where the priorities need to be stated more explicitly than the generic comparison rubric.",
+      "variant": "question_explicit",
+      "question": "Which option better fits these priorities for reading: focused reading, long battery life, and fewer distractions: an e-reader or a tablet?",
+      "criteria": [
+        {
+          "label": "Gives a clear recommendation",
+          "weight": 30
+        },
+        {
+          "label": "Compares the options on relevant factors",
+          "weight": 25
+        },
+        {
+          "label": "Respects the stated constraints",
+          "weight": 25
+        },
+        {
+          "label": "Explains the trade-offs or rationale",
+          "weight": 20
+        }
+      ],
+      "answer": "Choose a bright general-purpose tablet. It is the strongest option overall, even if it asks for more than you wanted to spend or carry.",
+      "referenceOverall": 55.5,
+      "appOverall": 70.2,
+      "diff": 14.700000000000003,
+      "absDiff": 14.700000000000003,
+      "gate": 0.9,
+      "answerSupport": 1,
+      "constraintPresence": 1,
+      "constraintRespect": 1
+    },
+    {
+      "caseId": "reading-device-constraint-miss",
+      "kind": "comparison",
+      "profile": "constraint_miss",
+      "pattern": "constraint_over_scored",
+      "rationale": "Comparison constraint-miss case where the priorities need to be stated more explicitly than the generic comparison rubric.",
+      "variant": "criteria_explicit",
+      "question": "What would you pick between an e-reader and a tablet for focused reading with long battery life and fewer distractions?",
+      "criteria": [
+        {
+          "label": "Makes a clear recommendation",
+          "weight": 30
+        },
+        {
+          "label": "Compares the two options on focus, battery life, and distraction level",
+          "weight": 25
+        },
+        {
+          "label": "The recommendation matches those stated priorities",
+          "weight": 25
+        },
+        {
+          "label": "Explains the trade-off clearly",
+          "weight": 20
+        }
+      ],
+      "answer": "Choose a bright general-purpose tablet. It is the strongest option overall, even if it asks for more than you wanted to spend or carry.",
+      "referenceOverall": 55.5,
+      "appOverall": 65.7,
+      "diff": 10.200000000000003,
+      "absDiff": 10.200000000000003,
+      "gate": 0.9,
+      "answerSupport": 1,
+      "constraintPresence": 1,
+      "constraintRespect": 0.8
+    },
+    {
+      "caseId": "reading-device-constraint-miss",
+      "kind": "comparison",
+      "profile": "constraint_miss",
+      "pattern": "constraint_over_scored",
+      "rationale": "Comparison constraint-miss case where the priorities need to be stated more explicitly than the generic comparison rubric.",
+      "variant": "both_explicit",
+      "question": "Which option better fits these priorities for reading: focused reading, long battery life, and fewer distractions: an e-reader or a tablet?",
+      "criteria": [
+        {
+          "label": "Makes a clear recommendation",
+          "weight": 30
+        },
+        {
+          "label": "Compares the two options on focus, battery life, and distraction level",
+          "weight": 25
+        },
+        {
+          "label": "The recommendation matches those stated priorities",
+          "weight": 25
+        },
+        {
+          "label": "Explains the trade-off clearly",
+          "weight": 20
+        }
+      ],
+      "answer": "Choose a bright general-purpose tablet. It is the strongest option overall, even if it asks for more than you wanted to spend or carry.",
+      "referenceOverall": 55.5,
+      "appOverall": 69.8,
+      "diff": 14.299999999999997,
+      "absDiff": 14.299999999999997,
+      "gate": 0.9,
+      "answerSupport": 1,
+      "constraintPresence": 1,
+      "constraintRespect": 1
+    },
+    {
+      "caseId": "gaming-setup-constraint-miss",
+      "kind": "comparison",
+      "profile": "constraint_miss",
+      "pattern": "constraint_over_scored",
+      "rationale": "Comparison constraint-miss case where portability and apartment size are more concrete than the generic constraint label.",
+      "variant": "baseline",
+      "question": "What would you pick between a prebuilt desktop and a gaming laptop for light gaming in a small apartment with occasional travel?",
+      "criteria": [
+        {
+          "label": "Gives a clear recommendation",
+          "weight": 30
+        },
+        {
+          "label": "Compares the options on relevant factors",
+          "weight": 25
+        },
+        {
+          "label": "Respects the stated constraints",
+          "weight": 25
+        },
+        {
+          "label": "Explains the trade-offs or rationale",
+          "weight": 20
+        }
+      ],
+      "answer": "Choose a large tower desktop with a separate monitor. It is the strongest option overall, even if it asks for more than you wanted to spend or carry.",
+      "referenceOverall": 55.5,
+      "appOverall": 65.1,
+      "diff": 9.599999999999994,
+      "absDiff": 9.599999999999994,
+      "gate": 0.9,
+      "answerSupport": 0.9,
+      "constraintPresence": 0.9,
+      "constraintRespect": 0.7
+    },
+    {
+      "caseId": "gaming-setup-constraint-miss",
+      "kind": "comparison",
+      "profile": "constraint_miss",
+      "pattern": "constraint_over_scored",
+      "rationale": "Comparison constraint-miss case where portability and apartment size are more concrete than the generic constraint label.",
+      "variant": "question_explicit",
+      "question": "Which option better fits light gaming in a small apartment with occasional travel: a prebuilt desktop or a gaming laptop?",
+      "criteria": [
+        {
+          "label": "Gives a clear recommendation",
+          "weight": 30
+        },
+        {
+          "label": "Compares the options on relevant factors",
+          "weight": 25
+        },
+        {
+          "label": "Respects the stated constraints",
+          "weight": 25
+        },
+        {
+          "label": "Explains the trade-offs or rationale",
+          "weight": 20
+        }
+      ],
+      "answer": "Choose a large tower desktop with a separate monitor. It is the strongest option overall, even if it asks for more than you wanted to spend or carry.",
+      "referenceOverall": 55.5,
+      "appOverall": 69.7,
+      "diff": 14.200000000000003,
+      "absDiff": 14.200000000000003,
+      "gate": 0.9,
+      "answerSupport": 0.9,
+      "constraintPresence": 1,
+      "constraintRespect": 0.8
+    },
+    {
+      "caseId": "gaming-setup-constraint-miss",
+      "kind": "comparison",
+      "profile": "constraint_miss",
+      "pattern": "constraint_over_scored",
+      "rationale": "Comparison constraint-miss case where portability and apartment size are more concrete than the generic constraint label.",
+      "variant": "criteria_explicit",
+      "question": "What would you pick between a prebuilt desktop and a gaming laptop for light gaming in a small apartment with occasional travel?",
+      "criteria": [
+        {
+          "label": "Makes a clear recommendation",
+          "weight": 30
+        },
+        {
+          "label": "Compares the options on size, portability, and gaming needs",
+          "weight": 25
+        },
+        {
+          "label": "Fits the small-apartment and occasional-travel constraints",
+          "weight": 25
+        },
+        {
+          "label": "Explains the trade-off clearly",
+          "weight": 20
+        }
+      ],
+      "answer": "Choose a large tower desktop with a separate monitor. It is the strongest option overall, even if it asks for more than you wanted to spend or carry.",
+      "referenceOverall": 55.5,
+      "appOverall": 64.5,
+      "diff": 9,
+      "absDiff": 9,
+      "gate": 0.9,
+      "answerSupport": 0.9,
+      "constraintPresence": 0.9,
+      "constraintRespect": 0.7
+    },
+    {
+      "caseId": "gaming-setup-constraint-miss",
+      "kind": "comparison",
+      "profile": "constraint_miss",
+      "pattern": "constraint_over_scored",
+      "rationale": "Comparison constraint-miss case where portability and apartment size are more concrete than the generic constraint label.",
+      "variant": "both_explicit",
+      "question": "Which option better fits light gaming in a small apartment with occasional travel: a prebuilt desktop or a gaming laptop?",
+      "criteria": [
+        {
+          "label": "Makes a clear recommendation",
+          "weight": 30
+        },
+        {
+          "label": "Compares the options on size, portability, and gaming needs",
+          "weight": 25
+        },
+        {
+          "label": "Fits the small-apartment and occasional-travel constraints",
+          "weight": 25
+        },
+        {
+          "label": "Explains the trade-off clearly",
+          "weight": 20
+        }
+      ],
+      "answer": "Choose a large tower desktop with a separate monitor. It is the strongest option overall, even if it asks for more than you wanted to spend or carry.",
+      "referenceOverall": 55.5,
+      "appOverall": 69.8,
+      "diff": 14.299999999999997,
+      "absDiff": 14.299999999999997,
+      "gate": 0.9,
+      "answerSupport": 0.9,
+      "constraintPresence": 1,
+      "constraintRespect": 0.8
+    },
+    {
+      "caseId": "study-method-constraint-miss",
+      "kind": "comparison",
+      "profile": "constraint_miss",
+      "pattern": "constraint_over_scored",
+      "rationale": "Comparison constraint-miss case where the short daily time budget needs to be spelled out more literally.",
+      "variant": "baseline",
+      "question": "What would you pick between flashcards and summary notes if I only have 20 minutes a day to memorize biology terms before an exam?",
+      "criteria": [
+        {
+          "label": "Gives a clear recommendation",
+          "weight": 30
+        },
+        {
+          "label": "Compares the options on relevant factors",
+          "weight": 25
+        },
+        {
+          "label": "Respects the stated constraints",
+          "weight": 25
+        },
+        {
+          "label": "Explains the trade-offs or rationale",
+          "weight": 20
+        }
+      ],
+      "answer": "Choose summary notes. It is the strongest option overall, even if it asks for more than you wanted to spend or carry.",
+      "referenceOverall": 55.5,
+      "appOverall": 64.5,
+      "diff": 9,
+      "absDiff": 9,
+      "gate": 0.9,
+      "answerSupport": 1,
+      "constraintPresence": 1,
+      "constraintRespect": 0.7
+    },
+    {
+      "caseId": "study-method-constraint-miss",
+      "kind": "comparison",
+      "profile": "constraint_miss",
+      "pattern": "constraint_over_scored",
+      "rationale": "Comparison constraint-miss case where the short daily time budget needs to be spelled out more literally.",
+      "variant": "question_explicit",
+      "question": "Which option better fits memorizing biology terms if I only have 20 minutes a day: flashcards or summary notes?",
+      "criteria": [
+        {
+          "label": "Gives a clear recommendation",
+          "weight": 30
+        },
+        {
+          "label": "Compares the options on relevant factors",
+          "weight": 25
+        },
+        {
+          "label": "Respects the stated constraints",
+          "weight": 25
+        },
+        {
+          "label": "Explains the trade-offs or rationale",
+          "weight": 20
+        }
+      ],
+      "answer": "Choose summary notes. It is the strongest option overall, even if it asks for more than you wanted to spend or carry.",
+      "referenceOverall": 55.5,
+      "appOverall": 65.8,
+      "diff": 10.299999999999997,
+      "absDiff": 10.299999999999997,
+      "gate": 0.9,
+      "answerSupport": 1,
+      "constraintPresence": 1,
+      "constraintRespect": 0.7
+    },
+    {
+      "caseId": "study-method-constraint-miss",
+      "kind": "comparison",
+      "profile": "constraint_miss",
+      "pattern": "constraint_over_scored",
+      "rationale": "Comparison constraint-miss case where the short daily time budget needs to be spelled out more literally.",
+      "variant": "criteria_explicit",
+      "question": "What would you pick between flashcards and summary notes if I only have 20 minutes a day to memorize biology terms before an exam?",
+      "criteria": [
+        {
+          "label": "Makes a clear recommendation",
+          "weight": 30
+        },
+        {
+          "label": "Compares the options on recall efficiency and setup cost",
+          "weight": 25
+        },
+        {
+          "label": "Fits the limit of only 20 minutes a day",
+          "weight": 25
+        },
+        {
+          "label": "Explains the trade-off clearly",
+          "weight": 20
+        }
+      ],
+      "answer": "Choose summary notes. It is the strongest option overall, even if it asks for more than you wanted to spend or carry.",
+      "referenceOverall": 55.5,
+      "appOverall": 64.5,
+      "diff": 9,
+      "absDiff": 9,
+      "gate": 0.9,
+      "answerSupport": 1,
+      "constraintPresence": 1,
+      "constraintRespect": 0.7
+    },
+    {
+      "caseId": "study-method-constraint-miss",
+      "kind": "comparison",
+      "profile": "constraint_miss",
+      "pattern": "constraint_over_scored",
+      "rationale": "Comparison constraint-miss case where the short daily time budget needs to be spelled out more literally.",
+      "variant": "both_explicit",
+      "question": "Which option better fits memorizing biology terms if I only have 20 minutes a day: flashcards or summary notes?",
+      "criteria": [
+        {
+          "label": "Makes a clear recommendation",
+          "weight": 30
+        },
+        {
+          "label": "Compares the options on recall efficiency and setup cost",
+          "weight": 25
+        },
+        {
+          "label": "Fits the limit of only 20 minutes a day",
+          "weight": 25
+        },
+        {
+          "label": "Explains the trade-off clearly",
+          "weight": 20
+        }
+      ],
+      "answer": "Choose summary notes. It is the strongest option overall, even if it asks for more than you wanted to spend or carry.",
+      "referenceOverall": 55.5,
+      "appOverall": 65.7,
+      "diff": 10.200000000000003,
+      "absDiff": 10.200000000000003,
+      "gate": 0.9,
+      "answerSupport": 1,
+      "constraintPresence": 1,
+      "constraintRespect": 0.7
+    },
+    {
+      "caseId": "remote-onboarding-constraint-miss",
+      "kind": "planning",
+      "profile": "constraint_miss",
+      "pattern": "constraint_over_scored",
+      "rationale": "Planning constraint-miss case where the overloading risk should be stated directly in both the question and criteria.",
+      "variant": "baseline",
+      "question": "How can I organize a plan to onboard a new remote hire in the first week without overwhelming them?",
+      "criteria": [
+        {
+          "label": "Proposes a clear plan",
+          "weight": 30
+        },
+        {
+          "label": "Orders the work in a sensible sequence",
+          "weight": 25
+        },
+        {
+          "label": "Fits the stated scope or constraints",
+          "weight": 25
+        },
+        {
+          "label": "Includes a useful check-in or follow-up step",
+          "weight": 20
+        }
+      ],
+      "answer": "Book their calendar solid with back-to-back training sessions from morning to evening. After that, give them one clear schedule for the week with a short list of outcomes for each day.",
+      "referenceOverall": 51.3,
+      "appOverall": 70.2,
+      "diff": 18.900000000000006,
+      "absDiff": 18.900000000000006,
+      "gate": 0.9,
+      "answerSupport": 0.8,
+      "constraintPresence": 1,
+      "constraintRespect": 1
+    },
+    {
+      "caseId": "remote-onboarding-constraint-miss",
+      "kind": "planning",
+      "profile": "constraint_miss",
+      "pattern": "constraint_over_scored",
+      "rationale": "Planning constraint-miss case where the overloading risk should be stated directly in both the question and criteria.",
+      "variant": "question_explicit",
+      "question": "I need a first-week remote onboarding plan. Constraint: do not overload the new hire. How should I structure the week?",
+      "criteria": [
+        {
+          "label": "Proposes a clear plan",
+          "weight": 30
+        },
+        {
+          "label": "Orders the work in a sensible sequence",
+          "weight": 25
+        },
+        {
+          "label": "Fits the stated scope or constraints",
+          "weight": 25
+        },
+        {
+          "label": "Includes a useful check-in or follow-up step",
+          "weight": 20
+        }
+      ],
+      "answer": "Book their calendar solid with back-to-back training sessions from morning to evening. After that, give them one clear schedule for the week with a short list of outcomes for each day.",
+      "referenceOverall": 51.3,
+      "appOverall": 70.6,
+      "diff": 19.299999999999997,
+      "absDiff": 19.299999999999997,
+      "gate": 0.9,
+      "answerSupport": 0.8,
+      "constraintPresence": 1,
+      "constraintRespect": 1
+    },
+    {
+      "caseId": "remote-onboarding-constraint-miss",
+      "kind": "planning",
+      "profile": "constraint_miss",
+      "pattern": "constraint_over_scored",
+      "rationale": "Planning constraint-miss case where the overloading risk should be stated directly in both the question and criteria.",
+      "variant": "criteria_explicit",
+      "question": "How can I organize a plan to onboard a new remote hire in the first week without overwhelming them?",
+      "criteria": [
+        {
+          "label": "Proposes a clear first-week plan",
+          "weight": 30
+        },
+        {
+          "label": "Sequences the onboarding work sensibly",
+          "weight": 25
+        },
+        {
+          "label": "Avoids overloading the new hire with too much at once",
+          "weight": 25
+        },
+        {
+          "label": "Includes a useful check-in or follow-up step",
+          "weight": 20
+        }
+      ],
+      "answer": "Book their calendar solid with back-to-back training sessions from morning to evening. After that, give them one clear schedule for the week with a short list of outcomes for each day.",
+      "referenceOverall": 51.3,
+      "appOverall": 70.4,
+      "diff": 19.10000000000001,
+      "absDiff": 19.10000000000001,
+      "gate": 0.9,
+      "answerSupport": 0.8,
+      "constraintPresence": 1,
+      "constraintRespect": 1
+    },
+    {
+      "caseId": "remote-onboarding-constraint-miss",
+      "kind": "planning",
+      "profile": "constraint_miss",
+      "pattern": "constraint_over_scored",
+      "rationale": "Planning constraint-miss case where the overloading risk should be stated directly in both the question and criteria.",
+      "variant": "both_explicit",
+      "question": "I need a first-week remote onboarding plan. Constraint: do not overload the new hire. How should I structure the week?",
+      "criteria": [
+        {
+          "label": "Proposes a clear first-week plan",
+          "weight": 30
+        },
+        {
+          "label": "Sequences the onboarding work sensibly",
+          "weight": 25
+        },
+        {
+          "label": "Avoids overloading the new hire with too much at once",
+          "weight": 25
+        },
+        {
+          "label": "Includes a useful check-in or follow-up step",
+          "weight": 20
+        }
+      ],
+      "answer": "Book their calendar solid with back-to-back training sessions from morning to evening. After that, give them one clear schedule for the week with a short list of outcomes for each day.",
+      "referenceOverall": 51.3,
+      "appOverall": 70.7,
+      "diff": 19.400000000000006,
+      "absDiff": 19.400000000000006,
+      "gate": 0.9,
+      "answerSupport": 0.8,
+      "constraintPresence": 1,
+      "constraintRespect": 1
+    },
+    {
+      "caseId": "interview-prep-constraint-miss",
+      "kind": "planning",
+      "profile": "constraint_miss",
+      "pattern": "constraint_under_scored",
+      "rationale": "Planning constraint-miss case where the scorer may be over-penalizing because the work-schedule constraint is not phrased explicitly enough.",
+      "variant": "baseline",
+      "question": "How can I organize a plan to prepare for a technical interview in two weeks while working full-time?",
+      "criteria": [
+        {
+          "label": "Proposes a clear plan",
+          "weight": 30
+        },
+        {
+          "label": "Orders the work in a sensible sequence",
+          "weight": 25
+        },
+        {
+          "label": "Fits the stated scope or constraints",
+          "weight": 25
+        },
+        {
+          "label": "Includes a useful check-in or follow-up step",
+          "weight": 20
+        }
+      ],
+      "answer": "Take several days off work and cram for eight hours a day. After that, spend the first two sessions listing the interview topics and identifying your weakest areas.",
+      "referenceOverall": 51.3,
+      "appOverall": 24.1,
+      "diff": -27.199999999999996,
+      "absDiff": 27.199999999999996,
+      "gate": 0.5,
+      "answerSupport": 0.3,
+      "constraintPresence": 1,
+      "constraintRespect": 0.6
+    },
+    {
+      "caseId": "interview-prep-constraint-miss",
+      "kind": "planning",
+      "profile": "constraint_miss",
+      "pattern": "constraint_under_scored",
+      "rationale": "Planning constraint-miss case where the scorer may be over-penalizing because the work-schedule constraint is not phrased explicitly enough.",
+      "variant": "question_explicit",
+      "question": "I need a two-week technical interview prep plan while working full-time. Constraint: the plan must fit around a normal work schedule. How should I structure it?",
+      "criteria": [
+        {
+          "label": "Proposes a clear plan",
+          "weight": 30
+        },
+        {
+          "label": "Orders the work in a sensible sequence",
+          "weight": 25
+        },
+        {
+          "label": "Fits the stated scope or constraints",
+          "weight": 25
+        },
+        {
+          "label": "Includes a useful check-in or follow-up step",
+          "weight": 20
+        }
+      ],
+      "answer": "Take several days off work and cram for eight hours a day. After that, spend the first two sessions listing the interview topics and identifying your weakest areas.",
+      "referenceOverall": 51.3,
+      "appOverall": 22.5,
+      "diff": -28.799999999999997,
+      "absDiff": 28.799999999999997,
+      "gate": 0.5,
+      "answerSupport": 0.3,
+      "constraintPresence": 1,
+      "constraintRespect": 1
+    },
+    {
+      "caseId": "interview-prep-constraint-miss",
+      "kind": "planning",
+      "profile": "constraint_miss",
+      "pattern": "constraint_under_scored",
+      "rationale": "Planning constraint-miss case where the scorer may be over-penalizing because the work-schedule constraint is not phrased explicitly enough.",
+      "variant": "criteria_explicit",
+      "question": "How can I organize a plan to prepare for a technical interview in two weeks while working full-time?",
+      "criteria": [
+        {
+          "label": "Proposes a clear two-week plan",
+          "weight": 30
+        },
+        {
+          "label": "Sequences the work sensibly",
+          "weight": 25
+        },
+        {
+          "label": "Fits around full-time work instead of assuming large blocks off",
+          "weight": 25
+        },
+        {
+          "label": "Includes a useful check-in or follow-up step",
+          "weight": 20
+        }
+      ],
+      "answer": "Take several days off work and cram for eight hours a day. After that, spend the first two sessions listing the interview topics and identifying your weakest areas.",
+      "referenceOverall": 51.3,
+      "appOverall": 28.3,
+      "diff": -22.999999999999996,
+      "absDiff": 22.999999999999996,
+      "gate": 0.5,
+      "answerSupport": 0.3,
+      "constraintPresence": 1,
+      "constraintRespect": 0.6
+    },
+    {
+      "caseId": "interview-prep-constraint-miss",
+      "kind": "planning",
+      "profile": "constraint_miss",
+      "pattern": "constraint_under_scored",
+      "rationale": "Planning constraint-miss case where the scorer may be over-penalizing because the work-schedule constraint is not phrased explicitly enough.",
+      "variant": "both_explicit",
+      "question": "I need a two-week technical interview prep plan while working full-time. Constraint: the plan must fit around a normal work schedule. How should I structure it?",
+      "criteria": [
+        {
+          "label": "Proposes a clear two-week plan",
+          "weight": 30
+        },
+        {
+          "label": "Sequences the work sensibly",
+          "weight": 25
+        },
+        {
+          "label": "Fits around full-time work instead of assuming large blocks off",
+          "weight": 25
+        },
+        {
+          "label": "Includes a useful check-in or follow-up step",
+          "weight": 20
+        }
+      ],
+      "answer": "Take several days off work and cram for eight hours a day. After that, spend the first two sessions listing the interview topics and identifying your weakest areas.",
+      "referenceOverall": 51.3,
+      "appOverall": 31.9,
+      "diff": -19.4,
+      "absDiff": 19.4,
+      "gate": 0.5,
+      "answerSupport": 0.3,
+      "constraintPresence": 1,
+      "constraintRespect": 1
+    }
+  ]
+}

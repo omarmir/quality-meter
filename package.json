@@ -1,0 +1,30 @@
+{
+  "name": "quality-meter-monorepo",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "docs",
+    "library"
+  ],
+  "scripts": {
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "preview": "vitepress preview docs",
+    "benchmark": "bun tools/scripts/run-benchmark.ts",
+    "benchmark:adaptive": "bun tools/scripts/run-adaptive-refinement-benchmark.ts",
+    "benchmark:hard-negative": "bun tools/scripts/run-hard-negative-benchmark.ts",
+    "benchmark:low-latency": "bun tools/scripts/run-low-latency-iterations.ts",
+    "benchmark:model-bakeoff": "bun tools/scripts/run-model-bakeoff.ts",
+    "benchmark:wording": "bun tools/scripts/run-wording-experiments.ts",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "dependencies": {
+    "@browser-quality-scorer/core": "workspace:*",
+    "@huggingface/transformers": "^4.0.1"
+  },
+  "devDependencies": {
+    "vitepress": "^2.0.0-alpha.17"
+  }
+}

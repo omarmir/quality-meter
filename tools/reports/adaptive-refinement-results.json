@@ -1,0 +1,3433 @@
+{
+  "selected": {
+    "label": "low 10/0.25/15, low-stop only",
+    "config": {
+      "lowStopOverallPercent": 10,
+      "lowStopAnswerSupport": 0.25,
+      "lowStopMaxCriterionPercent": 15,
+      "lowStopSecondaryOverallBuffer": 5,
+      "lowStopLowCriterionShare": 0.66,
+      "highStopOverallPercent": 100,
+      "highStopMinCriterionPercent": 100,
+      "highStopSpreadPercent": 0,
+      "highStopWeakAnswerGate": 1,
+      "disableHighStopForConstraintQuestions": true,
+      "disableHighStopForTaskTypes": [
+        "comparison",
+        "planning"
+      ]
+    },
+    "main": {
+      "meanAbsoluteError": 5.8,
+      "medianAbsoluteError": 3.5,
+      "within10": 80,
+      "within20": 97
+    },
+    "hardNegative": {
+      "meanAbsoluteError": 18.1,
+      "medianAbsoluteError": 17,
+      "within10": 2,
+      "within20": 71
+    },
+    "combinedSkipRate": 9,
+    "mainSkipRate": 18,
+    "hardNegativeSkipRate": 0,
+    "strongMae": 6.6,
+    "offTopicAverage": 0.3,
+    "mainByKind": [
+      {
+        "name": "advice",
+        "count": 35,
+        "meanAbsoluteError": 5.9,
+        "averageReference": 54.3,
+        "averageApp": 49.7
+      },
+      {
+        "name": "comparison",
+        "count": 35,
+        "meanAbsoluteError": 5,
+        "averageReference": 53,
+        "averageApp": 52.6
+      },
+      {
+        "name": "planning",
+        "count": 30,
+        "meanAbsoluteError": 6.6,
+        "averageReference": 52,
+        "averageApp": 49.5
+      }
+    ],
+    "mainByProfile": [
+      {
+        "name": "strong",
+        "count": 20,
+        "meanAbsoluteError": 6.6,
+        "averageReference": 89.2,
+        "averageApp": 82.9
+      },
+      {
+        "name": "partial",
+        "count": 20,
+        "meanAbsoluteError": 4.2,
+        "averageReference": 59.2,
+        "averageApp": 58.1
+      },
+      {
+        "name": "constraint_miss",
+        "count": 20,
+        "meanAbsoluteError": 9.3,
+        "averageReference": 53.7,
+        "averageApp": 55.6
+      },
+      {
+        "name": "concise",
+        "count": 20,
+        "meanAbsoluteError": 8.5,
+        "averageReference": 63.6,
+        "averageApp": 56.3
+      },
+      {
+        "name": "off_topic",
+        "count": 20,
+        "meanAbsoluteError": 0.3,
+        "averageReference": 0,
+        "averageApp": 0.3
+      }
+    ],
+    "hardNegativeByKind": [
+      {
+        "name": "advice",
+        "count": 35,
+        "meanAbsoluteError": 19,
+        "averageReference": 26,
+        "averageApp": 45
+      },
+      {
+        "name": "comparison",
+        "count": 35,
+        "meanAbsoluteError": 18.6,
+        "averageReference": 27.5,
+        "averageApp": 46.1
+      },
+      {
+        "name": "planning",
+        "count": 30,
+        "meanAbsoluteError": 16.5,
+        "averageReference": 23.3,
+        "averageApp": 39.8
+      }
+    ],
+    "topRegressions": [
+      {
+        "id": "winter-commute-off-topic",
+        "kind": "comparison",
+        "profile": "off_topic",
+        "question": "I need to decide between bike commuting and taking transit for a 25-minute city commute in winter when I want reliability more than exercise. What do you think?",
+        "answer": "What are you talking about?",
+        "criteria": [
+          {
+            "label": "Gives a clear recommendation",
+            "weight": 30
+          },
+          {
+            "label": "Compares the options on relevant factors",
+            "weight": 25
+          },
+          {
+            "label": "Respects the stated constraints",
+            "weight": 25
+          },
+          {
+            "label": "Explains the trade-offs or rationale",
+            "weight": 20
+          }
+        ],
+        "referenceOverall": 0,
+        "fastResult": {
+          "criteria": [
+            "Gives a clear recommendation",
+            "Compares the options on relevant factors",
+            "Respects the stated constraints",
+            "Explains the trade-offs or rationale"
+          ],
+          "normalizedCriteria": [
+            "Gives a clear recommendation",
+            "Compares the options on relevant factors",
+            "Respects the stated constraints",
+            "Explains the trade-offs or rationale"
+          ],
+          "scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "rawScores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gate": 0,
+          "answerSupport": 0,
+          "constraintPresence": 0,
+          "constraintRespect": 1,
+          "deterministicConstraintPresence": 0,
+          "deterministicConstraintRespect": 1,
+          "structuralScore": 0,
+          "taskType": "comparison",
+          "overallRaw": 0,
+          "weakAnswerGate": 0.88,
+          "overallAdjustedRaw": 0,
+          "overallCalibrated": 0,
+          "overallPercent": 0,
+          "breakdown": [
+            {
+              "label": "Gives a clear recommendation",
+              "raw": 0,
+              "percent": 0
+            },
+            {
+              "label": "Compares the options on relevant factors",
+              "raw": 0,
+              "percent": 0
+            },
+            {
+              "label": "Respects the stated constraints",
+              "raw": 0,
+              "percent": 0
+            },
+            {
+              "label": "Explains the trade-offs or rationale",
+              "raw": 0,
+              "percent": 0
+            }
+          ]
+        },
+        "fullResult": {
+          "criteria": [
+            "Gives a clear recommendation",
+            "Compares the options on relevant factors",
+            "Respects the stated constraints",
+            "Explains the trade-offs or rationale"
+          ],
+          "normalizedCriteria": [
+            "Gives a clear recommendation",
+            "Compares the options on relevant factors",
+            "Respects the stated constraints",
+            "Explains the trade-offs or rationale"
+          ],
+          "scores": [
+            0,
+            0.03523202308324198,
+            0,
+            0.03496537385773041
+          ],
+          "rawScores": [
+            0,
+            0.03523202308324198,
+            0,
+            0.03496537385773041
+          ],
+          "gate": 0.035239672735953936,
+          "answerSupport": 0.1322041727520675,
+          "constraintPresence": 0,
+          "constraintRespect": 0.3574576385553616,
+          "deterministicConstraintPresence": 0,
+          "deterministicConstraintRespect": 1,
+          "structuralScore": 0,
+          "taskType": "comparison",
+          "overallRaw": 0.017549349235243095,
+          "weakAnswerGate": 0.8714008882362382,
+          "overallAdjustedRaw": 0.01529251851155878,
+          "overallCalibrated": 0.01529251851155878,
+          "overallPercent": 2,
+          "breakdown": [
+            {
+              "label": "Gives a clear recommendation",
+              "raw": 0,
+              "percent": 0
+            },
+            {
+              "label": "Compares the options on relevant factors",
+              "raw": 0.03523202308324198,
+              "percent": 4
+            },
+            {
+              "label": "Respects the stated constraints",
+              "raw": 0,
+              "percent": 0
+            },
+            {
+              "label": "Explains the trade-offs or rationale",
+              "raw": 0.03496537385773041,
+              "percent": 3
+            }
+          ]
+        },
+        "finalOverall": 0,
+        "diff": 0,
+        "absDiff": 0,
+        "usedMode": "fast",
+        "decision": {
+          "shouldRunFullPass": false,
+          "reason": "obvious_failure",
+          "riskBand": "low",
+          "fastOverallPercent": 0
+        }
+      },
+      {
+        "id": "study-method-off-topic",
+        "kind": "comparison",
+        "profile": "off_topic",
+        "question": "I need to decide between flashcards and summary notes if I only have 20 minutes a day to memorize biology terms before an exam. What do you think?",
+        "answer": "What are you talking about?",
+        "criteria": [
+          {
+            "label": "Gives a clear recommendation",
+            "weight": 30
+          },
+          {
+            "label": "Compares the options on relevant factors",
+            "weight": 25
+          },
+          {
+            "label": "Respects the stated constraints",
+            "weight": 25
+          },
+          {
+            "label": "Explains the trade-offs or rationale",
+            "weight": 20
+          }
+        ],
+        "referenceOverall": 0,
+        "fastResult": {
+          "criteria": [
+            "Gives a clear recommendation",
+            "Compares the options on relevant factors",
+            "Respects the stated constraints",
+            "Explains the trade-offs or rationale"
+          ],
+          "normalizedCriteria": [
+            "Gives a clear recommendation",
+            "Compares the options on relevant factors",
+            "Respects the stated constraints",
+            "Explains the trade-offs or rationale"
+          ],
+          "scores": [
+            0,
+            0.05089769039188054,
+            0.009732317936563345,
+            0.05088176719547884
+          ],
+          "rawScores": [
+            0,
+            0.05089769039188054,
+            0.009732317936563345,
+            0.05088176719547884
+          ],
+          "gate": 0.05089829181661141,
+          "answerSupport": 0.17142870972378121,
+          "constraintPresence": 0,
+          "constraintRespect": 1,
+          "deterministicConstraintPresence": 0,
+          "deterministicConstraintRespect": 1,
+          "structuralScore": 0,
+          "taskType": "comparison",
+          "overallRaw": 0.02787794388098068,
+          "weakAnswerGate": 0.86923369256179,
+          "overallAdjustedRaw": 0.024232448100695192,
+          "overallCalibrated": 0.024232448100695192,
+          "overallPercent": 2,
+          "breakdown": [
+            {
+              "label": "Gives a clear recommendation",
+              "raw": 0,
+              "percent": 0
+            },
+            {
+              "label": "Compares the options on relevant factors",
+              "raw": 0.05089769039188054,
+              "percent": 5
+            },
+            {
+              "label": "Respects the stated constraints",
+              "raw": 0.009732317936563345,
+              "percent": 1
+            },
+            {
+              "label": "Explains the trade-offs or rationale",
+              "raw": 0.05088176719547884,
+              "percent": 5
+            }
+          ]
+        },
+        "fullResult": {
+          "criteria": [
+            "Gives a clear recommendation",
+            "Compares the options on relevant factors",
+            "Respects the stated constraints",
+            "Explains the trade-offs or rationale"
+          ],
+          "normalizedCriteria": [
+            "Gives a clear recommendation",
+            "Compares the options on relevant factors",
+            "Respects the stated constraints",
+            "Explains the trade-offs or rationale"
+          ],
+          "scores": [
+            0,
+            0.06227654170098965,
+            0.020885340451904717,
+            0.06134472658001464
+          ],
+          "rawScores": [
+            0,
+            0.06227654170098965,
+            0.020885340451904717,
+            0.06134472658001464
+          ],
+          "gate": 0.06230030426479198,
+          "answerSupport": 0.2013018334009471,
+          "constraintPresence": 0,
+          "constraintRespect": 0.5854085833870342,
+          "deterministicConstraintPresence": 0,
+          "deterministicConstraintRespect": 1,
+          "structuralScore": 0,
+          "taskType": "comparison",
+          "overallRaw": 0.036126652183227255,
+          "weakAnswerGate": 0.867611861408671,
+          "overallAdjustedRaw": 0.03134391194715343,
+          "overallCalibrated": 0.03134391194715343,
+          "overallPercent": 3,
+          "breakdown": [
+            {
+              "label": "Gives a clear recommendation",
+              "raw": 0,
+              "percent": 0
+            },
+            {
+              "label": "Compares the options on relevant factors",
+              "raw": 0.06227654170098965,
+              "percent": 6
+            },
+            {
+              "label": "Respects the stated constraints",
+              "raw": 0.020885340451904717,
+              "percent": 2
+            },
+            {
+              "label": "Explains the trade-offs or rationale",
+              "raw": 0.06134472658001464,
+              "percent": 6
+            }
+          ]
+        },
+        "finalOverall": 2,
+        "diff": 2,
+        "absDiff": 2,
+        "usedMode": "fast",
+        "decision": {
+          "shouldRunFullPass": false,
+          "reason": "obvious_failure",
+          "riskBand": "low",
+          "fastOverallPercent": 2
+        }
+      },
+      {
+        "id": "wifi-strong",
+        "kind": "advice",
+        "profile": "strong",
+        "question": "How can I improve my home Wi-Fi speed without replacing all my equipment?",
+        "answer": "Move the router to an open, central spot away from thick walls and microwaves. Restart the modem and router, then retest speeds in the weakest room. Separate the 2.4 GHz and 5 GHz bands if the router supports it so nearby devices can use the faster band. These changes reduce interference and help you see whether placement or settings are the real bottleneck.",
+        "criteria": [
+          {
+            "label": "Answers the question directly",
+            "weight": 30
+          },
+          {
+            "label": "Provides concrete, practical steps",
+            "weight": 30
+          },
+          {
+            "label": "Respects the stated constraints",
+            "weight": 20
+          },
+          {
+            "label": "Gives enough detail or rationale to be useful",
+            "weight": 20
+          }
+        ],
+        "referenceOverall": 89.5,
+        "fastResult": {
+          "criteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "normalizedCriteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "scores": [
+            0.2948402419772188,
+            0.9828107929984256,
+            0.9383282519934899,
+            0.9989919519353051
+          ],
+          "rawScores": [
+            0.28757067193943686,
+            0.9987959576667498,
+            0.9956801151234855,
+            0.9999293898465629
+          ],
+          "gate": 1,
+          "answerSupport": 0.9618916233118324,
+          "constraintPresence": 0,
+          "constraintRespect": 1,
+          "deterministicConstraintPresence": 0,
+          "deterministicConstraintRespect": 1,
+          "structuralScore": 0.9166666666666666,
+          "taskType": "advice",
+          "overallRaw": 0.8037428097261098,
+          "weakAnswerGate": 0.953917853051505,
+          "overallAdjustedRaw": 0.766704615459515,
+          "overallCalibrated": 0.8233676884319321,
+          "overallPercent": 82,
+          "breakdown": [
+            {
+              "label": "Answers the question directly",
+              "raw": 0.2948402419772188,
+              "percent": 29
+            },
+            {
+              "label": "Provides concrete, practical steps",
+              "raw": 0.9828107929984256,
+              "percent": 98
+            },
+            {
+              "label": "Respects the stated constraints",
+              "raw": 0.9383282519934899,
+              "percent": 94
+            },
+            {
+              "label": "Gives enough detail or rationale to be useful",
+              "raw": 0.9989919519353051,
+              "percent": 100
+            }
+          ]
+        },
+        "fullResult": {
+          "criteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "normalizedCriteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "scores": [
+            0.6003060757784111,
+            0.9350434032895603,
+            0.9035561388939884,
+            0.9339384937926531
+          ],
+          "rawScores": [
+            0.589920989647616,
+            0.9931638065791204,
+            0.9501502777879769,
+            0.9909539875853063
+          ],
+          "gate": 1,
+          "answerSupport": 0.8770277174315715,
+          "constraintPresence": 0,
+          "constraintRespect": 0.38833352627016443,
+          "deterministicConstraintPresence": 0,
+          "deterministicConstraintRespect": 1,
+          "structuralScore": 0.9166666666666666,
+          "taskType": "advice",
+          "overallRaw": 0.8432110279386533,
+          "weakAnswerGate": 0.9874891108051508,
+          "overallAdjustedRaw": 0.8326617082002379,
+          "overallCalibrated": 0.8615225056891985,
+          "overallPercent": 86,
+          "breakdown": [
+            {
+              "label": "Answers the question directly",
+              "raw": 0.6003060757784111,
+              "percent": 60
+            },
+            {
+              "label": "Provides concrete, practical steps",
+              "raw": 0.9350434032895603,
+              "percent": 94
+            },
+            {
+              "label": "Respects the stated constraints",
+              "raw": 0.9035561388939884,
+              "percent": 90
+            },
+            {
+              "label": "Gives enough detail or rationale to be useful",
+              "raw": 0.9339384937926531,
+              "percent": 93
+            }
+          ]
+        },
+        "finalOverall": 86,
+        "diff": -3.5,
+        "absDiff": 3.5,
+        "usedMode": "full",
+        "decision": {
+          "shouldRunFullPass": true,
+          "reason": "constraint_risk",
+          "riskBand": "high",
+          "fastOverallPercent": 82
+        }
+      },
+      {
+        "id": "wifi-partial",
+        "kind": "advice",
+        "profile": "partial",
+        "question": "What should I try first if I need to improve my home Wi-Fi speed without replacing all my equipment?",
+        "answer": "Move the router to an open, central spot away from thick walls and microwaves. Then test the result before deciding what to change next.",
+        "criteria": [
+          {
+            "label": "Answers the question directly",
+            "weight": 30
+          },
+          {
+            "label": "Provides concrete, practical steps",
+            "weight": 30
+          },
+          {
+            "label": "Respects the stated constraints",
+            "weight": 20
+          },
+          {
+            "label": "Gives enough detail or rationale to be useful",
+            "weight": 20
+          }
+        ],
+        "referenceOverall": 62.5,
+        "fastResult": {
+          "criteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "normalizedCriteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "scores": [
+            0,
+            0.77166675287583,
+            0.7448805170284176,
+            0.7688736846479893
+          ],
+          "rawScores": [
+            0,
+            0.9179185057516599,
+            0.8623648910814301,
+            0.9123323692959787
+          ],
+          "gate": 0.9183859021684454,
+          "answerSupport": 0.911965690028153,
+          "constraintPresence": 0,
+          "constraintRespect": 1,
+          "deterministicConstraintPresence": 0,
+          "deterministicConstraintRespect": 1,
+          "structuralScore": 0.7000000000000001,
+          "taskType": "advice",
+          "overallRaw": 0.5713552386380591,
+          "weakAnswerGate": 0.9059006787087167,
+          "overallAdjustedRaw": 0.5175910984659986,
+          "overallCalibrated": 0.5176819656859493,
+          "overallPercent": 52,
+          "breakdown": [
+            {
+              "label": "Answers the question directly",
+              "raw": 0,
+              "percent": 0
+            },
+            {
+              "label": "Provides concrete, practical steps",
+              "raw": 0.77166675287583,
+              "percent": 77
+            },
+            {
+              "label": "Respects the stated constraints",
+              "raw": 0.7448805170284176,
+              "percent": 74
+            },
+            {
+              "label": "Gives enough detail or rationale to be useful",
+              "raw": 0.7688736846479893,
+              "percent": 77
+            }
+          ]
+        },
+        "fullResult": {
+          "criteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "normalizedCriteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "scores": [
+            0.21961856517475586,
+            0.7662021308201228,
+            0.7034113862909286,
+            0.7609228371830173
+          ],
+          "rawScores": [
+            0.21916990154109486,
+            0.9069892616402454,
+            0.7681206684573656,
+            0.8964093565703412
+          ],
+          "gate": 0.9183859021684454,
+          "answerSupport": 0.8646474582378324,
+          "constraintPresence": 0,
+          "constraintRespect": 0.33009389538715234,
+          "deterministicConstraintPresence": 0,
+          "deterministicConstraintRespect": 1,
+          "structuralScore": 0.7000000000000001,
+          "taskType": "advice",
+          "overallRaw": 0.6125387298672061,
+          "weakAnswerGate": 0.9125072338694903,
+          "overallAdjustedRaw": 0.5589460220290552,
+          "overallCalibrated": 0.565968773068001,
+          "overallPercent": 57,
+          "breakdown": [
+            {
+              "label": "Answers the question directly",
+              "raw": 0.21961856517475586,
+              "percent": 22
+            },
+            {
+              "label": "Provides concrete, practical steps",
+              "raw": 0.7662021308201228,
+              "percent": 77
+            },
+            {
+              "label": "Respects the stated constraints",
+              "raw": 0.7034113862909286,
+              "percent": 70
+            },
+            {
+              "label": "Gives enough detail or rationale to be useful",
+              "raw": 0.7609228371830173,
+              "percent": 76
+            }
+          ]
+        },
+        "finalOverall": 57,
+        "diff": -5.5,
+        "absDiff": 5.5,
+        "usedMode": "full",
+        "decision": {
+          "shouldRunFullPass": true,
+          "reason": "constraint_risk",
+          "riskBand": "high",
+          "fastOverallPercent": 52
+        }
+      },
+      {
+        "id": "wifi-constraint-miss",
+        "kind": "advice",
+        "profile": "constraint_miss",
+        "question": "What is a practical way to improve my home Wi-Fi speed without replacing all my equipment?",
+        "answer": "Buy a new mesh system and a premium router first. After that, move the router to an open, central spot away from thick walls and microwaves.",
+        "criteria": [
+          {
+            "label": "Answers the question directly",
+            "weight": 30
+          },
+          {
+            "label": "Provides concrete, practical steps",
+            "weight": 30
+          },
+          {
+            "label": "Respects the stated constraints",
+            "weight": 20
+          },
+          {
+            "label": "Gives enough detail or rationale to be useful",
+            "weight": 20
+          }
+        ],
+        "referenceOverall": 54,
+        "fastResult": {
+          "criteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "normalizedCriteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "scores": [
+            0,
+            0.7636994705646976,
+            0.7371214977487524,
+            0.7657534274167501
+          ],
+          "rawScores": [
+            0,
+            0.9019839411293951,
+            0.8449707408135313,
+            0.9060918548335002
+          ],
+          "gate": 0.9107096473319376,
+          "answerSupport": 0.6268079435664389,
+          "constraintPresence": 0,
+          "constraintRespect": 1,
+          "deterministicConstraintPresence": 0,
+          "deterministicConstraintRespect": 1,
+          "structuralScore": 0.5333333333333333,
+          "taskType": "advice",
+          "overallRaw": 0.56664359893255,
+          "weakAnswerGate": 0.9259933535858241,
+          "overallAdjustedRaw": 0.5247082064634927,
+          "overallCalibrated": 0.5232155180996105,
+          "overallPercent": 52,
+          "breakdown": [
+            {
+              "label": "Answers the question directly",
+              "raw": 0,
+              "percent": 0
+            },
+            {
+              "label": "Provides concrete, practical steps",
+              "raw": 0.7636994705646976,
+              "percent": 76
+            },
+            {
+              "label": "Respects the stated constraints",
+              "raw": 0.7371214977487524,
+              "percent": 74
+            },
+            {
+              "label": "Gives enough detail or rationale to be useful",
+              "raw": 0.7657534274167501,
+              "percent": 77
+            }
+          ]
+        },
+        "fullResult": {
+          "criteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "normalizedCriteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "scores": [
+            0.004069732339144722,
+            0.7602595897258737,
+            0.6965129695030446,
+            0.7595164225055302
+          ],
+          "rawScores": [
+            0.004069732339144722,
+            0.8950641479255246,
+            0.7531014454090039,
+            0.8935499674241494
+          ],
+          "gate": 0.9215970025062785,
+          "answerSupport": 0.6580165883542806,
+          "constraintPresence": 0,
+          "constraintRespect": 0.34326359519506494,
+          "deterministicConstraintPresence": 0,
+          "deterministicConstraintRespect": 1,
+          "structuralScore": 0.5333333333333333,
+          "taskType": "advice",
+          "overallRaw": 0.5550896785183983,
+          "weakAnswerGate": 0.9220698421983712,
+          "overallAdjustedRaw": 0.5118314522774041,
+          "overallCalibrated": 0.5131250477223697,
+          "overallPercent": 51,
+          "breakdown": [
+            {
+              "label": "Answers the question directly",
+              "raw": 0.004069732339144722,
+              "percent": 0
+            },
+            {
+              "label": "Provides concrete, practical steps",
+              "raw": 0.7602595897258737,
+              "percent": 76
+            },
+            {
+              "label": "Respects the stated constraints",
+              "raw": 0.6965129695030446,
+              "percent": 70
+            },
+            {
+              "label": "Gives enough detail or rationale to be useful",
+              "raw": 0.7595164225055302,
+              "percent": 76
+            }
+          ]
+        },
+        "finalOverall": 51,
+        "diff": -3,
+        "absDiff": 3,
+        "usedMode": "full",
+        "decision": {
+          "shouldRunFullPass": true,
+          "reason": "constraint_risk",
+          "riskBand": "high",
+          "fastOverallPercent": 52
+        }
+      },
+      {
+        "id": "wifi-concise",
+        "kind": "advice",
+        "profile": "concise",
+        "question": "What are two quick steps to improve my home Wi-Fi speed without replacing all my equipment?",
+        "answer": "Move the router to an open, central spot away from thick walls and microwaves. Restart the modem and router, then retest speeds in the weakest room.",
+        "criteria": [
+          {
+            "label": "Answers the question directly",
+            "weight": 30
+          },
+          {
+            "label": "Provides concrete, practical steps",
+            "weight": 30
+          },
+          {
+            "label": "Respects the stated constraints",
+            "weight": 20
+          },
+          {
+            "label": "Gives enough detail or rationale to be useful",
+            "weight": 20
+          }
+        ],
+        "referenceOverall": 65.5,
+        "fastResult": {
+          "criteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "normalizedCriteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "scores": [
+            0,
+            0.7703175254658072,
+            0.18949765141830388,
+            0.7751008714336372
+          ],
+          "rawScores": [
+            0,
+            0.9152200509316143,
+            0.18949765141830388,
+            0.9247867428672744
+          ],
+          "gate": 0.925724601014154,
+          "answerSupport": 0.6788525830913446,
+          "constraintPresence": 0,
+          "constraintRespect": 1,
+          "deterministicConstraintPresence": 0,
+          "deterministicConstraintRespect": 1,
+          "structuralScore": 0.8666666666666667,
+          "taskType": "advice",
+          "overallRaw": 0.43372901207943704,
+          "weakAnswerGate": 0.9042489071410299,
+          "overallAdjustedRaw": 0.3921989851681895,
+          "overallCalibrated": 0.3792799579004612,
+          "overallPercent": 38,
+          "breakdown": [
+            {
+              "label": "Answers the question directly",
+              "raw": 0,
+              "percent": 0
+            },
+            {
+              "label": "Provides concrete, practical steps",
+              "raw": 0.7703175254658072,
+              "percent": 77
+            },
+            {
+              "label": "Respects the stated constraints",
+              "raw": 0.18949765141830388,
+              "percent": 19
+            },
+            {
+              "label": "Gives enough detail or rationale to be useful",
+              "raw": 0.7751008714336372,
+              "percent": 78
+            }
+          ]
+        },
+        "fullResult": {
+          "criteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "normalizedCriteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "scores": [
+            0,
+            0.7616154991840861,
+            0.5074893177094394,
+            0.7701197896515419
+          ],
+          "rawScores": [
+            0,
+            0.8978080019803837,
+            0.48195144038195703,
+            0.9148245793030837
+          ],
+          "gate": 0.9271259894211373,
+          "answerSupport": 0.6965122085858486,
+          "constraintPresence": 0,
+          "constraintRespect": 0.32912012747401087,
+          "deterministicConstraintPresence": 0,
+          "deterministicConstraintRespect": 1,
+          "structuralScore": 0.8666666666666667,
+          "taskType": "advice",
+          "overallRaw": 0.5098061516362669,
+          "weakAnswerGate": 0.9330530816983014,
+          "overallAdjustedRaw": 0.4756762008529703,
+          "overallCalibrated": 0.46192408315406797,
+          "overallPercent": 46,
+          "breakdown": [
+            {
+              "label": "Answers the question directly",
+              "raw": 0,
+              "percent": 0
+            },
+            {
+              "label": "Provides concrete, practical steps",
+              "raw": 0.7616154991840861,
+              "percent": 76
+            },
+            {
+              "label": "Respects the stated constraints",
+              "raw": 0.5074893177094394,
+              "percent": 51
+            },
+            {
+              "label": "Gives enough detail or rationale to be useful",
+              "raw": 0.7701197896515419,
+              "percent": 77
+            }
+          ]
+        },
+        "finalOverall": 46,
+        "diff": -19.5,
+        "absDiff": 19.5,
+        "usedMode": "full",
+        "decision": {
+          "shouldRunFullPass": true,
+          "reason": "constraint_risk",
+          "riskBand": "high",
+          "fastOverallPercent": 38
+        }
+      },
+      {
+        "id": "wifi-off-topic",
+        "kind": "advice",
+        "profile": "off_topic",
+        "question": "I need to improve my home Wi-Fi speed without replacing all my equipment. What should I do?",
+        "answer": "Nothing.",
+        "criteria": [
+          {
+            "label": "Answers the question directly",
+            "weight": 30
+          },
+          {
+            "label": "Provides concrete, practical steps",
+            "weight": 30
+          },
+          {
+            "label": "Respects the stated constraints",
+            "weight": 20
+          },
+          {
+            "label": "Gives enough detail or rationale to be useful",
+            "weight": 20
+          }
+        ],
+        "referenceOverall": 0,
+        "fastResult": {
+          "criteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "normalizedCriteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "rawScores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gate": 0,
+          "answerSupport": 0,
+          "constraintPresence": 0,
+          "constraintRespect": 1,
+          "deterministicConstraintPresence": 0,
+          "deterministicConstraintRespect": 1,
+          "structuralScore": 0.39999999999999997,
+          "taskType": "advice",
+          "overallRaw": 0,
+          "weakAnswerGate": 0.88,
+          "overallAdjustedRaw": 0,
+          "overallCalibrated": 0,
+          "overallPercent": 0,
+          "breakdown": [
+            {
+              "label": "Answers the question directly",
+              "raw": 0,
+              "percent": 0
+            },
+            {
+              "label": "Provides concrete, practical steps",
+              "raw": 0,
+              "percent": 0
+            },
+            {
+              "label": "Respects the stated constraints",
+              "raw": 0,
+              "percent": 0
+            },
+            {
+              "label": "Gives enough detail or rationale to be useful",
+              "raw": 0,
+              "percent": 0
+            }
+          ]
+        },
+        "fullResult": {
+          "criteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "normalizedCriteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "scores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "rawScores": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gate": 0,
+          "answerSupport": 0,
+          "constraintPresence": 0,
+          "constraintRespect": 0.8301192779430722,
+          "deterministicConstraintPresence": 0,
+          "deterministicConstraintRespect": 1,
+          "structuralScore": 0.39999999999999997,
+          "taskType": "advice",
+          "overallRaw": 0,
+          "weakAnswerGate": 0.88,
+          "overallAdjustedRaw": 0,
+          "overallCalibrated": 0,
+          "overallPercent": 0,
+          "breakdown": [
+            {
+              "label": "Answers the question directly",
+              "raw": 0,
+              "percent": 0
+            },
+            {
+              "label": "Provides concrete, practical steps",
+              "raw": 0,
+              "percent": 0
+            },
+            {
+              "label": "Respects the stated constraints",
+              "raw": 0,
+              "percent": 0
+            },
+            {
+              "label": "Gives enough detail or rationale to be useful",
+              "raw": 0,
+              "percent": 0
+            }
+          ]
+        },
+        "finalOverall": 0,
+        "diff": 0,
+        "absDiff": 0,
+        "usedMode": "fast",
+        "decision": {
+          "shouldRunFullPass": false,
+          "reason": "obvious_failure",
+          "riskBand": "low",
+          "fastOverallPercent": 0
+        }
+      },
+      {
+        "id": "meal-prep-strong",
+        "kind": "advice",
+        "profile": "strong",
+        "question": "How can I prep work lunches for the week in under two hours on Sunday?",
+        "answer": "Choose one protein, one grain, and two vegetables so you can batch-cook everything at once. Roast the vegetables and cook the grain while the protein is in the oven or pan. Pack the lunches assembly-line style and add one simple sauce or seasoning at the end so the meals do not all taste the same. Keeping the menu narrow saves setup time and gives you repeatable lunches without spending the whole afternoon cooking.",
+        "criteria": [
+          {
+            "label": "Answers the question directly",
+            "weight": 30
+          },
+          {
+            "label": "Provides concrete, practical steps",
+            "weight": 30
+          },
+          {
+            "label": "Respects the stated constraints",
+            "weight": 20
+          },
+          {
+            "label": "Gives enough detail or rationale to be useful",
+            "weight": 20
+          }
+        ],
+        "referenceOverall": 89.5,
+        "fastResult": {
+          "criteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "normalizedCriteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "scores": [
+            0,
+            0.9198350944362718,
+            0.7709830986679522,
+            0.9342219927651894
+          ],
+          "rawScores": [
+            0,
+            0.9827081888725435,
+            0.9165511973359044,
+            0.9915209855303786
+          ],
+          "gate": 1,
+          "answerSupport": 0.9835285968558236,
+          "constraintPresence": 0,
+          "constraintRespect": 1,
+          "deterministicConstraintPresence": 0,
+          "deterministicConstraintRespect": 1,
+          "structuralScore": 0.75,
+          "taskType": "advice",
+          "overallRaw": 0.6562600464673534,
+          "weakAnswerGate": 0.9170912129592388,
+          "overallAdjustedRaw": 0.6018503220314315,
+          "overallCalibrated": 0.6102494089861311,
+          "overallPercent": 61,
+          "breakdown": [
+            {
+              "label": "Answers the question directly",
+              "raw": 0,
+              "percent": 0
+            },
+            {
+              "label": "Provides concrete, practical steps",
+              "raw": 0.9198350944362718,
+              "percent": 92
+            },
+            {
+              "label": "Respects the stated constraints",
+              "raw": 0.7709830986679522,
+              "percent": 77
+            },
+            {
+              "label": "Gives enough detail or rationale to be useful",
+              "raw": 0.9342219927651894,
+              "percent": 93
+            }
+          ]
+        },
+        "fullResult": {
+          "criteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "normalizedCriteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "scores": [
+            0.5656422921219315,
+            0.9204834893167612,
+            0.7664661529052657,
+            0.9232526728420841
+          ],
+          "rawScores": [
+            0.5461535720204689,
+            0.9840049786335223,
+            0.9075173058105314,
+            0.9895433456841682
+          ],
+          "gate": 1,
+          "answerSupport": 0.9164709171688659,
+          "constraintPresence": 0,
+          "constraintRespect": 0.7284635502484017,
+          "deterministicConstraintPresence": 0,
+          "deterministicConstraintRespect": 1,
+          "structuralScore": 0.75,
+          "taskType": "advice",
+          "overallRaw": 0.7939611517965106,
+          "weakAnswerGate": 0.9610874145691611,
+          "overallAdjustedRaw": 0.7630660706484617,
+          "overallCalibrated": 0.8210626542792323,
+          "overallPercent": 82,
+          "breakdown": [
+            {
+              "label": "Answers the question directly",
+              "raw": 0.5656422921219315,
+              "percent": 57
+            },
+            {
+              "label": "Provides concrete, practical steps",
+              "raw": 0.9204834893167612,
+              "percent": 92
+            },
+            {
+              "label": "Respects the stated constraints",
+              "raw": 0.7664661529052657,
+              "percent": 77
+            },
+            {
+              "label": "Gives enough detail or rationale to be useful",
+              "raw": 0.9232526728420841,
+              "percent": 92
+            }
+          ]
+        },
+        "finalOverall": 82,
+        "diff": -7.5,
+        "absDiff": 7.5,
+        "usedMode": "full",
+        "decision": {
+          "shouldRunFullPass": true,
+          "reason": "mid_band",
+          "riskBand": "medium",
+          "fastOverallPercent": 61
+        }
+      },
+      {
+        "id": "meal-prep-partial",
+        "kind": "advice",
+        "profile": "partial",
+        "question": "What should I try first if I need to prep work lunches for the week in under two hours on Sunday?",
+        "answer": "Choose one protein, one grain, and two vegetables so you can batch-cook everything at once. Then test the result before deciding what to change next.",
+        "criteria": [
+          {
+            "label": "Answers the question directly",
+            "weight": 30
+          },
+          {
+            "label": "Provides concrete, practical steps",
+            "weight": 30
+          },
+          {
+            "label": "Respects the stated constraints",
+            "weight": 20
+          },
+          {
+            "label": "Gives enough detail or rationale to be useful",
+            "weight": 20
+          }
+        ],
+        "referenceOverall": 62.5,
+        "fastResult": {
+          "criteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "normalizedCriteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "scores": [
+            0.5390161205503687,
+            0.7760278404872121,
+            0.7278919033811505,
+            0.7749469306213808
+          ],
+          "rawScores": [
+            0.5155964625407629,
+            0.9266406809744241,
+            0.823832377077587,
+            0.9244788612427615
+          ],
+          "gate": 0.9271658897055796,
+          "answerSupport": 0.9253522264284628,
+          "constraintPresence": 0,
+          "constraintRespect": 1,
+          "deterministicConstraintPresence": 0,
+          "deterministicConstraintRespect": 1,
+          "structuralScore": 0.7000000000000001,
+          "taskType": "advice",
+          "overallRaw": 0.704470698760028,
+          "weakAnswerGate": 0.9402381396759486,
+          "overallAdjustedRaw": 0.6623702192583443,
+          "overallCalibrated": 0.6502853931980503,
+          "overallPercent": 65,
+          "breakdown": [
+            {
+              "label": "Answers the question directly",
+              "raw": 0.5390161205503687,
+              "percent": 54
+            },
+            {
+              "label": "Provides concrete, practical steps",
+              "raw": 0.7760278404872121,
+              "percent": 78
+            },
+            {
+              "label": "Respects the stated constraints",
+              "raw": 0.7278919033811505,
+              "percent": 73
+            },
+            {
+              "label": "Gives enough detail or rationale to be useful",
+              "raw": 0.7749469306213808,
+              "percent": 77
+            }
+          ]
+        },
+        "fullResult": {
+          "criteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "normalizedCriteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "scores": [
+            0.5930410658736849,
+            0.7690077136340456,
+            0.7044359513214498,
+            0.7596082271267549
+          ],
+          "rawScores": [
+            0.5803017614633074,
+            0.9126004272680911,
+            0.7703864914015075,
+            0.8937374082144489
+          ],
+          "gate": 0.9271658897055796,
+          "answerSupport": 0.8813407361181491,
+          "constraintPresence": 0,
+          "constraintRespect": 0.7007361202933025,
+          "deterministicConstraintPresence": 0,
+          "deterministicConstraintRespect": 1,
+          "structuralScore": 0.7000000000000001,
+          "taskType": "advice",
+          "overallRaw": 0.7065232394889838,
+          "weakAnswerGate": 0.9446959621205373,
+          "overallAdjustedRaw": 0.6674496514895644,
+          "overallCalibrated": 0.65331956032636,
+          "overallPercent": 65,
+          "breakdown": [
+            {
+              "label": "Answers the question directly",
+              "raw": 0.5930410658736849,
+              "percent": 59
+            },
+            {
+              "label": "Provides concrete, practical steps",
+              "raw": 0.7690077136340456,
+              "percent": 77
+            },
+            {
+              "label": "Respects the stated constraints",
+              "raw": 0.7044359513214498,
+              "percent": 70
+            },
+            {
+              "label": "Gives enough detail or rationale to be useful",
+              "raw": 0.7596082271267549,
+              "percent": 76
+            }
+          ]
+        },
+        "finalOverall": 65,
+        "diff": 2.5,
+        "absDiff": 2.5,
+        "usedMode": "full",
+        "decision": {
+          "shouldRunFullPass": true,
+          "reason": "mid_band",
+          "riskBand": "medium",
+          "fastOverallPercent": 65
+        }
+      },
+      {
+        "id": "meal-prep-constraint-miss",
+        "kind": "advice",
+        "profile": "constraint_miss",
+        "question": "What is a practical way to prep work lunches for the week in under two hours on Sunday?",
+        "answer": "Cook a different hot lunch from scratch every night instead. After that, choose one protein, one grain, and two vegetables so you can batch-cook everything at once.",
+        "criteria": [
+          {
+            "label": "Answers the question directly",
+            "weight": 30
+          },
+          {
+            "label": "Provides concrete, practical steps",
+            "weight": 30
+          },
+          {
+            "label": "Respects the stated constraints",
+            "weight": 20
+          },
+          {
+            "label": "Gives enough detail or rationale to be useful",
+            "weight": 20
+          }
+        ],
+        "referenceOverall": 54,
+        "fastResult": {
+          "criteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "normalizedCriteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "scores": [
+            0,
+            0.7769480193522239,
+            0.2577072676275538,
+            0.7686326639434055
+          ],
+          "rawScores": [
+            0,
+            0.9284810387044478,
+            0.2545088087856117,
+            0.9118503278868109
+          ],
+          "gate": 0.9302417654483404,
+          "answerSupport": 0.8255229418583798,
+          "constraintPresence": 0,
+          "constraintRespect": 1,
+          "deterministicConstraintPresence": 0,
+          "deterministicConstraintRespect": 1,
+          "structuralScore": 0.5333333333333333,
+          "taskType": "advice",
+          "overallRaw": 0.45082198773079574,
+          "weakAnswerGate": 0.8761986655908266,
+          "overallAdjustedRaw": 0.39500962406872725,
+          "overallCalibrated": 0.38209511282574254,
+          "overallPercent": 38,
+          "breakdown": [
+            {
+              "label": "Answers the question directly",
+              "raw": 0,
+              "percent": 0
+            },
+            {
+              "label": "Provides concrete, practical steps",
+              "raw": 0.7769480193522239,
+              "percent": 78
+            },
+            {
+              "label": "Respects the stated constraints",
+              "raw": 0.2577072676275538,
+              "percent": 26
+            },
+            {
+              "label": "Gives enough detail or rationale to be useful",
+              "raw": 0.7686326639434055,
+              "percent": 77
+            }
+          ]
+        },
+        "fullResult": {
+          "criteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "normalizedCriteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "scores": [
+            0.06823409833900189,
+            0.7646331448547312,
+            0.46234108356139647,
+            0.7507977198287267
+          ],
+          "rawScores": [
+            0.06823409833900189,
+            0.9038512897094624,
+            0.4372447737974923,
+            0.8752667074770075
+          ],
+          "gate": 0.9302417654483404,
+          "answerSupport": 0.7809346636748515,
+          "constraintPresence": 0,
+          "constraintRespect": 0.6604335049690184,
+          "deterministicConstraintPresence": 0,
+          "deterministicConstraintRespect": 1,
+          "structuralScore": 0.5333333333333333,
+          "taskType": "advice",
+          "overallRaw": 0.511501511645964,
+          "weakAnswerGate": 0.89820419082053,
+          "overallAdjustedRaw": 0.459432801371441,
+          "overallCalibrated": 0.4357062378833326,
+          "overallPercent": 44,
+          "breakdown": [
+            {
+              "label": "Answers the question directly",
+              "raw": 0.06823409833900189,
+              "percent": 7
+            },
+            {
+              "label": "Provides concrete, practical steps",
+              "raw": 0.7646331448547312,
+              "percent": 76
+            },
+            {
+              "label": "Respects the stated constraints",
+              "raw": 0.46234108356139647,
+              "percent": 46
+            },
+            {
+              "label": "Gives enough detail or rationale to be useful",
+              "raw": 0.7507977198287267,
+              "percent": 75
+            }
+          ]
+        },
+        "finalOverall": 44,
+        "diff": -10,
+        "absDiff": 10,
+        "usedMode": "full",
+        "decision": {
+          "shouldRunFullPass": true,
+          "reason": "mid_band",
+          "riskBand": "medium",
+          "fastOverallPercent": 38
+        }
+      },
+      {
+        "id": "meal-prep-concise",
+        "kind": "advice",
+        "profile": "concise",
+        "question": "What are two quick steps to prep work lunches for the week in under two hours on Sunday?",
+        "answer": "Choose one protein, one grain, and two vegetables so you can batch-cook everything at once. Roast the vegetables and cook the grain while the protein is in the oven or pan.",
+        "criteria": [
+          {
+            "label": "Answers the question directly",
+            "weight": 30
+          },
+          {
+            "label": "Provides concrete, practical steps",
+            "weight": 30
+          },
+          {
+            "label": "Respects the stated constraints",
+            "weight": 20
+          },
+          {
+            "label": "Gives enough detail or rationale to be useful",
+            "weight": 20
+          }
+        ],
+        "referenceOverall": 65.5,
+        "fastResult": {
+          "criteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "normalizedCriteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "scores": [
+            0.30770266914944455,
+            0.7775412296791715,
+            0,
+            0.8165080043040844
+          ],
+          "rawScores": [
+            0.29885350212618794,
+            0.9296674593583428,
+            0,
+            0.9298426259422956
+          ],
+          "gate": 0.9302417654483404,
+          "answerSupport": 0.9739185037680431,
+          "constraintPresence": 0,
+          "constraintRespect": 1,
+          "deterministicConstraintPresence": 0,
+          "deterministicConstraintRespect": 1,
+          "structuralScore": 0.7000000000000001,
+          "taskType": "advice",
+          "overallRaw": 0.47543797578317515,
+          "weakAnswerGate": 0.8791787927363418,
+          "overallAdjustedRaw": 0.417994985570062,
+          "overallCalibrated": 0.40276878885770523,
+          "overallPercent": 40,
+          "breakdown": [
+            {
+              "label": "Answers the question directly",
+              "raw": 0.30770266914944455,
+              "percent": 31
+            },
+            {
+              "label": "Provides concrete, practical steps",
+              "raw": 0.7775412296791715,
+              "percent": 78
+            },
+            {
+              "label": "Respects the stated constraints",
+              "raw": 0,
+              "percent": 0
+            },
+            {
+              "label": "Gives enough detail or rationale to be useful",
+              "raw": 0.8165080043040844,
+              "percent": 82
+            }
+          ]
+        },
+        "fullResult": {
+          "criteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "normalizedCriteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "scores": [
+            0.4959772186389175,
+            0.772509294389737,
+            0.29157650786860984,
+            0.7713446657237661
+          ],
+          "rawScores": [
+            0.4702145143066777,
+            0.919603588779474,
+            0.28469779123993066,
+            0.9172743314475323
+          ],
+          "gate": 0.9302417654483404,
+          "answerSupport": 0.9175977751117391,
+          "constraintPresence": 0,
+          "constraintRespect": 0.6164050748930081,
+          "deterministicConstraintPresence": 0,
+          "deterministicConstraintRespect": 1,
+          "structuralScore": 0.7000000000000001,
+          "taskType": "advice",
+          "overallRaw": 0.5828519216552577,
+          "weakAnswerGate": 0.9082425758566248,
+          "overallAdjustedRaw": 0.5293709306671549,
+          "overallCalibrated": 0.5267821968073538,
+          "overallPercent": 53,
+          "breakdown": [
+            {
+              "label": "Answers the question directly",
+              "raw": 0.4959772186389175,
+              "percent": 50
+            },
+            {
+              "label": "Provides concrete, practical steps",
+              "raw": 0.772509294389737,
+              "percent": 77
+            },
+            {
+              "label": "Respects the stated constraints",
+              "raw": 0.29157650786860984,
+              "percent": 29
+            },
+            {
+              "label": "Gives enough detail or rationale to be useful",
+              "raw": 0.7713446657237661,
+              "percent": 77
+            }
+          ]
+        },
+        "finalOverall": 53,
+        "diff": -12.5,
+        "absDiff": 12.5,
+        "usedMode": "full",
+        "decision": {
+          "shouldRunFullPass": true,
+          "reason": "mid_band",
+          "riskBand": "medium",
+          "fastOverallPercent": 40
+        }
+      },
+      {
+        "id": "meal-prep-off-topic",
+        "kind": "advice",
+        "profile": "off_topic",
+        "question": "I need to prep work lunches for the week in under two hours on Sunday. What should I do?",
+        "answer": "What are you talking about?",
+        "criteria": [
+          {
+            "label": "Answers the question directly",
+            "weight": 30
+          },
+          {
+            "label": "Provides concrete, practical steps",
+            "weight": 30
+          },
+          {
+            "label": "Respects the stated constraints",
+            "weight": 20
+          },
+          {
+            "label": "Gives enough detail or rationale to be useful",
+            "weight": 20
+          }
+        ],
+        "referenceOverall": 0,
+        "fastResult": {
+          "criteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "normalizedCriteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "scores": [
+            0,
+            0.02889919993629346,
+            0,
+            0.029056482138483254
+          ],
+          "rawScores": [
+            0,
+            0.02889919993629346,
+            0,
+            0.029056482138483254
+          ],
+          "gate": 0.06588492901910752,
+          "answerSupport": 0.2109531394231301,
+          "constraintPresence": 0,
+          "constraintRespect": 1,
+          "deterministicConstraintPresence": 0,
+          "deterministicConstraintRespect": 1,
+          "structuralScore": 0.06666666666666667,
+          "taskType": "advice",
+          "overallRaw": 0.014488920518694179,
+          "weakAnswerGate": 0.8652651835821673,
+          "overallAdjustedRaw": 0.012536758472515348,
+          "overallCalibrated": 0.012536758472515348,
+          "overallPercent": 1,
+          "breakdown": [
+            {
+              "label": "Answers the question directly",
+              "raw": 0,
+              "percent": 0
+            },
+            {
+              "label": "Provides concrete, practical steps",
+              "raw": 0.02889919993629346,
+              "percent": 3
+            },
+            {
+              "label": "Respects the stated constraints",
+              "raw": 0,
+              "percent": 0
+            },
+            {
+              "label": "Gives enough detail or rationale to be useful",
+              "raw": 0.029056482138483254,
+              "percent": 3
+            }
+          ]
+        },
+        "fullResult": {
+          "criteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "normalizedCriteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "scores": [
+            0,
+            0.01754746473119993,
+            0.013733719356221284,
+            0.023757230499255197
+          ],
+          "rawScores": [
+            0,
+            0.01754746473119993,
+            0.013733719356221284,
+            0.023757230499255197
+          ],
+          "gate": 0.056134411815538764,
+          "answerSupport": 0.1849979170187722,
+          "constraintPresence": 0,
+          "constraintRespect": 0.6783249831209325,
+          "deterministicConstraintPresence": 0,
+          "deterministicConstraintRespect": 1,
+          "structuralScore": 0.06666666666666667,
+          "taskType": "advice",
+          "overallRaw": 0.013759603646669102,
+          "weakAnswerGate": 0.8671571264970923,
+          "overallAdjustedRaw": 0.011931738359984491,
+          "overallCalibrated": 0.011931738359984491,
+          "overallPercent": 1,
+          "breakdown": [
+            {
+              "label": "Answers the question directly",
+              "raw": 0,
+              "percent": 0
+            },
+            {
+              "label": "Provides concrete, practical steps",
+              "raw": 0.01754746473119993,
+              "percent": 2
+            },
+            {
+              "label": "Respects the stated constraints",
+              "raw": 0.013733719356221284,
+              "percent": 1
+            },
+            {
+              "label": "Gives enough detail or rationale to be useful",
+              "raw": 0.023757230499255197,
+              "percent": 2
+            }
+          ]
+        },
+        "finalOverall": 1,
+        "diff": 1,
+        "absDiff": 1,
+        "usedMode": "fast",
+        "decision": {
+          "shouldRunFullPass": false,
+          "reason": "obvious_failure",
+          "riskBand": "low",
+          "fastOverallPercent": 1
+        }
+      },
+      {
+        "id": "sleep-strong",
+        "kind": "advice",
+        "profile": "strong",
+        "question": "How can I fall asleep earlier without taking medication?",
+        "answer": "Set the same wake-up time every day for a week so your body clock has one stable anchor. Move bright screens and stimulating tasks out of the last hour before bed. Use a short wind-down routine such as dim lights, reading, and a cool room so your body gets a repeatable cue. A consistent wake time and a predictable pre-sleep routine usually shift bedtime more reliably than trying to force sleep in the moment.",
+        "criteria": [
+          {
+            "label": "Answers the question directly",
+            "weight": 30
+          },
+          {
+            "label": "Provides concrete, practical steps",
+            "weight": 30
+          },
+          {
+            "label": "Respects the stated constraints",
+            "weight": 20
+          },
+          {
+            "label": "Gives enough detail or rationale to be useful",
+            "weight": 20
+          }
+        ],
+        "referenceOverall": 89.5,
+        "fastResult": {
+          "criteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "normalizedCriteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "scores": [
+            0.6686630203461656,
+            0.9980490104714675,
+            0.9925377864454061,
+            0.9975251346301273
+          ],
+          "rawScores": [
+            0.6973175663796416,
+            0.9998633401771317,
+            0.9994772986898894,
+            0.9998266445523549
+          ],
+          "gate": 1,
+          "answerSupport": 0.9972923254558259,
+          "constraintPresence": 0,
+          "constraintRespect": 1,
+          "deterministicConstraintPresence": 0,
+          "deterministicConstraintRespect": 1,
+          "structuralScore": 0.9166666666666666,
+          "taskType": "advice",
+          "overallRaw": 0.9141937379732916,
+          "weakAnswerGate": 0.9838299298794219,
+          "overallAdjustedRaw": 0.8994111611264701,
+          "overallCalibrated": 0.909513316931633,
+          "overallPercent": 91,
+          "breakdown": [
+            {
+              "label": "Answers the question directly",
+              "raw": 0.6686630203461656,
+              "percent": 67
+            },
+            {
+              "label": "Provides concrete, practical steps",
+              "raw": 0.9980490104714675,
+              "percent": 100
+            },
+            {
+              "label": "Respects the stated constraints",
+              "raw": 0.9925377864454061,
+              "percent": 99
+            },
+            {
+              "label": "Gives enough detail or rationale to be useful",
+              "raw": 0.9975251346301273,
+              "percent": 100
+            }
+          ]
+        },
+        "fullResult": {
+          "criteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "normalizedCriteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "scores": [
+            0.6304228903417739,
+            0.9686636191179443,
+            0.8756002634307338,
+            0.9372855422101982
+          ],
+          "rawScores": [
+            0.6329710260499205,
+            0.9978049988490224,
+            0.9335535268614676,
+            0.9956070770409107
+          ],
+          "gate": 1,
+          "answerSupport": 0.9202758524159604,
+          "constraintPresence": 0,
+          "constraintRespect": 0.9028999745679528,
+          "deterministicConstraintPresence": 0,
+          "deterministicConstraintRespect": 1,
+          "structuralScore": 0.9166666666666666,
+          "taskType": "advice",
+          "overallRaw": 0.8529930787751626,
+          "weakAnswerGate": 0.9850042540571707,
+          "overallAdjustedRaw": 0.8402018112748585,
+          "overallCalibrated": 0.8655284881405928,
+          "overallPercent": 87,
+          "breakdown": [
+            {
+              "label": "Answers the question directly",
+              "raw": 0.6304228903417739,
+              "percent": 63
+            },
+            {
+              "label": "Provides concrete, practical steps",
+              "raw": 0.9686636191179443,
+              "percent": 97
+            },
+            {
+              "label": "Respects the stated constraints",
+              "raw": 0.8756002634307338,
+              "percent": 88
+            },
+            {
+              "label": "Gives enough detail or rationale to be useful",
+              "raw": 0.9372855422101982,
+              "percent": 94
+            }
+          ]
+        },
+        "finalOverall": 87,
+        "diff": -2.5,
+        "absDiff": 2.5,
+        "usedMode": "full",
+        "decision": {
+          "shouldRunFullPass": true,
+          "reason": "constraint_risk",
+          "riskBand": "high",
+          "fastOverallPercent": 91
+        }
+      },
+      {
+        "id": "sleep-partial",
+        "kind": "advice",
+        "profile": "partial",
+        "question": "What should I try first if I need to fall asleep earlier without taking medication?",
+        "answer": "Set the same wake-up time every day for a week so your body clock has one stable anchor. Then test the result before deciding what to change next.",
+        "criteria": [
+          {
+            "label": "Answers the question directly",
+            "weight": 30
+          },
+          {
+            "label": "Provides concrete, practical steps",
+            "weight": 30
+          },
+          {
+            "label": "Respects the stated constraints",
+            "weight": 20
+          },
+          {
+            "label": "Gives enough detail or rationale to be useful",
+            "weight": 20
+          }
+        ],
+        "referenceOverall": 62.5,
+        "fastResult": {
+          "criteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "normalizedCriteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "scores": [
+            0.007943403488836194,
+            0.7768964567732507,
+            0.7495502562038295,
+            0.7756873539365967
+          ],
+          "rawScores": [
+            0.007943403488836194,
+            0.9283779135465013,
+            0.8725772678022242,
+            0.9259597078731933
+          ],
+          "gate": 0.9302417654483404,
+          "answerSupport": 0.9019926066757391,
+          "constraintPresence": 0,
+          "constraintRespect": 1,
+          "deterministicConstraintPresence": 0,
+          "deterministicConstraintRespect": 1,
+          "structuralScore": 0.7000000000000001,
+          "taskType": "advice",
+          "overallRaw": 0.5775193676006283,
+          "weakAnswerGate": 0.9106351280106049,
+          "overallAdjustedRaw": 0.5259094232436017,
+          "overallCalibrated": 0.5241388127684752,
+          "overallPercent": 52,
+          "breakdown": [
+            {
+              "label": "Answers the question directly",
+              "raw": 0.007943403488836194,
+              "percent": 1
+            },
+            {
+              "label": "Provides concrete, practical steps",
+              "raw": 0.7768964567732507,
+              "percent": 78
+            },
+            {
+              "label": "Respects the stated constraints",
+              "raw": 0.7495502562038295,
+              "percent": 75
+            },
+            {
+              "label": "Gives enough detail or rationale to be useful",
+              "raw": 0.7756873539365967,
+              "percent": 78
+            }
+          ]
+        },
+        "fullResult": {
+          "criteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "normalizedCriteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "scores": [
+            0.5281689811570474,
+            0.7715208379365093,
+            0.7394257591562479,
+            0.7636341443295906
+          ],
+          "rawScores": [
+            0.5037463061713956,
+            0.9176266758730185,
+            0.8501834077635724,
+            0.9018532886591814
+          ],
+          "gate": 0.9302417654483404,
+          "answerSupport": 0.856963248523007,
+          "constraintPresence": 0,
+          "constraintRespect": 0.9717348687858607,
+          "deterministicConstraintPresence": 0,
+          "deterministicConstraintRespect": 1,
+          "structuralScore": 0.7000000000000001,
+          "taskType": "advice",
+          "overallRaw": 0.7006874306448487,
+          "weakAnswerGate": 0.9482696117630439,
+          "overallAdjustedRaw": 0.6644405978248356,
+          "overallCalibrated": 0.6515278569195281,
+          "overallPercent": 65,
+          "breakdown": [
+            {
+              "label": "Answers the question directly",
+              "raw": 0.5281689811570474,
+              "percent": 53
+            },
+            {
+              "label": "Provides concrete, practical steps",
+              "raw": 0.7715208379365093,
+              "percent": 77
+            },
+            {
+              "label": "Respects the stated constraints",
+              "raw": 0.7394257591562479,
+              "percent": 74
+            },
+            {
+              "label": "Gives enough detail or rationale to be useful",
+              "raw": 0.7636341443295906,
+              "percent": 76
+            }
+          ]
+        },
+        "finalOverall": 65,
+        "diff": 2.5,
+        "absDiff": 2.5,
+        "usedMode": "full",
+        "decision": {
+          "shouldRunFullPass": true,
+          "reason": "constraint_risk",
+          "riskBand": "high",
+          "fastOverallPercent": 52
+        }
+      },
+      {
+        "id": "sleep-constraint-miss",
+        "kind": "advice",
+        "profile": "constraint_miss",
+        "question": "What is a practical way to fall asleep earlier without taking medication?",
+        "answer": "Take strong sleep aids so you can knock yourself out quickly. After that, set the same wake-up time every day for a week so your body clock has one stable anchor.",
+        "criteria": [
+          {
+            "label": "Answers the question directly",
+            "weight": 30
+          },
+          {
+            "label": "Provides concrete, practical steps",
+            "weight": 30
+          },
+          {
+            "label": "Respects the stated constraints",
+            "weight": 20
+          },
+          {
+            "label": "Gives enough detail or rationale to be useful",
+            "weight": 20
+          }
+        ],
+        "referenceOverall": 54,
+        "fastResult": {
+          "criteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "normalizedCriteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "scores": [
+            0.4062471140421207,
+            0.7772838354916093,
+            0.7748553058547233,
+            0.7775401722886988
+          ],
+          "rawScores": [
+            0.3854459358491381,
+            0.9291526709832185,
+            0.9242956117094465,
+            0.9296653445773975
+          ],
+          "gate": 0.9302417654483404,
+          "answerSupport": 0.9331618037389984,
+          "constraintPresence": 0,
+          "constraintRespect": 1,
+          "deterministicConstraintPresence": 0,
+          "deterministicConstraintRespect": 1,
+          "structuralScore": 0.5333333333333333,
+          "taskType": "advice",
+          "overallRaw": 0.6839816069192881,
+          "weakAnswerGate": 0.9104509191659278,
+          "overallAdjustedRaw": 0.6227316827122542,
+          "overallCalibrated": 0.6249027527009718,
+          "overallPercent": 62,
+          "breakdown": [
+            {
+              "label": "Answers the question directly",
+              "raw": 0.4062471140421207,
+              "percent": 41
+            },
+            {
+              "label": "Provides concrete, practical steps",
+              "raw": 0.7772838354916093,
+              "percent": 78
+            },
+            {
+              "label": "Respects the stated constraints",
+              "raw": 0.7748553058547233,
+              "percent": 77
+            },
+            {
+              "label": "Gives enough detail or rationale to be useful",
+              "raw": 0.7775401722886988,
+              "percent": 78
+            }
+          ]
+        },
+        "fullResult": {
+          "criteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "normalizedCriteria": [
+            "Answers the question directly",
+            "Provides concrete, practical steps",
+            "Respects the stated constraints",
+            "Gives enough detail or rationale to be useful"
+          ],
+          "scores": [
+            0.5956286571876555,
+            0.7707119918097505,
+            0.7447571570833735,
+            0.7724666976061279
+          ],
+          "rawScores": [
+            0.5836978271842496,
+            0.916008983619501,
+            0.8620922129711652,
+            0.9195183952122556
+          ],
+          "gate": 0.9302417654483404,
+          "answerSupport": 0.856320484120825,
+          "constraintPresence": 0,
+          "constraintRespect": 0.8400585252642486,
+          "deterministicConstraintPresence": 0,
+          "deterministicConstraintRespect": 1,
+          "structuralScore": 0.5333333333333333,
+          "taskType": "advice",
+          "overallRaw": 0.7208911259217268,
+          "weakAnswerGate": 0.9304936960991398,
+          "overallAdjustedRaw": 0.670784648243978,
+          "overallCalibrated": 0.6552860624938143,
+          "overallPercent": 66,
+          "breakdown": [
+            {
+              "label": "Answers the question directly",
+              "raw": 0.5956286571876555,
+              "percent": 60
+            },
+            {
+              "label": "Provides concrete, practical steps",
+              "raw": 0.7707119918097505,
+              "percent": 77
+            },
+            {
+              "label": "Respects the stated constraints",
+              "raw": 0.7447571570833735,
+              "percent": 74
+            },
+            {
+              "label": "Gives enough detail or rationale to be useful",
+              "raw": 0.7724666976061279,
+              "percent": 77
+            }
+          ]
+        },
+        "finalOverall": 66,
+        "diff": 12,
+        "absDiff": 12,
+        "usedMode": "full",
+        "decision": {
+          "shouldRunFullPass": true,
+          "reason": "constraint_risk",
+          "riskBand": "high",
+          "fastOverallPercent": 62
+        }
+      }
+    ],
+    "metSuccessCriteria": false
+  },
+  "baselineMainSummary": {
+    "meanAbsoluteError": 5.8,
+    "medianAbsoluteError": 3.5,
+    "within10": 80,
+    "within20": 97
+  },
+  "baselineHardNegativeSummary": {
+    "meanAbsoluteError": 18.1,
+    "medianAbsoluteError": 17,
+    "within10": 2,
+    "within20": 71
+  },
+  "topCandidates": [
+    {
+      "label": "low 10/0.25/15, high 92/82/8/0.88",
+      "config": {
+        "lowStopOverallPercent": 10,
+        "lowStopAnswerSupport": 0.25,
+        "lowStopMaxCriterionPercent": 15,
+        "lowStopSecondaryOverallBuffer": 5,
+        "lowStopLowCriterionShare": 0.66,
+        "highStopOverallPercent": 92,
+        "highStopMinCriterionPercent": 82,
+        "highStopSpreadPercent": 8,
+        "highStopWeakAnswerGate": 0.88,
+        "disableHighStopForConstraintQuestions": true,
+        "disableHighStopForTaskTypes": [
+          "comparison",
+          "planning"
+        ]
+      },
+      "main": {
+        "meanAbsoluteError": 5.8,
+        "medianAbsoluteError": 3.5,
+        "within10": 80,
+        "within20": 97
+      },
+      "hardNegative": {
+        "meanAbsoluteError": 18.1,
+        "medianAbsoluteError": 17,
+        "within10": 2,
+        "within20": 71
+      },
+      "combinedSkipRate": 9,
+      "mainSkipRate": 18,
+      "hardNegativeSkipRate": 0,
+      "strongMae": 6.6,
+      "offTopicAverage": 0.3,
+      "metSuccessCriteria": false
+    },
+    {
+      "label": "low 10/0.25/15, high 92/82/8/0.92",
+      "config": {
+        "lowStopOverallPercent": 10,
+        "lowStopAnswerSupport": 0.25,
+        "lowStopMaxCriterionPercent": 15,
+        "lowStopSecondaryOverallBuffer": 5,
+        "lowStopLowCriterionShare": 0.66,
+        "highStopOverallPercent": 92,
+        "highStopMinCriterionPercent": 82,
+        "highStopSpreadPercent": 8,
+        "highStopWeakAnswerGate": 0.92,
+        "disableHighStopForConstraintQuestions": true,
+        "disableHighStopForTaskTypes": [
+          "comparison",
+          "planning"
+        ]
+      },
+      "main": {
+        "meanAbsoluteError": 5.8,
+        "medianAbsoluteError": 3.5,
+        "within10": 80,
+        "within20": 97
+      },
+      "hardNegative": {
+        "meanAbsoluteError": 18.1,
+        "medianAbsoluteError": 17,
+        "within10": 2,
+        "within20": 71
+      },
+      "combinedSkipRate": 9,
+      "mainSkipRate": 18,
+      "hardNegativeSkipRate": 0,
+      "strongMae": 6.6,
+      "offTopicAverage": 0.3,
+      "metSuccessCriteria": false
+    },
+    {
+      "label": "low 10/0.25/15, high 92/82/8/0.95",
+      "config": {
+        "lowStopOverallPercent": 10,
+        "lowStopAnswerSupport": 0.25,
+        "lowStopMaxCriterionPercent": 15,
+        "lowStopSecondaryOverallBuffer": 5,
+        "lowStopLowCriterionShare": 0.66,
+        "highStopOverallPercent": 92,
+        "highStopMinCriterionPercent": 82,
+        "highStopSpreadPercent": 8,
+        "highStopWeakAnswerGate": 0.95,
+        "disableHighStopForConstraintQuestions": true,
+        "disableHighStopForTaskTypes": [
+          "comparison",
+          "planning"
+        ]
+      },
+      "main": {
+        "meanAbsoluteError": 5.8,
+        "medianAbsoluteError": 3.5,
+        "within10": 80,
+        "within20": 97
+      },
+      "hardNegative": {
+        "meanAbsoluteError": 18.1,
+        "medianAbsoluteError": 17,
+        "within10": 2,
+        "within20": 71
+      },
+      "combinedSkipRate": 9,
+      "mainSkipRate": 18,
+      "hardNegativeSkipRate": 0,
+      "strongMae": 6.6,
+      "offTopicAverage": 0.3,
+      "metSuccessCriteria": false
+    },
+    {
+      "label": "low 10/0.25/15, high 92/82/10/0.88",
+      "config": {
+        "lowStopOverallPercent": 10,
+        "lowStopAnswerSupport": 0.25,
+        "lowStopMaxCriterionPercent": 15,
+        "lowStopSecondaryOverallBuffer": 5,
+        "lowStopLowCriterionShare": 0.66,
+        "highStopOverallPercent": 92,
+        "highStopMinCriterionPercent": 82,
+        "highStopSpreadPercent": 10,
+        "highStopWeakAnswerGate": 0.88,
+        "disableHighStopForConstraintQuestions": true,
+        "disableHighStopForTaskTypes": [
+          "comparison",
+          "planning"
+        ]
+      },
+      "main": {
+        "meanAbsoluteError": 5.8,
+        "medianAbsoluteError": 3.5,
+        "within10": 80,
+        "within20": 97
+      },
+      "hardNegative": {
+        "meanAbsoluteError": 18.1,
+        "medianAbsoluteError": 17,
+        "within10": 2,
+        "within20": 71
+      },
+      "combinedSkipRate": 9,
+      "mainSkipRate": 18,
+      "hardNegativeSkipRate": 0,
+      "strongMae": 6.6,
+      "offTopicAverage": 0.3,
+      "metSuccessCriteria": false
+    },
+    {
+      "label": "low 10/0.25/15, high 92/82/10/0.92",
+      "config": {
+        "lowStopOverallPercent": 10,
+        "lowStopAnswerSupport": 0.25,
+        "lowStopMaxCriterionPercent": 15,
+        "lowStopSecondaryOverallBuffer": 5,
+        "lowStopLowCriterionShare": 0.66,
+        "highStopOverallPercent": 92,
+        "highStopMinCriterionPercent": 82,
+        "highStopSpreadPercent": 10,
+        "highStopWeakAnswerGate": 0.92,
+        "disableHighStopForConstraintQuestions": true,
+        "disableHighStopForTaskTypes": [
+          "comparison",
+          "planning"
+        ]
+      },
+      "main": {
+        "meanAbsoluteError": 5.8,
+        "medianAbsoluteError": 3.5,
+        "within10": 80,
+        "within20": 97
+      },
+      "hardNegative": {
+        "meanAbsoluteError": 18.1,
+        "medianAbsoluteError": 17,
+        "within10": 2,
+        "within20": 71
+      },
+      "combinedSkipRate": 9,
+      "mainSkipRate": 18,
+      "hardNegativeSkipRate": 0,
+      "strongMae": 6.6,
+      "offTopicAverage": 0.3,
+      "metSuccessCriteria": false
+    },
+    {
+      "label": "low 10/0.25/15, high 92/82/10/0.95",
+      "config": {
+        "lowStopOverallPercent": 10,
+        "lowStopAnswerSupport": 0.25,
+        "lowStopMaxCriterionPercent": 15,
+        "lowStopSecondaryOverallBuffer": 5,
+        "lowStopLowCriterionShare": 0.66,
+        "highStopOverallPercent": 92,
+        "highStopMinCriterionPercent": 82,
+        "highStopSpreadPercent": 10,
+        "highStopWeakAnswerGate": 0.95,
+        "disableHighStopForConstraintQuestions": true,
+        "disableHighStopForTaskTypes": [
+          "comparison",
+          "planning"
+        ]
+      },
+      "main": {
+        "meanAbsoluteError": 5.8,
+        "medianAbsoluteError": 3.5,
+        "within10": 80,
+        "within20": 97
+      },
+      "hardNegative": {
+        "meanAbsoluteError": 18.1,
+        "medianAbsoluteError": 17,
+        "within10": 2,
+        "within20": 71
+      },
+      "combinedSkipRate": 9,
+      "mainSkipRate": 18,
+      "hardNegativeSkipRate": 0,
+      "strongMae": 6.6,
+      "offTopicAverage": 0.3,
+      "metSuccessCriteria": false
+    },
+    {
+      "label": "low 10/0.25/15, high 92/82/12/0.88",
+      "config": {
+        "lowStopOverallPercent": 10,
+        "lowStopAnswerSupport": 0.25,
+        "lowStopMaxCriterionPercent": 15,
+        "lowStopSecondaryOverallBuffer": 5,
+        "lowStopLowCriterionShare": 0.66,
+        "highStopOverallPercent": 92,
+        "highStopMinCriterionPercent": 82,
+        "highStopSpreadPercent": 12,
+        "highStopWeakAnswerGate": 0.88,
+        "disableHighStopForConstraintQuestions": true,
+        "disableHighStopForTaskTypes": [
+          "comparison",
+          "planning"
+        ]
+      },
+      "main": {
+        "meanAbsoluteError": 5.8,
+        "medianAbsoluteError": 3.5,
+        "within10": 80,
+        "within20": 97
+      },
+      "hardNegative": {
+        "meanAbsoluteError": 18.1,
+        "medianAbsoluteError": 17,
+        "within10": 2,
+        "within20": 71
+      },
+      "combinedSkipRate": 9,
+      "mainSkipRate": 18,
+      "hardNegativeSkipRate": 0,
+      "strongMae": 6.6,
+      "offTopicAverage": 0.3,
+      "metSuccessCriteria": false
+    },
+    {
+      "label": "low 10/0.25/15, high 92/82/12/0.92",
+      "config": {
+        "lowStopOverallPercent": 10,
+        "lowStopAnswerSupport": 0.25,
+        "lowStopMaxCriterionPercent": 15,
+        "lowStopSecondaryOverallBuffer": 5,
+        "lowStopLowCriterionShare": 0.66,
+        "highStopOverallPercent": 92,
+        "highStopMinCriterionPercent": 82,
+        "highStopSpreadPercent": 12,
+        "highStopWeakAnswerGate": 0.92,
+        "disableHighStopForConstraintQuestions": true,
+        "disableHighStopForTaskTypes": [
+          "comparison",
+          "planning"
+        ]
+      },
+      "main": {
+        "meanAbsoluteError": 5.8,
+        "medianAbsoluteError": 3.5,
+        "within10": 80,
+        "within20": 97
+      },
+      "hardNegative": {
+        "meanAbsoluteError": 18.1,
+        "medianAbsoluteError": 17,
+        "within10": 2,
+        "within20": 71
+      },
+      "combinedSkipRate": 9,
+      "mainSkipRate": 18,
+      "hardNegativeSkipRate": 0,
+      "strongMae": 6.6,
+      "offTopicAverage": 0.3,
+      "metSuccessCriteria": false
+    },
+    {
+      "label": "low 10/0.25/15, high 92/82/12/0.95",
+      "config": {
+        "lowStopOverallPercent": 10,
+        "lowStopAnswerSupport": 0.25,
+        "lowStopMaxCriterionPercent": 15,
+        "lowStopSecondaryOverallBuffer": 5,
+        "lowStopLowCriterionShare": 0.66,
+        "highStopOverallPercent": 92,
+        "highStopMinCriterionPercent": 82,
+        "highStopSpreadPercent": 12,
+        "highStopWeakAnswerGate": 0.95,
+        "disableHighStopForConstraintQuestions": true,
+        "disableHighStopForTaskTypes": [
+          "comparison",
+          "planning"
+        ]
+      },
+      "main": {
+        "meanAbsoluteError": 5.8,
+        "medianAbsoluteError": 3.5,
+        "within10": 80,
+        "within20": 97
+      },
+      "hardNegative": {
+        "meanAbsoluteError": 18.1,
+        "medianAbsoluteError": 17,
+        "within10": 2,
+        "within20": 71
+      },
+      "combinedSkipRate": 9,
+      "mainSkipRate": 18,
+      "hardNegativeSkipRate": 0,
+      "strongMae": 6.6,
+      "offTopicAverage": 0.3,
+      "metSuccessCriteria": false
+    },
+    {
+      "label": "low 10/0.25/15, high 92/85/8/0.88",
+      "config": {
+        "lowStopOverallPercent": 10,
+        "lowStopAnswerSupport": 0.25,
+        "lowStopMaxCriterionPercent": 15,
+        "lowStopSecondaryOverallBuffer": 5,
+        "lowStopLowCriterionShare": 0.66,
+        "highStopOverallPercent": 92,
+        "highStopMinCriterionPercent": 85,
+        "highStopSpreadPercent": 8,
+        "highStopWeakAnswerGate": 0.88,
+        "disableHighStopForConstraintQuestions": true,
+        "disableHighStopForTaskTypes": [
+          "comparison",
+          "planning"
+        ]
+      },
+      "main": {
+        "meanAbsoluteError": 5.8,
+        "medianAbsoluteError": 3.5,
+        "within10": 80,
+        "within20": 97
+      },
+      "hardNegative": {
+        "meanAbsoluteError": 18.1,
+        "medianAbsoluteError": 17,
+        "within10": 2,
+        "within20": 71
+      },
+      "combinedSkipRate": 9,
+      "mainSkipRate": 18,
+      "hardNegativeSkipRate": 0,
+      "strongMae": 6.6,
+      "offTopicAverage": 0.3,
+      "metSuccessCriteria": false
+    },
+    {
+      "label": "low 10/0.25/15, high 92/85/8/0.92",
+      "config": {
+        "lowStopOverallPercent": 10,
+        "lowStopAnswerSupport": 0.25,
+        "lowStopMaxCriterionPercent": 15,
+        "lowStopSecondaryOverallBuffer": 5,
+        "lowStopLowCriterionShare": 0.66,
+        "highStopOverallPercent": 92,
+        "highStopMinCriterionPercent": 85,
+        "highStopSpreadPercent": 8,
+        "highStopWeakAnswerGate": 0.92,
+        "disableHighStopForConstraintQuestions": true,
+        "disableHighStopForTaskTypes": [
+          "comparison",
+          "planning"
+        ]
+      },
+      "main": {
+        "meanAbsoluteError": 5.8,
+        "medianAbsoluteError": 3.5,
+        "within10": 80,
+        "within20": 97
+      },
+      "hardNegative": {
+        "meanAbsoluteError": 18.1,
+        "medianAbsoluteError": 17,
+        "within10": 2,
+        "within20": 71
+      },
+      "combinedSkipRate": 9,
+      "mainSkipRate": 18,
+      "hardNegativeSkipRate": 0,
+      "strongMae": 6.6,
+      "offTopicAverage": 0.3,
+      "metSuccessCriteria": false
+    },
+    {
+      "label": "low 10/0.25/15, high 92/85/8/0.95",
+      "config": {
+        "lowStopOverallPercent": 10,
+        "lowStopAnswerSupport": 0.25,
+        "lowStopMaxCriterionPercent": 15,
+        "lowStopSecondaryOverallBuffer": 5,
+        "lowStopLowCriterionShare": 0.66,
+        "highStopOverallPercent": 92,
+        "highStopMinCriterionPercent": 85,
+        "highStopSpreadPercent": 8,
+        "highStopWeakAnswerGate": 0.95,
+        "disableHighStopForConstraintQuestions": true,
+        "disableHighStopForTaskTypes": [
+          "comparison",
+          "planning"
+        ]
+      },
+      "main": {
+        "meanAbsoluteError": 5.8,
+        "medianAbsoluteError": 3.5,
+        "within10": 80,
+        "within20": 97
+      },
+      "hardNegative": {
+        "meanAbsoluteError": 18.1,
+        "medianAbsoluteError": 17,
+        "within10": 2,
+        "within20": 71
+      },
+      "combinedSkipRate": 9,
+      "mainSkipRate": 18,
+      "hardNegativeSkipRate": 0,
+      "strongMae": 6.6,
+      "offTopicAverage": 0.3,
+      "metSuccessCriteria": false
+    },
+    {
+      "label": "low 10/0.25/15, high 92/85/10/0.88",
+      "config": {
+        "lowStopOverallPercent": 10,
+        "lowStopAnswerSupport": 0.25,
+        "lowStopMaxCriterionPercent": 15,
+        "lowStopSecondaryOverallBuffer": 5,
+        "lowStopLowCriterionShare": 0.66,
+        "highStopOverallPercent": 92,
+        "highStopMinCriterionPercent": 85,
+        "highStopSpreadPercent": 10,
+        "highStopWeakAnswerGate": 0.88,
+        "disableHighStopForConstraintQuestions": true,
+        "disableHighStopForTaskTypes": [
+          "comparison",
+          "planning"
+        ]
+      },
+      "main": {
+        "meanAbsoluteError": 5.8,
+        "medianAbsoluteError": 3.5,
+        "within10": 80,
+        "within20": 97
+      },
+      "hardNegative": {
+        "meanAbsoluteError": 18.1,
+        "medianAbsoluteError": 17,
+        "within10": 2,
+        "within20": 71
+      },
+      "combinedSkipRate": 9,
+      "mainSkipRate": 18,
+      "hardNegativeSkipRate": 0,
+      "strongMae": 6.6,
+      "offTopicAverage": 0.3,
+      "metSuccessCriteria": false
+    },
+    {
+      "label": "low 10/0.25/15, high 92/85/10/0.92",
+      "config": {
+        "lowStopOverallPercent": 10,
+        "lowStopAnswerSupport": 0.25,
+        "lowStopMaxCriterionPercent": 15,
+        "lowStopSecondaryOverallBuffer": 5,
+        "lowStopLowCriterionShare": 0.66,
+        "highStopOverallPercent": 92,
+        "highStopMinCriterionPercent": 85,
+        "highStopSpreadPercent": 10,
+        "highStopWeakAnswerGate": 0.92,
+        "disableHighStopForConstraintQuestions": true,
+        "disableHighStopForTaskTypes": [
+          "comparison",
+          "planning"
+        ]
+      },
+      "main": {
+        "meanAbsoluteError": 5.8,
+        "medianAbsoluteError": 3.5,
+        "within10": 80,
+        "within20": 97
+      },
+      "hardNegative": {
+        "meanAbsoluteError": 18.1,
+        "medianAbsoluteError": 17,
+        "within10": 2,
+        "within20": 71
+      },
+      "combinedSkipRate": 9,
+      "mainSkipRate": 18,
+      "hardNegativeSkipRate": 0,
+      "strongMae": 6.6,
+      "offTopicAverage": 0.3,
+      "metSuccessCriteria": false
+    },
+    {
+      "label": "low 10/0.25/15, high 92/85/10/0.95",
+      "config": {
+        "lowStopOverallPercent": 10,
+        "lowStopAnswerSupport": 0.25,
+        "lowStopMaxCriterionPercent": 15,
+        "lowStopSecondaryOverallBuffer": 5,
+        "lowStopLowCriterionShare": 0.66,
+        "highStopOverallPercent": 92,
+        "highStopMinCriterionPercent": 85,
+        "highStopSpreadPercent": 10,
+        "highStopWeakAnswerGate": 0.95,
+        "disableHighStopForConstraintQuestions": true,
+        "disableHighStopForTaskTypes": [
+          "comparison",
+          "planning"
+        ]
+      },
+      "main": {
+        "meanAbsoluteError": 5.8,
+        "medianAbsoluteError": 3.5,
+        "within10": 80,
+        "within20": 97
+      },
+      "hardNegative": {
+        "meanAbsoluteError": 18.1,
+        "medianAbsoluteError": 17,
+        "within10": 2,
+        "within20": 71
+      },
+      "combinedSkipRate": 9,
+      "mainSkipRate": 18,
+      "hardNegativeSkipRate": 0,
+      "strongMae": 6.6,
+      "offTopicAverage": 0.3,
+      "metSuccessCriteria": false
+    },
+    {
+      "label": "low 10/0.25/15, high 92/85/12/0.88",
+      "config": {
+        "lowStopOverallPercent": 10,
+        "lowStopAnswerSupport": 0.25,
+        "lowStopMaxCriterionPercent": 15,
+        "lowStopSecondaryOverallBuffer": 5,
+        "lowStopLowCriterionShare": 0.66,
+        "highStopOverallPercent": 92,
+        "highStopMinCriterionPercent": 85,
+        "highStopSpreadPercent": 12,
+        "highStopWeakAnswerGate": 0.88,
+        "disableHighStopForConstraintQuestions": true,
+        "disableHighStopForTaskTypes": [
+          "comparison",
+          "planning"
+        ]
+      },
+      "main": {
+        "meanAbsoluteError": 5.8,
+        "medianAbsoluteError": 3.5,
+        "within10": 80,
+        "within20": 97
+      },
+      "hardNegative": {
+        "meanAbsoluteError": 18.1,
+        "medianAbsoluteError": 17,
+        "within10": 2,
+        "within20": 71
+      },
+      "combinedSkipRate": 9,
+      "mainSkipRate": 18,
+      "hardNegativeSkipRate": 0,
+      "strongMae": 6.6,
+      "offTopicAverage": 0.3,
+      "metSuccessCriteria": false
+    },
+    {
+      "label": "low 10/0.25/15, high 92/85/12/0.92",
+      "config": {
+        "lowStopOverallPercent": 10,
+        "lowStopAnswerSupport": 0.25,
+        "lowStopMaxCriterionPercent": 15,
+        "lowStopSecondaryOverallBuffer": 5,
+        "lowStopLowCriterionShare": 0.66,
+        "highStopOverallPercent": 92,
+        "highStopMinCriterionPercent": 85,
+        "highStopSpreadPercent": 12,
+        "highStopWeakAnswerGate": 0.92,
+        "disableHighStopForConstraintQuestions": true,
+        "disableHighStopForTaskTypes": [
+          "comparison",
+          "planning"
+        ]
+      },
+      "main": {
+        "meanAbsoluteError": 5.8,
+        "medianAbsoluteError": 3.5,
+        "within10": 80,
+        "within20": 97
+      },
+      "hardNegative": {
+        "meanAbsoluteError": 18.1,
+        "medianAbsoluteError": 17,
+        "within10": 2,
+        "within20": 71
+      },
+      "combinedSkipRate": 9,
+      "mainSkipRate": 18,
+      "hardNegativeSkipRate": 0,
+      "strongMae": 6.6,
+      "offTopicAverage": 0.3,
+      "metSuccessCriteria": false
+    },
+    {
+      "label": "low 10/0.25/15, high 92/85/12/0.95",
+      "config": {
+        "lowStopOverallPercent": 10,
+        "lowStopAnswerSupport": 0.25,
+        "lowStopMaxCriterionPercent": 15,
+        "lowStopSecondaryOverallBuffer": 5,
+        "lowStopLowCriterionShare": 0.66,
+        "highStopOverallPercent": 92,
+        "highStopMinCriterionPercent": 85,
+        "highStopSpreadPercent": 12,
+        "highStopWeakAnswerGate": 0.95,
+        "disableHighStopForConstraintQuestions": true,
+        "disableHighStopForTaskTypes": [
+          "comparison",
+          "planning"
+        ]
+      },
+      "main": {
+        "meanAbsoluteError": 5.8,
+        "medianAbsoluteError": 3.5,
+        "within10": 80,
+        "within20": 97
+      },
+      "hardNegative": {
+        "meanAbsoluteError": 18.1,
+        "medianAbsoluteError": 17,
+        "within10": 2,
+        "within20": 71
+      },
+      "combinedSkipRate": 9,
+      "mainSkipRate": 18,
+      "hardNegativeSkipRate": 0,
+      "strongMae": 6.6,
+      "offTopicAverage": 0.3,
+      "metSuccessCriteria": false
+    },
+    {
+      "label": "low 10/0.25/15, high 92/88/8/0.88",
+      "config": {
+        "lowStopOverallPercent": 10,
+        "lowStopAnswerSupport": 0.25,
+        "lowStopMaxCriterionPercent": 15,
+        "lowStopSecondaryOverallBuffer": 5,
+        "lowStopLowCriterionShare": 0.66,
+        "highStopOverallPercent": 92,
+        "highStopMinCriterionPercent": 88,
+        "highStopSpreadPercent": 8,
+        "highStopWeakAnswerGate": 0.88,
+        "disableHighStopForConstraintQuestions": true,
+        "disableHighStopForTaskTypes": [
+          "comparison",
+          "planning"
+        ]
+      },
+      "main": {
+        "meanAbsoluteError": 5.8,
+        "medianAbsoluteError": 3.5,
+        "within10": 80,
+        "within20": 97
+      },
+      "hardNegative": {
+        "meanAbsoluteError": 18.1,
+        "medianAbsoluteError": 17,
+        "within10": 2,
+        "within20": 71
+      },
+      "combinedSkipRate": 9,
+      "mainSkipRate": 18,
+      "hardNegativeSkipRate": 0,
+      "strongMae": 6.6,
+      "offTopicAverage": 0.3,
+      "metSuccessCriteria": false
+    },
+    {
+      "label": "low 10/0.25/15, high 92/88/8/0.92",
+      "config": {
+        "lowStopOverallPercent": 10,
+        "lowStopAnswerSupport": 0.25,
+        "lowStopMaxCriterionPercent": 15,
+        "lowStopSecondaryOverallBuffer": 5,
+        "lowStopLowCriterionShare": 0.66,
+        "highStopOverallPercent": 92,
+        "highStopMinCriterionPercent": 88,
+        "highStopSpreadPercent": 8,
+        "highStopWeakAnswerGate": 0.92,
+        "disableHighStopForConstraintQuestions": true,
+        "disableHighStopForTaskTypes": [
+          "comparison",
+          "planning"
+        ]
+      },
+      "main": {
+        "meanAbsoluteError": 5.8,
+        "medianAbsoluteError": 3.5,
+        "within10": 80,
+        "within20": 97
+      },
+      "hardNegative": {
+        "meanAbsoluteError": 18.1,
+        "medianAbsoluteError": 17,
+        "within10": 2,
+        "within20": 71
+      },
+      "combinedSkipRate": 9,
+      "mainSkipRate": 18,
+      "hardNegativeSkipRate": 0,
+      "strongMae": 6.6,
+      "offTopicAverage": 0.3,
+      "metSuccessCriteria": false
+    },
+    {
+      "label": "low 10/0.25/15, high 92/88/8/0.95",
+      "config": {
+        "lowStopOverallPercent": 10,
+        "lowStopAnswerSupport": 0.25,
+        "lowStopMaxCriterionPercent": 15,
+        "lowStopSecondaryOverallBuffer": 5,
+        "lowStopLowCriterionShare": 0.66,
+        "highStopOverallPercent": 92,
+        "highStopMinCriterionPercent": 88,
+        "highStopSpreadPercent": 8,
+        "highStopWeakAnswerGate": 0.95,
+        "disableHighStopForConstraintQuestions": true,
+        "disableHighStopForTaskTypes": [
+          "comparison",
+          "planning"
+        ]
+      },
+      "main": {
+        "meanAbsoluteError": 5.8,
+        "medianAbsoluteError": 3.5,
+        "within10": 80,
+        "within20": 97
+      },
+      "hardNegative": {
+        "meanAbsoluteError": 18.1,
+        "medianAbsoluteError": 17,
+        "within10": 2,
+        "within20": 71
+      },
+      "combinedSkipRate": 9,
+      "mainSkipRate": 18,
+      "hardNegativeSkipRate": 0,
+      "strongMae": 6.6,
+      "offTopicAverage": 0.3,
+      "metSuccessCriteria": false
+    },
+    {
+      "label": "low 10/0.25/15, high 92/88/10/0.88",
+      "config": {
+        "lowStopOverallPercent": 10,
+        "lowStopAnswerSupport": 0.25,
+        "lowStopMaxCriterionPercent": 15,
+        "lowStopSecondaryOverallBuffer": 5,
+        "lowStopLowCriterionShare": 0.66,
+        "highStopOverallPercent": 92,
+        "highStopMinCriterionPercent": 88,
+        "highStopSpreadPercent": 10,
+        "highStopWeakAnswerGate": 0.88,
+        "disableHighStopForConstraintQuestions": true,
+        "disableHighStopForTaskTypes": [
+          "comparison",
+          "planning"
+        ]
+      },
+      "main": {
+        "meanAbsoluteError": 5.8,
+        "medianAbsoluteError": 3.5,
+        "within10": 80,
+        "within20": 97
+      },
+      "hardNegative": {
+        "meanAbsoluteError": 18.1,
+        "medianAbsoluteError": 17,
+        "within10": 2,
+        "within20": 71
+      },
+      "combinedSkipRate": 9,
+      "mainSkipRate": 18,
+      "hardNegativeSkipRate": 0,
+      "strongMae": 6.6,
+      "offTopicAverage": 0.3,
+      "metSuccessCriteria": false
+    },
+    {
+      "label": "low 10/0.25/15, high 92/88/10/0.92",
+      "config": {
+        "lowStopOverallPercent": 10,
+        "lowStopAnswerSupport": 0.25,
+        "lowStopMaxCriterionPercent": 15,
+        "lowStopSecondaryOverallBuffer": 5,
+        "lowStopLowCriterionShare": 0.66,
+        "highStopOverallPercent": 92,
+        "highStopMinCriterionPercent": 88,
+        "highStopSpreadPercent": 10,
+        "highStopWeakAnswerGate": 0.92,
+        "disableHighStopForConstraintQuestions": true,
+        "disableHighStopForTaskTypes": [
+          "comparison",
+          "planning"
+        ]
+      },
+      "main": {
+        "meanAbsoluteError": 5.8,
+        "medianAbsoluteError": 3.5,
+        "within10": 80,
+        "within20": 97
+      },
+      "hardNegative": {
+        "meanAbsoluteError": 18.1,
+        "medianAbsoluteError": 17,
+        "within10": 2,
+        "within20": 71
+      },
+      "combinedSkipRate": 9,
+      "mainSkipRate": 18,
+      "hardNegativeSkipRate": 0,
+      "strongMae": 6.6,
+      "offTopicAverage": 0.3,
+      "metSuccessCriteria": false
+    },
+    {
+      "label": "low 10/0.25/15, high 92/88/10/0.95",
+      "config": {
+        "lowStopOverallPercent": 10,
+        "lowStopAnswerSupport": 0.25,
+        "lowStopMaxCriterionPercent": 15,
+        "lowStopSecondaryOverallBuffer": 5,
+        "lowStopLowCriterionShare": 0.66,
+        "highStopOverallPercent": 92,
+        "highStopMinCriterionPercent": 88,
+        "highStopSpreadPercent": 10,
+        "highStopWeakAnswerGate": 0.95,
+        "disableHighStopForConstraintQuestions": true,
+        "disableHighStopForTaskTypes": [
+          "comparison",
+          "planning"
+        ]
+      },
+      "main": {
+        "meanAbsoluteError": 5.8,
+        "medianAbsoluteError": 3.5,
+        "within10": 80,
+        "within20": 97
+      },
+      "hardNegative": {
+        "meanAbsoluteError": 18.1,
+        "medianAbsoluteError": 17,
+        "within10": 2,
+        "within20": 71
+      },
+      "combinedSkipRate": 9,
+      "mainSkipRate": 18,
+      "hardNegativeSkipRate": 0,
+      "strongMae": 6.6,
+      "offTopicAverage": 0.3,
+      "metSuccessCriteria": false
+    },
+    {
+      "label": "low 10/0.25/15, high 92/88/12/0.88",
+      "config": {
+        "lowStopOverallPercent": 10,
+        "lowStopAnswerSupport": 0.25,
+        "lowStopMaxCriterionPercent": 15,
+        "lowStopSecondaryOverallBuffer": 5,
+        "lowStopLowCriterionShare": 0.66,
+        "highStopOverallPercent": 92,
+        "highStopMinCriterionPercent": 88,
+        "highStopSpreadPercent": 12,
+        "highStopWeakAnswerGate": 0.88,
+        "disableHighStopForConstraintQuestions": true,
+        "disableHighStopForTaskTypes": [
+          "comparison",
+          "planning"
+        ]
+      },
+      "main": {
+        "meanAbsoluteError": 5.8,
+        "medianAbsoluteError": 3.5,
+        "within10": 80,
+        "within20": 97
+      },
+      "hardNegative": {
+        "meanAbsoluteError": 18.1,
+        "medianAbsoluteError": 17,
+        "within10": 2,
+        "within20": 71
+      },
+      "combinedSkipRate": 9,
+      "mainSkipRate": 18,
+      "hardNegativeSkipRate": 0,
+      "strongMae": 6.6,
+      "offTopicAverage": 0.3,
+      "metSuccessCriteria": false
+    }
+  ]
+}
