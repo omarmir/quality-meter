@@ -4,6 +4,7 @@ import { defineConfig } from "vitepress"
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  base: process.env.VITE_BASE_PATH ?? "/",
   title: "Quality Meter",
   description:
     "A typescript library to rate the quality of responses using a small encoder only AI model",

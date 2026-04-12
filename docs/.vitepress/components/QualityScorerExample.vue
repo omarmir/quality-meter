@@ -49,6 +49,7 @@ const SIGNAL_BANDS: SignalBand[] = [
 let nextCriterionId = 4
 let requestCounter = 0
 let debounceTimer: ReturnType<typeof setTimeout> | null = null
+const localModelBasePath = `${import.meta.env.BASE_URL}models/`
 
 const question = ref(
   "How can I improve my home Wi-Fi speed without replacing all my equipment?",
@@ -254,7 +255,9 @@ async function initializeScorer() {
   scorerClient.value = createQualityScorerWorkerClient({
     config: {
       modelSource: {
-        mode: "huggingface",
+        mode: "local",
+        localModelPath: localModelBasePath,
+        useBrowserCache: "auto",
       },
     },
     createWorker: () =>
