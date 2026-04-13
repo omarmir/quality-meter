@@ -1,7 +1,9 @@
 import { assessDeterministicConstraints, detectQualityTaskType, type QualityTaskType } from './low-latency'
+import { resolveQualityCriteria } from './criteria'
 import { DEFAULT_ADAPTIVE_REFINEMENT_CONFIG } from './defaults'
 import type {
   QualityAdaptiveRefinementConfig,
+  QualityCriterionInput,
   QualityRefinementDecision,
   QualityRefinementPolicy,
   QualityScoreResult,
@@ -11,7 +13,7 @@ type DecideQualityRefinementInput = {
   fastResult: QualityScoreResult
   question: string
   response: string
-  criteria: string[]
+  criteria: QualityCriterionInput[]
   policy?: QualityRefinementPolicy
   config?: Partial<QualityAdaptiveRefinementConfig>
 }
@@ -145,6 +147,11 @@ function hasQuestionConstraintRisk(question: string, response: string) {
   return assessDeterministicConstraints(question, response).presence > 0
 }
 
-function resolveTaskType(taskType: QualityTaskType, question: string, criteria: string[]) {
-  return taskType === 'unknown' ? detectQualityTaskType(question, criteria) : taskType
+function resolveTaskType(taskType: QualityTaskType, question: string, criteria: QualityCriterionInput[]) {
+  return taskType === 'unknown'
+    ? detectQualityTaskType(
+        question,
+        resolveQualityCriteria(criteria).map((criterion) => criterion.label),
+      )
+    : taskType
 }

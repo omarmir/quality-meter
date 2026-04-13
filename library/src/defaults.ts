@@ -1,4 +1,5 @@
 import { applyCalibrationCurve } from './calibration-core'
+import { resolveQualityCriteria } from './criteria'
 import { DEFAULT_CRITERION_CALIBRATION, DEFAULT_OVERALL_CALIBRATION } from './generated-calibration'
 import {
   ESTIMATED_CHARS_PER_TOKEN,
@@ -101,9 +102,13 @@ export function estimateQualityContextBudget(
   const resolvedConfig = resolveQualityScorerConfig(config)
   const evaluationText = buildEvaluationText(input.question ?? '', input.response)
   const estimatedPremiseTokens = estimateTokenCountWithConfig(evaluationText, resolvedConfig)
+  const resolvedCriteria = resolveQualityCriteria(input.criteria)
   const scoringCriteria = resolvedConfig.lowLatency.useCriterionNormalization
-    ? normalizeCriteriaForScoring(input.question ?? '', input.criteria).normalizedCriteria
-    : input.criteria
+    ? normalizeCriteriaForScoring(
+        input.question ?? '',
+        resolvedCriteria.map((criterion) => criterion.label),
+      ).normalizedCriteria
+    : resolvedCriteria.map((criterion) => criterion.label)
   const safePremiseTokenBudget = getSafePremiseTokenBudgetWithConfig(scoringCriteria, resolvedConfig)
   const safePremiseCharBudget = safePremiseTokenBudget * resolvedConfig.limits.estimatedCharsPerToken
 

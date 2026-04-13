@@ -39,13 +39,29 @@ import { registerQualityScorerWorker } from '@browser-quality-scorer/core/worker
 
 ## Core Types
 
+### `QualityCriterionInput`
+
+```ts
+type QualityCriterionInput =
+  | string
+  | {
+      label: string
+      weight?: number
+    }
+```
+
+You can pass criteria either as plain strings or weighted objects.
+
+- plain strings default to weight `1`
+- object weights are relative positive numbers and are normalized internally for the overall score
+
 ### `QualityScoreInput`
 
 ```ts
 type QualityScoreInput = {
   question?: string
   response: string
-  criteria: string[]
+  criteria: QualityCriterionInput[]
 }
 ```
 
@@ -53,7 +69,7 @@ This is the main scoring input.
 
 - `question` is optional, but recommended
 - `response` is the answer being evaluated
-- `criteria` is the rubric as a list of short criterion strings
+- `criteria` is the rubric as either short criterion strings or `{ label, weight }` objects
 
 ### `QualityScoreOptions`
 
@@ -71,6 +87,7 @@ type QualityScoreOptions = {
 ```ts
 type QualityScoreResult = {
   criteria: string[]
+  weightedCriteria: QualityWeightedCriterion[]
   normalizedCriteria: string[]
   scores: number[]
   rawScores: number[]
@@ -93,21 +110,37 @@ type QualityScoreResult = {
 
 Important fields:
 
-- `overallPercent`: display-oriented overall score
-- `breakdown`: per-criterion scores
+- `overallPercent`: display-oriented overall score based on the weighted criterion average before gating and calibration
+- `weightedCriteria`: the resolved input criteria with explicit weights
+- `breakdown`: per-criterion scores plus weight metadata
 - `answerSupport`: how strongly the response appears to actually answer the question
 - `weakAnswerGate`: suppression factor for weak or generic answers
 - `taskType`: inferred task class used by low-latency checks
+
+### `QualityWeightedCriterion`
+
+```ts
+type QualityWeightedCriterion = {
+  label: string
+  weight: number
+}
+```
+
+`weight` is the resolved positive relative weight that the scorer used for overall aggregation.
 
 ### `QualityCriterionScore`
 
 ```ts
 type QualityCriterionScore = {
   label: string
+  weight: number
+  weightShare: number
   raw: number
   percent: number
 }
 ```
+
+`weightShare` is the normalized `0..1` share of total criterion weight.
 
 ### `QualityContextBudget`
 
@@ -218,8 +251,9 @@ const result = await scorer.score({
   question: 'How can I improve my home Wi-Fi speed without replacing all my equipment?',
   response: 'Move the router to a central spot and retest before buying hardware.',
   criteria: [
-    'Answers the question directly',
-    'Provides concrete, practical steps',
+    { label: 'Answers the question directly', weight: 4 },
+    { label: 'Provides concrete, practical steps', weight: 4 },
+    { label: 'Avoids recommending replacement hardware', weight: 2 },
   ],
 })
 ```
@@ -295,7 +329,7 @@ Input:
   fastResult: QualityScoreResult
   question: string
   response: string
-  criteria: string[]
+  criteria: QualityCriterionInput[]
   policy?: 'always' | 'adaptive' | 'never'
   config?: Partial<QualityAdaptiveRefinementConfig>
 }
@@ -350,6 +384,8 @@ Estimates whether your prompt and rubric are likely to exceed the safe model bud
 ### `computeCalibratedOverallScore(input, config?)`
 
 Computes the calibrated overall score from raw criterion scores plus answer-quality gating.
+
+If you are using weighted criteria and call this utility directly, pass your own weighted `rawOverall`.
 
 ### `calibrateQualityOverall(score, config?)`
 
@@ -406,8 +442,9 @@ const input = {
   question: 'How can I improve my home Wi-Fi speed without replacing all my equipment?',
   response: 'Move the router to a central spot and retest before buying hardware.',
   criteria: [
-    'Answers the question directly',
-    'Provides concrete, practical steps',
+    { label: 'Answers the question directly', weight: 4 },
+    { label: 'Provides concrete, practical steps', weight: 4 },
+    { label: 'Avoids recommending replacement hardware', weight: 2 },
   ],
 }
 

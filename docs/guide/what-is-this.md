@@ -6,7 +6,7 @@ It is designed for cases where you have:
 
 - a question or task
 - a candidate response
-- a few criteria that describe what a good answer should do
+- a few criteria that describe what a good answer should do, optionally with weights
 
 The library scores the response against those criteria and returns both an overall score and a per-criterion breakdown.
 
@@ -42,16 +42,19 @@ You provide:
   question: 'How can I improve my home Wi-Fi speed without replacing all my equipment?',
   response: 'Move the router to a central spot and retest before buying hardware.',
   criteria: [
-    'Answers the question directly',
-    'Provides concrete, practical steps'
+    { label: 'Answers the question directly', weight: 4 },
+    { label: 'Provides concrete, practical steps', weight: 4 },
+    { label: 'Avoids recommending replacement hardware', weight: 2 }
   ]
 }
 ```
 
+Criteria can be plain strings or `{ label, weight }` objects. Plain strings default to weight `1`, and weighted criteria affect the final overall aggregation.
+
 And the scorer returns:
 
-- an overall score
-- per-criterion scores
+- an overall score based on the weighted criterion average
+- per-criterion scores with weight metadata
 - answer support and gating signals
 - calibrated percentages for display
 

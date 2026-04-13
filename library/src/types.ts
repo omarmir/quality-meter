@@ -48,7 +48,7 @@ export type QualityScorerConfigInput = Partial<Omit<QualityScorerConfig, 'modelS
 export type QualityScoreInput = {
   question?: string
   response: string
-  criteria: string[]
+  criteria: QualityCriterionInput[]
 }
 
 export type QualityScoreMode = 'fast' | 'full'
@@ -89,12 +89,27 @@ export type QualityRefinementDecision = {
 
 export type QualityCriterionScore = {
   label: string
+  weight: number
+  weightShare: number
   raw: number
   percent: number
 }
 
+export type QualityCriterionInput =
+  | string
+  | {
+      label: string
+      weight?: number
+    }
+
+export type QualityWeightedCriterion = {
+  label: string
+  weight: number
+}
+
 export type QualityScoreResult = {
   criteria: string[]
+  weightedCriteria: QualityWeightedCriterion[]
   normalizedCriteria: string[]
   scores: number[]
   rawScores: number[]

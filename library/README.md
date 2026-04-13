@@ -37,9 +37,15 @@ await scorer.loadModel()
 const result = await scorer.score({
   question: 'How can I improve my home Wi-Fi speed without replacing all my equipment?',
   response: 'Move the router to a central spot and retest before buying hardware.',
-  criteria: ['Answers the question directly', 'Provides concrete, practical steps'],
+  criteria: [
+    { label: 'Answers the question directly', weight: 4 },
+    { label: 'Provides concrete, practical steps', weight: 4 },
+    { label: 'Avoids recommending replacement hardware', weight: 2 },
+  ],
 })
 ```
+
+String criteria still work. If you pass criterion objects, `weight` is a relative positive number, so a criterion with `weight: 4` counts twice as much toward `overallPercent` as a criterion with `weight: 2`. The returned `breakdown` includes both `weight` and `weightShare`.
 
 ## Worker Usage
 

@@ -10,7 +10,8 @@ import type {
 
 type CriterionRow = {
   id: string
-  value: string
+  label: string
+  weight: number
 }
 
 type SignalBand = {
@@ -59,11 +60,12 @@ const answer = ref(
   "Start with the router placement before buying new hardware. Move it into an open, central spot away from thick walls and microwaves, then restart both the router and modem. After that, split 2.4 GHz and 5 GHz networks if your router supports it so nearby devices can use the faster band. For example, laptops and streaming boxes usually benefit from 5 GHz when they are in the same room or one room away. Finally, update the router firmware and test speeds again before deciding whether you need a stronger access point.",
 )
 const criteria = ref<CriterionRow[]>([
-  { id: "criterion-1", value: "Answers the question directly" },
-  { id: "criterion-2", value: "Provides concrete, practical steps" },
+  { id: "criterion-1", label: "Answers the question directly", weight: 4 },
+  { id: "criterion-2", label: "Provides concrete, practical steps", weight: 4 },
   {
     id: "criterion-3",
-    value: "Uses an example to make the advice easier to apply",
+    label: "Uses an example to make the advice easier to apply",
+    weight: 2,
   },
 ])
 
@@ -82,13 +84,20 @@ const queuedAutoScore = ref(false)
 const isResultStale = ref(false)
 
 const normalizedCriteria = computed(() =>
-  criteria.value.map((item) => item.value.trim()).filter(Boolean),
+  criteria.value
+    .map((item) => ({
+      label: item.label.trim(),
+      weight: resolveCriterionWeight(item.weight),
+    }))
+    .filter((item) => item.label),
 )
 const inputSignature = computed(() =>
   [
     question.value.trim(),
     answer.value.trim(),
-    normalizedCriteria.value.join("\u0000"),
+    normalizedCriteria.value
+      .map((item) => `${item.label}\u0000${item.weight}`)
+      .join("\u0001"),
   ].join("\u0001"),
 )
 const canScore = computed(
@@ -272,7 +281,7 @@ watch(modelPhase, (phase) => {
 })
 
 function addCriterion() {
-  criteria.value.push({ id: `criterion-${nextCriterionId++}`, value: "" })
+  criteria.value.push({ id: `criterion-${nextCriterionId++}`, label: "", weight: 1 })
 }
 
 function removeCriterion(id: string) {
@@ -348,6 +357,10 @@ function formatBytes(value: number) {
 
   const digits = size >= 100 || unitIndex === 0 ? 0 : size >= 10 ? 1 : 2
   return `${size.toFixed(digits)} ${units[unitIndex]}`
+}
+
+function resolveCriterionWeight(weight: number) {
+  return Number.isFinite(weight) && weight > 0 ? weight : 1
 }
 
 function scoreResponse() {
@@ -487,7 +500,7 @@ function scoreTone(percent: number) {
     <section>
       <h2 class="mt-0! border-t-0! pt-0!">Example</h2>
       This example shows the quality scorer with an editable question, criteria
-      list, fit gauge, and detailed scoring breakdown.
+      list, criterion weights, fit gauge, and detailed scoring breakdown.
       <p>
         <span
           class="mr-2 inline-flex size-6 align-middle"
@@ -567,36 +580,48 @@ function scoreTone(percent: number) {
         class="w-full max-w-full rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3 text-(--vp-c-text-1) shadow-[inset_0_1px_0_rgba(255,255,255,0.02)] outline-none transition-colors placeholder:text-(--vp-c-text-3) focus:border-(--vp-c-brand-1)"
         placeholder="Ask the question the answer should satisfy." />
 
-      <div class="mt-4 flex items-center justify-between gap-4">
-        <h3 class="my-0 text-lg font-semibold">Criteria</h3>
-        <button
-          class="inline-flex min-h-11 items-center justify-center rounded-full border border-(--vp-button-brand-border) bg-(--vp-button-brand-bg) px-5 text-sm font-semibold text-(--vp-button-brand-text) transition-colors hover:border-(--vp-button-brand-hover-border) hover:bg-(--vp-button-brand-hover-bg)"
-          type="button"
-          @click="addCriterion">
-          Add criterion
-        </button>
-      </div>
+	      <div class="mt-4 flex items-center justify-between gap-4">
+	        <h3 class="my-0 text-lg font-semibold">Criteria</h3>
+	        <button
+	          class="inline-flex min-h-11 items-center justify-center rounded-full border border-(--vp-button-brand-border) bg-(--vp-button-brand-bg) px-5 text-sm font-semibold text-(--vp-button-brand-text) transition-colors hover:border-(--vp-button-brand-hover-border) hover:bg-(--vp-button-brand-hover-bg)"
+	          type="button"
+	          @click="addCriterion">
+	          Add criterion
+	        </button>
+	      </div>
+	      <p class="mt-2 text-sm text-(--vp-c-text-2)">
+	        Weights are relative. A criterion with weight 4 counts twice as much
+	        toward the final overall score as one with weight 2.
+	      </p>
 
-      <div class="mt-4 grid gap-3">
-        <div
-          v-for="(criterion, index) in criteria"
-          :key="criterion.id"
-          class="grid items-center gap-3 sm:grid-cols-[2rem_minmax(0,1fr)_auto]">
-          <span class="text-center text-(--vp-c-text-2)">{{ index + 1 }}</span>
-          <input
-            v-model="criterion.value"
-            class="w-full min-w-0 rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3 text-(--vp-c-text-1) shadow-[inset_0_1px_0_rgba(255,255,255,0.02)] outline-none transition-colors placeholder:text-(--vp-c-text-3) focus:border-(--vp-c-brand-1)"
-            type="text"
-            :placeholder="`Criterion ${index + 1}`" />
-          <button
-            class="inline-flex min-h-11 items-center justify-center rounded-full border border-[color-mix(in_srgb,var(--vp-c-danger-1)_35%,var(--vp-c-divider))] bg-[color-mix(in_srgb,var(--vp-c-danger-1)_12%,var(--vp-c-bg-soft))] px-5 text-sm font-medium text-(--vp-c-danger-1) transition-colors hover:bg-[color-mix(in_srgb,var(--vp-c-danger-1)_18%,var(--vp-c-bg-soft))] disabled:cursor-not-allowed disabled:opacity-60 sm:justify-self-start"
-            type="button"
-            :disabled="criteria.length === 1"
-            @click="removeCriterion(criterion.id)">
-            Remove
-          </button>
-        </div>
-      </div>
+	      <div class="mt-4 grid gap-3">
+	        <div
+	          v-for="(criterion, index) in criteria"
+	          :key="criterion.id"
+	          class="grid items-center gap-3 sm:grid-cols-[2rem_minmax(0,1fr)_6.5rem_auto]">
+	          <span class="text-center text-(--vp-c-text-2)">{{ index + 1 }}</span>
+	          <input
+	            v-model="criterion.label"
+	            class="w-full min-w-0 rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3 text-(--vp-c-text-1) shadow-[inset_0_1px_0_rgba(255,255,255,0.02)] outline-none transition-colors placeholder:text-(--vp-c-text-3) focus:border-(--vp-c-brand-1)"
+	            type="text"
+	            :placeholder="`Criterion ${index + 1}`" />
+	          <input
+	            v-model.number="criterion.weight"
+	            aria-label="Criterion weight"
+	            class="w-full min-w-0 rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-3 py-3 text-center text-(--vp-c-text-1) shadow-[inset_0_1px_0_rgba(255,255,255,0.02)] outline-none transition-colors placeholder:text-(--vp-c-text-3) focus:border-(--vp-c-brand-1)"
+	            type="number"
+	            min="1"
+	            step="1"
+	            placeholder="1" />
+	          <button
+	            class="inline-flex min-h-11 items-center justify-center rounded-full border border-[color-mix(in_srgb,var(--vp-c-danger-1)_35%,var(--vp-c-divider))] bg-[color-mix(in_srgb,var(--vp-c-danger-1)_12%,var(--vp-c-bg-soft))] px-5 text-sm font-medium text-(--vp-c-danger-1) transition-colors hover:bg-[color-mix(in_srgb,var(--vp-c-danger-1)_18%,var(--vp-c-bg-soft))] disabled:cursor-not-allowed disabled:opacity-60 sm:justify-self-start"
+	            type="button"
+	            :disabled="criteria.length === 1"
+	            @click="removeCriterion(criterion.id)">
+	            Remove
+	          </button>
+	        </div>
+	      </div>
     </section>
 
     <section>
@@ -708,16 +733,20 @@ function scoreTone(percent: number) {
             </div>
           </dl>
 
-          <div v-for="item in result.breakdown" :key="item.label" class="mt-4">
-            <div class="flex items-center justify-between gap-4">
-              <strong>{{ item.label }}</strong>
-              <span>{{ item.percent }}%</span>
-            </div>
-            <div
-              class="mt-1.5 h-3 overflow-hidden rounded-full bg-[color-mix(in_srgb,var(--vp-c-text-1)_10%,transparent)]">
-              <div
-                class="h-full rounded-full"
-                :class="
+	          <div v-for="item in result.breakdown" :key="item.label" class="mt-4">
+	            <div class="flex items-center justify-between gap-4">
+	              <strong>{{ item.label }}</strong>
+	              <span>{{ item.percent }}%</span>
+	            </div>
+	            <p class="mt-1 text-sm text-(--vp-c-text-2)">
+	              Weight {{ Math.round(item.weightShare * 100) }}% of overall
+	              (raw {{ item.weight }})
+	            </p>
+	            <div
+	              class="mt-1.5 h-3 overflow-hidden rounded-full bg-[color-mix(in_srgb,var(--vp-c-text-1)_10%,transparent)]">
+	              <div
+	                class="h-full rounded-full"
+	                :class="
                   scoreTone(item.percent) === 'success'
                     ? 'bg-[linear-gradient(90deg,#279d6a,#7fd6a8)]'
                     : scoreTone(item.percent) === 'warning'

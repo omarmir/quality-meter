@@ -1,5 +1,6 @@
 import type { ProgressInfo } from '@huggingface/transformers'
 import { env, pipeline } from '@huggingface/transformers'
+import { computeWeightedCriterionAverage, resolveQualityCriteria } from './criteria'
 import { computeCalibratedOverallScore, resolveQualityScorerConfig, estimateQualityContextBudget } from './defaults'
 import { scoreCriteriaWithClassifier, type ZeroShotClassifier } from './evaluator'
 import type {
@@ -7,6 +8,7 @@ import type {
   QualityScorer,
   QualityScorerConfigInput,
   QualityScorerLoadCallbacks,
+  QualityWeightedCriterion,
 } from './types'
 import type { QualityScorerConfig } from './types'
 
@@ -29,11 +31,12 @@ export function createTransformersQualityScorer(config: QualityScorerConfigInput
     async score(input, options = {}) {
       const model = await ensureClassifier()
       const trimmedQuestion = (input.question ?? '').trim()
+      const resolvedCriteria = resolveQualityCriteria(input.criteria)
       const output = await scoreCriteriaWithClassifier(
         model,
         trimmedQuestion,
         input.response,
-        input.criteria,
+        resolvedCriteria.map((criterion) => criterion.label),
         {
           criterionCalibration: resolvedConfig.criterionCalibration,
           mode: options.mode,
@@ -49,7 +52,7 @@ export function createTransformersQualityScorer(config: QualityScorerConfigInput
       }
 
       return formatQualityScoreResult(
-        output.criteria,
+        resolvedCriteria,
         output.normalizedCriteria,
         output.scores,
         output.rawScores,
@@ -156,7 +159,7 @@ function resolveBrowserCacheSetting(config: QualityScorerConfig) {
 }
 
 function formatQualityScoreResult(
-  criteria: string[],
+  criteria: QualityWeightedCriterion[],
   normalizedCriteria: string[],
   scores: number[],
   rawScores: number[],
@@ -176,11 +179,14 @@ function formatQualityScoreResult(
     config: QualityScorerConfig
   },
 ): QualityScoreResult {
-  const breakdown = criteria.map((label, index) => {
+  const totalWeight = criteria.reduce((sum, criterion) => sum + criterion.weight, 0)
+  const breakdown = criteria.map((criterion, index) => {
     const raw = scores[index] ?? 0
 
     return {
-      label,
+      label: criterion.label,
+      weight: criterion.weight,
+      weightShare: totalWeight > 0 ? criterion.weight / totalWeight : 1 / Math.max(1, criteria.length),
       raw,
       percent: Math.round(raw * 100),
     }
@@ -188,7 +194,7 @@ function formatQualityScoreResult(
 
   const overall = computeCalibratedOverallScore(
     {
-      rawOverall: breakdown.length === 0 ? 0 : breakdown.reduce((sum, item) => sum + item.raw, 0) / breakdown.length,
+      rawOverall: computeWeightedCriterionAverage(criteria, scores),
       question: context.question,
       response: context.response,
       answerSupport: meta.answerSupport,
@@ -199,7 +205,8 @@ function formatQualityScoreResult(
   )
 
   return {
-    criteria,
+    criteria: criteria.map((criterion) => criterion.label),
+    weightedCriteria: criteria,
     normalizedCriteria,
     scores,
     rawScores,
