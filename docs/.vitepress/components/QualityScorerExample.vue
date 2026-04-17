@@ -3,6 +3,7 @@ import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue"
 import type {
   QualityModelProgressEvent,
   QualityRefinementDecision,
+  QualityLocalizedText,
   QualityScoreMode,
   QualityScoreResult,
   QualityScorerWorkerClient,
@@ -13,40 +14,6 @@ type CriterionRow = {
   label: string
   weight: number
 }
-
-type SignalBand = {
-  label: string
-  min: number
-  max: number
-  tone: "error" | "warning" | "success"
-  summary: string
-}
-
-const SIGNAL_BANDS: SignalBand[] = [
-  {
-    label: "Off track",
-    min: 0,
-    max: 45,
-    tone: "error",
-    summary:
-      "The answer is weak, off-target, or missing important parts of the rubric.",
-  },
-  {
-    label: "Mixed fit",
-    min: 45,
-    max: 70,
-    tone: "warning",
-    summary:
-      "The answer is usable but some criteria are still under-supported.",
-  },
-  {
-    label: "Strong fit",
-    min: 70,
-    max: 101,
-    tone: "success",
-    summary: "The answer aligns well with the selected criteria.",
-  },
-]
 
 let nextCriterionId = 4
 let requestCounter = 0
@@ -108,21 +75,9 @@ const canScore = computed(
     normalizedCriteria.value.length > 0,
 )
 const overallPercent = computed(() => result.value?.overallPercent ?? null)
-const activeBand = computed(() => {
-  if (overallPercent.value === null) return null
+const resolveEnglishText = (value: QualityLocalizedText | null | undefined) =>
+  value?.en ?? ""
 
-  return (
-    SIGNAL_BANDS.find((band, index) => {
-      const isLast = index === SIGNAL_BANDS.length - 1
-      return (
-        overallPercent.value! >= band.min &&
-        (isLast
-          ? overallPercent.value! <= band.max
-          : overallPercent.value! < band.max)
-      )
-    }) ?? SIGNAL_BANDS[0]
-  )
-})
 const gaugeSummary = computed(() => {
   if (errorMessage.value) return errorMessage.value
   if (isScoring.value && scoringPhase.value === "fast") {
@@ -131,20 +86,20 @@ const gaugeSummary = computed(() => {
   if (isScoring.value && scoringPhase.value === "full") {
     return "The fast pass looked ambiguous, so the full adaptive pass is refining the score."
   }
-  if (activeBand.value) {
+  if (result.value) {
     if (
       scoreMode.value === "fast" &&
       refinementDecision.value?.reason === "obvious_failure"
     ) {
-      return `${activeBand.value.summary} The adaptive gate skipped the full pass because the fast result already looked decisively off track.`
+      return `${resolveEnglishText(result.value.summary)} The adaptive gate skipped the full pass because the fast result already looked decisively off track.`
     }
     if (
       scoreMode.value === "fast" &&
       refinementDecision.value?.reason === "stable_strong"
     ) {
-      return `${activeBand.value.summary} The adaptive gate skipped the full pass because the fast result already looked stable at the top end.`
+      return `${resolveEnglishText(result.value.summary)} The adaptive gate skipped the full pass because the fast result already looked stable at the top end.`
     }
-    return activeBand.value.summary
+    return resolveEnglishText(result.value.summary)
   }
   return "Scoring updates automatically after typing stops."
 })
@@ -173,7 +128,7 @@ const statusTone = computed(() => {
   }
 })
 const bandTone = computed(() => {
-  switch (activeBand.value?.tone) {
+  switch (result.value?.tone) {
     case "success":
       return "text-green-500"
     case "warning":
@@ -488,7 +443,7 @@ function applyScoreResult(
   isResultStale.value = false
 }
 
-function scoreTone(percent: number) {
+function criterionTone(percent: number) {
   if (percent >= 70) return "success"
   if (percent >= 45) return "warning"
   return "error"
@@ -652,7 +607,7 @@ function scoreTone(percent: number) {
           class="mt-3 h-5 w-72 animate-pulse rounded-full bg-(--vp-c-bg-soft)" />
       </template>
       <p v-else class="text-lg font-medium" :class="isAnswerCalculating && !isRefiningAfterQuickPass ? 'text-(--vp-c-text-2)' : bandTone">
-        {{ isAnswerCalculating && !isRefiningAfterQuickPass ? "Calculating" : activeBand?.label ?? "No score yet" }}
+        {{ isAnswerCalculating && !isRefiningAfterQuickPass ? "Calculating" : resolveEnglishText(result?.label) || "No score yet" }}
         <span v-if="isRefiningAfterQuickPass" class="align-middle text-sm font-normal text-(--vp-c-text-2)">
           (<span class="inline-flex items-center gap-1 align-middle">
             <span
@@ -699,7 +654,7 @@ function scoreTone(percent: number) {
               >{{ result.overallPercent }}%</strong
             >
             <span class="text-lg font-medium" :class="bandTone">
-              {{ activeBand?.label ?? "Scored" }}
+              {{ resolveEnglishText(result.label) || "Scored" }}
             </span>
             <span
               v-if="isRefiningAfterQuickPass"
@@ -747,9 +702,9 @@ function scoreTone(percent: number) {
 	              <div
 	                class="h-full rounded-full"
 	                :class="
-                  scoreTone(item.percent) === 'success'
+                  criterionTone(item.percent) === 'success'
                     ? 'bg-[linear-gradient(90deg,#279d6a,#7fd6a8)]'
-                    : scoreTone(item.percent) === 'warning'
+                    : criterionTone(item.percent) === 'warning'
                       ? 'bg-[linear-gradient(90deg,#c47b24,#edbd67)]'
                       : 'bg-[linear-gradient(90deg,#c54e4c,#f0a5a0)]'
                 "

@@ -3,6 +3,7 @@ import { env, pipeline } from '@huggingface/transformers'
 import { computeWeightedCriterionAverage, resolveQualityCriteria } from './criteria'
 import { computeCalibratedOverallScore, resolveQualityScorerConfig, estimateQualityContextBudget } from './defaults'
 import { scoreCriteriaWithClassifier, type ZeroShotClassifier } from './evaluator'
+import { resolveQualityScorePresentation } from './quality-presentation'
 import type {
   QualityScoreResult,
   QualityScorer,
@@ -203,6 +204,7 @@ function formatQualityScoreResult(
     },
     context.config,
   )
+  const presentation = resolveQualityScorePresentation(overall.overallPercent)
 
   return {
     criteria: criteria.map((criterion) => criterion.label),
@@ -223,6 +225,10 @@ function formatQualityScoreResult(
     overallAdjustedRaw: overall.overallAdjustedRaw,
     overallCalibrated: overall.overallCalibrated,
     overallPercent: overall.overallPercent,
+    band: presentation.band,
+    tone: presentation.tone,
+    label: presentation.label,
+    summary: presentation.summary,
     breakdown,
   }
 }

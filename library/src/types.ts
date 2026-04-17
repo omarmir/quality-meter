@@ -95,6 +95,15 @@ export type QualityCriterionScore = {
   percent: number
 }
 
+export type QualityLocalizedText = {
+  en: string
+  fr: string
+}
+
+export type QualityScoreBand = 'off_track' | 'mixed_fit' | 'strong_fit'
+
+export type QualityScoreTone = 'error' | 'warning' | 'success'
+
 export type QualityCriterionInput =
   | string
   | {
@@ -126,6 +135,10 @@ export type QualityScoreResult = {
   overallAdjustedRaw: number
   overallCalibrated: number
   overallPercent: number
+  band: QualityScoreBand
+  tone: QualityScoreTone
+  label: QualityLocalizedText
+  summary: QualityLocalizedText
   breakdown: QualityCriterionScore[]
 }
 

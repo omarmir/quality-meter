@@ -26,6 +26,7 @@ import {
   estimateQualityContextBudget,
   resolveQualityScorerConfig,
   computeCalibratedOverallScore,
+  resolveQualityScorePresentation,
   DEFAULT_QUALITY_SCORER_CONFIG,
   DEFAULT_ADAPTIVE_REFINEMENT_CONFIG,
 } from '@browser-quality-scorer/core'
@@ -104,6 +105,10 @@ type QualityScoreResult = {
   overallAdjustedRaw: number
   overallCalibrated: number
   overallPercent: number
+  band: QualityScoreBand
+  tone: QualityScoreTone
+  label: QualityLocalizedText
+  summary: QualityLocalizedText
   breakdown: QualityCriterionScore[]
 }
 ```
@@ -111,11 +116,51 @@ type QualityScoreResult = {
 Important fields:
 
 - `overallPercent`: display-oriented overall score based on the weighted criterion average before gating and calibration
+- `band`: stable machine-oriented band key for product logic
+- `tone`: display tone aligned with the band
+- `label`: localized display label in `{ en, fr }` form
+- `summary`: localized display summary in `{ en, fr }` form
 - `weightedCriteria`: the resolved input criteria with explicit weights
 - `breakdown`: per-criterion scores plus weight metadata
 - `answerSupport`: how strongly the response appears to actually answer the question
 - `weakAnswerGate`: suppression factor for weak or generic answers
 - `taskType`: inferred task class used by low-latency checks
+
+### `QualityLocalizedText`
+
+```ts
+type QualityLocalizedText = {
+  en: string
+  fr: string
+}
+```
+
+### `QualityScoreBand`
+
+```ts
+type QualityScoreBand = 'off_track' | 'mixed_fit' | 'strong_fit'
+```
+
+### `QualityScoreTone`
+
+```ts
+type QualityScoreTone = 'error' | 'warning' | 'success'
+```
+
+### `resolveQualityScorePresentation(overallPercent)`
+
+```ts
+const presentation = resolveQualityScorePresentation(result.overallPercent)
+
+presentation.band
+presentation.tone
+presentation.label.en
+presentation.label.fr
+presentation.summary.en
+presentation.summary.fr
+```
+
+Use this when you only have an `overallPercent` and want the same localized display metadata that the scorer now includes on `QualityScoreResult`.
 
 ### `QualityWeightedCriterion`
 

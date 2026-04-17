@@ -57,6 +57,7 @@ And the scorer returns:
 - per-criterion scores with weight metadata
 - answer support and gating signals
 - calibrated percentages for display
+- localized display metadata for band labels and summaries in `{ en, fr }` form
 
 ## Runtime Model
 

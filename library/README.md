@@ -16,6 +16,7 @@ import {
   createQualityScorerWorkerClient,
   decideQualityRefinement,
   estimateQualityContextBudget,
+  resolveQualityScorePresentation,
 } from '@browser-quality-scorer/core'
 ```
 
@@ -46,6 +47,23 @@ const result = await scorer.score({
 ```
 
 String criteria still work. If you pass criterion objects, `weight` is a relative positive number, so a criterion with `weight: 4` counts twice as much toward `overallPercent` as a criterion with `weight: 2`. The returned `breakdown` includes both `weight` and `weightShare`.
+
+The returned score result also includes display-oriented band metadata:
+
+- `band`: `off_track | mixed_fit | strong_fit`
+- `tone`: `error | warning | success`
+- `label`: `{ en, fr }`
+- `summary`: `{ en, fr }`
+
+That lets products render the same localized pill labels everywhere without maintaining a separate hardcoded map.
+
+If you already have only a numeric score and want the same metadata outside the scorer result, you can resolve it directly:
+
+```ts
+const presentation = resolveQualityScorePresentation(result.overallPercent)
+console.log(presentation.label.en) // "Strong fit"
+console.log(presentation.label.fr) // "Bonne adequation"
+```
 
 ## Worker Usage
 
