@@ -61,7 +61,7 @@ Runtime calibrated results:
 
 The largest misses in the benchmark are mostly:
 
-- vague `bad` answers that still state the funded program purpose clearly
+- vague `bad` answers that still state the task’s core purpose clearly
 - a smaller set of `mixed` answers that mention delivery and target categories but not concrete numbers
 - a few residual off-topic cases that still keep some generic agreement-style phrasing
 
