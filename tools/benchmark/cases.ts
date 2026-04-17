@@ -1547,8 +1547,3008 @@ export const BENCHMARK_CASES: BenchmarkCase[] = [
       'Keep the receipts in one envelope, review them weekly, and separate fixed costs from impulse purchases if you are trying to budget better.',
     referenceScores: [0, 0, 0],
   },
+  {
+    id: 'midcareer-reskilling-bad',
+    kind: 'workforce',
+    profile: 'bad',
+    question:
+      'Summarize this mid-career reskilling agreement: what training is funded, what completion or job-transition targets it expects, and how the program will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds mid-career reskilling training', weight: 4 },
+      { label: 'Names the learner, credential, and job-transition targets', weight: 4 },
+      { label: 'Explains that cohorts, coaching, and employer projects deliver the training', weight: 2 },
+    ],
+    answer:
+      'The agreement supports reskilling for adults who need new work opportunities. The recipient will use the funding to improve training access and help people transition into stronger careers.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'midcareer-reskilling-mixed',
+    kind: 'workforce',
+    profile: 'mixed',
+    question:
+      'Summarize this mid-career reskilling agreement: what training is funded, what completion or job-transition targets it expects, and how the program will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds mid-career reskilling training', weight: 4 },
+      { label: 'Names the learner, credential, and job-transition targets', weight: 4 },
+      { label: 'Explains that cohorts, coaching, and employer projects deliver the training', weight: 2 },
+    ],
+    answer:
+      'The agreement funds mid-career reskilling for adults moving out of declining industries. It aims to help more learners complete short credentials and move into new jobs this year. Delivery will use instructor-led cohorts, career coaching, and employer-backed project work.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'midcareer-reskilling-good',
+    kind: 'workforce',
+    profile: 'good',
+    question:
+      'Summarize this mid-career reskilling agreement: what training is funded, what completion or job-transition targets it expects, and how the program will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds mid-career reskilling training', weight: 4 },
+      { label: 'Names the learner, credential, and job-transition targets', weight: 4 },
+      { label: 'Explains that cohorts, coaching, and employer projects deliver the training', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $880,000 for mid-career reskilling in logistics, bookkeeping, and industrial maintenance. It targets 260 learners, 210 completed credentials, and 140 job transitions by May 2027. The program will be delivered through twelve-week training cohorts, individual coaching, and employer-sponsored applied projects tied to current openings.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'midcareer-reskilling-off-topic',
+    kind: 'workforce',
+    profile: 'off_topic',
+    question:
+      'Summarize this mid-career reskilling agreement: what training is funded, what completion or job-transition targets it expects, and how the program will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds mid-career reskilling training', weight: 4 },
+      { label: 'Names the learner, credential, and job-transition targets', weight: 4 },
+      { label: 'Explains that cohorts, coaching, and employer projects deliver the training', weight: 2 },
+    ],
+    answer:
+      'Rinse the rice until the water runs clear, toast it briefly in oil, and rest it covered after simmering if you want fluffier grains.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'childcare-workforce-training-bad',
+    kind: 'workforce',
+    profile: 'bad',
+    question:
+      'What does this childcare workforce training agreement fund, what certification or retention targets it sets, and how the training will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds childcare workforce training', weight: 4 },
+      { label: 'Names the trainee, certification, and retention targets', weight: 4 },
+      { label: 'Explains that courses, practicum support, and mentoring deliver the work', weight: 2 },
+    ],
+    answer:
+      'The agreement supports training for childcare workers. The organization will use the funding to improve the workforce and strengthen service quality over time.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'childcare-workforce-training-mixed',
+    kind: 'workforce',
+    profile: 'mixed',
+    question:
+      'What does this childcare workforce training agreement fund, what certification or retention targets it sets, and how the training will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds childcare workforce training', weight: 4 },
+      { label: 'Names the trainee, certification, and retention targets', weight: 4 },
+      { label: 'Explains that courses, practicum support, and mentoring deliver the work', weight: 2 },
+    ],
+    answer:
+      'The agreement funds childcare workforce training for new and returning early-years educators. It aims to increase certifications and keep more trainees in licensed care settings over the contract term. Delivery will include evening courses, practicum support, and mentoring from experienced supervisors.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'childcare-workforce-training-good',
+    kind: 'workforce',
+    profile: 'good',
+    question:
+      'What does this childcare workforce training agreement fund, what certification or retention targets it sets, and how the training will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds childcare workforce training', weight: 4 },
+      { label: 'Names the trainee, certification, and retention targets', weight: 4 },
+      { label: 'Explains that courses, practicum support, and mentoring deliver the work', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $670,000 for childcare workforce training across six licensed providers. It targets 140 trainees, 110 completed certifications, and 85 trainees retained in licensed childcare jobs after six months by March 2027. Delivery will come through evening coursework, paid practicum support, and mentor matching with senior educators.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'childcare-workforce-training-off-topic',
+    kind: 'workforce',
+    profile: 'off_topic',
+    question:
+      'What does this childcare workforce training agreement fund, what certification or retention targets it sets, and how the training will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds childcare workforce training', weight: 4 },
+      { label: 'Names the trainee, certification, and retention targets', weight: 4 },
+      { label: 'Explains that courses, practicum support, and mentoring deliver the work', weight: 2 },
+    ],
+    answer:
+      'Keep the charger by the bed, turn on low power mode earlier, and stop leaving video apps open in the background if the phone dies before dinner.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'indigenous-remote-workforce-bad',
+    kind: 'workforce',
+    profile: 'bad',
+    question:
+      'Explain this Indigenous remote workforce agreement: what employment support is funded, what placement targets it expects, and how the service will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds employment support for Indigenous job seekers in remote communities', weight: 4 },
+      { label: 'Names the participant, placement, and employer-partnership targets', weight: 4 },
+      { label: 'Explains that community coaching, travel support, and employer coordination deliver the work', weight: 2 },
+    ],
+    answer:
+      'The agreement supports employment opportunities in remote communities. The recipient will use the funding to improve access to jobs and strengthen local partnerships.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'indigenous-remote-workforce-mixed',
+    kind: 'workforce',
+    profile: 'mixed',
+    question:
+      'Explain this Indigenous remote workforce agreement: what employment support is funded, what placement targets it expects, and how the service will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds employment support for Indigenous job seekers in remote communities', weight: 4 },
+      { label: 'Names the participant, placement, and employer-partnership targets', weight: 4 },
+      { label: 'Explains that community coaching, travel support, and employer coordination deliver the work', weight: 2 },
+    ],
+    answer:
+      'The agreement funds employment support for Indigenous job seekers in remote communities. It aims to help more participants connect with employers and move into paid work over the agreement period. Delivery will include community-based coaching, travel support for interviews or training, and coordination with employers hiring in the region.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'indigenous-remote-workforce-good',
+    kind: 'workforce',
+    profile: 'good',
+    question:
+      'Explain this Indigenous remote workforce agreement: what employment support is funded, what placement targets it expects, and how the service will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds employment support for Indigenous job seekers in remote communities', weight: 4 },
+      { label: 'Names the participant, placement, and employer-partnership targets', weight: 4 },
+      { label: 'Explains that community coaching, travel support, and employer coordination deliver the work', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $720,000 for employment support serving Indigenous job seekers in eight remote communities. It targets 190 participants, 95 job placements, and 40 active employer partnerships by July 2027. The service will be delivered through community employment coaches, travel support for interviews and short training blocks, and direct coordination with regional employers in energy, transport, and construction.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'indigenous-remote-workforce-off-topic',
+    kind: 'workforce',
+    profile: 'off_topic',
+    question:
+      'Explain this Indigenous remote workforce agreement: what employment support is funded, what placement targets it expects, and how the service will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds employment support for Indigenous job seekers in remote communities', weight: 4 },
+      { label: 'Names the participant, placement, and employer-partnership targets', weight: 4 },
+      { label: 'Explains that community coaching, travel support, and employer coordination deliver the work', weight: 2 },
+    ],
+    answer:
+      'Let the pan heat fully, avoid crowding the mushrooms, and add the butter near the end if you want them browned instead of soggy.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'green-jobs-internships-bad',
+    kind: 'workforce',
+    profile: 'bad',
+    question:
+      'Summarize this green jobs internship agreement: what internship program is funded, what participant outcomes it expects, and how the internships will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds green jobs internships', weight: 4 },
+      { label: 'Names the intern, host-site, and post-internship employment targets', weight: 4 },
+      { label: 'Explains that host placements, supervision, and training modules deliver the program', weight: 2 },
+    ],
+    answer:
+      'The agreement supports internships connected to environmental work. The recipient will use the funding to give people more opportunities and strengthen the local green economy.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'green-jobs-internships-mixed',
+    kind: 'workforce',
+    profile: 'mixed',
+    question:
+      'Summarize this green jobs internship agreement: what internship program is funded, what participant outcomes it expects, and how the internships will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds green jobs internships', weight: 4 },
+      { label: 'Names the intern, host-site, and post-internship employment targets', weight: 4 },
+      { label: 'Explains that host placements, supervision, and training modules deliver the program', weight: 2 },
+    ],
+    answer:
+      'The agreement funds green jobs internships for early-career workers interested in energy efficiency and environmental services. It aims to place more interns at host organizations and move more of them into environmental jobs after the internship period. Delivery will rely on host placements, structured supervision, and short training modules.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'green-jobs-internships-good',
+    kind: 'workforce',
+    profile: 'good',
+    question:
+      'Summarize this green jobs internship agreement: what internship program is funded, what participant outcomes it expects, and how the internships will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds green jobs internships', weight: 4 },
+      { label: 'Names the intern, host-site, and post-internship employment targets', weight: 4 },
+      { label: 'Explains that host placements, supervision, and training modules deliver the program', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $610,000 for green jobs internships in energy efficiency, habitat restoration, and waste diversion. It targets 75 interns, 32 host sites, and 45 interns moving into environmental jobs within three months of completion by September 2027. The internships will be delivered through paid host placements, site supervision plans, and common training modules on safety, reporting, and sector basics.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'green-jobs-internships-off-topic',
+    kind: 'workforce',
+    profile: 'off_topic',
+    question:
+      'Summarize this green jobs internship agreement: what internship program is funded, what participant outcomes it expects, and how the internships will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds green jobs internships', weight: 4 },
+      { label: 'Names the intern, host-site, and post-internship employment targets', weight: 4 },
+      { label: 'Explains that host placements, supervision, and training modules deliver the program', weight: 2 },
+    ],
+    answer:
+      'Use the calendar alerts earlier, lay out the bag the night before, and put the keys in one place if mornings feel rushed.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'hospitality-reentry-training-bad',
+    kind: 'workforce',
+    profile: 'bad',
+    question:
+      'What does this hospitality re-entry training agreement fund, what learner and placement results it expects, and how the training will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds hospitality re-entry training', weight: 4 },
+      { label: 'Names the learner, completion, and placement results', weight: 4 },
+      { label: 'Explains that classroom training, work placements, and job coaching deliver the program', weight: 2 },
+    ],
+    answer:
+      'The agreement supports training for people returning to work in hospitality. The program is intended to improve readiness and connect more people with employers.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'hospitality-reentry-training-mixed',
+    kind: 'workforce',
+    profile: 'mixed',
+    question:
+      'What does this hospitality re-entry training agreement fund, what learner and placement results it expects, and how the training will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds hospitality re-entry training', weight: 4 },
+      { label: 'Names the learner, completion, and placement results', weight: 4 },
+      { label: 'Explains that classroom training, work placements, and job coaching deliver the program', weight: 2 },
+    ],
+    answer:
+      'The agreement funds hospitality re-entry training for adults returning to kitchens, hotels, and front-desk roles. It aims to increase completions and move more learners into placements over the contract year. Delivery will include classroom instruction, short work placements, and job coaching with employer referrals.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'hospitality-reentry-training-good',
+    kind: 'workforce',
+    profile: 'good',
+    question:
+      'What does this hospitality re-entry training agreement fund, what learner and placement results it expects, and how the training will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds hospitality re-entry training', weight: 4 },
+      { label: 'Names the learner, completion, and placement results', weight: 4 },
+      { label: 'Explains that classroom training, work placements, and job coaching deliver the program', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $530,000 for hospitality re-entry training focused on kitchen, housekeeping, and front-desk roles. It targets 160 learners, 125 completed training plans, and 90 job placements by April 2027. The training will be delivered through classroom modules, two-week work placements, and job coaching with participating hotels and restaurants.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'hospitality-reentry-training-off-topic',
+    kind: 'workforce',
+    profile: 'off_topic',
+    question:
+      'What does this hospitality re-entry training agreement fund, what learner and placement results it expects, and how the training will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds hospitality re-entry training', weight: 4 },
+      { label: 'Names the learner, completion, and placement results', weight: 4 },
+      { label: 'Explains that classroom training, work placements, and job coaching deliver the program', weight: 2 },
+    ],
+    answer:
+      'Lower the thermostat a degree, seal the draft by the door, and close the curtains earlier if the room feels cold at night.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'diabetes-screening-outreach-bad',
+    kind: 'health',
+    profile: 'bad',
+    question:
+      'Explain this diabetes screening outreach agreement: what service is funded, what screening outcomes it expects, and how the outreach will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds diabetes screening outreach', weight: 4 },
+      { label: 'Names the screening, referral, and follow-up outcomes', weight: 4 },
+      { label: 'Explains that outreach clinics, educators, and referral tracking deliver the service', weight: 2 },
+    ],
+    answer:
+      'The agreement supports community diabetes services. The recipient will use the funding to improve prevention and connect more people to care.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'diabetes-screening-outreach-mixed',
+    kind: 'health',
+    profile: 'mixed',
+    question:
+      'Explain this diabetes screening outreach agreement: what service is funded, what screening outcomes it expects, and how the outreach will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds diabetes screening outreach', weight: 4 },
+      { label: 'Names the screening, referral, and follow-up outcomes', weight: 4 },
+      { label: 'Explains that outreach clinics, educators, and referral tracking deliver the service', weight: 2 },
+    ],
+    answer:
+      'The agreement funds diabetes screening outreach in neighbourhoods with lower access to preventive care. It aims to increase screenings and move more people with elevated results into follow-up care over the contract year. Delivery will include outreach clinics, diabetes educators, and tracked referrals into primary care services.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'diabetes-screening-outreach-good',
+    kind: 'health',
+    profile: 'good',
+    question:
+      'Explain this diabetes screening outreach agreement: what service is funded, what screening outcomes it expects, and how the outreach will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds diabetes screening outreach', weight: 4 },
+      { label: 'Names the screening, referral, and follow-up outcomes', weight: 4 },
+      { label: 'Explains that outreach clinics, educators, and referral tracking deliver the service', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $640,000 for diabetes screening outreach in six underserved neighbourhoods. It targets 3,000 screening encounters, 520 primary-care referrals, and 400 completed follow-up contacts by June 2027. Delivery will come through rotating outreach clinics, diabetes educators at each site, and referral tracking reviewed every month with partner clinics.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'diabetes-screening-outreach-off-topic',
+    kind: 'health',
+    profile: 'off_topic',
+    question:
+      'Explain this diabetes screening outreach agreement: what service is funded, what screening outcomes it expects, and how the outreach will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds diabetes screening outreach', weight: 4 },
+      { label: 'Names the screening, referral, and follow-up outcomes', weight: 4 },
+      { label: 'Explains that outreach clinics, educators, and referral tracking deliver the service', weight: 2 },
+    ],
+    answer:
+      'Start with the heaviest boxes at the bottom, fill gaps with towels, and label one box for essentials you need the first night after moving.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'seniors-fall-prevention-bad',
+    kind: 'health',
+    profile: 'bad',
+    question:
+      'Summarize this seniors fall prevention agreement: what program is funded, what participant outcomes it expects, and how the program will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds seniors fall prevention supports', weight: 4 },
+      { label: 'Names the participant, assessment, and reduction outcomes', weight: 4 },
+      { label: 'Explains that classes, home assessments, and follow-up coaching deliver the program', weight: 2 },
+    ],
+    answer:
+      'The agreement supports fall prevention for older adults. The service will help improve safety and reduce preventable injuries in the community.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'seniors-fall-prevention-mixed',
+    kind: 'health',
+    profile: 'mixed',
+    question:
+      'Summarize this seniors fall prevention agreement: what program is funded, what participant outcomes it expects, and how the program will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds seniors fall prevention supports', weight: 4 },
+      { label: 'Names the participant, assessment, and reduction outcomes', weight: 4 },
+      { label: 'Explains that classes, home assessments, and follow-up coaching deliver the program', weight: 2 },
+    ],
+    answer:
+      'The agreement funds fall prevention supports for older adults living independently. It aims to expand assessments and reduce avoidable falls over the agreement term. Delivery will include balance classes, home safety assessments, and follow-up coaching for participants at higher risk.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'seniors-fall-prevention-good',
+    kind: 'health',
+    profile: 'good',
+    question:
+      'Summarize this seniors fall prevention agreement: what program is funded, what participant outcomes it expects, and how the program will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds seniors fall prevention supports', weight: 4 },
+      { label: 'Names the participant, assessment, and reduction outcomes', weight: 4 },
+      { label: 'Explains that classes, home assessments, and follow-up coaching deliver the program', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $450,000 for seniors fall prevention supports in urban and rural service areas. It targets 600 participants, 520 home or mobility assessments, and a 15 percent reduction in repeat falls among enrolled clients by December 2026. The program will be delivered through balance classes, home safety assessments, and follow-up coaching calls from clinical staff.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'seniors-fall-prevention-off-topic',
+    kind: 'health',
+    profile: 'off_topic',
+    question:
+      'Summarize this seniors fall prevention agreement: what program is funded, what participant outcomes it expects, and how the program will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds seniors fall prevention supports', weight: 4 },
+      { label: 'Names the participant, assessment, and reduction outcomes', weight: 4 },
+      { label: 'Explains that classes, home assessments, and follow-up coaching deliver the program', weight: 2 },
+    ],
+    answer:
+      'Sharpen the knife regularly, brace the cutting board with a damp towel, and slice the onions root-side last if prep feels slow.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'mobile-vision-clinic-bad',
+    kind: 'health',
+    profile: 'bad',
+    question:
+      'What does this mobile vision clinic agreement fund, what screening targets it expects, and how the clinic will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds a mobile vision clinic', weight: 4 },
+      { label: 'Names the screening, referral, and site targets', weight: 4 },
+      { label: 'Explains that clinic rotations, eye-care staff, and school or community scheduling deliver the work', weight: 2 },
+    ],
+    answer:
+      'The agreement supports vision services in the community. The organization will use the funding to improve access and connect more people with care.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'mobile-vision-clinic-mixed',
+    kind: 'health',
+    profile: 'mixed',
+    question:
+      'What does this mobile vision clinic agreement fund, what screening targets it expects, and how the clinic will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds a mobile vision clinic', weight: 4 },
+      { label: 'Names the screening, referral, and site targets', weight: 4 },
+      { label: 'Explains that clinic rotations, eye-care staff, and school or community scheduling deliver the work', weight: 2 },
+    ],
+    answer:
+      'The agreement funds a mobile vision clinic serving schools and neighbourhood hubs with limited access to eye care. It aims to increase screenings and referrals over the contract period. Delivery will use rotating clinic days, eye-care staff on the mobile unit, and scheduled visits with local sites.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'mobile-vision-clinic-good',
+    kind: 'health',
+    profile: 'good',
+    question:
+      'What does this mobile vision clinic agreement fund, what screening targets it expects, and how the clinic will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds a mobile vision clinic', weight: 4 },
+      { label: 'Names the screening, referral, and site targets', weight: 4 },
+      { label: 'Explains that clinic rotations, eye-care staff, and school or community scheduling deliver the work', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $520,000 for a mobile vision clinic serving schools, shelters, and seniors centres. It targets 2,600 screenings, 540 specialist referrals, and 34 service sites by April 2027. The clinic will be delivered through a rotating service calendar, an optometrist and support staff on each run, and advance scheduling with partner schools and community sites.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'mobile-vision-clinic-off-topic',
+    kind: 'health',
+    profile: 'off_topic',
+    question:
+      'What does this mobile vision clinic agreement fund, what screening targets it expects, and how the clinic will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds a mobile vision clinic', weight: 4 },
+      { label: 'Names the screening, referral, and site targets', weight: 4 },
+      { label: 'Explains that clinic rotations, eye-care staff, and school or community scheduling deliver the work', weight: 2 },
+    ],
+    answer:
+      'Keep one spare towel by the door, wipe the dog’s paws before it comes in, and brush the coat outside more often if the floor stays muddy.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'asthma-home-visits-bad',
+    kind: 'health',
+    profile: 'bad',
+    question:
+      'Explain this childhood asthma home-visit agreement: what service is funded, what client results it expects, and how the service will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds childhood asthma home-visit support', weight: 4 },
+      { label: 'Names the family, visit, and hospital-use reduction targets', weight: 4 },
+      { label: 'Explains that home visits, education, and care-plan follow-up deliver the service', weight: 2 },
+    ],
+    answer:
+      'The agreement supports asthma services for children and families. The provider will use the funding to improve management and reduce avoidable health problems.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'asthma-home-visits-mixed',
+    kind: 'health',
+    profile: 'mixed',
+    question:
+      'Explain this childhood asthma home-visit agreement: what service is funded, what client results it expects, and how the service will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds childhood asthma home-visit support', weight: 4 },
+      { label: 'Names the family, visit, and hospital-use reduction targets', weight: 4 },
+      { label: 'Explains that home visits, education, and care-plan follow-up deliver the service', weight: 2 },
+    ],
+    answer:
+      'The agreement funds home-visit support for children with asthma and their families. It aims to increase visits and reduce urgent asthma episodes over the contract year. Delivery will include home visits, parent education, and follow-up on asthma care plans.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'asthma-home-visits-good',
+    kind: 'health',
+    profile: 'good',
+    question:
+      'Explain this childhood asthma home-visit agreement: what service is funded, what client results it expects, and how the service will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds childhood asthma home-visit support', weight: 4 },
+      { label: 'Names the family, visit, and hospital-use reduction targets', weight: 4 },
+      { label: 'Explains that home visits, education, and care-plan follow-up deliver the service', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $480,000 for childhood asthma home-visit support for families referred by emergency departments and primary care clinics. It targets 260 families, 780 home visits, and a 20 percent reduction in asthma-related emergency visits among enrolled children by June 2027. The service will be delivered through respiratory educator home visits, parent education sessions, and follow-up calls to review care plans and trigger management.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'asthma-home-visits-off-topic',
+    kind: 'health',
+    profile: 'off_topic',
+    question:
+      'Explain this childhood asthma home-visit agreement: what service is funded, what client results it expects, and how the service will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds childhood asthma home-visit support', weight: 4 },
+      { label: 'Names the family, visit, and hospital-use reduction targets', weight: 4 },
+      { label: 'Explains that home visits, education, and care-plan follow-up deliver the service', weight: 2 },
+    ],
+    answer:
+      'Mark the screws in separate cups, take a photo before unplugging each cable, and label the shelves if furniture assembly always turns chaotic.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'vaccine-outreach-bad',
+    kind: 'health',
+    profile: 'bad',
+    question:
+      'Summarize this vaccine outreach agreement: what service is funded, what uptake targets it expects, and how the outreach will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds vaccine outreach and access support', weight: 4 },
+      { label: 'Names the clinic, dose, and client uptake targets', weight: 4 },
+      { label: 'Explains that pop-up clinics, outreach workers, and appointment support deliver the work', weight: 2 },
+    ],
+    answer:
+      'The agreement supports vaccine services in the community. The organization will use the funding to improve access and reach more residents.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'vaccine-outreach-mixed',
+    kind: 'health',
+    profile: 'mixed',
+    question:
+      'Summarize this vaccine outreach agreement: what service is funded, what uptake targets it expects, and how the outreach will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds vaccine outreach and access support', weight: 4 },
+      { label: 'Names the clinic, dose, and client uptake targets', weight: 4 },
+      { label: 'Explains that pop-up clinics, outreach workers, and appointment support deliver the work', weight: 2 },
+    ],
+    answer:
+      'The agreement funds vaccine outreach and access support in neighbourhoods with lower immunization rates. It aims to expand clinics and increase uptake over the agreement period. Delivery will include pop-up clinics, outreach workers, and appointment booking support.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'vaccine-outreach-good',
+    kind: 'health',
+    profile: 'good',
+    question:
+      'Summarize this vaccine outreach agreement: what service is funded, what uptake targets it expects, and how the outreach will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds vaccine outreach and access support', weight: 4 },
+      { label: 'Names the clinic, dose, and client uptake targets', weight: 4 },
+      { label: 'Explains that pop-up clinics, outreach workers, and appointment support deliver the work', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $590,000 for vaccine outreach and access support in ten lower-uptake neighbourhoods. It targets 140 pop-up clinics, 8,500 doses administered, and 5,400 clients supported by March 2027. The work will be delivered through rotating pop-up clinics, community outreach workers, and appointment booking and reminder support for clients who need help attending.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'vaccine-outreach-off-topic',
+    kind: 'health',
+    profile: 'off_topic',
+    question:
+      'Summarize this vaccine outreach agreement: what service is funded, what uptake targets it expects, and how the outreach will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds vaccine outreach and access support', weight: 4 },
+      { label: 'Names the clinic, dose, and client uptake targets', weight: 4 },
+      { label: 'Explains that pop-up clinics, outreach workers, and appointment support deliver the work', weight: 2 },
+    ],
+    answer:
+      'Spread the mulch after the soil warms, keep it away from the stems, and water deeply less often if the garden dries out fast.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'coding-bridge-program-bad',
+    kind: 'workforce',
+    profile: 'bad',
+    question:
+      'Explain this coding bridge agreement: what training is funded, what learner outcomes it expects, and how the program will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds a coding bridge training program', weight: 4 },
+      { label: 'Names the learner, portfolio, and placement outcomes', weight: 4 },
+      { label: 'Explains that instruction, mentorship, and project work deliver the program', weight: 2 },
+    ],
+    answer:
+      'The agreement supports digital skills training. The provider will use the funding to improve access to technology careers and help more learners build confidence.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'coding-bridge-program-mixed',
+    kind: 'workforce',
+    profile: 'mixed',
+    question:
+      'Explain this coding bridge agreement: what training is funded, what learner outcomes it expects, and how the program will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds a coding bridge training program', weight: 4 },
+      { label: 'Names the learner, portfolio, and placement outcomes', weight: 4 },
+      { label: 'Explains that instruction, mentorship, and project work deliver the program', weight: 2 },
+    ],
+    answer:
+      'The agreement funds a coding bridge program for adults moving into entry-level software and web roles. It aims to increase learner completions, build stronger portfolios, and support more job placements. Delivery will include technical instruction, mentor support, and applied project work.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'coding-bridge-program-good',
+    kind: 'workforce',
+    profile: 'good',
+    question:
+      'Explain this coding bridge agreement: what training is funded, what learner outcomes it expects, and how the program will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds a coding bridge training program', weight: 4 },
+      { label: 'Names the learner, portfolio, and placement outcomes', weight: 4 },
+      { label: 'Explains that instruction, mentorship, and project work deliver the program', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $760,000 for a coding bridge program focused on front-end development, QA testing, and support engineering. It targets 180 learners, 150 completed portfolios, and 95 job placements by August 2027. The training will be delivered through instructor-led modules, volunteer mentor matching, and project work built with employer feedback.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'coding-bridge-program-off-topic',
+    kind: 'workforce',
+    profile: 'off_topic',
+    question:
+      'Explain this coding bridge agreement: what training is funded, what learner outcomes it expects, and how the program will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds a coding bridge training program', weight: 4 },
+      { label: 'Names the learner, portfolio, and placement outcomes', weight: 4 },
+      { label: 'Explains that instruction, mentorship, and project work deliver the program', weight: 2 },
+    ],
+    answer:
+      'Pack the umbrella near the top, keep dry socks in a side pocket, and tuck the passport in the same sleeve every trip.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'farmworker-safety-training-bad',
+    kind: 'workforce',
+    profile: 'bad',
+    question:
+      'What does this farmworker safety training agreement fund, what completion outcomes it expects, and how the training will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds farmworker safety training', weight: 4 },
+      { label: 'Names the learner, certification, and employer-site outcomes', weight: 4 },
+      { label: 'Explains that field instruction, translated materials, and employer coordination deliver the work', weight: 2 },
+    ],
+    answer:
+      'The agreement supports farmworker training. The recipient will use the funding to improve safety and strengthen working conditions.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'farmworker-safety-training-mixed',
+    kind: 'workforce',
+    profile: 'mixed',
+    question:
+      'What does this farmworker safety training agreement fund, what completion outcomes it expects, and how the training will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds farmworker safety training', weight: 4 },
+      { label: 'Names the learner, certification, and employer-site outcomes', weight: 4 },
+      { label: 'Explains that field instruction, translated materials, and employer coordination deliver the work', weight: 2 },
+    ],
+    answer:
+      'The agreement funds farmworker safety training for seasonal and year-round agricultural workers. It aims to increase training completions and improve safe practices across more employer sites. Delivery will include field instruction, translated materials, and coordination with participating farms.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'farmworker-safety-training-good',
+    kind: 'workforce',
+    profile: 'good',
+    question:
+      'What does this farmworker safety training agreement fund, what completion outcomes it expects, and how the training will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds farmworker safety training', weight: 4 },
+      { label: 'Names the learner, certification, and employer-site outcomes', weight: 4 },
+      { label: 'Explains that field instruction, translated materials, and employer coordination deliver the work', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $420,000 for farmworker safety training in pesticide handling, heat stress prevention, and equipment use. It targets 520 trained workers, 430 completed certifications, and 70 employer sites participating by September 2026. Delivery will be handled through field-based instruction, translated training materials, and scheduling with farm operators during low-harvest periods.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'farmworker-safety-training-off-topic',
+    kind: 'workforce',
+    profile: 'off_topic',
+    question:
+      'What does this farmworker safety training agreement fund, what completion outcomes it expects, and how the training will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds farmworker safety training', weight: 4 },
+      { label: 'Names the learner, certification, and employer-site outcomes', weight: 4 },
+      { label: 'Explains that field instruction, translated materials, and employer coordination deliver the work', weight: 2 },
+    ],
+    answer:
+      'Stir the dressing just before serving, keep the lettuce dry, and add the crunchy toppings at the table if salads go limp too fast.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'social-enterprise-placements-bad',
+    kind: 'workforce',
+    profile: 'bad',
+    question:
+      'Summarize this social enterprise placement agreement: what program is funded, what participant outcomes it expects, and how the placements will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds social enterprise work placements', weight: 4 },
+      { label: 'Names the participant, placement, and transition outcomes', weight: 4 },
+      { label: 'Explains that placements, coaching, and wraparound supports deliver the program', weight: 2 },
+    ],
+    answer:
+      'The agreement supports work opportunities through a social enterprise. The program is intended to help people build experience and improve long-term prospects.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'social-enterprise-placements-mixed',
+    kind: 'workforce',
+    profile: 'mixed',
+    question:
+      'Summarize this social enterprise placement agreement: what program is funded, what participant outcomes it expects, and how the placements will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds social enterprise work placements', weight: 4 },
+      { label: 'Names the participant, placement, and transition outcomes', weight: 4 },
+      { label: 'Explains that placements, coaching, and wraparound supports deliver the program', weight: 2 },
+    ],
+    answer:
+      'The agreement funds social enterprise work placements for people facing barriers to employment. It aims to expand placements and support more participants into longer-term work over the agreement period. Delivery will include paid placements, job coaching, and wraparound supports.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'social-enterprise-placements-good',
+    kind: 'workforce',
+    profile: 'good',
+    question:
+      'Summarize this social enterprise placement agreement: what program is funded, what participant outcomes it expects, and how the placements will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds social enterprise work placements', weight: 4 },
+      { label: 'Names the participant, placement, and transition outcomes', weight: 4 },
+      { label: 'Explains that placements, coaching, and wraparound supports deliver the program', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $580,000 for social enterprise work placements in food services, recycling, and community maintenance. It targets 150 participants, 120 paid placements, and 70 participants transitioning into unsubsidized work by January 2027. Delivery will come through supervised placements, one-on-one coaching, and wraparound supports such as transit assistance and counselling referrals.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'social-enterprise-placements-off-topic',
+    kind: 'workforce',
+    profile: 'off_topic',
+    question:
+      'Summarize this social enterprise placement agreement: what program is funded, what participant outcomes it expects, and how the placements will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds social enterprise work placements', weight: 4 },
+      { label: 'Names the participant, placement, and transition outcomes', weight: 4 },
+      { label: 'Explains that placements, coaching, and wraparound supports deliver the program', weight: 2 },
+    ],
+    answer:
+      'Keep a backup key with someone nearby, oil the lock before winter, and replace the bent spare before you actually need it.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'manufacturing-upskilling-bad',
+    kind: 'workforce',
+    profile: 'bad',
+    question:
+      'Explain this manufacturing upskilling agreement: what training is funded, what credential outcomes it expects, and how the training will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds manufacturing upskilling training', weight: 4 },
+      { label: 'Names the learner, credential, and advancement outcomes', weight: 4 },
+      { label: 'Explains that shop-floor instruction, simulation labs, and supervisor coaching deliver the work', weight: 2 },
+    ],
+    answer:
+      'The agreement supports training for manufacturing workers. The service will improve skills and help employers strengthen their workforce.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'manufacturing-upskilling-mixed',
+    kind: 'workforce',
+    profile: 'mixed',
+    question:
+      'Explain this manufacturing upskilling agreement: what training is funded, what credential outcomes it expects, and how the training will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds manufacturing upskilling training', weight: 4 },
+      { label: 'Names the learner, credential, and advancement outcomes', weight: 4 },
+      { label: 'Explains that shop-floor instruction, simulation labs, and supervisor coaching deliver the work', weight: 2 },
+    ],
+    answer:
+      'The agreement funds manufacturing upskilling for workers moving into more technical production roles. It aims to increase credentials and support more advancement opportunities over the contract year. Delivery will use shop-floor instruction, simulation labs, and coaching from supervisors and trainers.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'manufacturing-upskilling-good',
+    kind: 'workforce',
+    profile: 'good',
+    question:
+      'Explain this manufacturing upskilling agreement: what training is funded, what credential outcomes it expects, and how the training will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds manufacturing upskilling training', weight: 4 },
+      { label: 'Names the learner, credential, and advancement outcomes', weight: 4 },
+      { label: 'Explains that shop-floor instruction, simulation labs, and supervisor coaching deliver the work', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $710,000 for manufacturing upskilling in CNC operations, quality inspection, and robotics support. It targets 220 workers, 180 completed credentials, and 95 wage or role advancements by June 2027. The training will be delivered through shop-floor instruction, simulation lab sessions, and supervisor coaching tied to each worker’s advancement plan.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'manufacturing-upskilling-off-topic',
+    kind: 'workforce',
+    profile: 'off_topic',
+    question:
+      'Explain this manufacturing upskilling agreement: what training is funded, what credential outcomes it expects, and how the training will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds manufacturing upskilling training', weight: 4 },
+      { label: 'Names the learner, credential, and advancement outcomes', weight: 4 },
+      { label: 'Explains that shop-floor instruction, simulation labs, and supervisor coaching deliver the work', weight: 2 },
+    ],
+    answer:
+      'Wash the bike after salty rides, dry the chain, and add fresh lubricant once the links are clean if shifting gets noisy.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'career-navigation-care-leavers-bad',
+    kind: 'workforce',
+    profile: 'bad',
+    question:
+      'What does this career navigation agreement for youth leaving care fund, what employment outcomes it expects, and how the service will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds career navigation for youth leaving care', weight: 4 },
+      { label: 'Names the youth, training-plan, and placement outcomes', weight: 4 },
+      { label: 'Explains that coaches, employer referrals, and transition supports deliver the work', weight: 2 },
+    ],
+    answer:
+      'The agreement supports career services for youth leaving care. The provider will use the funding to improve pathways into work and adulthood.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'career-navigation-care-leavers-mixed',
+    kind: 'workforce',
+    profile: 'mixed',
+    question:
+      'What does this career navigation agreement for youth leaving care fund, what employment outcomes it expects, and how the service will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds career navigation for youth leaving care', weight: 4 },
+      { label: 'Names the youth, training-plan, and placement outcomes', weight: 4 },
+      { label: 'Explains that coaches, employer referrals, and transition supports deliver the work', weight: 2 },
+    ],
+    answer:
+      'The agreement funds career navigation for youth leaving care who need help moving into work or training. It aims to increase completed plans and support more employment placements over the agreement term. Delivery will rely on dedicated coaches, employer referrals, and transition supports like transit or work gear.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'career-navigation-care-leavers-good',
+    kind: 'workforce',
+    profile: 'good',
+    question:
+      'What does this career navigation agreement for youth leaving care fund, what employment outcomes it expects, and how the service will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds career navigation for youth leaving care', weight: 4 },
+      { label: 'Names the youth, training-plan, and placement outcomes', weight: 4 },
+      { label: 'Explains that coaches, employer referrals, and transition supports deliver the work', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $560,000 for career navigation serving youth leaving care across three service regions. It targets 140 youth, 120 completed training or employment plans, and 85 work or post-secondary placements by December 2026. The service will be delivered through dedicated coaches, employer and training referrals, and transition supports such as transit passes, work gear, and housing-related coordination.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'career-navigation-care-leavers-off-topic',
+    kind: 'workforce',
+    profile: 'off_topic',
+    question:
+      'What does this career navigation agreement for youth leaving care fund, what employment outcomes it expects, and how the service will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds career navigation for youth leaving care', weight: 4 },
+      { label: 'Names the youth, training-plan, and placement outcomes', weight: 4 },
+      { label: 'Explains that coaches, employer referrals, and transition supports deliver the work', weight: 2 },
+    ],
+    answer:
+      'Freeze the leftover sauce flat in a bag, label the date, and thaw it in the fridge overnight if you want quicker weeknight meals.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'tele-rehab-bad',
+    kind: 'health',
+    profile: 'bad',
+    question:
+      'Summarize this tele-rehab agreement: what service is funded, what patient outcomes it expects, and how the service will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds tele-rehabilitation services', weight: 4 },
+      { label: 'Names the patient, session, and recovery outcomes', weight: 4 },
+      { label: 'Explains that virtual therapy, home exercise plans, and clinician follow-up deliver the service', weight: 2 },
+    ],
+    answer:
+      'The agreement supports rehabilitation services delivered remotely. The provider will use the funding to improve access and patient recovery support.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'tele-rehab-mixed',
+    kind: 'health',
+    profile: 'mixed',
+    question:
+      'Summarize this tele-rehab agreement: what service is funded, what patient outcomes it expects, and how the service will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds tele-rehabilitation services', weight: 4 },
+      { label: 'Names the patient, session, and recovery outcomes', weight: 4 },
+      { label: 'Explains that virtual therapy, home exercise plans, and clinician follow-up deliver the service', weight: 2 },
+    ],
+    answer:
+      'The agreement funds tele-rehabilitation for patients recovering from surgery or injury who cannot attend clinic easily. It aims to expand therapy sessions and improve recovery follow-through over the contract period. Delivery will include virtual therapy appointments, home exercise plans, and clinician follow-up.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'tele-rehab-good',
+    kind: 'health',
+    profile: 'good',
+    question:
+      'Summarize this tele-rehab agreement: what service is funded, what patient outcomes it expects, and how the service will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds tele-rehabilitation services', weight: 4 },
+      { label: 'Names the patient, session, and recovery outcomes', weight: 4 },
+      { label: 'Explains that virtual therapy, home exercise plans, and clinician follow-up deliver the service', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $630,000 for tele-rehabilitation serving patients recovering from orthopaedic surgery, stroke, and workplace injuries. It targets 420 patients, 3,600 virtual therapy sessions, and 300 patients meeting recovery milestones within their care plans by March 2027. The service will be delivered through virtual therapy appointments, home exercise plans, and scheduled clinician follow-up between sessions.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'tele-rehab-off-topic',
+    kind: 'health',
+    profile: 'off_topic',
+    question:
+      'Summarize this tele-rehab agreement: what service is funded, what patient outcomes it expects, and how the service will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds tele-rehabilitation services', weight: 4 },
+      { label: 'Names the patient, session, and recovery outcomes', weight: 4 },
+      { label: 'Explains that virtual therapy, home exercise plans, and clinician follow-up deliver the service', weight: 2 },
+    ],
+    answer:
+      'Put the suitcase scale in the outer pocket, weigh the bag before adding shoes, and wear the jacket on the plane if airline limits are tight.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'dialysis-transport-bad',
+    kind: 'health',
+    profile: 'bad',
+    question:
+      'Explain this dialysis transport agreement: what service is funded, what trip outcomes it expects, and how the service will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds dialysis transportation support', weight: 4 },
+      { label: 'Names the trip, client, and attendance outcomes', weight: 4 },
+      { label: 'Explains that scheduling, drivers, and appointment coordination deliver the service', weight: 2 },
+    ],
+    answer:
+      'The agreement supports transportation for patients needing medical care. The service is intended to improve access and reduce missed appointments.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'dialysis-transport-mixed',
+    kind: 'health',
+    profile: 'mixed',
+    question:
+      'Explain this dialysis transport agreement: what service is funded, what trip outcomes it expects, and how the service will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds dialysis transportation support', weight: 4 },
+      { label: 'Names the trip, client, and attendance outcomes', weight: 4 },
+      { label: 'Explains that scheduling, drivers, and appointment coordination deliver the service', weight: 2 },
+    ],
+    answer:
+      'The agreement funds transportation support for dialysis patients who have difficulty reaching treatment. It aims to increase completed trips and reduce missed appointments over the contract term. Delivery will use centralized scheduling, drivers, and coordination with dialysis clinic appointment times.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'dialysis-transport-good',
+    kind: 'health',
+    profile: 'good',
+    question:
+      'Explain this dialysis transport agreement: what service is funded, what trip outcomes it expects, and how the service will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds dialysis transportation support', weight: 4 },
+      { label: 'Names the trip, client, and attendance outcomes', weight: 4 },
+      { label: 'Explains that scheduling, drivers, and appointment coordination deliver the service', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $540,000 for transportation support for dialysis patients travelling from rural and outer-urban communities. It targets 11,000 completed trips, 180 active clients, and a reduction in missed dialysis appointments to below 3 percent by February 2027. The service will be delivered through centralized scheduling, contracted drivers, and real-time coordination with clinic appointment changes.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'dialysis-transport-off-topic',
+    kind: 'health',
+    profile: 'off_topic',
+    question:
+      'Explain this dialysis transport agreement: what service is funded, what trip outcomes it expects, and how the service will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds dialysis transportation support', weight: 4 },
+      { label: 'Names the trip, client, and attendance outcomes', weight: 4 },
+      { label: 'Explains that scheduling, drivers, and appointment coordination deliver the service', weight: 2 },
+    ],
+    answer:
+      'Keep the batteries in one drawer, mark which ones are charged, and stop mixing old and new sets if the remote keeps failing.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'chronic-pain-selfmanagement-bad',
+    kind: 'health',
+    profile: 'bad',
+    question:
+      'What does this chronic pain self-management agreement fund, what client outcomes it expects, and how the service will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds chronic pain self-management support', weight: 4 },
+      { label: 'Names the client, session, and pain-management outcomes', weight: 4 },
+      { label: 'Explains that group sessions, coaching, and care-plan follow-up deliver the program', weight: 2 },
+    ],
+    answer:
+      'The agreement supports chronic pain services. The provider will use the funding to improve access and help patients manage symptoms more effectively.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'chronic-pain-selfmanagement-mixed',
+    kind: 'health',
+    profile: 'mixed',
+    question:
+      'What does this chronic pain self-management agreement fund, what client outcomes it expects, and how the service will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds chronic pain self-management support', weight: 4 },
+      { label: 'Names the client, session, and pain-management outcomes', weight: 4 },
+      { label: 'Explains that group sessions, coaching, and care-plan follow-up deliver the program', weight: 2 },
+    ],
+    answer:
+      'The agreement funds chronic pain self-management support for adults living with persistent pain. It aims to increase participation and help more clients improve daily symptom management during the agreement year. Delivery will include group sessions, coaching, and follow-up on personal care plans.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'chronic-pain-selfmanagement-good',
+    kind: 'health',
+    profile: 'good',
+    question:
+      'What does this chronic pain self-management agreement fund, what client outcomes it expects, and how the service will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds chronic pain self-management support', weight: 4 },
+      { label: 'Names the client, session, and pain-management outcomes', weight: 4 },
+      { label: 'Explains that group sessions, coaching, and care-plan follow-up deliver the program', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $470,000 for chronic pain self-management support delivered through primary care and community health partners. It targets 280 clients, 48 group cycles, and 190 clients reporting improved pain-management confidence by November 2026. The service will be delivered through structured group sessions, one-on-one coaching, and follow-up reviews of each client’s care plan.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'chronic-pain-selfmanagement-off-topic',
+    kind: 'health',
+    profile: 'off_topic',
+    question:
+      'What does this chronic pain self-management agreement fund, what client outcomes it expects, and how the service will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds chronic pain self-management support', weight: 4 },
+      { label: 'Names the client, session, and pain-management outcomes', weight: 4 },
+      { label: 'Explains that group sessions, coaching, and care-plan follow-up deliver the program', weight: 2 },
+    ],
+    answer:
+      'Fold the shirts vertically, group cables with a clip, and leave one pocket empty for receipts if the backpack becomes impossible to unpack.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'community-nutrition-cooking-bad',
+    kind: 'health',
+    profile: 'bad',
+    question:
+      'Summarize this community nutrition and cooking agreement: what service is funded, what participation outcomes it expects, and how the service will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds community nutrition and cooking support', weight: 4 },
+      { label: 'Names the participant, class, and food-skill outcomes', weight: 4 },
+      { label: 'Explains that classes, food kits, and coaching deliver the service', weight: 2 },
+    ],
+    answer:
+      'The agreement supports nutrition services in the community. The organization will use the funding to improve healthy eating and practical food skills.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'community-nutrition-cooking-mixed',
+    kind: 'health',
+    profile: 'mixed',
+    question:
+      'Summarize this community nutrition and cooking agreement: what service is funded, what participation outcomes it expects, and how the service will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds community nutrition and cooking support', weight: 4 },
+      { label: 'Names the participant, class, and food-skill outcomes', weight: 4 },
+      { label: 'Explains that classes, food kits, and coaching deliver the service', weight: 2 },
+    ],
+    answer:
+      'The agreement funds community nutrition and cooking support for families facing food insecurity and diet-related health risks. It aims to increase participation and strengthen practical food skills over the agreement period. Delivery will include cooking classes, take-home food kits, and follow-up coaching.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'community-nutrition-cooking-good',
+    kind: 'health',
+    profile: 'good',
+    question:
+      'Summarize this community nutrition and cooking agreement: what service is funded, what participation outcomes it expects, and how the service will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds community nutrition and cooking support', weight: 4 },
+      { label: 'Names the participant, class, and food-skill outcomes', weight: 4 },
+      { label: 'Explains that classes, food kits, and coaching deliver the service', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $350,000 for community nutrition and cooking support in four neighbourhood hubs. It targets 240 participants, 96 cooking classes, and 180 participants completing food-skill action plans by May 2027. The service will be delivered through in-person classes, take-home food kits, and follow-up coaching by dietitians and peer facilitators.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'community-nutrition-cooking-off-topic',
+    kind: 'health',
+    profile: 'off_topic',
+    question:
+      'Summarize this community nutrition and cooking agreement: what service is funded, what participation outcomes it expects, and how the service will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds community nutrition and cooking support', weight: 4 },
+      { label: 'Names the participant, class, and food-skill outcomes', weight: 4 },
+      { label: 'Explains that classes, food kits, and coaching deliver the service', weight: 2 },
+    ],
+    answer:
+      'Store the paintbrushes flat to dry, wrap the tray in a bag between coats, and cut the tape line while the paint is still a little soft.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'supportive-housing-renovation-bad',
+    kind: 'housing',
+    profile: 'bad',
+    question:
+      'What does this supportive housing renovation agreement fund, what upgrade targets it sets, and how the work will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds supportive housing renovation work', weight: 4 },
+      { label: 'Names the suite, accessibility, and building-upgrade targets', weight: 4 },
+      { label: 'Explains that phased construction, resident coordination, and contractor oversight will deliver the work', weight: 2 },
+    ],
+    answer:
+      'The agreement supports housing improvements for people who need stable accommodation. The organization will use the funding to improve the building and respond to resident needs.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'supportive-housing-renovation-mixed',
+    kind: 'housing',
+    profile: 'mixed',
+    question:
+      'What does this supportive housing renovation agreement fund, what upgrade targets it sets, and how the work will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds supportive housing renovation work', weight: 4 },
+      { label: 'Names the suite, accessibility, and building-upgrade targets', weight: 4 },
+      { label: 'Explains that phased construction, resident coordination, and contractor oversight will deliver the work', weight: 2 },
+    ],
+    answer:
+      'The agreement funds renovation work in supportive housing for residents with complex needs. It aims to modernize suites, improve accessibility, and complete major building repairs during the agreement term. The work will be delivered in phases with resident coordination and oversight from contracted builders.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'supportive-housing-renovation-good',
+    kind: 'housing',
+    profile: 'good',
+    question:
+      'What does this supportive housing renovation agreement fund, what upgrade targets it sets, and how the work will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds supportive housing renovation work', weight: 4 },
+      { label: 'Names the suite, accessibility, and building-upgrade targets', weight: 4 },
+      { label: 'Explains that phased construction, resident coordination, and contractor oversight will deliver the work', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $2.1 million to renovate a 42-unit supportive housing building serving residents exiting homelessness. It targets upgrades in 42 suites, 18 accessible bathroom conversions, and full replacement of the roof, fire alarm, and corridor flooring by February 2028. The work will be delivered through phased floor-by-floor construction, resident move coordination, and weekly oversight meetings between the housing provider, project manager, and trades.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'supportive-housing-renovation-off-topic',
+    kind: 'housing',
+    profile: 'off_topic',
+    question:
+      'What does this supportive housing renovation agreement fund, what upgrade targets it sets, and how the work will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds supportive housing renovation work', weight: 4 },
+      { label: 'Names the suite, accessibility, and building-upgrade targets', weight: 4 },
+      { label: 'Explains that phased construction, resident coordination, and contractor oversight will deliver the work', weight: 2 },
+    ],
+    answer:
+      'Soak the lentils first if you want them to cook faster, then salt them near the end so the skins stay tender.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'rent-bank-expansion-bad',
+    kind: 'housing',
+    profile: 'bad',
+    question:
+      'Summarize this rent bank expansion agreement by stating what is funded, what household outcomes are expected, and how the assistance will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds rent bank assistance', weight: 4 },
+      { label: 'Names the household, eviction-prevention, or arrears targets', weight: 4 },
+      { label: 'Explains that intake, assessment, and repayment support deliver the assistance', weight: 2 },
+    ],
+    answer:
+      'The agreement provides support to help households stay housed. The organization will use the funding to respond to urgent need and improve stability.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'rent-bank-expansion-mixed',
+    kind: 'housing',
+    profile: 'mixed',
+    question:
+      'Summarize this rent bank expansion agreement by stating what is funded, what household outcomes are expected, and how the assistance will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds rent bank assistance', weight: 4 },
+      { label: 'Names the household, eviction-prevention, or arrears targets', weight: 4 },
+      { label: 'Explains that intake, assessment, and repayment support deliver the assistance', weight: 2 },
+    ],
+    answer:
+      'The agreement funds expanded rent bank assistance for tenants facing short-term financial shocks. It aims to help more households avoid eviction and reduce rent arrears during the agreement year. Assistance will be delivered through intake, eligibility assessment, and repayment planning support.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'rent-bank-expansion-good',
+    kind: 'housing',
+    profile: 'good',
+    question:
+      'Summarize this rent bank expansion agreement by stating what is funded, what household outcomes are expected, and how the assistance will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds rent bank assistance', weight: 4 },
+      { label: 'Names the household, eviction-prevention, or arrears targets', weight: 4 },
+      { label: 'Explains that intake, assessment, and repayment support deliver the assistance', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $680,000 to expand the municipal rent bank for low-income tenants facing eviction because of temporary arrears. It targets 310 households assisted, 240 eviction filings prevented, and 275 repayment plans in place by March 2027. The assistance will be delivered through centralized intake, caseworker assessment of arrears and income, direct landlord payments, and follow-up repayment coaching.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'rent-bank-expansion-off-topic',
+    kind: 'housing',
+    profile: 'off_topic',
+    question:
+      'Summarize this rent bank expansion agreement by stating what is funded, what household outcomes are expected, and how the assistance will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds rent bank assistance', weight: 4 },
+      { label: 'Names the household, eviction-prevention, or arrears targets', weight: 4 },
+      { label: 'Explains that intake, assessment, and repayment support deliver the assistance', weight: 2 },
+    ],
+    answer:
+      'Use a soft pencil for shading, then lift highlights with a kneaded eraser instead of pressing harder on the paper.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'tenant-legal-clinic-bad',
+    kind: 'housing',
+    profile: 'bad',
+    question:
+      'What does this tenant legal clinic agreement fund, what service outcomes it expects, and how the clinic will deliver those outcomes?',
+    criteria: [
+      { label: 'States that the agreement funds a tenant legal clinic', weight: 4 },
+      { label: 'Names the advice, representation, or resolution targets', weight: 4 },
+      { label: 'Explains that intake, legal casework, and outreach deliver the clinic service', weight: 2 },
+    ],
+    answer:
+      'The agreement supports legal help for tenants. The provider will use the funding to improve access to advice and help people resolve housing problems.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'tenant-legal-clinic-mixed',
+    kind: 'housing',
+    profile: 'mixed',
+    question:
+      'What does this tenant legal clinic agreement fund, what service outcomes it expects, and how the clinic will deliver those outcomes?',
+    criteria: [
+      { label: 'States that the agreement funds a tenant legal clinic', weight: 4 },
+      { label: 'Names the advice, representation, or resolution targets', weight: 4 },
+      { label: 'Explains that intake, legal casework, and outreach deliver the clinic service', weight: 2 },
+    ],
+    answer:
+      'The agreement funds a tenant legal clinic for renters facing eviction, unsafe conditions, and unlawful rent increases. It aims to provide more legal advice and improve case resolutions over the agreement period. The clinic will deliver the work through intake, legal casework, and targeted community outreach.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'tenant-legal-clinic-good',
+    kind: 'housing',
+    profile: 'good',
+    question:
+      'What does this tenant legal clinic agreement fund, what service outcomes it expects, and how the clinic will deliver those outcomes?',
+    criteria: [
+      { label: 'States that the agreement funds a tenant legal clinic', weight: 4 },
+      { label: 'Names the advice, representation, or resolution targets', weight: 4 },
+      { label: 'Explains that intake, legal casework, and outreach deliver the clinic service', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $590,000 to operate a tenant legal clinic serving low-income renters in three high-eviction neighbourhoods. It targets 1,100 legal advice appointments, 260 tribunal representation files, and 700 resolved housing disputes by December 2026. The clinic will deliver these outcomes through weekly intake sessions, staff lawyer and paralegal casework, and outreach workshops in community centres and apartment towers.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'tenant-legal-clinic-off-topic',
+    kind: 'housing',
+    profile: 'off_topic',
+    question:
+      'What does this tenant legal clinic agreement fund, what service outcomes it expects, and how the clinic will deliver those outcomes?',
+    criteria: [
+      { label: 'States that the agreement funds a tenant legal clinic', weight: 4 },
+      { label: 'Names the advice, representation, or resolution targets', weight: 4 },
+      { label: 'Explains that intake, legal casework, and outreach deliver the clinic service', weight: 2 },
+    ],
+    answer:
+      'Lower the bicycle seat a little if your hips rock side to side, and check the tire pressure before changing anything else.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'transitional-housing-furniture-bad',
+    kind: 'housing',
+    profile: 'bad',
+    question:
+      'Describe this transitional housing furniture agreement by saying what is funded, what occupancy or move-in targets it sets, and how the items will be supplied.',
+    criteria: [
+      { label: 'States that the agreement funds furniture and household setup for transitional housing', weight: 4 },
+      { label: 'Names the unit, resident, or move-in targets', weight: 4 },
+      { label: 'Explains that procurement, assembly, and room setup deliver the work', weight: 2 },
+    ],
+    answer:
+      'The agreement supports transitional housing services. The funding will help make units more usable and improve conditions for new residents.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'transitional-housing-furniture-mixed',
+    kind: 'housing',
+    profile: 'mixed',
+    question:
+      'Describe this transitional housing furniture agreement by saying what is funded, what occupancy or move-in targets it sets, and how the items will be supplied.',
+    criteria: [
+      { label: 'States that the agreement funds furniture and household setup for transitional housing', weight: 4 },
+      { label: 'Names the unit, resident, or move-in targets', weight: 4 },
+      { label: 'Explains that procurement, assembly, and room setup deliver the work', weight: 2 },
+    ],
+    answer:
+      'The agreement funds furniture and household setup for transitional housing units used by people leaving shelters. It aims to equip more units and support smoother resident move-ins during the year. The items will be supplied through procurement, assembly, and room setup by staff and vendors.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'transitional-housing-furniture-good',
+    kind: 'housing',
+    profile: 'good',
+    question:
+      'Describe this transitional housing furniture agreement by saying what is funded, what occupancy or move-in targets it sets, and how the items will be supplied.',
+    criteria: [
+      { label: 'States that the agreement funds furniture and household setup for transitional housing', weight: 4 },
+      { label: 'Names the unit, resident, or move-in targets', weight: 4 },
+      { label: 'Explains that procurement, assembly, and room setup deliver the work', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $260,000 to furnish 58 transitional housing units for adults and families moving out of emergency shelters. It targets 58 fully equipped units, 120 residents moved in within 14 days of referral, and complete starter-kit delivery for every household by October 2026. The work will be delivered through bulk procurement of furniture and linens, contracted assembly, and room-by-room setup coordinated by housing staff before each move-in.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'transitional-housing-furniture-off-topic',
+    kind: 'housing',
+    profile: 'off_topic',
+    question:
+      'Describe this transitional housing furniture agreement by saying what is funded, what occupancy or move-in targets it sets, and how the items will be supplied.',
+    criteria: [
+      { label: 'States that the agreement funds furniture and household setup for transitional housing', weight: 4 },
+      { label: 'Names the unit, resident, or move-in targets', weight: 4 },
+      { label: 'Explains that procurement, assembly, and room setup deliver the work', weight: 2 },
+    ],
+    answer:
+      'If the soup tastes flat, add a splash of acid before adding more salt because the broth may just need brightness.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'encampment-rehousing-team-bad',
+    kind: 'housing',
+    profile: 'bad',
+    question:
+      'What does this encampment rehousing team agreement fund, what rehousing targets are expected, and how will the team deliver them?',
+    criteria: [
+      { label: 'States that the agreement funds an encampment rehousing team', weight: 4 },
+      { label: 'Names the outreach, housing placement, or stabilization targets', weight: 4 },
+      { label: 'Explains that outreach, case management, and landlord coordination deliver the service', weight: 2 },
+    ],
+    answer:
+      'The agreement supports housing outreach for people experiencing homelessness. The team will work to improve access to services and help people move into safer situations.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'encampment-rehousing-team-mixed',
+    kind: 'housing',
+    profile: 'mixed',
+    question:
+      'What does this encampment rehousing team agreement fund, what rehousing targets are expected, and how will the team deliver them?',
+    criteria: [
+      { label: 'States that the agreement funds an encampment rehousing team', weight: 4 },
+      { label: 'Names the outreach, housing placement, or stabilization targets', weight: 4 },
+      { label: 'Explains that outreach, case management, and landlord coordination deliver the service', weight: 2 },
+    ],
+    answer:
+      'The agreement funds an encampment rehousing team for people living outdoors in high-risk locations. It aims to increase outreach contacts, move more people into housing, and provide stabilization support over the agreement period. The team will deliver this through street outreach, case management, and coordination with landlords and housing providers.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'encampment-rehousing-team-good',
+    kind: 'housing',
+    profile: 'good',
+    question:
+      'What does this encampment rehousing team agreement fund, what rehousing targets are expected, and how will the team deliver them?',
+    criteria: [
+      { label: 'States that the agreement funds an encampment rehousing team', weight: 4 },
+      { label: 'Names the outreach, housing placement, or stabilization targets', weight: 4 },
+      { label: 'Explains that outreach, case management, and landlord coordination deliver the service', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $1.3 million to fund a multidisciplinary encampment rehousing team serving three river-valley and downtown sites. It targets 900 outreach contacts, 160 housing placements, and 120 residents stabilized in housing for at least 90 days by June 2027. The team will deliver these outcomes through scheduled street outreach, intensive case management, identification document support, and landlord coordination tied to rent supplements and move-in planning.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'encampment-rehousing-team-off-topic',
+    kind: 'housing',
+    profile: 'off_topic',
+    question:
+      'What does this encampment rehousing team agreement fund, what rehousing targets are expected, and how will the team deliver them?',
+    criteria: [
+      { label: 'States that the agreement funds an encampment rehousing team', weight: 4 },
+      { label: 'Names the outreach, housing placement, or stabilization targets', weight: 4 },
+      { label: 'Explains that outreach, case management, and landlord coordination deliver the service', weight: 2 },
+    ],
+    answer:
+      'Turn the mattress every few months if it is double sided, but rotate it instead if the label says it has a fixed top.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'shelter-climate-control-bad',
+    kind: 'housing',
+    profile: 'bad',
+    question:
+      'Summarize this emergency shelter climate-control agreement: what is funded, what facility targets it sets, and how the upgrades will be completed.',
+    criteria: [
+      { label: 'States that the agreement funds climate-control upgrades in an emergency shelter', weight: 4 },
+      { label: 'Names the room, airflow, or temperature-control targets', weight: 4 },
+      { label: 'Explains that equipment purchase, installation, and commissioning deliver the upgrades', weight: 2 },
+    ],
+    answer:
+      'The agreement supports improvements at an emergency shelter. The work will make the site safer and more comfortable for people using the facility.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'shelter-climate-control-mixed',
+    kind: 'housing',
+    profile: 'mixed',
+    question:
+      'Summarize this emergency shelter climate-control agreement: what is funded, what facility targets it sets, and how the upgrades will be completed.',
+    criteria: [
+      { label: 'States that the agreement funds climate-control upgrades in an emergency shelter', weight: 4 },
+      { label: 'Names the room, airflow, or temperature-control targets', weight: 4 },
+      { label: 'Explains that equipment purchase, installation, and commissioning deliver the upgrades', weight: 2 },
+    ],
+    answer:
+      'The agreement funds climate-control upgrades in an emergency shelter to improve air quality and temperature management. It aims to improve conditions across sleeping and common areas during extreme weather periods. The upgrades will be completed through equipment purchase, installation, and testing by contractors.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'shelter-climate-control-good',
+    kind: 'housing',
+    profile: 'good',
+    question:
+      'Summarize this emergency shelter climate-control agreement: what is funded, what facility targets it sets, and how the upgrades will be completed.',
+    criteria: [
+      { label: 'States that the agreement funds climate-control upgrades in an emergency shelter', weight: 4 },
+      { label: 'Names the room, airflow, or temperature-control targets', weight: 4 },
+      { label: 'Explains that equipment purchase, installation, and commissioning deliver the upgrades', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $740,000 to install climate-control upgrades in a 120-bed emergency shelter used during heat and cold alerts. It targets new heating and cooling units in 14 sleeping rooms, balanced airflow in all common spaces, and indoor temperature control within the target range before the winter 2026 season. The work will be completed through equipment procurement, after-hours installation, and commissioning tests overseen by the shelter facilities manager and mechanical engineer.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'shelter-climate-control-off-topic',
+    kind: 'housing',
+    profile: 'off_topic',
+    question:
+      'Summarize this emergency shelter climate-control agreement: what is funded, what facility targets it sets, and how the upgrades will be completed.',
+    criteria: [
+      { label: 'States that the agreement funds climate-control upgrades in an emergency shelter', weight: 4 },
+      { label: 'Names the room, airflow, or temperature-control targets', weight: 4 },
+      { label: 'Explains that equipment purchase, installation, and commissioning deliver the upgrades', weight: 2 },
+    ],
+    answer:
+      'Let the camera focus lock before you reframe the shot, especially in dim light where autofocus tends to hunt.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'youth-housing-navigation-bad',
+    kind: 'housing',
+    profile: 'bad',
+    question:
+      'What does this youth housing navigation agreement fund, what placement targets it sets, and how navigation support will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds youth housing navigation support', weight: 4 },
+      { label: 'Names the youth, placement, or retention targets', weight: 4 },
+      { label: 'Explains that intake, housing search, and follow-up support deliver the service', weight: 2 },
+    ],
+    answer:
+      'The agreement supports young people who need help finding housing. The service will improve access to support and respond to local demand.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'youth-housing-navigation-mixed',
+    kind: 'housing',
+    profile: 'mixed',
+    question:
+      'What does this youth housing navigation agreement fund, what placement targets it sets, and how navigation support will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds youth housing navigation support', weight: 4 },
+      { label: 'Names the youth, placement, or retention targets', weight: 4 },
+      { label: 'Explains that intake, housing search, and follow-up support deliver the service', weight: 2 },
+    ],
+    answer:
+      'The agreement funds youth housing navigation support for young people leaving care, couch surfing, or exiting shelters. It aims to connect more youth to housing and improve housing retention over the year. The service will be delivered through intake, housing search assistance, and follow-up support after move-in.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'youth-housing-navigation-good',
+    kind: 'housing',
+    profile: 'good',
+    question:
+      'What does this youth housing navigation agreement fund, what placement targets it sets, and how navigation support will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds youth housing navigation support', weight: 4 },
+      { label: 'Names the youth, placement, or retention targets', weight: 4 },
+      { label: 'Explains that intake, housing search, and follow-up support deliver the service', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $510,000 for youth housing navigation support serving 16- to 24-year-olds at risk of homelessness. It targets 260 youth enrolled, 150 housing placements, and 110 youth remaining housed for six months by August 2027. Navigation support will be delivered through centralized intake, landlord-matched housing search, move-in planning, and three months of follow-up support from youth housing workers.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'youth-housing-navigation-off-topic',
+    kind: 'housing',
+    profile: 'off_topic',
+    question:
+      'What does this youth housing navigation agreement fund, what placement targets it sets, and how navigation support will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds youth housing navigation support', weight: 4 },
+      { label: 'Names the youth, placement, or retention targets', weight: 4 },
+      { label: 'Explains that intake, housing search, and follow-up support deliver the service', weight: 2 },
+    ],
+    answer:
+      'Rinse the filter basket right after brewing coffee, otherwise the oils harden and make the next cup taste stale.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'accessible-home-modifications-bad',
+    kind: 'housing',
+    profile: 'bad',
+    question:
+      'Describe this accessible home modifications agreement: what is funded, what retrofit targets are expected, and how the retrofits will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds accessible home modifications', weight: 4 },
+      { label: 'Names the household, ramp, bathroom, or retrofit targets', weight: 4 },
+      { label: 'Explains that assessments, contractor scheduling, and inspections deliver the retrofits', weight: 2 },
+    ],
+    answer:
+      'The agreement supports home improvements for residents with mobility needs. The funding will help make homes safer and easier to use.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'accessible-home-modifications-mixed',
+    kind: 'housing',
+    profile: 'mixed',
+    question:
+      'Describe this accessible home modifications agreement: what is funded, what retrofit targets are expected, and how the retrofits will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds accessible home modifications', weight: 4 },
+      { label: 'Names the household, ramp, bathroom, or retrofit targets', weight: 4 },
+      { label: 'Explains that assessments, contractor scheduling, and inspections deliver the retrofits', weight: 2 },
+    ],
+    answer:
+      'The agreement funds accessible home modifications for seniors and adults with disabilities living in older housing. It aims to complete more safety retrofits and improve home access over the agreement term. The retrofits will be delivered through home assessments, contractor scheduling, and inspection of completed work.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'accessible-home-modifications-good',
+    kind: 'housing',
+    profile: 'good',
+    question:
+      'Describe this accessible home modifications agreement: what is funded, what retrofit targets are expected, and how the retrofits will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds accessible home modifications', weight: 4 },
+      { label: 'Names the household, ramp, bathroom, or retrofit targets', weight: 4 },
+      { label: 'Explains that assessments, contractor scheduling, and inspections deliver the retrofits', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $880,000 for accessible home modifications for low-income seniors and adults with disabilities. It targets 95 homes assessed, 60 ramp or lift installations, and 45 bathroom accessibility retrofits completed by January 2027. The retrofits will be delivered through occupational therapist assessments, bundled contractor scheduling, and final safety inspections before each file is closed.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'accessible-home-modifications-off-topic',
+    kind: 'housing',
+    profile: 'off_topic',
+    question:
+      'Describe this accessible home modifications agreement: what is funded, what retrofit targets are expected, and how the retrofits will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds accessible home modifications', weight: 4 },
+      { label: 'Names the household, ramp, bathroom, or retrofit targets', weight: 4 },
+      { label: 'Explains that assessments, contractor scheduling, and inspections deliver the retrofits', weight: 2 },
+    ],
+    answer:
+      'Keep the passport in the inside pocket and put a bright tag on the luggage so it is easy to spot on the belt.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'public-washroom-renewal-bad',
+    kind: 'infrastructure',
+    profile: 'bad',
+    question:
+      'What does this public washroom renewal agreement fund, what facility targets it sets, and how the renewal work will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds public washroom renewal work', weight: 4 },
+      { label: 'Names the site, fixture, accessibility, or reopening targets', weight: 4 },
+      { label: 'Explains that design, construction scheduling, and contractor delivery complete the work', weight: 2 },
+    ],
+    answer:
+      'The agreement supports improvements to public facilities. The project will improve access and make the spaces more usable for the community.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'public-washroom-renewal-mixed',
+    kind: 'infrastructure',
+    profile: 'mixed',
+    question:
+      'What does this public washroom renewal agreement fund, what facility targets it sets, and how the renewal work will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds public washroom renewal work', weight: 4 },
+      { label: 'Names the site, fixture, accessibility, or reopening targets', weight: 4 },
+      { label: 'Explains that design, construction scheduling, and contractor delivery complete the work', weight: 2 },
+    ],
+    answer:
+      'The agreement funds renewal work for public washrooms in busy civic and park locations. It aims to improve accessibility, replace worn fixtures, and reopen upgraded facilities during the agreement period. The work will be delivered through design updates, construction scheduling, and contractor-led installation.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'public-washroom-renewal-good',
+    kind: 'infrastructure',
+    profile: 'good',
+    question:
+      'What does this public washroom renewal agreement fund, what facility targets it sets, and how the renewal work will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds public washroom renewal work', weight: 4 },
+      { label: 'Names the site, fixture, accessibility, or reopening targets', weight: 4 },
+      { label: 'Explains that design, construction scheduling, and contractor delivery complete the work', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $1.05 million to renew public washrooms at six park and transit-adjacent sites. It targets six fully reopened washroom buildings, replacement of 72 fixtures, and accessibility upgrades at every site by September 2027. The renewal work will be delivered through finalized design packages, staggered site closures, and contractor delivery overseen by the municipal facilities capital team.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'public-washroom-renewal-off-topic',
+    kind: 'infrastructure',
+    profile: 'off_topic',
+    question:
+      'What does this public washroom renewal agreement fund, what facility targets it sets, and how the renewal work will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds public washroom renewal work', weight: 4 },
+      { label: 'Names the site, fixture, accessibility, or reopening targets', weight: 4 },
+      { label: 'Explains that design, construction scheduling, and contractor delivery complete the work', weight: 2 },
+    ],
+    answer:
+      'Hold the violin bow loosely enough that the wrist can move, otherwise the tone gets thin and scratchy on longer notes.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'culvert-replacement-bad',
+    kind: 'infrastructure',
+    profile: 'bad',
+    question:
+      'Summarize this culvert replacement agreement by identifying what is funded, what infrastructure targets are expected, and how the project will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds culvert replacement work', weight: 4 },
+      { label: 'Names the site, flow-capacity, or construction targets', weight: 4 },
+      { label: 'Explains that engineering, traffic management, and construction delivery complete the project', weight: 2 },
+    ],
+    answer:
+      'The agreement supports infrastructure improvements in a flood-prone area. The project will improve resilience and address aging assets.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'culvert-replacement-mixed',
+    kind: 'infrastructure',
+    profile: 'mixed',
+    question:
+      'Summarize this culvert replacement agreement by identifying what is funded, what infrastructure targets are expected, and how the project will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds culvert replacement work', weight: 4 },
+      { label: 'Names the site, flow-capacity, or construction targets', weight: 4 },
+      { label: 'Explains that engineering, traffic management, and construction delivery complete the project', weight: 2 },
+    ],
+    answer:
+      'The agreement funds culvert replacement work on a rural road corridor with repeated flooding and washout risk. It aims to improve drainage capacity and complete replacement work during the construction season. The project will be delivered through engineering design, traffic management planning, and contractor construction.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'culvert-replacement-good',
+    kind: 'infrastructure',
+    profile: 'good',
+    question:
+      'Summarize this culvert replacement agreement by identifying what is funded, what infrastructure targets are expected, and how the project will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds culvert replacement work', weight: 4 },
+      { label: 'Names the site, flow-capacity, or construction targets', weight: 4 },
+      { label: 'Explains that engineering, traffic management, and construction delivery complete the project', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $1.8 million to replace two undersized culverts under Range Road 14 and stabilize the adjacent ditch network. It targets replacement of both culverts, a 40 percent increase in stormwater flow capacity, and full road reopening before November 2026. The project will be delivered through stamped engineering drawings, detour-based traffic management, and contractor construction supervised by the county transportation department.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'culvert-replacement-off-topic',
+    kind: 'infrastructure',
+    profile: 'off_topic',
+    question:
+      'Summarize this culvert replacement agreement by identifying what is funded, what infrastructure targets are expected, and how the project will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds culvert replacement work', weight: 4 },
+      { label: 'Names the site, flow-capacity, or construction targets', weight: 4 },
+      { label: 'Explains that engineering, traffic management, and construction delivery complete the project', weight: 2 },
+    ],
+    answer:
+      'Mash the avocado only at the end if you want a chunkier texture, and keep the pit out because it does not stop browning.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'bus-shelter-installation-bad',
+    kind: 'infrastructure',
+    profile: 'bad',
+    question:
+      'What does this bus shelter installation agreement fund, what rider-access targets it sets, and how installation will be carried out?',
+    criteria: [
+      { label: 'States that the agreement funds bus shelter installation', weight: 4 },
+      { label: 'Names the stop, shelter, accessibility, or rider-access targets', weight: 4 },
+      { label: 'Explains that procurement, site preparation, and installation crews deliver the work', weight: 2 },
+    ],
+    answer:
+      'The agreement supports transit improvements. The funding will make waiting areas better for riders and improve public access.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'bus-shelter-installation-mixed',
+    kind: 'infrastructure',
+    profile: 'mixed',
+    question:
+      'What does this bus shelter installation agreement fund, what rider-access targets it sets, and how installation will be carried out?',
+    criteria: [
+      { label: 'States that the agreement funds bus shelter installation', weight: 4 },
+      { label: 'Names the stop, shelter, accessibility, or rider-access targets', weight: 4 },
+      { label: 'Explains that procurement, site preparation, and installation crews deliver the work', weight: 2 },
+    ],
+    answer:
+      'The agreement funds installation of new bus shelters at stops with high ridership and poor weather protection. It aims to increase rider comfort and improve accessibility at more stops during the rollout period. Installation will be carried out through shelter procurement, site preparation, and field crews.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'bus-shelter-installation-good',
+    kind: 'infrastructure',
+    profile: 'good',
+    question:
+      'What does this bus shelter installation agreement fund, what rider-access targets it sets, and how installation will be carried out?',
+    criteria: [
+      { label: 'States that the agreement funds bus shelter installation', weight: 4 },
+      { label: 'Names the stop, shelter, accessibility, or rider-access targets', weight: 4 },
+      { label: 'Explains that procurement, site preparation, and installation crews deliver the work', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $920,000 to install bus shelters at 24 high-ridership transit stops lacking weather protection. It targets 24 new shelters, 18 accessible landing pad upgrades, and completion of all priority-stop installations before December 2026. The work will be carried out through shelter procurement, concrete pad preparation, utility checks, and installation crews scheduled in coordination with the transit operations division.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'bus-shelter-installation-off-topic',
+    kind: 'infrastructure',
+    profile: 'off_topic',
+    question:
+      'What does this bus shelter installation agreement fund, what rider-access targets it sets, and how installation will be carried out?',
+    criteria: [
+      { label: 'States that the agreement funds bus shelter installation', weight: 4 },
+      { label: 'Names the stop, shelter, accessibility, or rider-access targets', weight: 4 },
+      { label: 'Explains that procurement, site preparation, and installation crews deliver the work', weight: 2 },
+    ],
+    answer:
+      'A slower backswing usually helps with control in tennis because it gives you more time to set the racket face.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'stormwater-sensor-network-bad',
+    kind: 'infrastructure',
+    profile: 'bad',
+    question:
+      'Describe this stormwater sensor network agreement: what is funded, what monitoring targets are expected, and how the network will be deployed.',
+    criteria: [
+      { label: 'States that the agreement funds a stormwater sensor network', weight: 4 },
+      { label: 'Names the site, sensor, or monitoring targets', weight: 4 },
+      { label: 'Explains that procurement, installation, and data integration deliver the network', weight: 2 },
+    ],
+    answer:
+      'The agreement supports infrastructure monitoring improvements. The project will help the municipality understand system conditions and plan better responses.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'stormwater-sensor-network-mixed',
+    kind: 'infrastructure',
+    profile: 'mixed',
+    question:
+      'Describe this stormwater sensor network agreement: what is funded, what monitoring targets are expected, and how the network will be deployed.',
+    criteria: [
+      { label: 'States that the agreement funds a stormwater sensor network', weight: 4 },
+      { label: 'Names the site, sensor, or monitoring targets', weight: 4 },
+      { label: 'Explains that procurement, installation, and data integration deliver the network', weight: 2 },
+    ],
+    answer:
+      'The agreement funds a stormwater sensor network to improve monitoring in flood-prone basins and outfalls. It aims to add more sensors and strengthen real-time system visibility over the agreement period. The network will be deployed through equipment purchase, field installation, and data integration.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'stormwater-sensor-network-good',
+    kind: 'infrastructure',
+    profile: 'good',
+    question:
+      'Describe this stormwater sensor network agreement: what is funded, what monitoring targets are expected, and how the network will be deployed.',
+    criteria: [
+      { label: 'States that the agreement funds a stormwater sensor network', weight: 4 },
+      { label: 'Names the site, sensor, or monitoring targets', weight: 4 },
+      { label: 'Explains that procurement, installation, and data integration deliver the network', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $610,000 to deploy a stormwater sensor network across eight flood-prone ponds and trunk outfalls. It targets installation of 36 level and flow sensors, real-time telemetry at all eight sites, and dashboard integration for operations staff by July 2027. The network will be deployed through equipment procurement, contractor installation, and integration of sensor feeds into the city’s existing water operations platform.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'stormwater-sensor-network-off-topic',
+    kind: 'infrastructure',
+    profile: 'off_topic',
+    question:
+      'Describe this stormwater sensor network agreement: what is funded, what monitoring targets are expected, and how the network will be deployed.',
+    criteria: [
+      { label: 'States that the agreement funds a stormwater sensor network', weight: 4 },
+      { label: 'Names the site, sensor, or monitoring targets', weight: 4 },
+      { label: 'Explains that procurement, installation, and data integration deliver the network', weight: 2 },
+    ],
+    answer:
+      'Fold the map back along the original creases before putting it away or it will never fit in the glove box again.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'library-roof-repair-bad',
+    kind: 'infrastructure',
+    profile: 'bad',
+    question:
+      'Summarize this library roof repair agreement: what it funds, what repair targets it sets, and how the repair work will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds library roof repair work', weight: 4 },
+      { label: 'Names the roof-area, leak-prevention, or reopening targets', weight: 4 },
+      { label: 'Explains that tendering, construction, and inspection deliver the repair work', weight: 2 },
+    ],
+    answer:
+      'The agreement supports repairs at a public building. The project will protect the facility and improve long-term maintenance.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'library-roof-repair-mixed',
+    kind: 'infrastructure',
+    profile: 'mixed',
+    question:
+      'Summarize this library roof repair agreement: what it funds, what repair targets it sets, and how the repair work will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds library roof repair work', weight: 4 },
+      { label: 'Names the roof-area, leak-prevention, or reopening targets', weight: 4 },
+      { label: 'Explains that tendering, construction, and inspection deliver the repair work', weight: 2 },
+    ],
+    answer:
+      'The agreement funds roof repair work at a public library with ongoing leaks and water damage. It aims to replace damaged roofing sections and complete repairs before another winter season. The work will be delivered through tendering, construction scheduling, and post-repair inspection.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'library-roof-repair-good',
+    kind: 'infrastructure',
+    profile: 'good',
+    question:
+      'Summarize this library roof repair agreement: what it funds, what repair targets it sets, and how the repair work will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds library roof repair work', weight: 4 },
+      { label: 'Names the roof-area, leak-prevention, or reopening targets', weight: 4 },
+      { label: 'Explains that tendering, construction, and inspection deliver the repair work', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $430,000 to repair the leaking roof at the West Branch Library and prevent further interior damage. It targets replacement of 9,200 square feet of roofing membrane, elimination of all active leaks, and full reopening of the top-floor reading room by October 2026. The repair work will be delivered through public tendering, staged summer construction, and third-party inspection before final acceptance.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'library-roof-repair-off-topic',
+    kind: 'infrastructure',
+    profile: 'off_topic',
+    question:
+      'Summarize this library roof repair agreement: what it funds, what repair targets it sets, and how the repair work will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds library roof repair work', weight: 4 },
+      { label: 'Names the roof-area, leak-prevention, or reopening targets', weight: 4 },
+      { label: 'Explains that tendering, construction, and inspection deliver the repair work', weight: 2 },
+    ],
+    answer:
+      'Warming the butter slightly before creaming it makes the batter smoother, but it should not be melted.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'rural-bridge-lighting-bad',
+    kind: 'infrastructure',
+    profile: 'bad',
+    question:
+      'What does this rural bridge lighting agreement fund, what safety targets it expects, and how the lighting project will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds rural bridge lighting upgrades', weight: 4 },
+      { label: 'Names the bridge, fixture, or safety-coverage targets', weight: 4 },
+      { label: 'Explains that electrical design, installation, and testing deliver the project', weight: 2 },
+    ],
+    answer:
+      'The agreement supports transportation safety improvements. The work will improve visibility and help road users travel more safely.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'rural-bridge-lighting-mixed',
+    kind: 'infrastructure',
+    profile: 'mixed',
+    question:
+      'What does this rural bridge lighting agreement fund, what safety targets it expects, and how the lighting project will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds rural bridge lighting upgrades', weight: 4 },
+      { label: 'Names the bridge, fixture, or safety-coverage targets', weight: 4 },
+      { label: 'Explains that electrical design, installation, and testing deliver the project', weight: 2 },
+    ],
+    answer:
+      'The agreement funds lighting upgrades on a rural bridge corridor with poor night visibility and collision concerns. It aims to improve illumination and complete safer crossing conditions during the project term. The lighting project will be delivered through electrical design, installation, and testing.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'rural-bridge-lighting-good',
+    kind: 'infrastructure',
+    profile: 'good',
+    question:
+      'What does this rural bridge lighting agreement fund, what safety targets it expects, and how the lighting project will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds rural bridge lighting upgrades', weight: 4 },
+      { label: 'Names the bridge, fixture, or safety-coverage targets', weight: 4 },
+      { label: 'Explains that electrical design, installation, and testing deliver the project', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $390,000 to install lighting upgrades on the Pine River Bridge and its two approach segments. It targets 28 new LED fixtures, full illumination coverage across the bridge deck and shoulders, and project completion before the 2026 fog season. The project will be delivered through stamped electrical design, contractor installation of poles and fixtures, and nighttime testing of light levels before handover.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'rural-bridge-lighting-off-topic',
+    kind: 'infrastructure',
+    profile: 'off_topic',
+    question:
+      'What does this rural bridge lighting agreement fund, what safety targets it expects, and how the lighting project will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds rural bridge lighting upgrades', weight: 4 },
+      { label: 'Names the bridge, fixture, or safety-coverage targets', weight: 4 },
+      { label: 'Explains that electrical design, installation, and testing deliver the project', weight: 2 },
+    ],
+    answer:
+      'Write the first paragraph last if you are stuck on an essay, because it is easier once the main points are already clear.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'playground-inclusion-upgrade-bad',
+    kind: 'community',
+    profile: 'bad',
+    question:
+      'Describe this playground inclusion upgrade agreement by stating what is funded, what participation targets it sets, and how the upgrade will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds inclusive playground upgrades', weight: 4 },
+      { label: 'Names the site, equipment, or access targets', weight: 4 },
+      { label: 'Explains that design, procurement, and installation deliver the upgrade', weight: 2 },
+    ],
+    answer:
+      'The agreement supports improvements to a public recreation space. The work will make the area more welcoming and improve community access.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'playground-inclusion-upgrade-mixed',
+    kind: 'community',
+    profile: 'mixed',
+    question:
+      'Describe this playground inclusion upgrade agreement by stating what is funded, what participation targets it sets, and how the upgrade will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds inclusive playground upgrades', weight: 4 },
+      { label: 'Names the site, equipment, or access targets', weight: 4 },
+      { label: 'Explains that design, procurement, and installation deliver the upgrade', weight: 2 },
+    ],
+    answer:
+      'The agreement funds inclusive playground upgrades so children with different mobility and sensory needs can use the site more easily. It aims to add accessible features and improve use of the playground during the project period. The upgrade will be delivered through design work, equipment procurement, and installation.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'playground-inclusion-upgrade-good',
+    kind: 'community',
+    profile: 'good',
+    question:
+      'Describe this playground inclusion upgrade agreement by stating what is funded, what participation targets it sets, and how the upgrade will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds inclusive playground upgrades', weight: 4 },
+      { label: 'Names the site, equipment, or access targets', weight: 4 },
+      { label: 'Explains that design, procurement, and installation deliver the upgrade', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $540,000 to upgrade Maple Park Playground with inclusive equipment and access features. It targets one fully upgraded playground, 12 new accessible or sensory play elements, and barrier-free access routes from the parking area and washrooms by July 2027. The upgrade will be delivered through universal-design review, procurement of specialized equipment, and contractor installation coordinated by the parks capital team.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'playground-inclusion-upgrade-off-topic',
+    kind: 'community',
+    profile: 'off_topic',
+    question:
+      'Describe this playground inclusion upgrade agreement by stating what is funded, what participation targets it sets, and how the upgrade will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds inclusive playground upgrades', weight: 4 },
+      { label: 'Names the site, equipment, or access targets', weight: 4 },
+      { label: 'Explains that design, procurement, and installation deliver the upgrade', weight: 2 },
+    ],
+    answer:
+      'If the zipper sticks, rub a little soap on the teeth before forcing it or the fabric may tear around the seam.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'after-school-arts-program-bad',
+    kind: 'community',
+    profile: 'bad',
+    question:
+      'What does this after-school arts program agreement fund, what youth participation targets it expects, and how the program will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds an after-school arts program', weight: 4 },
+      { label: 'Names the youth, session, or participation targets', weight: 4 },
+      { label: 'Explains that classes, artist facilitation, and partner-site delivery run the program', weight: 2 },
+    ],
+    answer:
+      'The agreement supports arts opportunities for young people. The organization will use the funding to expand programming and improve engagement.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'after-school-arts-program-mixed',
+    kind: 'community',
+    profile: 'mixed',
+    question:
+      'What does this after-school arts program agreement fund, what youth participation targets it expects, and how the program will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds an after-school arts program', weight: 4 },
+      { label: 'Names the youth, session, or participation targets', weight: 4 },
+      { label: 'Explains that classes, artist facilitation, and partner-site delivery run the program', weight: 2 },
+    ],
+    answer:
+      'The agreement funds an after-school arts program for youth in underserved neighbourhoods. It aims to increase participation and provide more regular creative programming over the school year. The program will be delivered through classes led by artists at partner sites.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'after-school-arts-program-good',
+    kind: 'community',
+    profile: 'good',
+    question:
+      'What does this after-school arts program agreement fund, what youth participation targets it expects, and how the program will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds an after-school arts program', weight: 4 },
+      { label: 'Names the youth, session, or participation targets', weight: 4 },
+      { label: 'Explains that classes, artist facilitation, and partner-site delivery run the program', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $310,000 to run an after-school arts program for youth ages 11 to 17 in four neighbourhood schools and community hubs. It targets 220 youth participants, 180 program sessions, and 150 youth completing at least one multi-week arts stream by June 2027. The program will be delivered through weekly visual art, music, and media classes led by teaching artists at partner sites with school-based referrals and attendance follow-up.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'after-school-arts-program-off-topic',
+    kind: 'community',
+    profile: 'off_topic',
+    question:
+      'What does this after-school arts program agreement fund, what youth participation targets it expects, and how the program will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds an after-school arts program', weight: 4 },
+      { label: 'Names the youth, session, or participation targets', weight: 4 },
+      { label: 'Explains that classes, artist facilitation, and partner-site delivery run the program', weight: 2 },
+    ],
+    answer:
+      'Cool the rice on a tray if you need it for fried rice later, because clumped warm rice turns mushy in the pan.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'seniors-checkin-network-bad',
+    kind: 'community',
+    profile: 'bad',
+    question:
+      'Summarize this seniors check-in network agreement by saying what is funded, what outreach targets it expects, and how the network will operate.',
+    criteria: [
+      { label: 'States that the agreement funds a seniors check-in network', weight: 4 },
+      { label: 'Names the senior, call, visit, or referral targets', weight: 4 },
+      { label: 'Explains that outreach scheduling, volunteers, and follow-up referrals operate the network', weight: 2 },
+    ],
+    answer:
+      'The agreement supports community services for seniors. The funding will help reduce isolation and improve connections to support.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'seniors-checkin-network-mixed',
+    kind: 'community',
+    profile: 'mixed',
+    question:
+      'Summarize this seniors check-in network agreement by saying what is funded, what outreach targets it expects, and how the network will operate.',
+    criteria: [
+      { label: 'States that the agreement funds a seniors check-in network', weight: 4 },
+      { label: 'Names the senior, call, visit, or referral targets', weight: 4 },
+      { label: 'Explains that outreach scheduling, volunteers, and follow-up referrals operate the network', weight: 2 },
+    ],
+    answer:
+      'The agreement funds a seniors check-in network for older adults who are isolated or living alone. It aims to increase regular contact and connect more seniors to community supports over the agreement term. The network will operate through scheduled outreach, volunteers, and follow-up referrals.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'seniors-checkin-network-good',
+    kind: 'community',
+    profile: 'good',
+    question:
+      'Summarize this seniors check-in network agreement by saying what is funded, what outreach targets it expects, and how the network will operate.',
+    criteria: [
+      { label: 'States that the agreement funds a seniors check-in network', weight: 4 },
+      { label: 'Names the senior, call, visit, or referral targets', weight: 4 },
+      { label: 'Explains that outreach scheduling, volunteers, and follow-up referrals operate the network', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $280,000 to operate a seniors check-in network for isolated adults over age 70 in five neighbourhoods. It targets 420 seniors enrolled, 9,600 phone or doorstep check-ins, and 260 referrals to food, transportation, or health supports by March 2027. The network will operate through centralized outreach scheduling, trained volunteers making weekly contacts, and follow-up referrals coordinated by a program navigator.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'seniors-checkin-network-off-topic',
+    kind: 'community',
+    profile: 'off_topic',
+    question:
+      'Summarize this seniors check-in network agreement by saying what is funded, what outreach targets it expects, and how the network will operate.',
+    criteria: [
+      { label: 'States that the agreement funds a seniors check-in network', weight: 4 },
+      { label: 'Names the senior, call, visit, or referral targets', weight: 4 },
+      { label: 'Explains that outreach scheduling, volunteers, and follow-up referrals operate the network', weight: 2 },
+    ],
+    answer:
+      'Keep the screws from each shelf in separate cups during assembly or it becomes hard to tell which length goes where.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'food-pantry-cold-storage-bad',
+    kind: 'community',
+    profile: 'bad',
+    question:
+      'What does this food pantry cold-storage agreement fund, what capacity targets it expects, and how the project will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds food pantry cold-storage capacity', weight: 4 },
+      { label: 'Names the cooler, food-volume, or distribution targets', weight: 4 },
+      { label: 'Explains that equipment purchase, installation, and staff procedures deliver the project', weight: 2 },
+    ],
+    answer:
+      'The agreement supports improvements to food distribution services. The project will help the pantry serve people more effectively and reduce waste.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'food-pantry-cold-storage-mixed',
+    kind: 'community',
+    profile: 'mixed',
+    question:
+      'What does this food pantry cold-storage agreement fund, what capacity targets it expects, and how the project will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds food pantry cold-storage capacity', weight: 4 },
+      { label: 'Names the cooler, food-volume, or distribution targets', weight: 4 },
+      { label: 'Explains that equipment purchase, installation, and staff procedures deliver the project', weight: 2 },
+    ],
+    answer:
+      'The agreement funds expanded cold-storage capacity for a food pantry distributing fresh food to local households. It aims to increase refrigerated storage and improve the volume of fresh food handled during the agreement period. The project will be delivered through equipment purchase, installation, and updated staff procedures.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'food-pantry-cold-storage-good',
+    kind: 'community',
+    profile: 'good',
+    question:
+      'What does this food pantry cold-storage agreement fund, what capacity targets it expects, and how the project will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds food pantry cold-storage capacity', weight: 4 },
+      { label: 'Names the cooler, food-volume, or distribution targets', weight: 4 },
+      { label: 'Explains that equipment purchase, installation, and staff procedures deliver the project', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $190,000 to expand cold-storage capacity at a regional food pantry serving low-income households. It targets installation of two walk-in coolers, a 60 percent increase in refrigerated food capacity, and handling of 180,000 additional pounds of fresh food by December 2026. The project will be delivered through equipment purchase, contractor installation, and revised receiving and rotation procedures implemented by pantry staff.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'food-pantry-cold-storage-off-topic',
+    kind: 'community',
+    profile: 'off_topic',
+    question:
+      'What does this food pantry cold-storage agreement fund, what capacity targets it expects, and how the project will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds food pantry cold-storage capacity', weight: 4 },
+      { label: 'Names the cooler, food-volume, or distribution targets', weight: 4 },
+      { label: 'Explains that equipment purchase, installation, and staff procedures deliver the project', weight: 2 },
+    ],
+    answer:
+      'Blot the stain first instead of rubbing it, otherwise it spreads deeper into the fabric and becomes harder to lift.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'neighbourhood-cleanup-microgrants-bad',
+    kind: 'community',
+    profile: 'bad',
+    question:
+      'Describe this neighbourhood cleanup microgrants agreement by identifying what is funded, what cleanup targets are expected, and how grants will be administered.',
+    criteria: [
+      { label: 'States that the agreement funds neighbourhood cleanup microgrants', weight: 4 },
+      { label: 'Names the grant, volunteer, site, or cleanup targets', weight: 4 },
+      { label: 'Explains that applications, approvals, and supported cleanup events administer the grants', weight: 2 },
+    ],
+    answer:
+      'The agreement supports neighbourhood improvement activities. The funding will help residents take part in community cleanups and local projects.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'neighbourhood-cleanup-microgrants-mixed',
+    kind: 'community',
+    profile: 'mixed',
+    question:
+      'Describe this neighbourhood cleanup microgrants agreement by identifying what is funded, what cleanup targets are expected, and how grants will be administered.',
+    criteria: [
+      { label: 'States that the agreement funds neighbourhood cleanup microgrants', weight: 4 },
+      { label: 'Names the grant, volunteer, site, or cleanup targets', weight: 4 },
+      { label: 'Explains that applications, approvals, and supported cleanup events administer the grants', weight: 2 },
+    ],
+    answer:
+      'The agreement funds neighbourhood cleanup microgrants for resident groups and local associations. It aims to support more cleanup events and improve participation across multiple sites during the year. The grants will be administered through applications, approvals, and support for volunteer cleanup events.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'neighbourhood-cleanup-microgrants-good',
+    kind: 'community',
+    profile: 'good',
+    question:
+      'Describe this neighbourhood cleanup microgrants agreement by identifying what is funded, what cleanup targets are expected, and how grants will be administered.',
+    criteria: [
+      { label: 'States that the agreement funds neighbourhood cleanup microgrants', weight: 4 },
+      { label: 'Names the grant, volunteer, site, or cleanup targets', weight: 4 },
+      { label: 'Explains that applications, approvals, and supported cleanup events administer the grants', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $125,000 for neighbourhood cleanup microgrants to resident groups, school councils, and block associations. It targets 50 microgrants awarded, 120 cleanup events, and 3,500 volunteers engaged across parks, laneways, and creek edges by October 2026. The grants will be administered through a short application process, rolling staff approvals, and supported cleanup events that include supplies, waste pickup, and reporting forms.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'neighbourhood-cleanup-microgrants-off-topic',
+    kind: 'community',
+    profile: 'off_topic',
+    question:
+      'Describe this neighbourhood cleanup microgrants agreement by identifying what is funded, what cleanup targets are expected, and how grants will be administered.',
+    criteria: [
+      { label: 'States that the agreement funds neighbourhood cleanup microgrants', weight: 4 },
+      { label: 'Names the grant, volunteer, site, or cleanup targets', weight: 4 },
+      { label: 'Explains that applications, approvals, and supported cleanup events administer the grants', weight: 2 },
+    ],
+    answer:
+      'Try a shorter stride on steep hills because overreaching tires your legs faster than taking quicker small steps.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'cultural-festival-safety-plan-bad',
+    kind: 'community',
+    profile: 'bad',
+    question:
+      'What does this cultural festival safety plan agreement fund, what event-readiness targets it sets, and how the plan will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds festival safety planning and equipment', weight: 4 },
+      { label: 'Names the event, staffing, training, or readiness targets', weight: 4 },
+      { label: 'Explains that planning, procurement, and staff coordination deliver the plan', weight: 2 },
+    ],
+    answer:
+      'The agreement supports event preparation for a community festival. The work will improve safety and help organizers run the event more effectively.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'cultural-festival-safety-plan-mixed',
+    kind: 'community',
+    profile: 'mixed',
+    question:
+      'What does this cultural festival safety plan agreement fund, what event-readiness targets it sets, and how the plan will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds festival safety planning and equipment', weight: 4 },
+      { label: 'Names the event, staffing, training, or readiness targets', weight: 4 },
+      { label: 'Explains that planning, procurement, and staff coordination deliver the plan', weight: 2 },
+    ],
+    answer:
+      'The agreement funds safety planning and equipment for a multi-day cultural festival held in a downtown public square. It aims to improve event readiness and strengthen staffing and emergency arrangements before the festival opens. The plan will be delivered through planning work, equipment procurement, and staff coordination.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'cultural-festival-safety-plan-good',
+    kind: 'community',
+    profile: 'good',
+    question:
+      'What does this cultural festival safety plan agreement fund, what event-readiness targets it sets, and how the plan will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds festival safety planning and equipment', weight: 4 },
+      { label: 'Names the event, staffing, training, or readiness targets', weight: 4 },
+      { label: 'Explains that planning, procurement, and staff coordination deliver the plan', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $210,000 to fund safety planning, barriers, radios, and training for the River Lights Cultural Festival. It targets one approved festival safety plan, 140 staff and volunteers trained, and full emergency-response readiness before the first event date in August 2026. The plan will be delivered through joint planning meetings with emergency services, procurement of safety equipment, and coordinated staff training and deployment schedules.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'cultural-festival-safety-plan-off-topic',
+    kind: 'community',
+    profile: 'off_topic',
+    question:
+      'What does this cultural festival safety plan agreement fund, what event-readiness targets it sets, and how the plan will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds festival safety planning and equipment', weight: 4 },
+      { label: 'Names the event, staffing, training, or readiness targets', weight: 4 },
+      { label: 'Explains that planning, procurement, and staff coordination deliver the plan', weight: 2 },
+    ],
+    answer:
+      'Keep the charger coiled loosely in the bag, because tight bends near the plug are what usually break the cable first.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'community-garden-irrigation-bad',
+    kind: 'community',
+    profile: 'bad',
+    question:
+      'Summarize this community garden irrigation agreement by saying what is funded, what garden-capacity targets it expects, and how the irrigation work will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds community garden irrigation improvements', weight: 4 },
+      { label: 'Names the bed, plot, water-access, or production targets', weight: 4 },
+      { label: 'Explains that design, installation, and garden coordination deliver the work', weight: 2 },
+    ],
+    answer:
+      'The agreement supports improvements at a community garden. The project will help gardeners and improve the site for local residents.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'community-garden-irrigation-mixed',
+    kind: 'community',
+    profile: 'mixed',
+    question:
+      'Summarize this community garden irrigation agreement by saying what is funded, what garden-capacity targets it expects, and how the irrigation work will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds community garden irrigation improvements', weight: 4 },
+      { label: 'Names the bed, plot, water-access, or production targets', weight: 4 },
+      { label: 'Explains that design, installation, and garden coordination deliver the work', weight: 2 },
+    ],
+    answer:
+      'The agreement funds irrigation improvements at a community garden with unreliable water access and crop losses in dry periods. It aims to improve water coverage and support better use of the garden over the season. The work will be delivered through irrigation design, installation, and coordination with garden leaders.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'community-garden-irrigation-good',
+    kind: 'community',
+    profile: 'good',
+    question:
+      'Summarize this community garden irrigation agreement by saying what is funded, what garden-capacity targets it expects, and how the irrigation work will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds community garden irrigation improvements', weight: 4 },
+      { label: 'Names the bed, plot, water-access, or production targets', weight: 4 },
+      { label: 'Explains that design, installation, and garden coordination deliver the work', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $145,000 to install irrigation improvements at the Eastview Community Garden. It targets water access to all 84 plots, drip irrigation for 26 shared production beds, and a 30 percent reduction in summer crop losses by the end of the 2027 growing season. The work will be delivered through irrigation layout design, contractor installation of lines and valves, and site coordination with the garden committee for phasing and training.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'community-garden-irrigation-off-topic',
+    kind: 'community',
+    profile: 'off_topic',
+    question:
+      'Summarize this community garden irrigation agreement by saying what is funded, what garden-capacity targets it expects, and how the irrigation work will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds community garden irrigation improvements', weight: 4 },
+      { label: 'Names the bed, plot, water-access, or production targets', weight: 4 },
+      { label: 'Explains that design, installation, and garden coordination deliver the work', weight: 2 },
+    ],
+    answer:
+      'Tap the jar lid lightly all the way around with the handle of a spoon before trying again if it is vacuum-sealed shut.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'community-media-lab-bad',
+    kind: 'community',
+    profile: 'bad',
+    question:
+      'What does this community media lab agreement fund, what participant targets it expects, and how the lab will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds a community media lab', weight: 4 },
+      { label: 'Names the participant, workshop, or completion targets', weight: 4 },
+      { label: 'Explains that equipment, instruction, and site operations deliver the lab', weight: 2 },
+    ],
+    answer:
+      'The agreement supports creative programming for community members. The funding will improve access to technology and learning opportunities.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'community-media-lab-mixed',
+    kind: 'community',
+    profile: 'mixed',
+    question:
+      'What does this community media lab agreement fund, what participant targets it expects, and how the lab will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds a community media lab', weight: 4 },
+      { label: 'Names the participant, workshop, or completion targets', weight: 4 },
+      { label: 'Explains that equipment, instruction, and site operations deliver the lab', weight: 2 },
+    ],
+    answer:
+      'The agreement funds a community media lab where youth and adults can learn audio, video, and digital storytelling skills. It aims to increase participation and provide more hands-on learning opportunities during the agreement period. The lab will be delivered through equipment purchase, instruction, and site operations.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'community-media-lab-good',
+    kind: 'community',
+    profile: 'good',
+    question:
+      'What does this community media lab agreement fund, what participant targets it expects, and how the lab will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds a community media lab', weight: 4 },
+      { label: 'Names the participant, workshop, or completion targets', weight: 4 },
+      { label: 'Explains that equipment, instruction, and site operations deliver the lab', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $360,000 to establish a community media lab focused on digital storytelling, podcasting, and video editing for youth and newcomer adults. It targets 260 participants, 120 workshops, and 180 completed media projects by April 2027. The lab will be delivered through purchase of recording and editing equipment, scheduled instruction by media educators, and daily supervised operations at the downtown learning hub.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'community-media-lab-off-topic',
+    kind: 'community',
+    profile: 'off_topic',
+    question:
+      'What does this community media lab agreement fund, what participant targets it expects, and how the lab will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds a community media lab', weight: 4 },
+      { label: 'Names the participant, workshop, or completion targets', weight: 4 },
+      { label: 'Explains that equipment, instruction, and site operations deliver the lab', weight: 2 },
+    ],
+    answer:
+      'Angle the desk lamp away from the screen if you want less glare during video calls in the evening.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'sports-league-fee-subsidy-bad',
+    kind: 'community',
+    profile: 'bad',
+    question:
+      'Describe this sports league fee subsidy agreement by stating what is funded, what enrolment targets it sets, and how the subsidy program will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds sports league fee subsidies', weight: 4 },
+      { label: 'Names the child, registration, or participation targets', weight: 4 },
+      { label: 'Explains that intake, eligibility review, and payment processing deliver the program', weight: 2 },
+    ],
+    answer:
+      'The agreement supports recreation access for families. The funding will help reduce cost barriers and improve participation in local programs.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'sports-league-fee-subsidy-mixed',
+    kind: 'community',
+    profile: 'mixed',
+    question:
+      'Describe this sports league fee subsidy agreement by stating what is funded, what enrolment targets it sets, and how the subsidy program will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds sports league fee subsidies', weight: 4 },
+      { label: 'Names the child, registration, or participation targets', weight: 4 },
+      { label: 'Explains that intake, eligibility review, and payment processing deliver the program', weight: 2 },
+    ],
+    answer:
+      'The agreement funds sports league fee subsidies for children from low-income households. It aims to support more registrations and improve participation in organized recreation during the year. The subsidy program will be delivered through application intake, eligibility review, and payment processing.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'sports-league-fee-subsidy-good',
+    kind: 'community',
+    profile: 'good',
+    question:
+      'Describe this sports league fee subsidy agreement by stating what is funded, what enrolment targets it sets, and how the subsidy program will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds sports league fee subsidies', weight: 4 },
+      { label: 'Names the child, registration, or participation targets', weight: 4 },
+      { label: 'Explains that intake, eligibility review, and payment processing deliver the program', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $275,000 for sports league fee subsidies for children ages 6 to 17 from low-income families. It targets 480 subsidized registrations, 360 children completing a full season, and participation across soccer, basketball, swimming, and hockey by March 2027. The program will be delivered through online and in-person application intake, eligibility review by recreation staff, and direct payment processing with participating leagues.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'sports-league-fee-subsidy-off-topic',
+    kind: 'community',
+    profile: 'off_topic',
+    question:
+      'Describe this sports league fee subsidy agreement by stating what is funded, what enrolment targets it sets, and how the subsidy program will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds sports league fee subsidies', weight: 4 },
+      { label: 'Names the child, registration, or participation targets', weight: 4 },
+      { label: 'Explains that intake, eligibility review, and payment processing deliver the program', weight: 2 },
+    ],
+    answer:
+      'Check that the ladder feet are on solid ground before climbing; wobble at the base is the main thing to avoid.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'eviction-mediation-service-bad',
+    kind: 'housing',
+    profile: 'bad',
+    question:
+      'What does this eviction mediation service agreement fund, what resolution targets it expects, and how the service will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds an eviction mediation service', weight: 4 },
+      { label: 'Names the case, agreement, or eviction-avoidance targets', weight: 4 },
+      { label: 'Explains that intake, mediation sessions, and follow-up support deliver the service', weight: 2 },
+    ],
+    answer:
+      'The agreement supports housing stability services for tenants and landlords. The program will help resolve conflict and improve local outcomes.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'eviction-mediation-service-mixed',
+    kind: 'housing',
+    profile: 'mixed',
+    question:
+      'What does this eviction mediation service agreement fund, what resolution targets it expects, and how the service will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds an eviction mediation service', weight: 4 },
+      { label: 'Names the case, agreement, or eviction-avoidance targets', weight: 4 },
+      { label: 'Explains that intake, mediation sessions, and follow-up support deliver the service', weight: 2 },
+    ],
+    answer:
+      'The agreement funds an eviction mediation service for tenants and landlords facing rent arrears and tenancy disputes. It aims to resolve more cases and prevent more evictions during the agreement period. The service will be delivered through intake, mediation sessions, and follow-up support.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'eviction-mediation-service-good',
+    kind: 'housing',
+    profile: 'good',
+    question:
+      'What does this eviction mediation service agreement fund, what resolution targets it expects, and how the service will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds an eviction mediation service', weight: 4 },
+      { label: 'Names the case, agreement, or eviction-avoidance targets', weight: 4 },
+      { label: 'Explains that intake, mediation sessions, and follow-up support deliver the service', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $420,000 to fund an eviction mediation service for low-income tenants and small landlords before tribunal escalation. It targets 520 mediation intakes, 300 signed repayment or tenancy agreements, and 220 evictions avoided by November 2027. The service will be delivered through centralized intake, trained mediator sessions, and follow-up support to monitor compliance with agreements.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'eviction-mediation-service-off-topic',
+    kind: 'housing',
+    profile: 'off_topic',
+    question:
+      'What does this eviction mediation service agreement fund, what resolution targets it expects, and how the service will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds an eviction mediation service', weight: 4 },
+      { label: 'Names the case, agreement, or eviction-avoidance targets', weight: 4 },
+      { label: 'Explains that intake, mediation sessions, and follow-up support deliver the service', weight: 2 },
+    ],
+    answer:
+      'Let the tea steep a little shorter if the leaves are very small, because broken leaves release bitterness faster.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'modular-housing-site-setup-bad',
+    kind: 'housing',
+    profile: 'bad',
+    question:
+      'Summarize this modular housing site setup agreement: what is funded, what setup targets it includes, and how the site will be prepared.',
+    criteria: [
+      { label: 'States that the agreement funds modular housing site setup', weight: 4 },
+      { label: 'Names the unit, utility, or occupancy-readiness targets', weight: 4 },
+      { label: 'Explains that servicing, foundations, and site coordination prepare the project', weight: 2 },
+    ],
+    answer:
+      'The agreement supports new housing development. The project will make a site ready for residents and improve local capacity.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'modular-housing-site-setup-mixed',
+    kind: 'housing',
+    profile: 'mixed',
+    question:
+      'Summarize this modular housing site setup agreement: what is funded, what setup targets it includes, and how the site will be prepared.',
+    criteria: [
+      { label: 'States that the agreement funds modular housing site setup', weight: 4 },
+      { label: 'Names the unit, utility, or occupancy-readiness targets', weight: 4 },
+      { label: 'Explains that servicing, foundations, and site coordination prepare the project', weight: 2 },
+    ],
+    answer:
+      'The agreement funds site setup for a modular housing project intended to create new supportive housing capacity quickly. It aims to prepare the land, connect utilities, and make the project ready for occupancy within the agreement term. The site will be prepared through servicing work, foundation installation, and coordination across contractors.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'modular-housing-site-setup-good',
+    kind: 'housing',
+    profile: 'good',
+    question:
+      'Summarize this modular housing site setup agreement: what is funded, what setup targets it includes, and how the site will be prepared.',
+    criteria: [
+      { label: 'States that the agreement funds modular housing site setup', weight: 4 },
+      { label: 'Names the unit, utility, or occupancy-readiness targets', weight: 4 },
+      { label: 'Explains that servicing, foundations, and site coordination prepare the project', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $2.4 million to prepare a former parking lot for a 36-unit modular supportive housing project. It targets full utility servicing for 36 units, completion of pad foundations and access roads, and occupancy readiness before module delivery in March 2027. The site will be prepared through underground servicing, concrete foundation work, and weekly site coordination among the civil contractor, utility providers, and modular builder.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'modular-housing-site-setup-off-topic',
+    kind: 'housing',
+    profile: 'off_topic',
+    question:
+      'Summarize this modular housing site setup agreement: what is funded, what setup targets it includes, and how the site will be prepared.',
+    criteria: [
+      { label: 'States that the agreement funds modular housing site setup', weight: 4 },
+      { label: 'Names the unit, utility, or occupancy-readiness targets', weight: 4 },
+      { label: 'Explains that servicing, foundations, and site coordination prepare the project', weight: 2 },
+    ],
+    answer:
+      'Use the heel of the loaf for breadcrumbs instead of throwing it out, because dry ends blend down especially well.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'womens-shelter-security-upgrades-bad',
+    kind: 'housing',
+    profile: 'bad',
+    question:
+      'Describe this women’s shelter security upgrades agreement by stating what is funded, what safety targets it sets, and how the upgrades will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds security upgrades at a women’s shelter', weight: 4 },
+      { label: 'Names the camera, access-control, or coverage targets', weight: 4 },
+      { label: 'Explains that procurement, installation, and staff training deliver the upgrades', weight: 2 },
+    ],
+    answer:
+      'The agreement supports safety improvements at a shelter. The funding will help make the building more secure for residents and staff.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'womens-shelter-security-upgrades-mixed',
+    kind: 'housing',
+    profile: 'mixed',
+    question:
+      'Describe this women’s shelter security upgrades agreement by stating what is funded, what safety targets it sets, and how the upgrades will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds security upgrades at a women’s shelter', weight: 4 },
+      { label: 'Names the camera, access-control, or coverage targets', weight: 4 },
+      { label: 'Explains that procurement, installation, and staff training deliver the upgrades', weight: 2 },
+    ],
+    answer:
+      'The agreement funds security upgrades at a women’s shelter serving survivors of violence and their children. It aims to strengthen access control, improve monitoring, and make the site safer during the agreement term. The upgrades will be delivered through procurement, installation, and staff training.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'womens-shelter-security-upgrades-good',
+    kind: 'housing',
+    profile: 'good',
+    question:
+      'Describe this women’s shelter security upgrades agreement by stating what is funded, what safety targets it sets, and how the upgrades will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds security upgrades at a women’s shelter', weight: 4 },
+      { label: 'Names the camera, access-control, or coverage targets', weight: 4 },
+      { label: 'Explains that procurement, installation, and staff training deliver the upgrades', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $330,000 to fund security upgrades at a 48-bed women’s shelter and child support wing. It targets 32 new cameras, upgraded access-control points at all exterior doors, and full monitored coverage of entrances, hallways, and parking areas by January 2027. The upgrades will be delivered through security equipment procurement, contractor installation, and staff training on access protocols and monitoring procedures.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'womens-shelter-security-upgrades-off-topic',
+    kind: 'housing',
+    profile: 'off_topic',
+    question:
+      'Describe this women’s shelter security upgrades agreement by stating what is funded, what safety targets it sets, and how the upgrades will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds security upgrades at a women’s shelter', weight: 4 },
+      { label: 'Names the camera, access-control, or coverage targets', weight: 4 },
+      { label: 'Explains that procurement, installation, and staff training deliver the upgrades', weight: 2 },
+    ],
+    answer:
+      'A damp cloth lifts most dust from houseplants better than leaf shine spray, which tends to leave buildup behind.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'sidewalk-snow-melt-pilot-bad',
+    kind: 'infrastructure',
+    profile: 'bad',
+    question:
+      'What does this sidewalk snow-melt pilot agreement fund, what pilot targets it sets, and how the pilot will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds a sidewalk snow-melt pilot', weight: 4 },
+      { label: 'Names the sidewalk, uptime, or winter-access targets', weight: 4 },
+      { label: 'Explains that design, installation, and winter monitoring deliver the pilot', weight: 2 },
+    ],
+    answer:
+      'The agreement supports a winter maintenance project. The work will improve pedestrian access and test a new approach.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'sidewalk-snow-melt-pilot-mixed',
+    kind: 'infrastructure',
+    profile: 'mixed',
+    question:
+      'What does this sidewalk snow-melt pilot agreement fund, what pilot targets it sets, and how the pilot will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds a sidewalk snow-melt pilot', weight: 4 },
+      { label: 'Names the sidewalk, uptime, or winter-access targets', weight: 4 },
+      { label: 'Explains that design, installation, and winter monitoring deliver the pilot', weight: 2 },
+    ],
+    answer:
+      'The agreement funds a sidewalk snow-melt pilot near a hospital and transit interchange with high winter foot traffic. It aims to improve winter access and test whether the system can keep priority sidewalks clearer during storms. The pilot will be delivered through design work, installation, and winter monitoring.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'sidewalk-snow-melt-pilot-good',
+    kind: 'infrastructure',
+    profile: 'good',
+    question:
+      'What does this sidewalk snow-melt pilot agreement fund, what pilot targets it sets, and how the pilot will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds a sidewalk snow-melt pilot', weight: 4 },
+      { label: 'Names the sidewalk, uptime, or winter-access targets', weight: 4 },
+      { label: 'Explains that design, installation, and winter monitoring deliver the pilot', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $780,000 to install a snow-melt pilot on 420 metres of sidewalk near the regional hospital entrance and adjacent transit stops. It targets operational heating coverage across the full pilot segment, reduced ice-related closures during winter storms, and system uptime above 95 percent through the 2026 to 2027 winter season. The pilot will be delivered through detailed electrical and civil design, phased installation in the fall, and winter monitoring of surface conditions and energy use.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'sidewalk-snow-melt-pilot-off-topic',
+    kind: 'infrastructure',
+    profile: 'off_topic',
+    question:
+      'What does this sidewalk snow-melt pilot agreement fund, what pilot targets it sets, and how the pilot will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds a sidewalk snow-melt pilot', weight: 4 },
+      { label: 'Names the sidewalk, uptime, or winter-access targets', weight: 4 },
+      { label: 'Explains that design, installation, and winter monitoring deliver the pilot', weight: 2 },
+    ],
+    answer:
+      'Slice basil at the last minute because bruised leaves darken quickly and lose their sharper aroma.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'harbour-dock-repair-bad',
+    kind: 'infrastructure',
+    profile: 'bad',
+    question:
+      'Summarize this harbour dock repair agreement by saying what is funded, what repair targets it sets, and how the repair work will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds harbour dock repair work', weight: 4 },
+      { label: 'Names the dock, pile, deck, or reopening targets', weight: 4 },
+      { label: 'Explains that marine engineering, contractor repair, and inspection deliver the work', weight: 2 },
+    ],
+    answer:
+      'The agreement supports repairs at a waterfront facility. The project will improve safety and keep the site usable.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'harbour-dock-repair-mixed',
+    kind: 'infrastructure',
+    profile: 'mixed',
+    question:
+      'Summarize this harbour dock repair agreement by saying what is funded, what repair targets it sets, and how the repair work will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds harbour dock repair work', weight: 4 },
+      { label: 'Names the dock, pile, deck, or reopening targets', weight: 4 },
+      { label: 'Explains that marine engineering, contractor repair, and inspection deliver the work', weight: 2 },
+    ],
+    answer:
+      'The agreement funds repair work at a damaged harbour dock used by fishing boats and ferry service. It aims to restore safe operation and complete major structural repairs during the marine construction window. The work will be delivered through marine engineering, contractor repair, and inspection.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'harbour-dock-repair-good',
+    kind: 'infrastructure',
+    profile: 'good',
+    question:
+      'Summarize this harbour dock repair agreement by saying what is funded, what repair targets it sets, and how the repair work will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds harbour dock repair work', weight: 4 },
+      { label: 'Names the dock, pile, deck, or reopening targets', weight: 4 },
+      { label: 'Explains that marine engineering, contractor repair, and inspection deliver the work', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $1.6 million to repair the main harbour dock at Bay Point and restore safe berthing for commercial and passenger vessels. It targets replacement of 22 deteriorated piles, rebuilding of 180 metres of deck surface, and full dock reopening before the 2027 spring season. The repair work will be delivered through marine engineering design, contractor repair staged around tides and vessel access, and structural inspection before reopening.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'harbour-dock-repair-off-topic',
+    kind: 'infrastructure',
+    profile: 'off_topic',
+    question:
+      'Summarize this harbour dock repair agreement by saying what is funded, what repair targets it sets, and how the repair work will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds harbour dock repair work', weight: 4 },
+      { label: 'Names the dock, pile, deck, or reopening targets', weight: 4 },
+      { label: 'Explains that marine engineering, contractor repair, and inspection deliver the work', weight: 2 },
+    ],
+    answer:
+      'Add the fragile ornaments last when packing the box, and use clothes around them before reaching for bubble wrap.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'pedestrian-signal-retiming-bad',
+    kind: 'infrastructure',
+    profile: 'bad',
+    question:
+      'Describe this pedestrian signal retiming agreement by identifying what is funded, what crossing targets it sets, and how the retiming project will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds pedestrian signal retiming', weight: 4 },
+      { label: 'Names the intersection, crossing-time, or accessibility targets', weight: 4 },
+      { label: 'Explains that traffic analysis, signal programming, and field testing deliver the project', weight: 2 },
+    ],
+    answer:
+      'The agreement supports intersection improvements. The project will improve pedestrian safety and make crossings work better.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'pedestrian-signal-retiming-mixed',
+    kind: 'infrastructure',
+    profile: 'mixed',
+    question:
+      'Describe this pedestrian signal retiming agreement by identifying what is funded, what crossing targets it sets, and how the retiming project will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds pedestrian signal retiming', weight: 4 },
+      { label: 'Names the intersection, crossing-time, or accessibility targets', weight: 4 },
+      { label: 'Explains that traffic analysis, signal programming, and field testing deliver the project', weight: 2 },
+    ],
+    answer:
+      'The agreement funds pedestrian signal retiming at busy downtown intersections with older crossing timings. It aims to improve walk intervals and make crossings safer and easier to use during the project period. The work will be delivered through traffic analysis, signal programming, and field testing.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'pedestrian-signal-retiming-good',
+    kind: 'infrastructure',
+    profile: 'good',
+    question:
+      'Describe this pedestrian signal retiming agreement by identifying what is funded, what crossing targets it sets, and how the retiming project will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds pedestrian signal retiming', weight: 4 },
+      { label: 'Names the intersection, crossing-time, or accessibility targets', weight: 4 },
+      { label: 'Explains that traffic analysis, signal programming, and field testing deliver the project', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $250,000 to retime pedestrian signals at 18 downtown and school-zone intersections. It targets longer crossing intervals at all 18 sites, accessible walk timing aligned with current standards, and completion of field adjustments before the start of the 2026 school year. The project will be delivered through traffic analysis, signal controller programming, and on-street field testing with municipal traffic operations staff.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'pedestrian-signal-retiming-off-topic',
+    kind: 'infrastructure',
+    profile: 'off_topic',
+    question:
+      'Describe this pedestrian signal retiming agreement by identifying what is funded, what crossing targets it sets, and how the retiming project will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds pedestrian signal retiming', weight: 4 },
+      { label: 'Names the intersection, crossing-time, or accessibility targets', weight: 4 },
+      { label: 'Explains that traffic analysis, signal programming, and field testing deliver the project', weight: 2 },
+    ],
+    answer:
+      'The dough should rest before rolling so the gluten relaxes and the pastry stops shrinking back under the pin.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'library-maker-space-bad',
+    kind: 'community',
+    profile: 'bad',
+    question:
+      'What does this library maker space agreement fund, what participation targets it sets, and how the maker space will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds a library maker space', weight: 4 },
+      { label: 'Names the participant, session, or project-completion targets', weight: 4 },
+      { label: 'Explains that equipment, facilitation, and library scheduling deliver the maker space', weight: 2 },
+    ],
+    answer:
+      'The agreement supports learning opportunities at a public library. The project will improve access to hands-on activities and community programming.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'library-maker-space-mixed',
+    kind: 'community',
+    profile: 'mixed',
+    question:
+      'What does this library maker space agreement fund, what participation targets it sets, and how the maker space will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds a library maker space', weight: 4 },
+      { label: 'Names the participant, session, or project-completion targets', weight: 4 },
+      { label: 'Explains that equipment, facilitation, and library scheduling deliver the maker space', weight: 2 },
+    ],
+    answer:
+      'The agreement funds a library maker space where youth and adults can access tools for design, fabrication, and creative technology projects. It aims to increase participation and provide more structured learning sessions during the agreement period. The maker space will be delivered through equipment purchases, facilitation, and library scheduling.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'library-maker-space-good',
+    kind: 'community',
+    profile: 'good',
+    question:
+      'What does this library maker space agreement fund, what participation targets it sets, and how the maker space will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds a library maker space', weight: 4 },
+      { label: 'Names the participant, session, or project-completion targets', weight: 4 },
+      { label: 'Explains that equipment, facilitation, and library scheduling deliver the maker space', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $295,000 to establish a library maker space focused on digital fabrication, coding, and electronics. It targets 340 participants, 110 facilitated sessions, and 220 completed participant projects by February 2027. The maker space will be delivered through purchase of fabrication equipment, staff and volunteer facilitation, and scheduled access blocks operated through the central library branch.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'library-maker-space-off-topic',
+    kind: 'community',
+    profile: 'off_topic',
+    question:
+      'What does this library maker space agreement fund, what participation targets it sets, and how the maker space will be delivered?',
+    criteria: [
+      { label: 'States that the agreement funds a library maker space', weight: 4 },
+      { label: 'Names the participant, session, or project-completion targets', weight: 4 },
+      { label: 'Explains that equipment, facilitation, and library scheduling deliver the maker space', weight: 2 },
+    ],
+    answer:
+      'Turn the envelope so the flap opens away from you before using the letter opener; it helps avoid tearing the page inside.',
+    referenceScores: [0, 0, 0],
+  },
+  {
+    id: 'newcomer-language-cafe-bad',
+    kind: 'community',
+    profile: 'bad',
+    question:
+      'Summarize this newcomer language cafe agreement by stating what is funded, what participation targets it includes, and how the program will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds a newcomer language cafe', weight: 4 },
+      { label: 'Names the participant, session, or language-practice targets', weight: 4 },
+      { label: 'Explains that facilitators, volunteer conversation tables, and referrals deliver the program', weight: 2 },
+    ],
+    answer:
+      'The agreement supports services for newcomers. The program will improve social connection and help people build confidence in the community.',
+    referenceScores: [0.65, 0.08, 0.12],
+  },
+  {
+    id: 'newcomer-language-cafe-mixed',
+    kind: 'community',
+    profile: 'mixed',
+    question:
+      'Summarize this newcomer language cafe agreement by stating what is funded, what participation targets it includes, and how the program will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds a newcomer language cafe', weight: 4 },
+      { label: 'Names the participant, session, or language-practice targets', weight: 4 },
+      { label: 'Explains that facilitators, volunteer conversation tables, and referrals deliver the program', weight: 2 },
+    ],
+    answer:
+      'The agreement funds a newcomer language cafe where recent arrivals can practice English and connect to settlement supports. It aims to increase participation and provide regular conversation practice during the agreement period. The program will be delivered through facilitators, volunteer conversation tables, and referrals.',
+    referenceScores: [0.9, 0.43, 0.74],
+  },
+  {
+    id: 'newcomer-language-cafe-good',
+    kind: 'community',
+    profile: 'good',
+    question:
+      'Summarize this newcomer language cafe agreement by stating what is funded, what participation targets it includes, and how the program will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds a newcomer language cafe', weight: 4 },
+      { label: 'Names the participant, session, or language-practice targets', weight: 4 },
+      { label: 'Explains that facilitators, volunteer conversation tables, and referrals deliver the program', weight: 2 },
+    ],
+    answer:
+      'This agreement provides $165,000 to run a newcomer language cafe for recent immigrants and refugees who need informal English practice. It targets 280 participants, 150 conversation sessions, and 190 participants completing at least ten hours of guided language practice by June 2027. The program will be delivered through trained facilitators, volunteer-led conversation tables, and settlement referrals for participants needing language classes or employment support.',
+    referenceScores: [0.98, 0.96, 0.95],
+  },
+  {
+    id: 'newcomer-language-cafe-off-topic',
+    kind: 'community',
+    profile: 'off_topic',
+    question:
+      'Summarize this newcomer language cafe agreement by stating what is funded, what participation targets it includes, and how the program will be delivered.',
+    criteria: [
+      { label: 'States that the agreement funds a newcomer language cafe', weight: 4 },
+      { label: 'Names the participant, session, or language-practice targets', weight: 4 },
+      { label: 'Explains that facilitators, volunteer conversation tables, and referrals deliver the program', weight: 2 },
+    ],
+    answer:
+      'A slightly wetter sponge picks up crumbs better than a dry one, but it should never be dripping on the counter.',
+    referenceScores: [0, 0, 0],
+  },
 ]
 
-if (BENCHMARK_CASES.length !== 100) {
-  throw new Error(`Expected 100 benchmark cases, received ${BENCHMARK_CASES.length}.`)
+if (BENCHMARK_CASES.length !== 300) {
+  throw new Error(`Expected 300 benchmark cases, received ${BENCHMARK_CASES.length}.`)
 }

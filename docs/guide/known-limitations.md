@@ -6,7 +6,7 @@ These observations are based on the current default setup:
 
 - model: `Xenova/nli-deberta-v3-xsmall`
 - scorer: question-aware zero-shot NLI with calibration, weak-answer gating, and task-type structure checks
-- benchmark: the handwritten English agreement-summary corpus in this repository
+- benchmark: the handwritten 300-case English agreement-summary corpus in this repository
 
 ## High-Level Limitations
 
@@ -64,7 +64,20 @@ Typical pattern:
 - it gives little concrete substance on targets or delivery
 - it still receives a middling score
 
-This is now the main residual error pattern in the handwritten 100-case benchmark.
+This is now the main residual error pattern in the handwritten 300-case benchmark.
+
+### Some Mixed Answers Now Under-Score
+
+The current scorer is stricter than before about criteria that ask for concrete targets or delivery methods.
+
+Typical pattern:
+
+- the answer is on-topic
+- it names target categories or delivery categories
+- it does not include concrete counts, dates, or specific operational detail
+- it can land lower than a human would score it
+
+This is an intentional tradeoff against the earlier tendency to over-score vague, plausible answers.
 
 ### Adaptive Refinement Is Intentionally Conservative
 

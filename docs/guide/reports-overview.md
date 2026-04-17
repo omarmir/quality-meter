@@ -6,8 +6,8 @@ If you only want the current state, the main answer is:
 
 - the scorer is in decent shape for product-style feedback
 - the current default stack now includes an explicit topic-alignment gate
-- the current benchmark evidence comes from a handwritten 100-case funding-and-agreement corpus
-- the biggest remaining weakness is still vague on-topic answers that mention the program purpose but stay light on concrete targets
+- the current benchmark evidence comes from a handwritten 300-case agreement-summary corpus
+- the biggest remaining weakness is still vague on-topic answers that mention the program purpose but stay light on concrete targets or delivery detail
 - wording and rubric quality still matter a lot
 
 ## Current State
@@ -18,7 +18,7 @@ The shipped setup is:
 - current low-latency default: task-type structure checks plus topic-alignment gating
 - adaptive refinement: conservative low-stop only
 
-The current benchmark is a handwritten 100-case corpus built around agreement-summary tasks across workforce, health, housing, infrastructure, and community domains. Each scenario includes `bad`, `mixed`, `good`, and `off_topic` answers written directly into the repo.
+The current benchmark is a handwritten 300-case corpus built around agreement-summary tasks across workforce, health, housing, infrastructure, and community domains. Each scenario includes `bad`, `mixed`, `good`, and `off_topic` answers written directly into the repo.
 
 ## Headline Metrics
 
@@ -26,16 +26,16 @@ The current benchmark is a handwritten 100-case corpus built around agreement-su
 
 | Metric | Value |
 | --- | ---: |
-| Cases | 100 |
-| Runtime calibrated MAE | 4.8 |
-| Runtime calibrated median | 2.8 |
-| Within 10 points | 89/100 |
-| Within 20 points | 99/100 |
+| Cases | 300 |
+| Runtime calibrated MAE | 4.3 |
+| Runtime calibrated median | 2.7 |
+| Within 10 points | 270/300 |
+| Within 20 points | 293/300 |
 
 ## What Is Working Well
 
 - Off-topic answers are now handled much more reliably on this corpus than they were before the topic-alignment gate.
-- `mixed` answers are close to target on average after recalibration.
+- `good` answers are now very close to target on average after recalibration.
 - The `xsmall` baseline remains a good fit for this local scoring workflow because the benchmark gains came from scoring logic and calibration, not from switching to a larger model.
 
 ## Main Weakness
@@ -54,7 +54,7 @@ That makes them easy to over-score unless the scorer has strong enough signals f
 ## What The Tuning Work Changed
 
 - Topic-alignment gating now suppresses obviously off-domain answers before they can surface as strong fits.
-- Funding-summary heuristics now separate vague purpose-only answers from answers that actually state targets and delivery methods.
+- A domain-agnostic criterion-grounding layer now caps vague answers when a rubric asks for concrete targets, outputs, or delivery details and those details are missing.
 - The handwritten benchmark also produced a new calibration curve fitted to this corpus instead of the older synthetic family generator.
 
 ## What Adaptive Refinement Really Does

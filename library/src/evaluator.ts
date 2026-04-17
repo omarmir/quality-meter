@@ -200,44 +200,67 @@ export async function scoreCriteriaWithClassifier(
 function estimateCriterionSpecificityCap(question: string, criterion: string, response: string) {
   const promptText = `${question} ${criterion}`.toLowerCase()
   const criterionText = criterion.toLowerCase()
+  const isMethodCriterion =
+    /\b(explains?|describes?|outlines?|shows?)\b/.test(criterionText) &&
+    /\b(deliver(?:ed|y)?|implemented?|run|operate[sd]?|carried out|completed?|through|via|using|with)\b/.test(criterionText)
 
-  if (!/\b(funding|funded|grant|agreement|recipient)\b/.test(promptText)) {
-    return 1
+  if (
+    /\b(targets?|outcomes?|deliverables?|outputs?|results?|metrics?|milestones?|measurable|specific|numbers?|amounts?|dates?|counts?|participants?|clients?|households?|learners?|placements?|completions?|sessions?|visits?|units?|sites?)\b/.test(
+      criterionText,
+    )
+  ) {
+    return estimateTargetSpecificity(criterion, response)
   }
 
-  if (/\b(targets?|outcomes?|deliverables?|measurable|specific)\b/.test(criterionText)) {
-    return estimateFundingTargetSpecificity(criterion, response)
+  if (
+    isMethodCriterion ||
+    /\b(approach|activities|delivery method|delivery|implementation|method|steps?|process|deliver(?:ed|y)? (?:the )?(?:work|program|service|project|initiative|support|training|upgrades?)|how .*deliver)\b/.test(
+      criterionText,
+    )
+  ) {
+    return estimateMethodSpecificity(criterion, response)
   }
 
-  if (/\b(approach|activities|delivery method|delivery|implementation|deliver(?:ed|y)? the work|how .*deliver)\b/.test(criterionText)) {
-    return estimateFundingDeliverySpecificity(criterion, response)
+  if (
+    /\b(purpose|what .*for|what is being funded|service|program|intervention|initiative|goal|focus|states?)\b/.test(
+      criterionText,
+    ) &&
+    /\b(states?|describes?|summarizes?|identifies?|names?)\b/.test(criterionText)
+  ) {
+    return estimatePurposeSpecificity(criterion, response)
   }
 
-  if (/\b(purpose|funding is for|what is being funded|funded activity|supports|service|program|funds)\b/.test(criterionText)) {
-    return estimateFundingPurposeSpecificity(response)
+  if (/\b(question directly|directly answers?)\b/.test(criterionText) && promptText.includes('what')) {
+    return estimatePurposeSpecificity(criterion, response)
   }
 
   return 1
 }
 
-function estimateFundingPurposeSpecificity(response: string) {
+function estimatePurposeSpecificity(criterion: string, response: string) {
   const normalized = response.toLowerCase()
+  const criterionOverlap = countCriterionContentOverlap(criterion, response)
 
-  if (!/\b(funding|funded|agreement|grant|program)\b/.test(normalized)) {
-    return 0.25
-  }
-
-  if (
-    /\b(expand|launch|provide|build|upgrade|restore|deliver|support|operate)\b/.test(normalized) &&
-    /\b(training|placements|services|support|program|initiative|clinic|housing|meals|workshops|retrofits|visits|routes|classes)\b/.test(normalized)
-  ) {
+  if (criterionOverlap >= 3) {
     return 1
   }
 
-  return 0.75
+  if (criterionOverlap >= 2) {
+    return 0.75
+  }
+
+  if (
+    /\b(provides?|supports?|funds?|expands?|launches?|builds?|delivers?|offers?|operates?|restores?|upgrades?)\b/.test(
+      normalized,
+    )
+  ) {
+    return 0.4
+  }
+
+  return 0.25
 }
 
-function estimateFundingTargetSpecificity(criterion: string, response: string) {
+function estimateTargetSpecificity(criterion: string, response: string) {
   const normalized = response.toLowerCase()
   const numericMatches = normalized.match(/\b\d[\d,]*(?:\.\d+)?\b/g) ?? []
   const criterionOverlap = countCriterionContentOverlap(criterion, response)
@@ -267,21 +290,21 @@ function estimateFundingTargetSpecificity(criterion: string, response: string) {
   ])
 
   if (targetCues >= 3 || criterionOverlap >= 2) {
-    return 0.58
+    return 0.5
   }
 
   if (targetCues >= 1 || criterionOverlap >= 1) {
-    return 0.42
+    return 0.35
   }
 
-  if (/\b(improve results|local needs|better outcomes|respond to need)\b/.test(normalized)) {
-    return 0.14
+  if (/\b(improve results|local needs|better outcomes|respond to need|more people|increase access|improve service)\b/.test(normalized)) {
+    return 0.08
   }
 
   return 0.08
 }
 
-function estimateFundingDeliverySpecificity(criterion: string, response: string) {
+function estimateMethodSpecificity(criterion: string, response: string) {
   const normalized = response.toLowerCase()
   const criterionOverlap = countCriterionContentOverlap(criterion, response)
   const deliveryCues = countCueMatches(normalized, [
@@ -304,6 +327,15 @@ function estimateFundingDeliverySpecificity(criterion: string, response: string)
     'classes',
     'meals',
     'routes',
+    'schedule',
+    'scheduled',
+    'facilitators',
+    'staff support',
+    'inspection',
+    'triage',
+    'assessment',
+    'assessments',
+    'rotation',
   ])
 
   if (deliveryCues >= 4 || criterionOverlap >= 3) {
@@ -315,10 +347,10 @@ function estimateFundingDeliverySpecificity(criterion: string, response: string)
   }
 
   if (deliveryCues >= 1 || criterionOverlap >= 1) {
-    return 0.48
+    return 0.32
   }
 
-  return 0.12
+  return 0.08
 }
 
 function countCueMatches(text: string, cues: string[]) {
@@ -343,15 +375,29 @@ function extractCriterionContentTokens(text: string) {
     'deliverables',
     'explains',
     'expected',
+    'focus',
     'funded',
     'funding',
     'general',
+    'goal',
+    'identifies',
+    'initiative',
     'method',
     'names',
+    'number',
+    'numbers',
     'outcomes',
     'planned',
+    'process',
+    'program',
+    'purpose',
+    'question',
+    'service',
+    'specificity',
     'specific',
     'states',
+    'step',
+    'steps',
     'targets',
     'that',
     'the',
