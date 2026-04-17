@@ -101,6 +101,7 @@ type QualityScoreResult = {
   deterministicConstraintPresence: number
   deterministicConstraintRespect: number
   structuralScore: number
+  topicAlignment: number
   taskType: QualityTaskType
   overallRaw: number
   weakAnswerGate: number
@@ -121,6 +122,7 @@ Important fields:
 - `weightedCriteria`: the resolved input criteria with explicit weights
 - `breakdown`: per-criterion scores plus weight metadata
 - `answerSupport`: how strongly the response appears to actually answer the question
+- `topicAlignment`: how strongly the answer still appears to be about the same subject as the question and rubric
 - `weakAnswerGate`: suppression factor for weak or generic answers
 - `taskType`: inferred task class used by low-latency checks
 

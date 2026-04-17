@@ -21,17 +21,25 @@ let debounceTimer: ReturnType<typeof setTimeout> | null = null
 const localModelBasePath = `${import.meta.env.BASE_URL}models/`
 
 const question = ref(
-  "How can I improve my home Wi-Fi speed without replacing all my equipment?",
+  "What does this funding agreement description say the funding is for, what targets it is expected to achieve, and how those targets will be delivered?",
 )
 const answer = ref(
-  "Start with the router placement before buying new hardware. Move it into an open, central spot away from thick walls and microwaves, then restart both the router and modem. After that, split 2.4 GHz and 5 GHz networks if your router supports it so nearby devices can use the faster band. For example, laptops and streaming boxes usually benefit from 5 GHz when they are in the same room or one room away. Finally, update the router firmware and test speeds again before deciding whether you need a stronger access point.",
+  "This agreement provides $750,000 to expand youth employment support for unemployed people ages 18 to 24 in three rural communities. The funded program targets 300 participants, 180 completed training plans, and 120 job placements by March 31, 2027. The organization will achieve this through weekly job-readiness workshops, one-on-one case management, employer partnerships for placements, and monthly progress reviews against enrolment and placement targets.",
 )
 const criteria = ref<CriterionRow[]>([
-  { id: "criterion-1", label: "Answers the question directly", weight: 4 },
-  { id: "criterion-2", label: "Provides concrete, practical steps", weight: 4 },
+  {
+    id: "criterion-1",
+    label: "States the concrete purpose of the funding, not just a general description of the agreement",
+    weight: 4,
+  },
+  {
+    id: "criterion-2",
+    label: "Names the specific targets, outcomes, or deliverables the funding is meant to achieve",
+    weight: 4,
+  },
   {
     id: "criterion-3",
-    label: "Uses an example to make the advice easier to apply",
+    label: "Explains the planned approach, activities, or delivery method for achieving those targets",
     weight: 2,
   },
 ])
@@ -695,6 +703,10 @@ function criterionTone(percent: number) {
             <div class="flex justify-between gap-4">
               <dt>Weak-answer gate</dt>
               <dd>{{ Math.round(result.weakAnswerGate * 100) }}%</dd>
+            </div>
+            <div class="flex justify-between gap-4">
+              <dt>Topic alignment</dt>
+              <dd>{{ Math.round(result.topicAlignment * 100) }}%</dd>
             </div>
             <div v-if="scoreMode" class="flex justify-between gap-4">
               <dt>Current pass</dt>

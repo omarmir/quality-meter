@@ -4,6 +4,7 @@ import { computeWeightedCriterionAverage, resolveQualityCriteria } from './crite
 import { computeCalibratedOverallScore, resolveQualityScorerConfig, estimateQualityContextBudget } from './defaults'
 import { scoreCriteriaWithClassifier, type ZeroShotClassifier } from './evaluator'
 import { resolveQualityScorePresentation } from './quality-presentation'
+import { computeTopicAlignment } from './scoring'
 import type {
   QualityScoreResult,
   QualityScorer,
@@ -181,6 +182,11 @@ function formatQualityScoreResult(
   },
 ): QualityScoreResult {
   const totalWeight = criteria.reduce((sum, criterion) => sum + criterion.weight, 0)
+  const topicAlignment = computeTopicAlignment(
+    context.question,
+    context.response,
+    criteria.map((criterion) => criterion.label),
+  )
   const breakdown = criteria.map((criterion, index) => {
     const raw = scores[index] ?? 0
 
@@ -201,6 +207,7 @@ function formatQualityScoreResult(
       answerSupport: meta.answerSupport,
       criterionScores: scores,
       structuralScore: meta.structuralScore,
+      topicAlignment,
     },
     context.config,
   )
@@ -219,6 +226,7 @@ function formatQualityScoreResult(
     deterministicConstraintPresence: meta.deterministicConstraintPresence,
     deterministicConstraintRespect: meta.deterministicConstraintRespect,
     structuralScore: meta.structuralScore,
+    topicAlignment,
     taskType: meta.taskType,
     overallRaw: overall.overallRaw,
     weakAnswerGate: overall.weakAnswerGate,

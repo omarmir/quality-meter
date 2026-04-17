@@ -20,7 +20,7 @@ At a high level, the package gives you:
 - fast and full scoring modes
 - adaptive refinement decisions
 - context-budget estimation
-- task-aware structure checks and weak-answer gating
+- task-aware structure checks, topic-alignment checks, and weak-answer gating
 
 The main package exports include:
 
@@ -41,12 +41,12 @@ You provide:
 
 ```ts
 {
-  question: 'How can I improve my home Wi-Fi speed without replacing all my equipment?',
-  response: 'Move the router to a central spot and retest before buying hardware.',
+  question: 'What does this funding agreement description say the funding is for, what targets it is expected to achieve, and how those targets will be delivered?',
+  response: 'This agreement provides $750,000 to expand youth employment support for unemployed people ages 18 to 24 in three rural communities. The funded program targets 300 participants, 180 completed training plans, and 120 job placements by March 31, 2027. The organization will achieve this through weekly job-readiness workshops, one-on-one case management, employer partnerships for placements, and monthly progress reviews against enrolment and placement targets.',
   criteria: [
-    { label: 'Answers the question directly', weight: 4 },
-    { label: 'Provides concrete, practical steps', weight: 4 },
-    { label: 'Avoids recommending replacement hardware', weight: 2 }
+    { label: 'States the concrete purpose of the funding, not just a general description of the agreement', weight: 4 },
+    { label: 'Names the specific targets, outcomes, or deliverables the funding is meant to achieve', weight: 4 },
+    { label: 'Explains the planned approach, activities, or delivery method for achieving those targets', weight: 2 }
   ]
 }
 ```
@@ -112,6 +112,7 @@ The library is not just checking whether the response shares words with a criter
 - Prompt ensemble: multiple generic phrasings are used so one brittle wording matters less.
 - Chunked evidence search: the scorer checks both the whole response and smaller evidence chunks.
 - Answer-validity gate: weak or incoherent answers can have their scores suppressed.
+- Topic-alignment gate: clearly off-domain answers can be pushed down before they surface as strong fits.
 - Constraint gate: responses can be penalized when they appear to ignore explicit boundaries in the question.
 - Uncertainty shrinkage: disagreement across prompt variants reduces confidence.
 - Monotonic calibration: criterion and overall scores are calibrated for display.

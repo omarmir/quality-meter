@@ -9,6 +9,7 @@ import {
   TOKEN_BUFFER,
   buildEvaluationText,
   clampScore,
+  computeTopicAlignmentGate,
   computeTaskStructureGate,
   computeWeakAnswerGate,
   createCriterionHypothesisEnsemble,
@@ -142,6 +143,7 @@ export function computeCalibratedOverallScore(
     answerSupport: number
     criterionScores: number[]
     structuralScore?: number
+    topicAlignment?: number
   },
   config: QualityScorerConfigInput = {},
 ) {
@@ -156,14 +158,19 @@ export function computeCalibratedOverallScore(
   const taskStructureGate = resolvedConfig.lowLatency.useTaskStructureChecks
     ? computeTaskStructureGate(input.structuralScore ?? 1, input.answerSupport, input.criterionScores)
     : 1
-  const overallAdjustedRaw = clampScore(overallRaw * weakAnswerGate * taskStructureGate)
+  const topicAlignmentGate = computeTopicAlignmentGate(
+    input.topicAlignment ?? 1,
+    input.answerSupport,
+    input.criterionScores,
+  )
+  const overallAdjustedRaw = clampScore(overallRaw * weakAnswerGate * taskStructureGate * topicAlignmentGate)
   const overallCalibrated = resolvedConfig.overallCalibration
     ? applyCalibrationCurve(overallAdjustedRaw, resolvedConfig.overallCalibration)
     : overallAdjustedRaw
 
   return {
     overallRaw,
-    weakAnswerGate: clampScore(weakAnswerGate * taskStructureGate),
+    weakAnswerGate: clampScore(weakAnswerGate * taskStructureGate * topicAlignmentGate),
     overallAdjustedRaw,
     overallCalibrated,
     overallPercent: Math.round(overallCalibrated * 100),

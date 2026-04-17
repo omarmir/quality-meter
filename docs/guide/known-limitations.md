@@ -6,7 +6,7 @@ These observations are based on the current default setup:
 
 - model: `Xenova/nli-deberta-v3-xsmall`
 - scorer: question-aware zero-shot NLI with calibration, weak-answer gating, and task-type structure checks
-- benchmark: the English benchmark corpus in this repository
+- benchmark: the handwritten English agreement-summary corpus in this repository
 
 ## High-Level Limitations
 
@@ -55,16 +55,16 @@ The default benchmark still shows under-scoring on many `strong` answers.
 
 ### Generic Topical Answers Can Still Be Over-Scored
 
-The scorer is better than it used to be, but this failure mode still exists.
+The scorer is better than it used to be, especially for clearly off-topic answers, but this failure mode still exists.
 
 Typical pattern:
 
-- the answer repeats the topic
+- the answer repeats the program purpose
 - it sounds plausible
-- it gives little concrete substance
+- it gives little concrete substance on targets or delivery
 - it still receives a middling score
 
-This is the main reason the hard-negative benchmark still has meaningful error.
+This is now the main residual error pattern in the handwritten 100-case benchmark.
 
 ### Adaptive Refinement Is Intentionally Conservative
 

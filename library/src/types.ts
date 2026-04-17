@@ -124,6 +124,7 @@ export type QualityScoreResult = {
   deterministicConstraintPresence: number
   deterministicConstraintRespect: number
   structuralScore: number
+  topicAlignment: number
   taskType: QualityTaskType
   overallRaw: number
   weakAnswerGate: number

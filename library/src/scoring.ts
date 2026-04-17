@@ -55,6 +55,64 @@ const CONTENT_STOP_WORDS = new Set([
   'you',
   'your',
 ])
+const TOPIC_STOP_WORDS = new Set([
+  ...CONTENT_STOP_WORDS,
+  'about',
+  'activity',
+  'activities',
+  'approach',
+  'clear',
+  'concrete',
+  'deliver',
+  'deliverables',
+  'delivered',
+  'delivery',
+  'describe',
+  'description',
+  'detail',
+  'details',
+  'directly',
+  'enough',
+  'expected',
+  'explain',
+  'explains',
+  'for',
+  'general',
+  'helpful',
+  'implementation',
+  'include',
+  'includes',
+  'method',
+  'methods',
+  'name',
+  'named',
+  'names',
+  'outcome',
+  'outcomes',
+  'overview',
+  'planned',
+  'plan',
+  'program',
+  'purpose',
+  'question',
+  'recipient',
+  'response',
+  'result',
+  'results',
+  'say',
+  'says',
+  'specific',
+  'state',
+  'stated',
+  'states',
+  'support',
+  'summary',
+  'target',
+  'targets',
+  'through',
+  'useful',
+  'work',
+])
 const LINKING_VERBS = new Set(['is', 'are', 'was', 'were'])
 const VERB_STARTERS = new Set([
   'answer',
@@ -383,6 +441,45 @@ export function computeWeakAnswerGate(
   return clampScore(1 - 0.3 * penalty)
 }
 
+export function computeTopicAlignment(question: string, response: string, criteria: string[] = []) {
+  const promptTopicTokens = extractTopicTokens([question, ...criteria].join(' '))
+
+  if (promptTopicTokens.length < 2) {
+    return 1
+  }
+
+  const responseTopicTokens = new Set(extractTopicTokens(response))
+
+  if (responseTopicTokens.size === 0) {
+    return 0
+  }
+
+  const matchedTopicTokens = promptTopicTokens.filter((token) => responseTopicTokens.has(token))
+  const denominator = Math.max(2, Math.min(4, promptTopicTokens.length))
+
+  return clampScore(matchedTopicTokens.length / denominator)
+}
+
+export function computeTopicAlignmentGate(
+  topicAlignment: number,
+  answerSupport: number,
+  criterionScores: number[],
+) {
+  if (criterionScores.length === 0) {
+    return 1
+  }
+
+  const meanCriterion = mean(criterionScores)
+  const medianCriterion = median(criterionScores)
+  const scorePressure = clampScore(meanCriterion * 0.6 + medianCriterion * 0.4)
+  const supportPressure = smoothstep(0.3, 0.85, answerSupport)
+  const offTopicRisk = 1 - smoothstep(0.08, 0.28, topicAlignment)
+  const pressure = Math.max(scorePressure, supportPressure)
+  const penalty = clampScore(offTopicRisk * pressure)
+
+  return clampScore(1 - 0.92 * penalty)
+}
+
 export function computeTaskStructureGate(structuralScore: number, answerSupport: number, criterionScores: number[]) {
   if (criterionScores.length === 0) {
     return 1
@@ -569,6 +666,28 @@ function computeNovelContentRatio(question: string, response: string) {
   return novelCount / responseTokenSet.size
 }
 
+function extractTopicTokens(text: string) {
+  const rawTokens = text.toLowerCase().match(/[a-z0-9']+/g) ?? []
+  const seen = new Set<string>()
+  const topicTokens: string[] = []
+
+  for (const token of rawTokens) {
+    if (token.length <= 2 || TOPIC_STOP_WORDS.has(token)) {
+      continue
+    }
+
+    const stemmed = stemTopicToken(token)
+    if (stemmed.length <= 2 || TOPIC_STOP_WORDS.has(stemmed) || seen.has(stemmed)) {
+      continue
+    }
+
+    seen.add(stemmed)
+    topicTokens.push(stemmed)
+  }
+
+  return topicTokens
+}
+
 function smoothstep(min: number, max: number, value: number) {
   if (max <= min) {
     return value >= max ? 1 : 0
@@ -620,4 +739,32 @@ function contentTokens(text: string) {
   return (text.toLowerCase().match(/[a-z0-9']+/g) ?? []).filter(
     (token) => token.length > 2 && !CONTENT_STOP_WORDS.has(token),
   )
+}
+
+function stemTopicToken(token: string) {
+  if (token.endsWith('ies') && token.length > 4) {
+    return `${token.slice(0, -3)}y`
+  }
+
+  if (token.endsWith('ing') && token.length > 5) {
+    return token.slice(0, -3)
+  }
+
+  if (token.endsWith('ed') && token.length > 4) {
+    return token.slice(0, -2)
+  }
+
+  if (token.endsWith('ment') && token.length > 6) {
+    return token.slice(0, -4)
+  }
+
+  if (token.endsWith('tion') && token.length > 6) {
+    return token.slice(0, -4)
+  }
+
+  if (token.endsWith('s') && token.length > 4 && !token.endsWith('ss')) {
+    return token.slice(0, -1)
+  }
+
+  return token
 }

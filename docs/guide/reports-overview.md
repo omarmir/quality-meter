@@ -5,8 +5,9 @@ This page is the short version of the benchmark and tuning story.
 If you only want the current state, the main answer is:
 
 - the scorer is in decent shape for product-style feedback
-- the current default model choice is justified by measured results
-- the biggest remaining weakness is generic, topical weak answers
+- the current default stack now includes an explicit topic-alignment gate
+- the current benchmark evidence comes from a handwritten 100-case funding-and-agreement corpus
+- the biggest remaining weakness is still vague on-topic answers that mention the program purpose but stay light on concrete targets
 - wording and rubric quality still matter a lot
 
 ## Current State
@@ -14,48 +15,32 @@ If you only want the current state, the main answer is:
 The shipped setup is:
 
 - model: `Xenova/nli-deberta-v3-xsmall`
-- current low-latency default: task-type structure checks enabled
+- current low-latency default: task-type structure checks plus topic-alignment gating
 - adaptive refinement: conservative low-stop only
 
-That stack was chosen because it gave the best overall balance across:
-
-- main benchmark quality
-- hard-negative resistance
-- model size
-- runtime cost
+The current benchmark is a handwritten 100-case corpus built around agreement-summary tasks across workforce, health, housing, infrastructure, and community domains. Each scenario includes `bad`, `mixed`, `good`, and `off_topic` answers written directly into the repo.
 
 ## Headline Metrics
 
-### Main benchmark
+### Handwritten Benchmark
 
 | Metric | Value |
 | --- | ---: |
 | Cases | 100 |
-| Runtime calibrated MAE | 7.4 |
-| Runtime calibrated median | 6.3 |
-| Within 10 points | 67/100 |
-| Within 20 points | 96/100 |
-
-### Hard-negative benchmark
-
-| Metric | Value |
-| --- | ---: |
-| Cases | 100 |
-| Runtime calibrated MAE | 15.9 |
-| Median absolute error | 14.8 |
-| Within 10 points | 7/100 |
-| Within 20 points | 79/100 |
+| Runtime calibrated MAE | 4.8 |
+| Runtime calibrated median | 2.8 |
+| Within 10 points | 89/100 |
+| Within 20 points | 99/100 |
 
 ## What Is Working Well
 
-- Off-topic answers are handled well.
-- Comparison tasks are the most stable major task type.
-- The `xsmall` baseline remains the best default tradeoff: it stays close to the best main-benchmark result while keeping the smallest payload and much stronger hard-negative behavior than `small`.
-- Task-type structure checks improve hard-negative behavior enough to justify keeping them in the default stack.
+- Off-topic answers are now handled much more reliably on this corpus than they were before the topic-alignment gate.
+- `mixed` answers are close to target on average after recalibration.
+- The `xsmall` baseline remains a good fit for this local scoring workflow because the benchmark gains came from scoring logic and calibration, not from switching to a larger model.
 
 ## Main Weakness
 
-The clearest remaining problem is not random junk. It is generic, topical weak answers.
+The clearest remaining problem is still generic, topical weak answers.
 
 These answers often:
 
@@ -64,33 +49,13 @@ These answers often:
 - avoid obvious mistakes
 - still fail to provide concrete or grounded help
 
-That makes them easy to over-score unless the scorer has strong enough signals for substance, structure, and specificity.
-
-## Why `xsmall` Won
-
-The model bakeoff did not produce a perfect model. It produced the best tradeoff.
-
-`Xenova/nli-deberta-v3-xsmall` won because it:
-
-- stayed within `0.2` MAE of the best main-benchmark model in the rerun
-- beat the earlier `small` baseline on hard negatives by a wide margin
-- had the smallest q8 payload in the group
-
-Some other candidates were stronger on hard negatives, but not strong enough overall to replace it. The latest example is `onnx-community/multilingual-MiniLMv2-L6-mnli-xnli-ONNX`: much better hard negatives, too much regression on the main English benchmark.
+That makes them easy to over-score unless the scorer has strong enough signals for substance, structure, specificity, and topic alignment.
 
 ## What The Tuning Work Changed
 
-The most important scorer improvement was the added overall-score calibration layer.
-
-That delivered the cleanest fair-benchmark gain without relying on brittle heuristic changes.
-
-Other experiments were more mixed:
-
-- stronger constraint gating regressed too many strong answers
-- deterministic constraint checks were basically neutral
-- criterion normalization improved the fair benchmark but hurt hard negatives too much to enable by default
-
-So the kept stack is fairly conservative. The project only kept changes that survived both benchmark views.
+- Topic-alignment gating now suppresses obviously off-domain answers before they can surface as strong fits.
+- Funding-summary heuristics now separate vague purpose-only answers from answers that actually state targets and delivery methods.
+- The handwritten benchmark also produced a new calibration curve fitted to this corpus instead of the older synthetic family generator.
 
 ## What Adaptive Refinement Really Does
 
@@ -137,7 +102,6 @@ If you are using this library, the main implications are:
 Use the detailed pages if you need depth:
 
 - [Main Benchmark](/guide/main-benchmark)
-- [Hard Negative Benchmark](/guide/hard-negative-benchmark)
 - [Adaptive Refinement](/guide/adaptive-refinement)
 - [Scoring Improvement](/guide/scoring-improvement)
 - [Low-Latency Improvement](/guide/low-latency-improvement)

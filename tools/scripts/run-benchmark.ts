@@ -1,7 +1,6 @@
 import { mkdir } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 import { BENCHMARK_CASES, type BenchmarkCase, type BenchmarkKind, type BenchmarkProfile } from '../benchmark/cases'
-import { createHardNegativeCases } from '../benchmark/hard-negatives'
 import {
   computeCalibratedOverallScore,
   applyCalibrationCurve,
@@ -59,17 +58,6 @@ type CalibrationBundle = {
   overall: CalibrationCurve | null
 }
 
-type CalibrationCaseResult = {
-  id: string
-  question: string
-  answer: string
-  criteria: { label: string; weight: number }[]
-  answerSupport: number
-  structuralScore: number
-  rawScores: number[]
-  referenceOverall: number
-}
-
 const scorer = createTransformersQualityScorer({
   modelId: 'Xenova/nli-deberta-v3-xsmall',
   dtype: 'q8',
@@ -116,32 +104,11 @@ for (const testCase of BENCHMARK_CASES) {
   })
 }
 
-const hardNegativeResults = await Promise.all(
-  createHardNegativeCases(BENCHMARK_CASES).map(async (testCase) => {
-    const scoreResult = await scorer.score({
-      question: testCase.question,
-      response: testCase.answer,
-      criteria: testCase.criteria.map((criterion) => criterion.label),
-    })
-
-    return {
-      id: testCase.id,
-      question: testCase.question,
-      answer: testCase.answer,
-      criteria: testCase.criteria,
-      answerSupport: scoreResult.answerSupport,
-      structuralScore: scoreResult.structuralScore,
-      rawScores: scoreResult.rawScores,
-      referenceOverall: testCase.referenceOverall,
-    } satisfies CalibrationCaseResult
-  }),
-)
-
 const rawResults = materializeResults(baseResults, 'raw')
 const rawSummary = summarize(rawResults)
-const crossValidatedResults = crossValidateCalibration(baseResults, hardNegativeResults, 5)
+const crossValidatedResults = crossValidateCalibration(baseResults, 5)
 const crossValidatedSummary = summarize(crossValidatedResults)
-const runtimeCalibration = fitCalibrationBundle(baseResults, hardNegativeResults)
+const runtimeCalibration = fitCalibrationBundle(baseResults)
 const runtimeResults = materializeResults(baseResults, 'runtime', runtimeCalibration)
 const runtimeSummary = summarize(runtimeResults)
 
@@ -237,17 +204,12 @@ function materializeResults(
 
 function crossValidateCalibration(
   baseResults: BaseCaseResult[],
-  hardNegativeResults: CalibrationCaseResult[],
   foldCount: number,
 ) {
   const groups = Array.from({ length: foldCount }, () => [] as BaseCaseResult[])
-  const hardNegativeGroups = Array.from({ length: foldCount }, () => [] as CalibrationCaseResult[])
 
   baseResults.forEach((result, index) => {
     groups[index % foldCount]?.push(result)
-  })
-  hardNegativeResults.forEach((result, index) => {
-    hardNegativeGroups[index % foldCount]?.push(result)
   })
 
   const evaluatedResults: EvaluatedCaseResult[] = []
@@ -255,8 +217,7 @@ function crossValidateCalibration(
   for (let foldIndex = 0; foldIndex < groups.length; foldIndex += 1) {
     const holdout = groups[foldIndex] ?? []
     const training = groups.flatMap((group, index) => (index === foldIndex ? [] : group))
-    const trainingHardNegatives = hardNegativeGroups.flatMap((group, index) => (index === foldIndex ? [] : group))
-    const calibration = fitCalibrationBundle(training, trainingHardNegatives)
+    const calibration = fitCalibrationBundle(training)
 
     evaluatedResults.push(...materializeResults(holdout, 'cross_validated', calibration))
   }
@@ -281,31 +242,32 @@ function fitCriterionCalibration(baseResults: BaseCaseResult[]) {
 
 function fitOverallCalibration(
   baseResults: BaseCaseResult[],
-  hardNegativeResults: CalibrationCaseResult[],
   criterionCalibration: CalibrationCurve | null,
 ) {
   return fitIsotonicCalibration(
     [
       ...buildOverallCalibrationPoints(baseResults, criterionCalibration, 1),
-      ...buildOverallCalibrationPoints(hardNegativeResults, criterionCalibration, 1.2),
       ...buildOverallCalibrationAnchors(),
     ],
   )
 }
 
-function fitCalibrationBundle(
-  baseResults: BaseCaseResult[],
-  hardNegativeResults: CalibrationCaseResult[],
-): CalibrationBundle {
+function fitCalibrationBundle(baseResults: BaseCaseResult[]): CalibrationBundle {
   const criterion = fitCriterionCalibration(baseResults)
-  const overall = fitOverallCalibration(baseResults, hardNegativeResults, criterion)
+  const overall = fitOverallCalibration(baseResults, criterion)
 
   return { criterion, overall }
 }
 
 function weightedPercent(criteria: BenchmarkCase['criteria'], scores: number[]) {
+  const totalWeight = criteria.reduce((sum, criterion) => sum + criterion.weight, 0)
+
+  if (totalWeight <= 0) {
+    return 0
+  }
+
   return round(
-    criteria.reduce((sum, criterion, index) => sum + criterion.weight * 100 * (scores[index] ?? 0), 0) / 100,
+    criteria.reduce((sum, criterion, index) => sum + criterion.weight * 100 * (scores[index] ?? 0), 0) / totalWeight,
   )
 }
 
@@ -365,7 +327,7 @@ function groupBy<T>(items: T[], keyFn: (item: T) => string) {
 }
 
 function buildOverallCalibrationPoints(
-  results: CalibrationCaseResult[],
+  results: BaseCaseResult[],
   criterionCalibration: CalibrationCurve | null,
   weight: number,
 ) {
