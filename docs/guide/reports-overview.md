@@ -6,7 +6,7 @@ If you only want the current state, the main answer is:
 
 - the scorer is in decent shape for product-style feedback
 - the current default stack now includes an explicit topic-alignment gate
-- the current benchmark evidence comes from a handwritten 300-case agreement-summary corpus
+- the current benchmark evidence comes from a handwritten 300-case corpus of structured summary tasks
 - the biggest remaining weakness is still vague on-topic answers that mention the program purpose but stay light on concrete targets or delivery detail
 - wording and rubric quality still matter a lot
 
@@ -18,7 +18,7 @@ The shipped setup is:
 - current low-latency default: task-type structure checks plus topic-alignment gating
 - adaptive refinement: conservative low-stop only
 
-The current benchmark is a handwritten 300-case corpus built around agreement-summary tasks across workforce, health, housing, infrastructure, and community domains. Each scenario includes `bad`, `mixed`, `good`, and `off_topic` answers written directly into the repo.
+The current benchmark is a handwritten 300-case corpus built around structured program and service summary tasks across workforce, health, housing, infrastructure, and community domains. Each scenario includes `bad`, `mixed`, `good`, and `off_topic` answers written directly into the repo.
 
 ## Headline Metrics
 

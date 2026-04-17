@@ -21,7 +21,7 @@ This page summarizes the current handwritten 300-case benchmark for the shipped 
 
 ## Corpus Shape
 
-The benchmark is a handwritten agreement-summary corpus:
+The benchmark is a handwritten corpus of structured program and service summary tasks:
 
 - `75` scenarios
 - `5` domains: workforce, health, housing, infrastructure, community
@@ -63,7 +63,7 @@ The largest misses in the benchmark are mostly:
 
 - vague `bad` answers that still state the task’s core purpose clearly
 - a smaller set of `mixed` answers that mention delivery and target categories but not concrete numbers
-- a few residual off-topic cases that still keep some generic agreement-style phrasing
+- a few residual off-topic cases that still keep some generic task-shaped phrasing
 
 Representative examples from the report include:
 
@@ -74,6 +74,6 @@ Representative examples from the report include:
 
 ## Takeaways
 
-- The benchmark is now large enough to use as a calibration and regression corpus for agreement-summary work.
+- The benchmark is now large enough to use as a calibration and regression corpus for this style of rubric-scored summary task.
 - The most important bug fixed in this pass was the strong-fit failure on obviously off-topic answers.
 - Better authoring still matters, but the scorer now has a much firmer floor against domain-mismatch cases and generic rubric gaming.
