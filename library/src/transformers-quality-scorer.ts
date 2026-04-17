@@ -6,6 +6,7 @@ import { scoreCriteriaWithClassifier, type ZeroShotClassifier } from './evaluato
 import { resolveQualityScorePresentation } from './quality-presentation'
 import { computeTopicAlignment } from './scoring'
 import type {
+  QualityScoreInput,
   QualityScoreResult,
   QualityScorer,
   QualityScorerConfigInput,
@@ -60,7 +61,7 @@ export function createTransformersQualityScorer(config: QualityScorerConfigInput
         output.rawScores,
         output,
         {
-          question: input.question ?? '',
+          input,
           response: input.response,
           config: resolvedConfig,
         },
@@ -176,14 +177,14 @@ function formatQualityScoreResult(
     taskType: QualityScoreResult['taskType']
   },
   context: {
-    question: string
+    input: QualityScoreInput
     response: string
     config: QualityScorerConfig
   },
 ): QualityScoreResult {
   const totalWeight = criteria.reduce((sum, criterion) => sum + criterion.weight, 0)
   const topicAlignment = computeTopicAlignment(
-    context.question,
+    context.input.question ?? '',
     context.response,
     criteria.map((criterion) => criterion.label),
   )
@@ -202,7 +203,7 @@ function formatQualityScoreResult(
   const overall = computeCalibratedOverallScore(
     {
       rawOverall: computeWeightedCriterionAverage(criteria, scores),
-      question: context.question,
+      question: context.input.question ?? '',
       response: context.response,
       answerSupport: meta.answerSupport,
       criterionScores: scores,
@@ -211,7 +212,10 @@ function formatQualityScoreResult(
     },
     context.config,
   )
-  const presentation = resolveQualityScorePresentation(overall.overallPercent)
+  const presentation = resolveQualityScorePresentation(
+    overall.overallPercent,
+    context.input.config?.presentation,
+  )
 
   return {
     criteria: criteria.map((criterion) => criterion.label),

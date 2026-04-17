@@ -1,4 +1,5 @@
-import type { QualityScoreBand, QualityScoreTone } from './types'
+import { DEFAULT_QUALITY_SCORE_PRESENTATION_CONFIG } from './defaults'
+import type { QualityScoreBand, QualityScorePresentationConfig, QualityScoreTone } from './types'
 
 export type QualityScorePresentation = {
   band: QualityScoreBand
@@ -12,31 +13,41 @@ export const QUALITY_SCORE_BANDS = [
 ] as const satisfies readonly QualityScoreBand[]
 
 export const QUALITY_SCORE_TONE_BY_BAND: Record<QualityScoreBand, QualityScoreTone> = {
-  off_track: 'error',
-  mixed_fit: 'warning',
-  strong_fit: 'success'
+  ...DEFAULT_QUALITY_SCORE_PRESENTATION_CONFIG.toneByBand,
 }
 
 /**
  * Resolves display-oriented quality band metadata from an overall percentage.
  */
-export function resolveQualityScorePresentation(overallPercent: number): QualityScorePresentation {
-  if (overallPercent >= 70) {
+export function resolveQualityScorePresentation(
+  overallPercent: number,
+  config: Partial<QualityScorePresentationConfig> = {},
+): QualityScorePresentation {
+  const resolvedConfig: QualityScorePresentationConfig = {
+    ...DEFAULT_QUALITY_SCORE_PRESENTATION_CONFIG,
+    ...config,
+    toneByBand: {
+      ...DEFAULT_QUALITY_SCORE_PRESENTATION_CONFIG.toneByBand,
+      ...(config.toneByBand ?? {}),
+    },
+  }
+
+  if (overallPercent >= resolvedConfig.strongFitMinPercent) {
     return {
       band: 'strong_fit',
-      tone: QUALITY_SCORE_TONE_BY_BAND.strong_fit
+      tone: resolvedConfig.toneByBand.strong_fit
     }
   }
 
-  if (overallPercent >= 45) {
+  if (overallPercent >= resolvedConfig.mixedFitMinPercent) {
     return {
       band: 'mixed_fit',
-      tone: QUALITY_SCORE_TONE_BY_BAND.mixed_fit
+      tone: resolvedConfig.toneByBand.mixed_fit
     }
   }
 
   return {
     band: 'off_track',
-    tone: QUALITY_SCORE_TONE_BY_BAND.off_track
+    tone: resolvedConfig.toneByBand.off_track
   }
 }

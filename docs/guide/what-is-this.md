@@ -32,6 +32,7 @@ import {
   estimateQualityContextBudget,
   QUALITY_SCORE_BANDS,
   QUALITY_SCORE_TONE_BY_BAND,
+  DEFAULT_QUALITY_SCORE_PRESENTATION_CONFIG,
 } from '@browser-quality-scorer/core'
 ```
 
@@ -47,11 +48,19 @@ You provide:
     { label: 'States the concrete purpose of the funding, not just a general description of the agreement', weight: 4 },
     { label: 'Names the specific targets, outcomes, or deliverables the funding is meant to achieve', weight: 4 },
     { label: 'Explains the planned approach, activities, or delivery method for achieving those targets', weight: 2 }
-  ]
+  ],
+  config: {
+    presentation: {
+      mixedFitMinPercent: 40,
+      strongFitMinPercent: 78,
+    },
+    adaptiveRefinementPolicy: 'adaptive',
+  }
 }
 ```
 
 Criteria can be plain strings or `{ label, weight }` objects. Plain strings default to weight `1`, and weighted criteria affect the final overall aggregation.
+The optional request `config` block lets you override presentation thresholds and adaptive refinement behavior per request.
 
 And the scorer returns:
 

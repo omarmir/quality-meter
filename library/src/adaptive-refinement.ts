@@ -6,6 +6,7 @@ import type {
   QualityCriterionInput,
   QualityRefinementDecision,
   QualityRefinementPolicy,
+  QualityScoreRequestConfig,
   QualityScoreResult,
 } from './types'
 
@@ -16,12 +17,13 @@ type DecideQualityRefinementInput = {
   criteria: QualityCriterionInput[]
   policy?: QualityRefinementPolicy
   config?: Partial<QualityAdaptiveRefinementConfig>
+  requestConfig?: QualityScoreRequestConfig
 }
 
 export function decideQualityRefinement(
   input: DecideQualityRefinementInput,
 ): QualityRefinementDecision {
-  const policy = input.policy ?? 'adaptive'
+  const policy = input.policy ?? input.requestConfig?.adaptiveRefinementPolicy ?? 'adaptive'
 
   if (policy === 'never') {
     return {
@@ -43,6 +45,7 @@ export function decideQualityRefinement(
 
   const config = {
     ...DEFAULT_ADAPTIVE_REFINEMENT_CONFIG,
+    ...(input.requestConfig?.adaptiveRefinement ?? {}),
     ...input.config,
   }
 

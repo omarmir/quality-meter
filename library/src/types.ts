@@ -49,6 +49,7 @@ export type QualityScoreInput = {
   question?: string
   response: string
   criteria: QualityCriterionInput[]
+  config?: QualityScoreRequestConfig
 }
 
 export type QualityScoreMode = 'fast' | 'full'
@@ -71,6 +72,18 @@ export type QualityAdaptiveRefinementConfig = {
   highStopWeakAnswerGate: number
   disableHighStopForConstraintQuestions: boolean
   disableHighStopForTaskTypes: QualityTaskType[]
+}
+
+export type QualityScorePresentationConfig = {
+  mixedFitMinPercent: number
+  strongFitMinPercent: number
+  toneByBand: Record<QualityScoreBand, QualityScoreTone>
+}
+
+export type QualityScoreRequestConfig = {
+  presentation?: Partial<QualityScorePresentationConfig>
+  adaptiveRefinementPolicy?: QualityRefinementPolicy
+  adaptiveRefinement?: Partial<QualityAdaptiveRefinementConfig>
 }
 
 export type QualityRefinementDecision = {

@@ -1,11 +1,19 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue"
+import {
+  DEFAULT_ADAPTIVE_REFINEMENT_CONFIG,
+  DEFAULT_QUALITY_SCORE_PRESENTATION_CONFIG,
+  resolveQualityScorePresentation,
+} from "@browser-quality-scorer/core"
 import type {
   QualityModelProgressEvent,
+  QualityRefinementPolicy,
   QualityScoreBand,
+  QualityScorePresentationConfig,
   QualityRefinementDecision,
   QualityScoreMode,
   QualityScoreResult,
+  QualityScoreTone,
   QualityScorerWorkerClient,
 } from "@browser-quality-scorer/core"
 
@@ -57,6 +65,33 @@ const refinementDecision = ref<QualityRefinementDecision | null>(null)
 const activeRequestId = ref<number | null>(null)
 const queuedAutoScore = ref(false)
 const isResultStale = ref(false)
+const configurationPanelOpen = ref(false)
+
+const refinementPolicy = ref<QualityRefinementPolicy>("adaptive")
+const lowStopOverallPercent = ref(DEFAULT_ADAPTIVE_REFINEMENT_CONFIG.lowStopOverallPercent)
+const lowStopAnswerSupport = ref(DEFAULT_ADAPTIVE_REFINEMENT_CONFIG.lowStopAnswerSupport)
+const lowStopMaxCriterionPercent = ref(DEFAULT_ADAPTIVE_REFINEMENT_CONFIG.lowStopMaxCriterionPercent)
+const lowStopSecondaryOverallBuffer = ref(DEFAULT_ADAPTIVE_REFINEMENT_CONFIG.lowStopSecondaryOverallBuffer)
+const lowStopLowCriterionShare = ref(DEFAULT_ADAPTIVE_REFINEMENT_CONFIG.lowStopLowCriterionShare)
+const highStopOverallPercent = ref(DEFAULT_ADAPTIVE_REFINEMENT_CONFIG.highStopOverallPercent)
+const highStopMinCriterionPercent = ref(DEFAULT_ADAPTIVE_REFINEMENT_CONFIG.highStopMinCriterionPercent)
+const highStopSpreadPercent = ref(DEFAULT_ADAPTIVE_REFINEMENT_CONFIG.highStopSpreadPercent)
+const highStopWeakAnswerGate = ref(DEFAULT_ADAPTIVE_REFINEMENT_CONFIG.highStopWeakAnswerGate)
+const disableHighStopForConstraintQuestions = ref(
+  DEFAULT_ADAPTIVE_REFINEMENT_CONFIG.disableHighStopForConstraintQuestions,
+)
+const disableHighStopForComparison = ref(
+  DEFAULT_ADAPTIVE_REFINEMENT_CONFIG.disableHighStopForTaskTypes.includes("comparison"),
+)
+const disableHighStopForPlanning = ref(
+  DEFAULT_ADAPTIVE_REFINEMENT_CONFIG.disableHighStopForTaskTypes.includes("planning"),
+)
+
+const mixedFitMinPercent = ref(DEFAULT_QUALITY_SCORE_PRESENTATION_CONFIG.mixedFitMinPercent)
+const strongFitMinPercent = ref(DEFAULT_QUALITY_SCORE_PRESENTATION_CONFIG.strongFitMinPercent)
+const offTrackTone = ref<QualityScoreTone>(DEFAULT_QUALITY_SCORE_PRESENTATION_CONFIG.toneByBand.off_track)
+const mixedFitTone = ref<QualityScoreTone>(DEFAULT_QUALITY_SCORE_PRESENTATION_CONFIG.toneByBand.mixed_fit)
+const strongFitTone = ref<QualityScoreTone>(DEFAULT_QUALITY_SCORE_PRESENTATION_CONFIG.toneByBand.strong_fit)
 
 const SCORE_LABELS: Record<QualityScoreBand, string> = {
   off_track: "Off track",
@@ -78,13 +113,47 @@ const normalizedCriteria = computed(() =>
     }))
     .filter((item) => item.label),
 )
-const inputSignature = computed(() =>
+const adaptiveRequestConfig = computed(() => ({
+  adaptiveRefinementPolicy: refinementPolicy.value,
+  adaptiveRefinement: {
+    lowStopOverallPercent: lowStopOverallPercent.value,
+    lowStopAnswerSupport: lowStopAnswerSupport.value,
+    lowStopMaxCriterionPercent: lowStopMaxCriterionPercent.value,
+    lowStopSecondaryOverallBuffer: lowStopSecondaryOverallBuffer.value,
+    lowStopLowCriterionShare: lowStopLowCriterionShare.value,
+    highStopOverallPercent: highStopOverallPercent.value,
+    highStopMinCriterionPercent: highStopMinCriterionPercent.value,
+    highStopSpreadPercent: highStopSpreadPercent.value,
+    highStopWeakAnswerGate: highStopWeakAnswerGate.value,
+    disableHighStopForConstraintQuestions:
+      disableHighStopForConstraintQuestions.value,
+    disableHighStopForTaskTypes: [
+      ...(disableHighStopForComparison.value ? ["comparison" as const] : []),
+      ...(disableHighStopForPlanning.value ? ["planning" as const] : []),
+    ],
+  },
+}))
+const presentationConfig = computed<Partial<QualityScorePresentationConfig>>(() => ({
+  mixedFitMinPercent: mixedFitMinPercent.value,
+  strongFitMinPercent: strongFitMinPercent.value,
+  toneByBand: {
+    off_track: offTrackTone.value,
+    mixed_fit: mixedFitTone.value,
+    strong_fit: strongFitTone.value,
+  },
+}))
+const requestConfig = computed(() => ({
+  ...adaptiveRequestConfig.value,
+  presentation: presentationConfig.value,
+}))
+const scoreAffectingSignature = computed(() =>
   [
     question.value.trim(),
     answer.value.trim(),
     normalizedCriteria.value
       .map((item) => `${item.label}\u0000${item.weight}`)
       .join("\u0001"),
+    JSON.stringify(adaptiveRequestConfig.value),
   ].join("\u0001"),
 )
 const canScore = computed(
@@ -95,6 +164,11 @@ const canScore = computed(
     normalizedCriteria.value.length > 0,
 )
 const overallPercent = computed(() => result.value?.overallPercent ?? null)
+const displayedPresentation = computed(() =>
+  overallPercent.value === null
+    ? null
+    : resolveQualityScorePresentation(overallPercent.value, presentationConfig.value),
+)
 const resolveEnglishBandLabel = (band: QualityScoreBand | null | undefined) =>
   band ? SCORE_LABELS[band] : ""
 const resolveEnglishBandSummary = (band: QualityScoreBand | null | undefined) =>
@@ -113,15 +187,15 @@ const gaugeSummary = computed(() => {
       scoreMode.value === "fast" &&
       refinementDecision.value?.reason === "obvious_failure"
     ) {
-      return `${resolveEnglishBandSummary(result.value.band)} The adaptive gate skipped the full pass because the fast result already looked decisively off track.`
+      return `${resolveEnglishBandSummary(displayedPresentation.value?.band)} The adaptive gate skipped the full pass because the fast result already looked decisively off track.`
     }
     if (
       scoreMode.value === "fast" &&
       refinementDecision.value?.reason === "stable_strong"
     ) {
-      return `${resolveEnglishBandSummary(result.value.band)} The adaptive gate skipped the full pass because the fast result already looked stable at the top end.`
+      return `${resolveEnglishBandSummary(displayedPresentation.value?.band)} The adaptive gate skipped the full pass because the fast result already looked stable at the top end.`
     }
-    return resolveEnglishBandSummary(result.value.band)
+    return resolveEnglishBandSummary(displayedPresentation.value?.band)
   }
   return "Scoring updates automatically after typing stops."
 })
@@ -150,7 +224,7 @@ const statusTone = computed(() => {
   }
 })
 const bandTone = computed(() => {
-  switch (result.value?.tone) {
+  switch (displayedPresentation.value?.tone) {
     case "success":
       return "text-green-500"
     case "warning":
@@ -212,7 +286,7 @@ onBeforeUnmount(() => {
   scorerClient.value = null
 })
 
-watch(inputSignature, () => {
+watch(scoreAffectingSignature, () => {
   errorMessage.value = ""
 
   if (
@@ -383,11 +457,11 @@ async function runScoreCycle(requestId: number) {
     question: question.value.trim(),
     response: answer.value.trim(),
     criteria: normalizedCriteria.value,
+    config: requestConfig.value,
   }
 
   try {
-    const { decideQualityRefinement, DEFAULT_ADAPTIVE_REFINEMENT_CONFIG } =
-      await import("@browser-quality-scorer/core")
+    const { decideQualityRefinement } = await import("@browser-quality-scorer/core")
 
     const quickResult = await client.score(input, { mode: "fast" })
 
@@ -401,8 +475,7 @@ async function runScoreCycle(requestId: number) {
       question: input.question,
       response: input.response,
       criteria: input.criteria,
-      policy: "adaptive",
-      config: DEFAULT_ADAPTIVE_REFINEMENT_CONFIG,
+      requestConfig: input.config,
     })
 
     applyScoreResult(quickResult, "fast", decision)
@@ -463,6 +536,35 @@ function applyScoreResult(
   scoreMode.value = nextMode
   refinementDecision.value = nextDecision
   isResultStale.value = false
+}
+
+function resetConfigurations() {
+  refinementPolicy.value = "adaptive"
+  lowStopOverallPercent.value = DEFAULT_ADAPTIVE_REFINEMENT_CONFIG.lowStopOverallPercent
+  lowStopAnswerSupport.value = DEFAULT_ADAPTIVE_REFINEMENT_CONFIG.lowStopAnswerSupport
+  lowStopMaxCriterionPercent.value = DEFAULT_ADAPTIVE_REFINEMENT_CONFIG.lowStopMaxCriterionPercent
+  lowStopSecondaryOverallBuffer.value =
+    DEFAULT_ADAPTIVE_REFINEMENT_CONFIG.lowStopSecondaryOverallBuffer
+  lowStopLowCriterionShare.value = DEFAULT_ADAPTIVE_REFINEMENT_CONFIG.lowStopLowCriterionShare
+  highStopOverallPercent.value = DEFAULT_ADAPTIVE_REFINEMENT_CONFIG.highStopOverallPercent
+  highStopMinCriterionPercent.value = DEFAULT_ADAPTIVE_REFINEMENT_CONFIG.highStopMinCriterionPercent
+  highStopSpreadPercent.value = DEFAULT_ADAPTIVE_REFINEMENT_CONFIG.highStopSpreadPercent
+  highStopWeakAnswerGate.value = DEFAULT_ADAPTIVE_REFINEMENT_CONFIG.highStopWeakAnswerGate
+  disableHighStopForConstraintQuestions.value =
+    DEFAULT_ADAPTIVE_REFINEMENT_CONFIG.disableHighStopForConstraintQuestions
+  disableHighStopForComparison.value =
+    DEFAULT_ADAPTIVE_REFINEMENT_CONFIG.disableHighStopForTaskTypes.includes("comparison")
+  disableHighStopForPlanning.value =
+    DEFAULT_ADAPTIVE_REFINEMENT_CONFIG.disableHighStopForTaskTypes.includes("planning")
+  mixedFitMinPercent.value = DEFAULT_QUALITY_SCORE_PRESENTATION_CONFIG.mixedFitMinPercent
+  strongFitMinPercent.value = DEFAULT_QUALITY_SCORE_PRESENTATION_CONFIG.strongFitMinPercent
+  offTrackTone.value = DEFAULT_QUALITY_SCORE_PRESENTATION_CONFIG.toneByBand.off_track
+  mixedFitTone.value = DEFAULT_QUALITY_SCORE_PRESENTATION_CONFIG.toneByBand.mixed_fit
+  strongFitTone.value = DEFAULT_QUALITY_SCORE_PRESENTATION_CONFIG.toneByBand.strong_fit
+}
+
+function handleConfigurationToggle(event: Event) {
+  configurationPanelOpen.value = (event.currentTarget as HTMLDetailsElement).open
 }
 
 function criterionTone(percent: number) {
@@ -629,7 +731,7 @@ function criterionTone(percent: number) {
           class="mt-3 h-5 w-72 animate-pulse rounded-full bg-(--vp-c-bg-soft)" />
       </template>
       <p v-else class="text-lg font-medium" :class="isAnswerCalculating && !isRefiningAfterQuickPass ? 'text-(--vp-c-text-2)' : bandTone">
-        {{ isAnswerCalculating && !isRefiningAfterQuickPass ? "Calculating" : resolveEnglishBandLabel(result?.band) || "No score yet" }}
+        {{ isAnswerCalculating && !isRefiningAfterQuickPass ? "Calculating" : resolveEnglishBandLabel(displayedPresentation?.band) || "No score yet" }}
         <span v-if="isRefiningAfterQuickPass" class="align-middle text-sm font-normal text-(--vp-c-text-2)">
           (<span class="inline-flex items-center gap-1 align-middle">
             <span
@@ -656,6 +758,246 @@ function criterionTone(percent: number) {
     </section>
 
     <section>
+      <details
+        class="rounded-2xl border border-(--vp-c-divider) bg-[color-mix(in_srgb,var(--vp-c-bg-soft)_86%,transparent)]"
+        :open="configurationPanelOpen"
+        @toggle="handleConfigurationToggle">
+        <summary class="cursor-pointer list-none px-5 py-4 marker:hidden">
+          <div class="flex items-center justify-between gap-4">
+            <div>
+              <h2 class="my-0 text-lg font-semibold">Configurations</h2>
+              <p class="mt-1 text-sm text-(--vp-c-text-2)">
+                Refinement settings trigger rescoring. Display-band settings remap the current score instantly.
+              </p>
+            </div>
+            <span class="text-sm text-(--vp-c-text-2)">
+              {{ configurationPanelOpen ? "Collapse" : "Expand" }}
+            </span>
+          </div>
+        </summary>
+
+        <div class="border-t border-(--vp-c-divider) px-5 py-5">
+          <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+            <p class="my-0 text-sm text-(--vp-c-text-2)">
+              These values are passed with the score request instead of changing the worker’s global config.
+            </p>
+            <button
+              class="inline-flex min-h-10 items-center justify-center rounded-full border border-(--vp-c-divider) bg-(--vp-c-bg-elv) px-4 text-sm font-medium text-(--vp-c-text-1) transition-colors hover:border-(--vp-c-brand-1) hover:text-(--vp-c-brand-1)"
+              type="button"
+              @click="resetConfigurations">
+              Reset defaults
+            </button>
+          </div>
+
+          <div class="grid gap-6 lg:grid-cols-2">
+            <section>
+              <h3 class="mt-0 text-base font-semibold">Adaptive refinement</h3>
+              <p class="mt-1 text-sm text-(--vp-c-text-2)">
+                Controls when the fast pass is accepted and when the full pass must still run.
+              </p>
+
+              <div class="mt-4 grid gap-3">
+                <label class="grid gap-1.5">
+                  <span class="text-sm font-medium">Policy</span>
+                  <select
+                    v-model="refinementPolicy"
+                    class="rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3 text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1)">
+                    <option value="adaptive">Adaptive</option>
+                    <option value="always">Always run full</option>
+                    <option value="never">Fast only</option>
+                  </select>
+                </label>
+
+                <div class="grid gap-3 sm:grid-cols-2">
+                  <label class="grid gap-1.5">
+                    <span class="text-sm font-medium">Low-stop overall %</span>
+                    <input
+                      v-model.number="lowStopOverallPercent"
+                      type="number"
+                      min="0"
+                      max="100"
+                      step="1"
+                      class="rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3 text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1)" />
+                  </label>
+                  <label class="grid gap-1.5">
+                    <span class="text-sm font-medium">Low-stop answer support</span>
+                    <input
+                      v-model.number="lowStopAnswerSupport"
+                      type="number"
+                      min="0"
+                      max="1"
+                      step="0.01"
+                      class="rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3 text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1)" />
+                  </label>
+                  <label class="grid gap-1.5">
+                    <span class="text-sm font-medium">Low-stop max criterion %</span>
+                    <input
+                      v-model.number="lowStopMaxCriterionPercent"
+                      type="number"
+                      min="0"
+                      max="100"
+                      step="1"
+                      class="rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3 text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1)" />
+                  </label>
+                  <label class="grid gap-1.5">
+                    <span class="text-sm font-medium">Secondary overall buffer</span>
+                    <input
+                      v-model.number="lowStopSecondaryOverallBuffer"
+                      type="number"
+                      min="0"
+                      max="100"
+                      step="1"
+                      class="rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3 text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1)" />
+                  </label>
+                  <label class="grid gap-1.5">
+                    <span class="text-sm font-medium">Low-criterion share</span>
+                    <input
+                      v-model.number="lowStopLowCriterionShare"
+                      type="number"
+                      min="0"
+                      max="1"
+                      step="0.01"
+                      class="rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3 text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1)" />
+                  </label>
+                </div>
+
+                <div class="grid gap-3 sm:grid-cols-2">
+                  <label class="grid gap-1.5">
+                    <span class="text-sm font-medium">High-stop overall %</span>
+                    <input
+                      v-model.number="highStopOverallPercent"
+                      type="number"
+                      min="0"
+                      max="100"
+                      step="1"
+                      class="rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3 text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1)" />
+                  </label>
+                  <label class="grid gap-1.5">
+                    <span class="text-sm font-medium">High-stop min criterion %</span>
+                    <input
+                      v-model.number="highStopMinCriterionPercent"
+                      type="number"
+                      min="0"
+                      max="100"
+                      step="1"
+                      class="rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3 text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1)" />
+                  </label>
+                  <label class="grid gap-1.5">
+                    <span class="text-sm font-medium">High-stop spread %</span>
+                    <input
+                      v-model.number="highStopSpreadPercent"
+                      type="number"
+                      min="0"
+                      max="100"
+                      step="1"
+                      class="rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3 text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1)" />
+                  </label>
+                  <label class="grid gap-1.5">
+                    <span class="text-sm font-medium">High-stop weak-answer gate</span>
+                    <input
+                      v-model.number="highStopWeakAnswerGate"
+                      type="number"
+                      min="0"
+                      max="1"
+                      step="0.01"
+                      class="rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3 text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1)" />
+                  </label>
+                </div>
+
+                <label class="inline-flex items-center gap-3 rounded-xl border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3">
+                  <input
+                    v-model="disableHighStopForConstraintQuestions"
+                    type="checkbox"
+                    class="size-4 rounded border-(--vp-c-divider)" />
+                  <span class="text-sm">Disable high-stop for constraint-sensitive questions</span>
+                </label>
+                <label class="inline-flex items-center gap-3 rounded-xl border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3">
+                  <input
+                    v-model="disableHighStopForComparison"
+                    type="checkbox"
+                    class="size-4 rounded border-(--vp-c-divider)" />
+                  <span class="text-sm">Disable high-stop for comparison tasks</span>
+                </label>
+                <label class="inline-flex items-center gap-3 rounded-xl border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3">
+                  <input
+                    v-model="disableHighStopForPlanning"
+                    type="checkbox"
+                    class="size-4 rounded border-(--vp-c-divider)" />
+                  <span class="text-sm">Disable high-stop for planning tasks</span>
+                </label>
+              </div>
+            </section>
+
+            <section>
+              <h3 class="mt-0 text-base font-semibold">Display bands</h3>
+              <p class="mt-1 text-sm text-(--vp-c-text-2)">
+                These remap the current overall percent into band and tone output without rerunning the model.
+              </p>
+
+              <div class="mt-4 grid gap-3">
+                <div class="grid gap-3 sm:grid-cols-2">
+                  <label class="grid gap-1.5">
+                    <span class="text-sm font-medium">Mixed-fit minimum %</span>
+                    <input
+                      v-model.number="mixedFitMinPercent"
+                      type="number"
+                      min="0"
+                      max="100"
+                      step="1"
+                      class="rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3 text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1)" />
+                  </label>
+                  <label class="grid gap-1.5">
+                    <span class="text-sm font-medium">Strong-fit minimum %</span>
+                    <input
+                      v-model.number="strongFitMinPercent"
+                      type="number"
+                      min="0"
+                      max="100"
+                      step="1"
+                      class="rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3 text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1)" />
+                  </label>
+                </div>
+
+                <div class="grid gap-3 sm:grid-cols-3">
+                  <label class="grid gap-1.5">
+                    <span class="text-sm font-medium">Off-track tone</span>
+                    <select
+                      v-model="offTrackTone"
+                      class="rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3 text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1)">
+                      <option value="error">Error</option>
+                      <option value="warning">Warning</option>
+                      <option value="success">Success</option>
+                    </select>
+                  </label>
+                  <label class="grid gap-1.5">
+                    <span class="text-sm font-medium">Mixed-fit tone</span>
+                    <select
+                      v-model="mixedFitTone"
+                      class="rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3 text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1)">
+                      <option value="error">Error</option>
+                      <option value="warning">Warning</option>
+                      <option value="success">Success</option>
+                    </select>
+                  </label>
+                  <label class="grid gap-1.5">
+                    <span class="text-sm font-medium">Strong-fit tone</span>
+                    <select
+                      v-model="strongFitTone"
+                      class="rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3 text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1)">
+                      <option value="error">Error</option>
+                      <option value="warning">Warning</option>
+                      <option value="success">Success</option>
+                    </select>
+                  </label>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <section>
       <h2>Detailed scoring</h2>
       <template v-if="isScoring && !result">
         <div
@@ -676,7 +1018,7 @@ function criterionTone(percent: number) {
               >{{ result.overallPercent }}%</strong
             >
             <span class="text-lg font-medium" :class="bandTone">
-              {{ resolveEnglishBandLabel(result.band) || "Scored" }}
+              {{ resolveEnglishBandLabel(displayedPresentation?.band) || "Scored" }}
             </span>
             <span
               v-if="isRefiningAfterQuickPass"

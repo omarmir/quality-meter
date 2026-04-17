@@ -18,10 +18,21 @@ import { normalizeCriteriaForScoring } from './low-latency'
 import type {
   QualityAdaptiveRefinementConfig,
   QualityContextBudget,
+  QualityScorePresentationConfig,
   QualityScoreInput,
   QualityScorerConfig,
   QualityScorerConfigInput,
 } from './types'
+
+export const DEFAULT_QUALITY_SCORE_PRESENTATION_CONFIG: QualityScorePresentationConfig = {
+  mixedFitMinPercent: 45,
+  strongFitMinPercent: 70,
+  toneByBand: {
+    off_track: 'error',
+    mixed_fit: 'warning',
+    strong_fit: 'success',
+  },
+}
 
 export const DEFAULT_ADAPTIVE_REFINEMENT_CONFIG: QualityAdaptiveRefinementConfig = {
   lowStopOverallPercent: 10,

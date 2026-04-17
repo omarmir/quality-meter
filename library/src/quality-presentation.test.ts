@@ -22,4 +22,19 @@ describe('resolveQualityScorePresentation', () => {
       tone: 'success'
     })
   })
+
+  test('supports custom band thresholds and tones', () => {
+    expect(
+      resolveQualityScorePresentation(62, {
+        mixedFitMinPercent: 30,
+        strongFitMinPercent: 60,
+        toneByBand: {
+          strong_fit: 'warning',
+        },
+      }),
+    ).toEqual({
+      band: 'strong_fit',
+      tone: 'warning',
+    })
+  })
 })

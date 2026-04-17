@@ -31,6 +31,7 @@ import {
   resolveQualityScorePresentation,
   DEFAULT_QUALITY_SCORER_CONFIG,
   DEFAULT_ADAPTIVE_REFINEMENT_CONFIG,
+  DEFAULT_QUALITY_SCORE_PRESENTATION_CONFIG,
 } from '@browser-quality-scorer/core'
 ```
 
@@ -65,6 +66,7 @@ type QualityScoreInput = {
   question?: string
   response: string
   criteria: QualityCriterionInput[]
+  config?: QualityScoreRequestConfig
 }
 ```
 
@@ -73,6 +75,19 @@ This is the main scoring input.
 - `question` is optional, but recommended
 - `response` is the answer being evaluated
 - `criteria` is the rubric as either short criterion strings or `{ label, weight }` objects
+- `config` is optional request-level control over adaptive refinement and display-band mapping
+
+### `QualityScoreRequestConfig`
+
+```ts
+type QualityScoreRequestConfig = {
+  presentation?: Partial<QualityScorePresentationConfig>
+  adaptiveRefinementPolicy?: 'always' | 'adaptive' | 'never'
+  adaptiveRefinement?: Partial<QualityAdaptiveRefinementConfig>
+}
+```
+
+This lets callers change presentation thresholds and refinement behavior per score request instead of resetting the scorer’s global config.
 
 ### `QualityScoreOptions`
 
@@ -144,16 +159,29 @@ type QualityScoreBand = 'off_track' | 'mixed_fit' | 'strong_fit'
 type QualityScoreTone = 'error' | 'warning' | 'success'
 ```
 
-### `resolveQualityScorePresentation(overallPercent)`
+### `resolveQualityScorePresentation(overallPercent, config?)`
 
 ```ts
-const presentation = resolveQualityScorePresentation(result.overallPercent)
+const presentation = resolveQualityScorePresentation(result.overallPercent, {
+  mixedFitMinPercent: 40,
+  strongFitMinPercent: 75,
+})
 
 presentation.band
 presentation.tone
 ```
 
 Use this when you only have an `overallPercent` and want the same language-agnostic band/tone metadata that the scorer includes on `QualityScoreResult`.
+
+### `QualityScorePresentationConfig`
+
+```ts
+type QualityScorePresentationConfig = {
+  mixedFitMinPercent: number
+  strongFitMinPercent: number
+  toneByBand: Record<QualityScoreBand, QualityScoreTone>
+}
+```
 
 ### `QualityWeightedCriterion`
 
@@ -246,6 +274,7 @@ type QualityLowLatencyConfig = {
 ```ts
 DEFAULT_QUALITY_SCORER_CONFIG
 DEFAULT_ADAPTIVE_REFINEMENT_CONFIG
+DEFAULT_QUALITY_SCORE_PRESENTATION_CONFIG
 ```
 
 The default scorer config currently uses:
@@ -293,6 +322,12 @@ const result = await scorer.score({
     { label: 'Provides concrete, practical steps', weight: 4 },
     { label: 'Avoids recommending replacement hardware', weight: 2 },
   ],
+  config: {
+    presentation: {
+      mixedFitMinPercent: 40,
+      strongFitMinPercent: 78,
+    },
+  },
 })
 ```
 
@@ -356,7 +391,7 @@ const decision = decideQualityRefinement({
   question,
   response,
   criteria,
-  policy: 'adaptive',
+  requestConfig: input.config,
 })
 ```
 
@@ -370,6 +405,7 @@ Input:
   criteria: QualityCriterionInput[]
   policy?: 'always' | 'adaptive' | 'never'
   config?: Partial<QualityAdaptiveRefinementConfig>
+  requestConfig?: QualityScoreRequestConfig
 }
 ```
 
@@ -401,7 +437,7 @@ const decision = decideQualityRefinement({
   question: input.question ?? '',
   response: input.response,
   criteria: input.criteria,
-  policy: 'adaptive',
+  requestConfig: input.config,
 })
 
 if (decision.shouldRunFullPass) {
@@ -492,6 +528,7 @@ const decision = decideQualityRefinement({
   question: input.question,
   response: input.response,
   criteria: input.criteria,
+  requestConfig: input.config,
 })
 
 const finalResult = decision.shouldRunFullPass
