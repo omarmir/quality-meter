@@ -759,239 +759,325 @@ function criterionTone(percent: number) {
 
     <section>
       <details
-        class="rounded-2xl border border-(--vp-c-divider) bg-[color-mix(in_srgb,var(--vp-c-bg-soft)_86%,transparent)]"
+        class="overflow-hidden rounded-xl border border-(--vp-c-divider) bg-[color-mix(in_srgb,var(--vp-c-bg)_94%,var(--vp-c-bg-soft))]"
         :open="configurationPanelOpen"
         @toggle="handleConfigurationToggle">
-        <summary class="cursor-pointer list-none px-5 py-4 marker:hidden">
-          <div class="flex items-center justify-between gap-4">
-            <div>
-              <h2 class="my-0 text-lg font-semibold">Configurations</h2>
-              <p class="mt-1 text-sm text-(--vp-c-text-2)">
-                Refinement settings trigger rescoring. Display-band settings remap the current score instantly.
-              </p>
-            </div>
-            <span class="text-sm text-(--vp-c-text-2)">
-              {{ configurationPanelOpen ? "Collapse" : "Expand" }}
-            </span>
-          </div>
+        <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-4 py-3 marker:hidden">
+          <span class="text-[15px] font-medium text-(--vp-c-text-1)">Configurations</span>
+          <span
+            class="inline-flex size-5 items-center justify-center text-(--vp-c-text-2)"
+            aria-hidden="true">
+            <svg
+              viewBox="0 0 20 20"
+              fill="none"
+              class="size-4 stroke-current transition-transform duration-200"
+              :class="configurationPanelOpen ? 'rotate-180' : ''">
+              <path
+                d="m5 7.5 5 5 5-5"
+                class="[stroke-linecap:round] [stroke-linejoin:round] stroke-[1.8]" />
+            </svg>
+          </span>
         </summary>
 
-        <div class="border-t border-(--vp-c-divider) px-5 py-5">
-          <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
-            <p class="my-0 text-sm text-(--vp-c-text-2)">
-              These values are passed with the score request instead of changing the worker’s global config.
-            </p>
-            <button
-              class="inline-flex min-h-10 items-center justify-center rounded-full border border-(--vp-c-divider) bg-(--vp-c-bg-elv) px-4 text-sm font-medium text-(--vp-c-text-1) transition-colors hover:border-(--vp-c-brand-1) hover:text-(--vp-c-brand-1)"
-              type="button"
-              @click="resetConfigurations">
-              Reset defaults
-            </button>
-          </div>
-
-          <div class="grid gap-6 lg:grid-cols-2">
+        <div class="border-t border-(--vp-c-divider) px-4 py-4">
+          <div class="space-y-5">
             <section>
-              <h3 class="mt-0 text-base font-semibold">Adaptive refinement</h3>
-              <p class="mt-1 text-sm text-(--vp-c-text-2)">
-                Controls when the fast pass is accepted and when the full pass must still run.
-              </p>
-
-              <div class="mt-4 grid gap-3">
-                <label class="grid gap-1.5">
-                  <span class="text-sm font-medium">Policy</span>
+              <div class="mb-2 text-sm font-semibold text-(--vp-c-text-1)">Adaptive refinement</div>
+              <div class="space-y-2.5">
+                <label class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+                  <span class="min-w-0">
+                    <span class="block text-sm text-(--vp-c-text-2)">Policy</span>
+                    <span class="mt-0.5 block text-xs leading-5 text-[color-mix(in_srgb,var(--vp-c-text-2)_78%,transparent)]">
+                      Choose whether to always refine, never refine, or let the fast pass decide.
+                    </span>
+                  </span>
                   <select
                     v-model="refinementPolicy"
-                    class="rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3 text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1)">
+                    class="w-full rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-3 py-2.5 text-sm text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1) sm:w-56">
                     <option value="adaptive">Adaptive</option>
                     <option value="always">Always run full</option>
                     <option value="never">Fast only</option>
                   </select>
                 </label>
 
-                <div class="grid gap-3 sm:grid-cols-2">
-                  <label class="grid gap-1.5">
-                    <span class="text-sm font-medium">Low-stop overall %</span>
-                    <input
-                      v-model.number="lowStopOverallPercent"
-                      type="number"
-                      min="0"
-                      max="100"
-                      step="1"
-                      class="rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3 text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1)" />
-                  </label>
-                  <label class="grid gap-1.5">
-                    <span class="text-sm font-medium">Low-stop answer support</span>
-                    <input
-                      v-model.number="lowStopAnswerSupport"
-                      type="number"
-                      min="0"
-                      max="1"
-                      step="0.01"
-                      class="rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3 text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1)" />
-                  </label>
-                  <label class="grid gap-1.5">
-                    <span class="text-sm font-medium">Low-stop max criterion %</span>
-                    <input
-                      v-model.number="lowStopMaxCriterionPercent"
-                      type="number"
-                      min="0"
-                      max="100"
-                      step="1"
-                      class="rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3 text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1)" />
-                  </label>
-                  <label class="grid gap-1.5">
-                    <span class="text-sm font-medium">Secondary overall buffer</span>
-                    <input
-                      v-model.number="lowStopSecondaryOverallBuffer"
-                      type="number"
-                      min="0"
-                      max="100"
-                      step="1"
-                      class="rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3 text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1)" />
-                  </label>
-                  <label class="grid gap-1.5">
-                    <span class="text-sm font-medium">Low-criterion share</span>
-                    <input
-                      v-model.number="lowStopLowCriterionShare"
-                      type="number"
-                      min="0"
-                      max="1"
-                      step="0.01"
-                      class="rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3 text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1)" />
-                  </label>
-                </div>
+                <label class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+                  <span class="min-w-0">
+                    <span class="block text-sm text-(--vp-c-text-2)">Low-stop overall %</span>
+                    <span class="mt-0.5 block text-xs leading-5 text-[color-mix(in_srgb,var(--vp-c-text-2)_78%,transparent)]">
+                      Fast results at or below this overall score can be accepted as obvious failures.
+                    </span>
+                  </span>
+                  <input
+                    v-model.number="lowStopOverallPercent"
+                    type="number"
+                    min="0"
+                    max="100"
+                    step="1"
+                    class="w-full rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-3 py-2.5 text-sm text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1) sm:w-32" />
+                </label>
 
-                <div class="grid gap-3 sm:grid-cols-2">
-                  <label class="grid gap-1.5">
-                    <span class="text-sm font-medium">High-stop overall %</span>
-                    <input
-                      v-model.number="highStopOverallPercent"
-                      type="number"
-                      min="0"
-                      max="100"
-                      step="1"
-                      class="rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3 text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1)" />
-                  </label>
-                  <label class="grid gap-1.5">
-                    <span class="text-sm font-medium">High-stop min criterion %</span>
-                    <input
-                      v-model.number="highStopMinCriterionPercent"
-                      type="number"
-                      min="0"
-                      max="100"
-                      step="1"
-                      class="rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3 text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1)" />
-                  </label>
-                  <label class="grid gap-1.5">
-                    <span class="text-sm font-medium">High-stop spread %</span>
-                    <input
-                      v-model.number="highStopSpreadPercent"
-                      type="number"
-                      min="0"
-                      max="100"
-                      step="1"
-                      class="rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3 text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1)" />
-                  </label>
-                  <label class="grid gap-1.5">
-                    <span class="text-sm font-medium">High-stop weak-answer gate</span>
-                    <input
-                      v-model.number="highStopWeakAnswerGate"
-                      type="number"
-                      min="0"
-                      max="1"
-                      step="0.01"
-                      class="rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3 text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1)" />
-                  </label>
-                </div>
+                <label class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+                  <span class="min-w-0">
+                    <span class="block text-sm text-(--vp-c-text-2)">Low-stop answer support</span>
+                    <span class="mt-0.5 block text-xs leading-5 text-[color-mix(in_srgb,var(--vp-c-text-2)_78%,transparent)]">
+                      Requires the answer-validity signal to be weak before the fast pass is trusted.
+                    </span>
+                  </span>
+                  <input
+                    v-model.number="lowStopAnswerSupport"
+                    type="number"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    class="w-full rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-3 py-2.5 text-sm text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1) sm:w-32" />
+                </label>
 
-                <label class="inline-flex items-center gap-3 rounded-xl border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3">
+                <label class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+                  <span class="min-w-0">
+                    <span class="block text-sm text-(--vp-c-text-2)">Low-stop max criterion %</span>
+                    <span class="mt-0.5 block text-xs leading-5 text-[color-mix(in_srgb,var(--vp-c-text-2)_78%,transparent)]">
+                      Even the strongest criterion must stay below this level for the fast pass to stop early.
+                    </span>
+                  </span>
+                  <input
+                    v-model.number="lowStopMaxCriterionPercent"
+                    type="number"
+                    min="0"
+                    max="100"
+                    step="1"
+                    class="w-full rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-3 py-2.5 text-sm text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1) sm:w-32" />
+                </label>
+
+                <label class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+                  <span class="min-w-0">
+                    <span class="block text-sm text-(--vp-c-text-2)">Secondary overall buffer</span>
+                    <span class="mt-0.5 block text-xs leading-5 text-[color-mix(in_srgb,var(--vp-c-text-2)_78%,transparent)]">
+                      Lets near-failing fast results stop early when most criteria are still clearly weak.
+                    </span>
+                  </span>
+                  <input
+                    v-model.number="lowStopSecondaryOverallBuffer"
+                    type="number"
+                    min="0"
+                    max="100"
+                    step="1"
+                    class="w-full rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-3 py-2.5 text-sm text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1) sm:w-32" />
+                </label>
+
+                <label class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+                  <span class="min-w-0">
+                    <span class="block text-sm text-(--vp-c-text-2)">Low-criterion share</span>
+                    <span class="mt-0.5 block text-xs leading-5 text-[color-mix(in_srgb,var(--vp-c-text-2)_78%,transparent)]">
+                      The share of criteria that must remain weak before the secondary low-stop is used.
+                    </span>
+                  </span>
+                  <input
+                    v-model.number="lowStopLowCriterionShare"
+                    type="number"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    class="w-full rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-3 py-2.5 text-sm text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1) sm:w-32" />
+                </label>
+
+                <label class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+                  <span class="min-w-0">
+                    <span class="block text-sm text-(--vp-c-text-2)">High-stop overall %</span>
+                    <span class="mt-0.5 block text-xs leading-5 text-[color-mix(in_srgb,var(--vp-c-text-2)_78%,transparent)]">
+                      Fast results above this score may skip refinement if the rest of the strong-stop checks also pass.
+                    </span>
+                  </span>
+                  <input
+                    v-model.number="highStopOverallPercent"
+                    type="number"
+                    min="0"
+                    max="100"
+                    step="1"
+                    class="w-full rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-3 py-2.5 text-sm text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1) sm:w-32" />
+                </label>
+
+                <label class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+                  <span class="min-w-0">
+                    <span class="block text-sm text-(--vp-c-text-2)">High-stop min criterion %</span>
+                    <span class="mt-0.5 block text-xs leading-5 text-[color-mix(in_srgb,var(--vp-c-text-2)_78%,transparent)]">
+                      Every criterion must clear this minimum before a strong fast result can be accepted.
+                    </span>
+                  </span>
+                  <input
+                    v-model.number="highStopMinCriterionPercent"
+                    type="number"
+                    min="0"
+                    max="100"
+                    step="1"
+                    class="w-full rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-3 py-2.5 text-sm text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1) sm:w-32" />
+                </label>
+
+                <label class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+                  <span class="min-w-0">
+                    <span class="block text-sm text-(--vp-c-text-2)">High-stop spread %</span>
+                    <span class="mt-0.5 block text-xs leading-5 text-[color-mix(in_srgb,var(--vp-c-text-2)_78%,transparent)]">
+                      Limits how uneven the criterion scores can be when you allow fast strong answers to stop early.
+                    </span>
+                  </span>
+                  <input
+                    v-model.number="highStopSpreadPercent"
+                    type="number"
+                    min="0"
+                    max="100"
+                    step="1"
+                    class="w-full rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-3 py-2.5 text-sm text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1) sm:w-32" />
+                </label>
+
+                <label class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+                  <span class="min-w-0">
+                    <span class="block text-sm text-(--vp-c-text-2)">High-stop weak-answer gate</span>
+                    <span class="mt-0.5 block text-xs leading-5 text-[color-mix(in_srgb,var(--vp-c-text-2)_78%,transparent)]">
+                      The weak-answer gate must stay above this floor before a strong fast result is trusted.
+                    </span>
+                  </span>
+                  <input
+                    v-model.number="highStopWeakAnswerGate"
+                    type="number"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    class="w-full rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-3 py-2.5 text-sm text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1) sm:w-32" />
+                </label>
+
+                <label class="flex items-center justify-between gap-4 rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-3 py-2.5">
+                  <span class="min-w-0">
+                    <span class="block text-sm text-(--vp-c-text-2)">Disable high-stop for constraint-sensitive questions</span>
+                    <span class="mt-0.5 block text-xs leading-5 text-[color-mix(in_srgb,var(--vp-c-text-2)_78%,transparent)]">
+                      Forces a full pass when the prompt includes explicit limits such as budgets, caps, or time bounds.
+                    </span>
+                  </span>
                   <input
                     v-model="disableHighStopForConstraintQuestions"
                     type="checkbox"
                     class="size-4 rounded border-(--vp-c-divider)" />
-                  <span class="text-sm">Disable high-stop for constraint-sensitive questions</span>
                 </label>
-                <label class="inline-flex items-center gap-3 rounded-xl border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3">
+
+                <label class="flex items-center justify-between gap-4 rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-3 py-2.5">
+                  <span class="min-w-0">
+                    <span class="block text-sm text-(--vp-c-text-2)">Disable high-stop for comparison tasks</span>
+                    <span class="mt-0.5 block text-xs leading-5 text-[color-mix(in_srgb,var(--vp-c-text-2)_78%,transparent)]">
+                      Keeps comparison prompts on the safer full-pass path even when the fast score looks strong.
+                    </span>
+                  </span>
                   <input
                     v-model="disableHighStopForComparison"
                     type="checkbox"
                     class="size-4 rounded border-(--vp-c-divider)" />
-                  <span class="text-sm">Disable high-stop for comparison tasks</span>
                 </label>
-                <label class="inline-flex items-center gap-3 rounded-xl border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3">
+
+                <label class="flex items-center justify-between gap-4 rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-3 py-2.5">
+                  <span class="min-w-0">
+                    <span class="block text-sm text-(--vp-c-text-2)">Disable high-stop for planning tasks</span>
+                    <span class="mt-0.5 block text-xs leading-5 text-[color-mix(in_srgb,var(--vp-c-text-2)_78%,transparent)]">
+                      Keeps multi-step planning prompts on the full-pass path where structure is checked more carefully.
+                    </span>
+                  </span>
                   <input
                     v-model="disableHighStopForPlanning"
                     type="checkbox"
                     class="size-4 rounded border-(--vp-c-divider)" />
-                  <span class="text-sm">Disable high-stop for planning tasks</span>
                 </label>
               </div>
             </section>
 
             <section>
-              <h3 class="mt-0 text-base font-semibold">Display bands</h3>
-              <p class="mt-1 text-sm text-(--vp-c-text-2)">
-                These remap the current overall percent into band and tone output without rerunning the model.
-              </p>
+              <div class="mb-2 text-sm font-semibold text-(--vp-c-text-1)">Display bands</div>
+              <div class="space-y-2.5">
+                <label class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+                  <span class="min-w-0">
+                    <span class="block text-sm text-(--vp-c-text-2)">Mixed-fit minimum %</span>
+                    <span class="mt-0.5 block text-xs leading-5 text-[color-mix(in_srgb,var(--vp-c-text-2)_78%,transparent)]">
+                      Scores at or above this percent move from off-track into the mixed-fit band.
+                    </span>
+                  </span>
+                  <input
+                    v-model.number="mixedFitMinPercent"
+                    type="number"
+                    min="0"
+                    max="100"
+                    step="1"
+                    class="w-full rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-3 py-2.5 text-sm text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1) sm:w-32" />
+                </label>
 
-              <div class="mt-4 grid gap-3">
-                <div class="grid gap-3 sm:grid-cols-2">
-                  <label class="grid gap-1.5">
-                    <span class="text-sm font-medium">Mixed-fit minimum %</span>
-                    <input
-                      v-model.number="mixedFitMinPercent"
-                      type="number"
-                      min="0"
-                      max="100"
-                      step="1"
-                      class="rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3 text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1)" />
-                  </label>
-                  <label class="grid gap-1.5">
-                    <span class="text-sm font-medium">Strong-fit minimum %</span>
-                    <input
-                      v-model.number="strongFitMinPercent"
-                      type="number"
-                      min="0"
-                      max="100"
-                      step="1"
-                      class="rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3 text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1)" />
-                  </label>
-                </div>
+                <label class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+                  <span class="min-w-0">
+                    <span class="block text-sm text-(--vp-c-text-2)">Strong-fit minimum %</span>
+                    <span class="mt-0.5 block text-xs leading-5 text-[color-mix(in_srgb,var(--vp-c-text-2)_78%,transparent)]">
+                      Scores at or above this percent move from mixed-fit into strong-fit.
+                    </span>
+                  </span>
+                  <input
+                    v-model.number="strongFitMinPercent"
+                    type="number"
+                    min="0"
+                    max="100"
+                    step="1"
+                    class="w-full rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-3 py-2.5 text-sm text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1) sm:w-32" />
+                </label>
 
-                <div class="grid gap-3 sm:grid-cols-3">
-                  <label class="grid gap-1.5">
-                    <span class="text-sm font-medium">Off-track tone</span>
-                    <select
-                      v-model="offTrackTone"
-                      class="rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3 text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1)">
-                      <option value="error">Error</option>
-                      <option value="warning">Warning</option>
-                      <option value="success">Success</option>
-                    </select>
-                  </label>
-                  <label class="grid gap-1.5">
-                    <span class="text-sm font-medium">Mixed-fit tone</span>
-                    <select
-                      v-model="mixedFitTone"
-                      class="rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3 text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1)">
-                      <option value="error">Error</option>
-                      <option value="warning">Warning</option>
-                      <option value="success">Success</option>
-                    </select>
-                  </label>
-                  <label class="grid gap-1.5">
-                    <span class="text-sm font-medium">Strong-fit tone</span>
-                    <select
-                      v-model="strongFitTone"
-                      class="rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 py-3 text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1)">
-                      <option value="error">Error</option>
-                      <option value="warning">Warning</option>
-                      <option value="success">Success</option>
-                    </select>
-                  </label>
-                </div>
+                <label class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+                  <span class="min-w-0">
+                    <span class="block text-sm text-(--vp-c-text-2)">Off-track tone</span>
+                    <span class="mt-0.5 block text-xs leading-5 text-[color-mix(in_srgb,var(--vp-c-text-2)_78%,transparent)]">
+                      Sets the UI tone returned for the off-track band without changing the numeric score.
+                    </span>
+                  </span>
+                  <select
+                    v-model="offTrackTone"
+                    class="w-full rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-3 py-2.5 text-sm text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1) sm:w-32">
+                    <option value="error">Error</option>
+                    <option value="warning">Warning</option>
+                    <option value="success">Success</option>
+                  </select>
+                </label>
+
+                <label class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+                  <span class="min-w-0">
+                    <span class="block text-sm text-(--vp-c-text-2)">Mixed-fit tone</span>
+                    <span class="mt-0.5 block text-xs leading-5 text-[color-mix(in_srgb,var(--vp-c-text-2)_78%,transparent)]">
+                      Sets the UI tone returned for the mixed-fit band without rerunning the model.
+                    </span>
+                  </span>
+                  <select
+                    v-model="mixedFitTone"
+                    class="w-full rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-3 py-2.5 text-sm text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1) sm:w-32">
+                    <option value="error">Error</option>
+                    <option value="warning">Warning</option>
+                    <option value="success">Success</option>
+                  </select>
+                </label>
+
+                <label class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+                  <span class="min-w-0">
+                    <span class="block text-sm text-(--vp-c-text-2)">Strong-fit tone</span>
+                    <span class="mt-0.5 block text-xs leading-5 text-[color-mix(in_srgb,var(--vp-c-text-2)_78%,transparent)]">
+                      Sets the UI tone returned for the strong-fit band without changing the calculated percent.
+                    </span>
+                  </span>
+                  <select
+                    v-model="strongFitTone"
+                    class="w-full rounded-lg border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-3 py-2.5 text-sm text-(--vp-c-text-1) outline-none transition-colors focus:border-(--vp-c-brand-1) sm:w-32">
+                    <option value="error">Error</option>
+                    <option value="warning">Warning</option>
+                    <option value="success">Success</option>
+                  </select>
+                </label>
               </div>
             </section>
+
+            <div class="pt-1">
+              <button
+                class="inline-flex min-h-10 items-center justify-center rounded-full border border-(--vp-c-divider) bg-(--vp-c-bg-soft) px-4 text-sm font-medium text-(--vp-c-text-1) transition-colors hover:border-(--vp-c-brand-1) hover:text-(--vp-c-brand-1)"
+                type="button"
+                @click="resetConfigurations">
+                Reset defaults
+              </button>
+            </div>
           </div>
         </div>
       </details>
