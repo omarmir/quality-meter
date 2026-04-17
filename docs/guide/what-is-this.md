@@ -30,6 +30,8 @@ import {
   createQualityScorerWorkerClient,
   decideQualityRefinement,
   estimateQualityContextBudget,
+  QUALITY_SCORE_BANDS,
+  QUALITY_SCORE_TONE_BY_BAND,
 } from '@browser-quality-scorer/core'
 ```
 
@@ -57,7 +59,7 @@ And the scorer returns:
 - per-criterion scores with weight metadata
 - answer support and gating signals
 - calibrated percentages for display
-- localized display metadata for band labels and summaries in `{ en, fr }` form
+- stable machine-oriented `band` and `tone` values for product-owned display maps
 
 ## Runtime Model
 

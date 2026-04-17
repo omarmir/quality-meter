@@ -2,8 +2,8 @@
 import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue"
 import type {
   QualityModelProgressEvent,
+  QualityScoreBand,
   QualityRefinementDecision,
-  QualityLocalizedText,
   QualityScoreMode,
   QualityScoreResult,
   QualityScorerWorkerClient,
@@ -50,6 +50,18 @@ const activeRequestId = ref<number | null>(null)
 const queuedAutoScore = ref(false)
 const isResultStale = ref(false)
 
+const SCORE_LABELS: Record<QualityScoreBand, string> = {
+  off_track: "Off track",
+  mixed_fit: "Mixed fit",
+  strong_fit: "Strong fit",
+}
+
+const SCORE_SUMMARIES: Record<QualityScoreBand, string> = {
+  off_track: "The response needs more work to match the prompt.",
+  mixed_fit: "The response is usable but some criteria remain under-supported.",
+  strong_fit: "The response aligns well with the configured question and criteria.",
+}
+
 const normalizedCriteria = computed(() =>
   criteria.value
     .map((item) => ({
@@ -75,8 +87,10 @@ const canScore = computed(
     normalizedCriteria.value.length > 0,
 )
 const overallPercent = computed(() => result.value?.overallPercent ?? null)
-const resolveEnglishText = (value: QualityLocalizedText | null | undefined) =>
-  value?.en ?? ""
+const resolveEnglishBandLabel = (band: QualityScoreBand | null | undefined) =>
+  band ? SCORE_LABELS[band] : ""
+const resolveEnglishBandSummary = (band: QualityScoreBand | null | undefined) =>
+  band ? SCORE_SUMMARIES[band] : ""
 
 const gaugeSummary = computed(() => {
   if (errorMessage.value) return errorMessage.value
@@ -91,15 +105,15 @@ const gaugeSummary = computed(() => {
       scoreMode.value === "fast" &&
       refinementDecision.value?.reason === "obvious_failure"
     ) {
-      return `${resolveEnglishText(result.value.summary)} The adaptive gate skipped the full pass because the fast result already looked decisively off track.`
+      return `${resolveEnglishBandSummary(result.value.band)} The adaptive gate skipped the full pass because the fast result already looked decisively off track.`
     }
     if (
       scoreMode.value === "fast" &&
       refinementDecision.value?.reason === "stable_strong"
     ) {
-      return `${resolveEnglishText(result.value.summary)} The adaptive gate skipped the full pass because the fast result already looked stable at the top end.`
+      return `${resolveEnglishBandSummary(result.value.band)} The adaptive gate skipped the full pass because the fast result already looked stable at the top end.`
     }
-    return resolveEnglishText(result.value.summary)
+    return resolveEnglishBandSummary(result.value.band)
   }
   return "Scoring updates automatically after typing stops."
 })
@@ -607,7 +621,7 @@ function criterionTone(percent: number) {
           class="mt-3 h-5 w-72 animate-pulse rounded-full bg-(--vp-c-bg-soft)" />
       </template>
       <p v-else class="text-lg font-medium" :class="isAnswerCalculating && !isRefiningAfterQuickPass ? 'text-(--vp-c-text-2)' : bandTone">
-        {{ isAnswerCalculating && !isRefiningAfterQuickPass ? "Calculating" : resolveEnglishText(result?.label) || "No score yet" }}
+        {{ isAnswerCalculating && !isRefiningAfterQuickPass ? "Calculating" : resolveEnglishBandLabel(result?.band) || "No score yet" }}
         <span v-if="isRefiningAfterQuickPass" class="align-middle text-sm font-normal text-(--vp-c-text-2)">
           (<span class="inline-flex items-center gap-1 align-middle">
             <span
@@ -654,7 +668,7 @@ function criterionTone(percent: number) {
               >{{ result.overallPercent }}%</strong
             >
             <span class="text-lg font-medium" :class="bandTone">
-              {{ resolveEnglishText(result.label) || "Scored" }}
+              {{ resolveEnglishBandLabel(result.band) || "Scored" }}
             </span>
             <span
               v-if="isRefiningAfterQuickPass"

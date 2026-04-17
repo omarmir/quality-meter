@@ -16,6 +16,8 @@ import {
   createQualityScorerWorkerClient,
   decideQualityRefinement,
   estimateQualityContextBudget,
+  QUALITY_SCORE_BANDS,
+  QUALITY_SCORE_TONE_BY_BAND,
   resolveQualityScorePresentation,
 } from '@browser-quality-scorer/core'
 ```
@@ -52,17 +54,17 @@ The returned score result also includes display-oriented band metadata:
 
 - `band`: `off_track | mixed_fit | strong_fit`
 - `tone`: `error | warning | success`
-- `label`: `{ en, fr }`
-- `summary`: `{ en, fr }`
+- `QUALITY_SCORE_BANDS`: stable band ordering for UI maps
+- `QUALITY_SCORE_TONE_BY_BAND`: stable tone map keyed by band
 
-That lets products render the same localized pill labels everywhere without maintaining a separate hardcoded map.
+Products should map those language-agnostic band values to their own localized labels and summaries.
 
-If you already have only a numeric score and want the same metadata outside the scorer result, you can resolve it directly:
+If you already have only a numeric score and want the same band/tone metadata outside the scorer result, you can resolve it directly:
 
 ```ts
 const presentation = resolveQualityScorePresentation(result.overallPercent)
-console.log(presentation.label.en) // "Strong fit"
-console.log(presentation.label.fr) // "Bonne adequation"
+console.log(presentation.band) // "strong_fit"
+console.log(QUALITY_SCORE_TONE_BY_BAND[presentation.band]) // "success"
 ```
 
 ## Worker Usage

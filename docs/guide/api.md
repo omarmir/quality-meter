@@ -26,6 +26,8 @@ import {
   estimateQualityContextBudget,
   resolveQualityScorerConfig,
   computeCalibratedOverallScore,
+  QUALITY_SCORE_BANDS,
+  QUALITY_SCORE_TONE_BY_BAND,
   resolveQualityScorePresentation,
   DEFAULT_QUALITY_SCORER_CONFIG,
   DEFAULT_ADAPTIVE_REFINEMENT_CONFIG,
@@ -107,8 +109,6 @@ type QualityScoreResult = {
   overallPercent: number
   band: QualityScoreBand
   tone: QualityScoreTone
-  label: QualityLocalizedText
-  summary: QualityLocalizedText
   breakdown: QualityCriterionScore[]
 }
 ```
@@ -118,21 +118,16 @@ Important fields:
 - `overallPercent`: display-oriented overall score based on the weighted criterion average before gating and calibration
 - `band`: stable machine-oriented band key for product logic
 - `tone`: display tone aligned with the band
-- `label`: localized display label in `{ en, fr }` form
-- `summary`: localized display summary in `{ en, fr }` form
 - `weightedCriteria`: the resolved input criteria with explicit weights
 - `breakdown`: per-criterion scores plus weight metadata
 - `answerSupport`: how strongly the response appears to actually answer the question
 - `weakAnswerGate`: suppression factor for weak or generic answers
 - `taskType`: inferred task class used by low-latency checks
 
-### `QualityLocalizedText`
+### `QUALITY_SCORE_BANDS`
 
 ```ts
-type QualityLocalizedText = {
-  en: string
-  fr: string
-}
+const QUALITY_SCORE_BANDS = ['off_track', 'mixed_fit', 'strong_fit']
 ```
 
 ### `QualityScoreBand`
@@ -154,13 +149,9 @@ const presentation = resolveQualityScorePresentation(result.overallPercent)
 
 presentation.band
 presentation.tone
-presentation.label.en
-presentation.label.fr
-presentation.summary.en
-presentation.summary.fr
 ```
 
-Use this when you only have an `overallPercent` and want the same localized display metadata that the scorer now includes on `QualityScoreResult`.
+Use this when you only have an `overallPercent` and want the same language-agnostic band/tone metadata that the scorer includes on `QualityScoreResult`.
 
 ### `QualityWeightedCriterion`
 

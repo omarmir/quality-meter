@@ -227,8 +227,6 @@ function formatQualityScoreResult(
     overallPercent: overall.overallPercent,
     band: presentation.band,
     tone: presentation.tone,
-    label: presentation.label,
-    summary: presentation.summary,
     breakdown,
   }
 }
