@@ -8,6 +8,30 @@ Reusable browser-side response scoring package for:
 - worker-backed scoring clients
 - context-budget estimation
 
+## Install From GitHub
+
+This repo stays a monorepo, so the installable package is published to a dedicated GitHub branch and matching package tags instead of the default source branch.
+
+Latest stable package snapshot:
+
+```bash
+npm install github:omarmir/quality-meter#package-release
+bun add github:omarmir/quality-meter#package-release
+```
+
+Pinned stable package snapshot:
+
+```bash
+npm install github:omarmir/quality-meter#pkg-v0.1.0
+bun add github:omarmir/quality-meter#pkg-v0.1.0
+```
+
+Notes:
+
+- `package-release` is the moving latest-stable ref.
+- `pkg-vX.Y.Z` tags are immutable version-style refs for pinned installs.
+- the Git-installable package includes the local model assets, so installs are materially heavier than a code-only package.
+
 ## Main API
 
 ```ts

@@ -48,4 +48,9 @@ The published package surface lives under `library/` and exports:
 - `@browser-quality-scorer/core`
 - `@browser-quality-scorer/core/worker-runtime`
 
+For GitHub-based installs without npmjs publishing, stable package snapshots are published to:
+
+- branch: `package-release`
+- pinned tags: `pkg-vX.Y.Z`
+
 See [library/README.md](./library/README.md) and the docs site under `docs/` for usage details.

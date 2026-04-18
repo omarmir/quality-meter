@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "vitepress dev docs",
     "build": "vitepress build docs",
+    "build:library": "tsup --config library/tsup.config.ts",
     "preview": "vitepress preview docs",
     "benchmark": "bun tools/scripts/run-benchmark.ts",
     "benchmark:adaptive": "bun tools/scripts/run-adaptive-refinement-benchmark.ts",
@@ -18,13 +19,16 @@
     "benchmark:wording": "bun tools/scripts/run-wording-experiments.ts",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "package:library": "bun tools/scripts/create-package-release.ts"
   },
   "dependencies": {
     "@browser-quality-scorer/core": "workspace:*",
     "@huggingface/transformers": "^4.0.1"
   },
   "devDependencies": {
+    "tsup": "^8.5.1",
+    "typescript": "^6.0.3",
     "vitepress": "^2.0.0-alpha.17"
   }
 }

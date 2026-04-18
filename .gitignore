@@ -26,3 +26,4 @@ dist-ssr
 .model-bakeoff-cache/
 docs/.vitepress/cache
 docs/.vitepress/dist
+tools/package-release
