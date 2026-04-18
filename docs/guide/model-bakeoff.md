@@ -10,30 +10,42 @@ bun run report:model-bakeoff --write-json --write-md
 
 ## At A Glance
 
-- No cached model-bakeoff artifact is checked in right now.
-- Run the update command above to generate the benchmark JSON and rewrite this page.
+- Candidates: `6` completed
+- Best main benchmark: `Xenova/nli-deberta-v3-small`
+- Best hard-negative benchmark: `MoritzLaurer/ModernBERT-base-zeroshot-v2.0`
+- Failures: `0`
+- Elapsed time: `110m 2s`
 
 ## Top-Line Metrics
 
-No model-bakeoff metrics are available until the benchmark is run.
+| Model | q8 Size | Main MAE | Main Median | Hard MAE | Hard Median | Load Time | Total Time |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Xenova/nli-deberta-v3-small | 164.5 MB | 4.1 | 2.3 | 12.2 | 13.3 | 2s | 21m 28.8s |
+| Xenova/nli-deberta-v3-xsmall | 83.2 MB | 4.4 | 2.8 | 13.2 | 14.3 | 1.3s | 14m 55.4s |
+| Xenova/deberta-v3-base-tasksource-nli | 233 MB | 5 | 3.5 | 12.3 | 13.6 | 6.7s | 26m 25.1s |
+| onnx-community/multilingual-MiniLMv2-L6-mnli-xnli-ONNX | 102.4 MB | 6.6 | 5.3 | 13.6 | 14.7 | 3.5s | 3m 37.6s |
+| MoritzLaurer/ModernBERT-base-zeroshot-v2.0 | 143.9 MB | 12.8 | 5.9 | 8.2 | 5.6 | 3.6s | 26m 10.1s |
+| onnx-community/distilbart-mnli-12-3-ONNX | 246.2 MB | 18.4 | 8.9 | 11.9 | 10.5 | 17.6s | 17m 24.9s |
 
 ## Corpus Shape
 
-- current handwritten 300-case main corpus
-- matching 300-case hard-negative corpus
-- current shortlisted local model candidates
+This report compares local model candidates against the same main corpus and hard-negative corpus.
+
+- `6` evaluated candidates
+- `300` main benchmark cases
+- `300` hard-negative cases
 
 ## By Domain
 
-This page will populate when a model-bakeoff artifact is available.
+This artifact stores per-model summary metrics only. Domain-level slices are not persisted for the bakeoff.
 
 ## By Profile
 
-This page will populate when a model-bakeoff artifact is available.
+This artifact stores per-model summary metrics only. Profile-level slices are not persisted for the bakeoff.
 
 ## Largest Misses
 
-This page will populate when a model-bakeoff artifact is available.
+This artifact stores per-model summary metrics only. Case-level miss lists are not persisted for the bakeoff.
 
 ## How To Read This Page
 

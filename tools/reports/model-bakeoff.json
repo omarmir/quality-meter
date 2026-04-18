@@ -1,0 +1,285 @@
+{
+  "generatedAt": "2026-04-18T07:50:33.171Z",
+  "elapsedMs": 6601986.3,
+  "candidates": [
+    {
+      "id": "Xenova/nli-deberta-v3-xsmall",
+      "label": "DeBERTa v3 xsmall",
+      "note": "Current recommended baseline and smallest DeBERTa-family payload in the shortlist."
+    },
+    {
+      "id": "Xenova/nli-deberta-v3-small",
+      "label": "DeBERTa v3 small",
+      "note": "Larger DeBERTa-family candidate that sometimes narrows the fair benchmark gap."
+    },
+    {
+      "id": "MoritzLaurer/ModernBERT-base-zeroshot-v2.0",
+      "label": "ModernBERT base zeroshot",
+      "note": "Interesting hard-negative candidate with a different architecture tradeoff."
+    },
+    {
+      "id": "Xenova/deberta-v3-base-tasksource-nli",
+      "label": "DeBERTa v3 base tasksource NLI",
+      "note": "Largest DeBERTa-family candidate in the shortlist."
+    },
+    {
+      "id": "onnx-community/distilbart-mnli-12-3-ONNX",
+      "label": "DistilBART MNLI",
+      "note": "Older MNLI baseline kept as a historical reference point."
+    },
+    {
+      "id": "onnx-community/multilingual-MiniLMv2-L6-mnli-xnli-ONNX",
+      "label": "Multilingual MiniLMv2 L6 MNLI/XNLI",
+      "note": "Multilingual candidate kept in the bakeoff to measure English-regression risk."
+    }
+  ],
+  "results": [
+    {
+      "modelId": "Xenova/nli-deberta-v3-xsmall",
+      "label": "DeBERTa v3 xsmall",
+      "note": "Current recommended baseline and smallest DeBERTa-family payload in the shortlist.",
+      "sizeBytes": 87246587,
+      "sizeLabel": "83.2 MB",
+      "loadDurationMs": 1287.3,
+      "mainBenchmarkDurationMs": 450369.2,
+      "hardNegativeDurationMs": 443581.4,
+      "totalDurationMs": 895365.5,
+      "mainRawSummary": {
+        "meanAbsoluteError": 5.8,
+        "medianAbsoluteError": 3.2,
+        "within10": 236,
+        "within20": 290
+      },
+      "mainCrossValidatedSummary": {
+        "meanAbsoluteError": 4.4,
+        "medianAbsoluteError": 2.8,
+        "within10": 262,
+        "within20": 295
+      },
+      "mainRuntimeSummary": {
+        "meanAbsoluteError": 4.4,
+        "medianAbsoluteError": 2.7,
+        "within10": 260,
+        "within20": 295
+      },
+      "hardNegativeRuntimeSummary": {
+        "meanAbsoluteError": 13.2,
+        "medianAbsoluteError": 14.3,
+        "within10": 96,
+        "within20": 272
+      },
+      "hardNegativeCrossValidatedSummary": {
+        "meanAbsoluteError": 13.2,
+        "medianAbsoluteError": 14.3,
+        "within10": 97,
+        "within20": 273
+      }
+    },
+    {
+      "modelId": "Xenova/nli-deberta-v3-small",
+      "label": "DeBERTa v3 small",
+      "note": "Larger DeBERTa-family candidate that sometimes narrows the fair benchmark gap.",
+      "sizeBytes": 172440643,
+      "sizeLabel": "164.5 MB",
+      "loadDurationMs": 1991.3,
+      "mainBenchmarkDurationMs": 662086.4,
+      "hardNegativeDurationMs": 624605.6,
+      "totalDurationMs": 1288801.7,
+      "mainRawSummary": {
+        "meanAbsoluteError": 5.6,
+        "medianAbsoluteError": 2.8,
+        "within10": 239,
+        "within20": 289
+      },
+      "mainCrossValidatedSummary": {
+        "meanAbsoluteError": 4.1,
+        "medianAbsoluteError": 2.3,
+        "within10": 266,
+        "within20": 296
+      },
+      "mainRuntimeSummary": {
+        "meanAbsoluteError": 4.1,
+        "medianAbsoluteError": 2.3,
+        "within10": 265,
+        "within20": 296
+      },
+      "hardNegativeRuntimeSummary": {
+        "meanAbsoluteError": 12.1,
+        "medianAbsoluteError": 13.1,
+        "within10": 128,
+        "within20": 280
+      },
+      "hardNegativeCrossValidatedSummary": {
+        "meanAbsoluteError": 12.2,
+        "medianAbsoluteError": 13.3,
+        "within10": 128,
+        "within20": 280
+      }
+    },
+    {
+      "modelId": "MoritzLaurer/ModernBERT-base-zeroshot-v2.0",
+      "label": "ModernBERT base zeroshot",
+      "note": "Interesting hard-negative candidate with a different architecture tradeoff.",
+      "sizeBytes": 150872614,
+      "sizeLabel": "143.9 MB",
+      "loadDurationMs": 3583.3,
+      "mainBenchmarkDurationMs": 865978,
+      "hardNegativeDurationMs": 700256.6,
+      "totalDurationMs": 1570092.2,
+      "mainRawSummary": {
+        "meanAbsoluteError": 14.6,
+        "medianAbsoluteError": 8,
+        "within10": 167,
+        "within20": 213
+      },
+      "mainCrossValidatedSummary": {
+        "meanAbsoluteError": 12.8,
+        "medianAbsoluteError": 5.9,
+        "within10": 192,
+        "within20": 226
+      },
+      "mainRuntimeSummary": {
+        "meanAbsoluteError": 12.7,
+        "medianAbsoluteError": 6.1,
+        "within10": 192,
+        "within20": 227
+      },
+      "hardNegativeRuntimeSummary": {
+        "meanAbsoluteError": 8.2,
+        "medianAbsoluteError": 5.6,
+        "within10": 240,
+        "within20": 268
+      },
+      "hardNegativeCrossValidatedSummary": {
+        "meanAbsoluteError": 8.2,
+        "medianAbsoluteError": 5.6,
+        "within10": 240,
+        "within20": 268
+      }
+    },
+    {
+      "modelId": "Xenova/deberta-v3-base-tasksource-nli",
+      "label": "DeBERTa v3 base tasksource NLI",
+      "note": "Largest DeBERTa-family candidate in the shortlist.",
+      "sizeBytes": 244291931,
+      "sizeLabel": "233 MB",
+      "loadDurationMs": 6702.7,
+      "mainBenchmarkDurationMs": 844860.2,
+      "hardNegativeDurationMs": 733256.3,
+      "totalDurationMs": 1585109.5,
+      "mainRawSummary": {
+        "meanAbsoluteError": 5.8,
+        "medianAbsoluteError": 4.5,
+        "within10": 257,
+        "within20": 290
+      },
+      "mainCrossValidatedSummary": {
+        "meanAbsoluteError": 5,
+        "medianAbsoluteError": 3.5,
+        "within10": 260,
+        "within20": 295
+      },
+      "mainRuntimeSummary": {
+        "meanAbsoluteError": 4.9,
+        "medianAbsoluteError": 3.2,
+        "within10": 259,
+        "within20": 295
+      },
+      "hardNegativeRuntimeSummary": {
+        "meanAbsoluteError": 12.2,
+        "medianAbsoluteError": 13.7,
+        "within10": 128,
+        "within20": 272
+      },
+      "hardNegativeCrossValidatedSummary": {
+        "meanAbsoluteError": 12.3,
+        "medianAbsoluteError": 13.6,
+        "within10": 126,
+        "within20": 273
+      }
+    },
+    {
+      "modelId": "onnx-community/distilbart-mnli-12-3-ONNX",
+      "label": "DistilBART MNLI",
+      "note": "Older MNLI baseline kept as a historical reference point.",
+      "sizeBytes": 258175309,
+      "sizeLabel": "246.2 MB",
+      "loadDurationMs": 17558.4,
+      "mainBenchmarkDurationMs": 540732.5,
+      "hardNegativeDurationMs": 486312.3,
+      "totalDurationMs": 1044863.2,
+      "mainRawSummary": {
+        "meanAbsoluteError": 19.7,
+        "medianAbsoluteError": 9.2,
+        "within10": 161,
+        "within20": 207
+      },
+      "mainCrossValidatedSummary": {
+        "meanAbsoluteError": 18.4,
+        "medianAbsoluteError": 8.9,
+        "within10": 160,
+        "within20": 220
+      },
+      "mainRuntimeSummary": {
+        "meanAbsoluteError": 18.3,
+        "medianAbsoluteError": 8.9,
+        "within10": 162,
+        "within20": 219
+      },
+      "hardNegativeRuntimeSummary": {
+        "meanAbsoluteError": 11.9,
+        "medianAbsoluteError": 10.5,
+        "within10": 128,
+        "within20": 272
+      },
+      "hardNegativeCrossValidatedSummary": {
+        "meanAbsoluteError": 11.9,
+        "medianAbsoluteError": 10.5,
+        "within10": 128,
+        "within20": 272
+      }
+    },
+    {
+      "modelId": "onnx-community/multilingual-MiniLMv2-L6-mnli-xnli-ONNX",
+      "label": "Multilingual MiniLMv2 L6 MNLI/XNLI",
+      "note": "Multilingual candidate kept in the bakeoff to measure English-regression risk.",
+      "sizeBytes": 107415176,
+      "sizeLabel": "102.4 MB",
+      "loadDurationMs": 3450.4,
+      "mainBenchmarkDurationMs": 112256.8,
+      "hardNegativeDurationMs": 101629.2,
+      "totalDurationMs": 217583.7,
+      "mainRawSummary": {
+        "meanAbsoluteError": 9.6,
+        "medianAbsoluteError": 6.9,
+        "within10": 178,
+        "within20": 255
+      },
+      "mainCrossValidatedSummary": {
+        "meanAbsoluteError": 6.6,
+        "medianAbsoluteError": 5.3,
+        "within10": 229,
+        "within20": 288
+      },
+      "mainRuntimeSummary": {
+        "meanAbsoluteError": 6.6,
+        "medianAbsoluteError": 5.5,
+        "within10": 226,
+        "within20": 287
+      },
+      "hardNegativeRuntimeSummary": {
+        "meanAbsoluteError": 13.6,
+        "medianAbsoluteError": 14.7,
+        "within10": 128,
+        "within20": 272
+      },
+      "hardNegativeCrossValidatedSummary": {
+        "meanAbsoluteError": 13.6,
+        "medianAbsoluteError": 14.7,
+        "within10": 128,
+        "within20": 272
+      }
+    }
+  ],
+  "failures": []
+}
