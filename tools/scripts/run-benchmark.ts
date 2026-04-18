@@ -134,18 +134,6 @@ await Bun.write(
   ),
 )
 await Bun.write(
-  fileURLToPath(new URL('../reports/benchmark-report.md', import.meta.url)),
-  renderMarkdown({
-    rawSummary,
-    crossValidatedSummary,
-    runtimeSummary,
-    rawResults,
-    crossValidatedResults,
-    runtimeResults,
-    runtimeCalibration,
-  }),
-)
-await Bun.write(
   fileURLToPath(new URL('../../library/src/generated-calibration.ts', import.meta.url)),
   renderCalibrationModule(runtimeCalibration),
 )
