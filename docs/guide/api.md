@@ -4,15 +4,32 @@ This page describes the public package API for `@browser-quality-scorer/core`.
 
 ## Installation
 
+Latest stable package snapshot from GitHub:
+
 ```bash
-bun add @browser-quality-scorer/core
+npm install github:omarmir/quality-meter#package-release
+bun add github:omarmir/quality-meter#package-release
+```
+
+Pinned stable package snapshot:
+
+```bash
+npm install github:omarmir/quality-meter#pkg-v1.0.1
+bun add github:omarmir/quality-meter#pkg-v1.0.1
 ```
 
 Peer dependency:
 
 ```bash
+npm install @huggingface/transformers
 bun add @huggingface/transformers
 ```
+
+Notes:
+
+- `package-release` is the moving latest-stable package ref.
+- `pkg-vX.Y.Z` tags are version-pinned package refs.
+- the Git-installable package includes the local model assets, so install size is much larger than a code-only package.
 
 ## Package Exports
 
