@@ -228,6 +228,7 @@ const DOCS_DIR = fileURLToPath(new URL('../../docs/guide/', import.meta.url))
 const LOCAL_MODEL_PATH = fileURLToPath(new URL('../../library/models/', import.meta.url))
 const writeMd = Bun.argv.includes('--write-md')
 const docsOnly = Bun.argv.includes('--docs-only')
+const useWebGpu = Bun.argv.includes('--use-webgpu')
 const onlyIndex = Bun.argv.findIndex((arg) => arg === '--only')
 const onlyScope = onlyIndex >= 0 ? Bun.argv[onlyIndex + 1] : null
 const modelsIndex = Bun.argv.findIndex((arg) => arg === '--models')
@@ -281,6 +282,10 @@ const MODEL_CANDIDATES: ModelCandidate[] = [
 const baselineConfig = resolveQualityScorerConfig({
   modelId: 'Xenova/nli-deberta-v3-xsmall',
   dtype: 'q8',
+  execution: {
+    device: useWebGpu ? 'webgpu' : 'cpu',
+    useBatchedZeroShot: useWebGpu,
+  },
   modelSource: {
     mode: 'local',
     localModelPath: LOCAL_MODEL_PATH,
@@ -802,6 +807,10 @@ async function runModelCandidate(candidate: ModelCandidate): Promise<ModelBakeof
   const scorerConfig = resolveQualityScorerConfig({
     modelId: candidate.id,
     dtype: 'q8',
+    execution: {
+      device: useWebGpu ? 'webgpu' : 'cpu',
+      useBatchedZeroShot: useWebGpu,
+    },
     modelSource: {
       mode: 'huggingface',
       revision: 'main',

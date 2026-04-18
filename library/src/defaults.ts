@@ -72,6 +72,10 @@ export const DEFAULT_QUALITY_SCORER_CONFIG: QualityScorerConfig = {
     useTaskStructureChecks: true,
     useCriterionNormalization: false,
   },
+  execution: {
+    device: 'cpu',
+    useBatchedZeroShot: false,
+  },
   criterionCalibration: DEFAULT_CRITERION_CALIBRATION,
   overallCalibration: DEFAULT_OVERALL_CALIBRATION,
 }
@@ -91,6 +95,10 @@ export function resolveQualityScorerConfig(config: QualityScorerConfigInput = {}
     lowLatency: {
       ...DEFAULT_QUALITY_SCORER_CONFIG.lowLatency,
       ...config.lowLatency,
+    },
+    execution: {
+      ...DEFAULT_QUALITY_SCORER_CONFIG.execution,
+      ...config.execution,
     },
     criterionCalibration:
       config.criterionCalibration === undefined

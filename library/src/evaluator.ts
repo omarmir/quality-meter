@@ -32,6 +32,17 @@ export type ZeroShotClassifier = (
   options: { multi_label: true; hypothesis_template?: string },
 ) => Promise<ZeroShotClassificationOutput>
 
+type BatchCapableZeroShotClassifier = ZeroShotClassifier & {
+  tokenizer?: (
+    text: string | string[],
+    options: { text_pair: string | string[]; padding: true; truncation: true },
+  ) => Record<string, unknown>
+  model?: (inputs: Record<string, unknown>) => Promise<{ logits: { data: ArrayLike<number> } }>
+  entailment_id?: number
+  contradiction_id?: number
+  useBatchedZeroShot?: boolean
+}
+
 export type CriterionScoreResult = {
   criteria: string[]
   normalizedCriteria: string[]
@@ -463,6 +474,19 @@ async function classifyLabelSetAcrossTexts(
   texts: string[],
   labels: string[],
 ) {
+  const batchClassifier = classifier as BatchCapableZeroShotClassifier
+  if (
+    batchClassifier.useBatchedZeroShot &&
+    typeof batchClassifier.tokenizer === 'function' &&
+    typeof batchClassifier.model === 'function' &&
+    typeof batchClassifier.entailment_id === 'number' &&
+    typeof batchClassifier.contradiction_id === 'number' &&
+    texts.length > 0 &&
+    labels.length > 0
+  ) {
+    return classifyLabelSetAcrossTextsBatched(batchClassifier, texts, labels)
+  }
+
   const labelMaps: Array<Map<string, number>> = []
 
   for (const text of texts) {
@@ -471,6 +495,41 @@ async function classifyLabelSetAcrossTexts(
       hypothesis_template: HYPOTHESIS_TEMPLATE,
     })
     labelMaps.push(outputToLabelMap(output))
+  }
+
+  return labelMaps
+}
+
+async function classifyLabelSetAcrossTextsBatched(
+  classifier: Required<Pick<BatchCapableZeroShotClassifier, 'tokenizer' | 'model' | 'entailment_id' | 'contradiction_id'>>,
+  texts: string[],
+  labels: string[],
+) {
+  const hypotheses = labels.map((label) => HYPOTHESIS_TEMPLATE.replace('{}', label))
+  const premises = texts.flatMap((text) => hypotheses.map(() => text))
+  const pairedHypotheses = texts.flatMap(() => hypotheses)
+  const inputs = classifier.tokenizer(premises, {
+    text_pair: pairedHypotheses,
+    padding: true,
+    truncation: true,
+  })
+  const outputs = await classifier.model(inputs)
+  const logits = Array.from(outputs.logits.data)
+  const classCount = Math.max(1, Math.floor(logits.length / Math.max(1, premises.length)))
+  const labelMaps: Array<Map<string, number>> = []
+
+  for (let textIndex = 0; textIndex < texts.length; textIndex += 1) {
+    const labelMap = new Map<string, number>()
+
+    for (let labelIndex = 0; labelIndex < labels.length; labelIndex += 1) {
+      const pairIndex = textIndex * labels.length + labelIndex
+      const offset = pairIndex * classCount
+      const contradiction = logits[offset + classifier.contradiction_id] ?? 0
+      const entailment = logits[offset + classifier.entailment_id] ?? 0
+      labelMap.set(labels[labelIndex] ?? '', softmax([contradiction, entailment])[1] ?? 0)
+    }
+
+    labelMaps.push(labelMap)
   }
 
   return labelMaps
@@ -497,4 +556,11 @@ function limitEnsemble(
   scoreMode: QualityScoreMode,
 ) {
   return scoreMode === 'fast' ? ensemble.slice(0, 1) : ensemble
+}
+
+function softmax(values: number[]) {
+  const maxValue = Math.max(...values)
+  const exps = values.map((value) => Math.exp(value - maxValue))
+  const sum = exps.reduce((total, value) => total + value, 0)
+  return exps.map((value) => (sum === 0 ? 0 : value / sum))
 }

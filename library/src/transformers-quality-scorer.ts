@@ -15,6 +15,17 @@ import type {
 } from './types'
 import type { QualityScorerConfig } from './types'
 
+type BatchCapableZeroShotClassifier = ZeroShotClassifier & {
+  tokenizer?: (
+    text: string | string[],
+    options: { text_pair: string | string[]; padding: true; truncation: true },
+  ) => Record<string, unknown>
+  model?: (inputs: Record<string, unknown>) => Promise<{ logits: { data: ArrayLike<number> } }>
+  entailment_id?: number
+  contradiction_id?: number
+  useBatchedZeroShot?: boolean
+}
+
 export function createTransformersQualityScorer(config: QualityScorerConfigInput = {}): QualityScorer {
   let resolvedConfig = resolveQualityScorerConfig(config)
   let classifier: ZeroShotClassifier | null = null
@@ -97,6 +108,7 @@ export function createTransformersQualityScorer(config: QualityScorerConfigInput
 
         const instance = (await pipeline(resolvedConfig.task, resolvedConfig.modelId, {
           dtype: resolvedConfig.dtype,
+          device: resolvedConfig.execution.device,
           local_files_only: resolvedConfig.modelSource.mode === 'local',
           revision: resolvedConfig.modelSource.revision,
           progress_callback: (progress: ProgressInfo) => {
@@ -113,7 +125,9 @@ export function createTransformersQualityScorer(config: QualityScorerConfigInput
               })
             }
           },
-        })) as ZeroShotClassifier
+        })) as BatchCapableZeroShotClassifier
+
+        instance.useBatchedZeroShot = resolvedConfig.execution.useBatchedZeroShot
 
         classifier = instance
         callbacks.onStatus?.({

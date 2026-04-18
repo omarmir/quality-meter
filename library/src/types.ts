@@ -27,6 +27,11 @@ export type QualityLowLatencyConfig = {
   useCriterionNormalization: boolean
 }
 
+export type QualityExecutionConfig = {
+  device: 'cpu' | 'webgpu'
+  useBatchedZeroShot: boolean
+}
+
 export type QualityScorerConfig = {
   task: 'zero-shot-classification'
   modelId: string
@@ -35,6 +40,7 @@ export type QualityScorerConfig = {
   modelSource: QualityModelSourceConfig
   limits: QualityBudgetConfig
   lowLatency: QualityLowLatencyConfig
+  execution: QualityExecutionConfig
   criterionCalibration: CalibrationCurve | null
   overallCalibration: CalibrationCurve | null
 }
@@ -43,6 +49,7 @@ export type QualityScorerConfigInput = Partial<Omit<QualityScorerConfig, 'modelS
   modelSource?: Partial<QualityModelSourceConfig>
   limits?: Partial<QualityBudgetConfig>
   lowLatency?: Partial<QualityLowLatencyConfig>
+  execution?: Partial<QualityExecutionConfig>
 }
 
 export type QualityScoreInput = {

@@ -61,6 +61,10 @@ type CalibrationBundle = {
 const scorer = createTransformersQualityScorer({
   modelId: 'Xenova/nli-deberta-v3-xsmall',
   dtype: 'q8',
+  execution: {
+    device: Bun.argv.includes('--use-webgpu') ? 'webgpu' : 'cpu',
+    useBatchedZeroShot: Bun.argv.includes('--use-webgpu'),
+  },
   modelSource: {
     mode: 'local',
     localModelPath: fileURLToPath(new URL('../../library/models/', import.meta.url)),

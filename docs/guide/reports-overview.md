@@ -7,7 +7,7 @@ This page is the stable index for the report system. It is intentionally not gen
 All public report entrypoints use the same form:
 
 ```bash
-bun run report:<name> [--write-json|--use-cache] [--write-md]
+bun run report:<name> [--write-json|--use-cache] [--write-md] [--use-webgpu]
 ```
 
 Supported report names:
@@ -25,10 +25,15 @@ Shared flags:
 - `--write-json`: rerun the benchmark and overwrite its JSON artifact
 - `--use-cache`: read the existing JSON artifact instead of rerunning the benchmark
 - `--write-md`: rewrite the matching VitePress markdown page
+- `--use-webgpu`: run the benchmark on WebGPU and enable the batched `q8` scorer path used for benchmark acceleration
 
 `--write-json` and `--use-cache` are mutually exclusive.
 
 If neither is provided, the command defaults to cache-backed output.
+
+`--use-webgpu` only matters when the benchmark is actually rerun with `--write-json`. Cached runs ignore it.
+
+`--use-webgpu` is benchmark-only. It can reduce runtime, but it is not score-identical to CPU on all reports, so use it as an explicit alternate execution mode rather than as the default benchmark baseline.
 
 ## Common Commands
 
@@ -36,6 +41,12 @@ Refresh a report from a fresh benchmark run and rewrite its markdown page:
 
 ```bash
 bun run report:main --write-json --write-md
+```
+
+Refresh a report with the benchmark-only WebGPU path:
+
+```bash
+bun run report:main --write-json --use-webgpu
 ```
 
 Regenerate a report page from an existing JSON artifact:

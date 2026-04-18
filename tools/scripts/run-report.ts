@@ -198,11 +198,12 @@ const report = normalizeReportKey(rawReport)
 const writeJson = Bun.argv.includes('--write-json')
 const explicitUseCache = Bun.argv.includes('--use-cache')
 const writeMd = Bun.argv.includes('--write-md')
+const useWebGpu = Bun.argv.includes('--use-webgpu')
 const modelsIndex = Bun.argv.findIndex((arg) => arg === '--models')
 const modelsArg = modelsIndex >= 0 ? Bun.argv[modelsIndex + 1] : null
 
 if (!report) {
-  throw new Error('Usage: bun tools/scripts/run-report.ts <main|hard-negative|adaptive|scoring-improvement|low-latency|wording-exp|model-bakeoff> [--write-json|--use-cache] [--write-md]')
+  throw new Error('Usage: bun tools/scripts/run-report.ts <main|hard-negative|adaptive|scoring-improvement|low-latency|wording-exp|model-bakeoff> [--write-json|--use-cache] [--write-md] [--use-webgpu]')
 }
 
 if (writeJson && explicitUseCache) {
@@ -215,7 +216,7 @@ await mkdir(REPORTS_DIR, { recursive: true })
 await mkdir(DOCS_DIR, { recursive: true })
 
 if (writeJson) {
-  await refreshArtifacts(report, modelsArg)
+  await refreshArtifacts(report, modelsArg, useWebGpu)
 }
 
 switch (report) {
@@ -288,40 +289,44 @@ switch (report) {
   }
 }
 
-async function refreshArtifacts(reportKey: ReportKey, models: string | null) {
+async function refreshArtifacts(reportKey: ReportKey, models: string | null, useWebGpuFlag: boolean) {
   switch (reportKey) {
     case 'main':
-      await runStep('Main benchmark', ['tools/scripts/run-benchmark.ts'])
+      await runStep('Main benchmark', withWebGpuFlag(['tools/scripts/run-benchmark.ts'], useWebGpuFlag))
       break
     case 'hard-negative':
-      await runStep('Hard-negative benchmark', ['tools/scripts/run-hard-negative-benchmark.ts'])
+      await runStep('Hard-negative benchmark', withWebGpuFlag(['tools/scripts/run-hard-negative-benchmark.ts'], useWebGpuFlag))
       break
     case 'adaptive':
-      await runStep('Adaptive report', ['tools/scripts/update-evolution-reports.ts', '--only', 'adaptive'])
+      await runStep('Adaptive report', withWebGpuFlag(['tools/scripts/update-evolution-reports.ts', '--only', 'adaptive'], useWebGpuFlag))
       break
     case 'low-latency':
-      await runStep('Low-latency report', ['tools/scripts/update-evolution-reports.ts', '--only', 'low-latency'])
+      await runStep('Low-latency report', withWebGpuFlag(['tools/scripts/update-evolution-reports.ts', '--only', 'low-latency'], useWebGpuFlag))
       break
     case 'wording-exp':
-      await runStep('Wording report', ['tools/scripts/update-evolution-reports.ts', '--only', 'wording'])
+      await runStep('Wording report', withWebGpuFlag(['tools/scripts/update-evolution-reports.ts', '--only', 'wording'], useWebGpuFlag))
       break
     case 'model-bakeoff': {
       const args = ['tools/scripts/update-evolution-reports.ts', '--only', 'model-bakeoff']
       if (models) {
         args.push('--models', models)
       }
-      await runStep('Model bakeoff report', args)
+      await runStep('Model bakeoff report', withWebGpuFlag(args, useWebGpuFlag))
       break
     }
     case 'scoring-improvement': {
-      await runStep('Adaptive report', ['tools/scripts/update-evolution-reports.ts', '--only', 'adaptive'])
-      await runStep('Low-latency report', ['tools/scripts/update-evolution-reports.ts', '--only', 'low-latency'])
-      await runStep('Wording report', ['tools/scripts/update-evolution-reports.ts', '--only', 'wording'])
+      await runStep('Adaptive report', withWebGpuFlag(['tools/scripts/update-evolution-reports.ts', '--only', 'adaptive'], useWebGpuFlag))
+      await runStep('Low-latency report', withWebGpuFlag(['tools/scripts/update-evolution-reports.ts', '--only', 'low-latency'], useWebGpuFlag))
+      await runStep('Wording report', withWebGpuFlag(['tools/scripts/update-evolution-reports.ts', '--only', 'wording'], useWebGpuFlag))
       const data = await buildScoringImprovementReportFromCache()
       await Bun.write(PATHS.scoringImprovementJson, JSON.stringify(data, null, 2))
       break
     }
   }
+}
+
+function withWebGpuFlag(args: string[], useWebGpuFlag: boolean) {
+  return useWebGpuFlag ? [...args, '--use-webgpu'] : args
 }
 
 async function runStep(label: string, args: string[]) {
