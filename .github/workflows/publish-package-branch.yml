@@ -46,17 +46,23 @@ jobs:
         run: |
           set -euo pipefail
           PACKAGE_DIR="tools/package-release"
+          SNAPSHOT_DIR="${RUNNER_TEMP}/package-release-snapshot"
           PACKAGE_TAG="pkg-${RELEASE_TAG}"
           REMOTE_URL="https://x-access-token:${GITHUB_TOKEN}@github.com/${REPO}.git"
 
-          cd "$PACKAGE_DIR"
-          git init
-          git checkout -b package-release
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .
+          rm -rf "${SNAPSHOT_DIR}"
+          mkdir -p "${SNAPSHOT_DIR}"
+          cp -R "${PACKAGE_DIR}/." "${SNAPSHOT_DIR}/"
+
+          git checkout --detach "${RELEASE_TAG}"
+          git switch -C package-release
+          find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+          cp -R "${SNAPSHOT_DIR}/." .
+          git add -A
           git commit -m "Publish ${PACKAGE_TAG}"
           git tag -f "${PACKAGE_TAG}"
-          git remote add origin "${REMOTE_URL}"
+          git remote set-url origin "${REMOTE_URL}"
           git push --force origin HEAD:package-release
           git push --force origin "refs/tags/${PACKAGE_TAG}"
