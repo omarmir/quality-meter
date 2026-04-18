@@ -1,0 +1,147 @@
+{
+  "generatedAt": "2026-04-18T14:59:32.931Z",
+  "elapsedMs": 2888754.2,
+  "candidates": [
+    {
+      "id": "onnx-community/multilingual-MiniLMv2-L6-mnli-xnli-ONNX",
+      "label": "Multilingual MiniLMv2 L6 MNLI/XNLI",
+      "note": "Multilingual XNLI-oriented candidate included to measure French-language fit directly."
+    },
+    {
+      "id": "Xenova/nli-deberta-v3-xsmall",
+      "label": "DeBERTa v3 xsmall",
+      "note": "Current smallest recommended baseline, retained to measure cross-lingual degradation on the French corpus."
+    },
+    {
+      "id": "Xenova/nli-deberta-v3-small",
+      "label": "DeBERTa v3 small",
+      "note": "Larger DeBERTa-family candidate kept to compare whether extra capacity helps on Canadian French prompts."
+    }
+  ],
+  "results": [
+    {
+      "modelId": "onnx-community/multilingual-MiniLMv2-L6-mnli-xnli-ONNX",
+      "label": "Multilingual MiniLMv2 L6 MNLI/XNLI",
+      "note": "Multilingual XNLI-oriented candidate included to measure French-language fit directly.",
+      "sizeBytes": 107415176,
+      "sizeLabel": "102.4 MB",
+      "loadDurationMs": 1551.6,
+      "mainBenchmarkDurationMs": 108421,
+      "hardNegativeDurationMs": 99706.9,
+      "totalDurationMs": 209840.1,
+      "mainRawSummary": {
+        "meanAbsoluteError": 23.8,
+        "medianAbsoluteError": 19.3,
+        "within10": 71,
+        "within20": 153
+      },
+      "mainCrossValidatedSummary": {
+        "meanAbsoluteError": 21.7,
+        "medianAbsoluteError": 20.9,
+        "within10": 58,
+        "within20": 145
+      },
+      "mainRuntimeSummary": {
+        "meanAbsoluteError": 21.3,
+        "medianAbsoluteError": 21.3,
+        "within10": 61,
+        "within20": 144
+      },
+      "hardNegativeRuntimeSummary": {
+        "meanAbsoluteError": 23.5,
+        "medianAbsoluteError": 24.6,
+        "within10": 20,
+        "within20": 60
+      },
+      "hardNegativeCrossValidatedSummary": {
+        "meanAbsoluteError": 23.4,
+        "medianAbsoluteError": 24.5,
+        "within10": 18,
+        "within20": 57
+      }
+    },
+    {
+      "modelId": "Xenova/nli-deberta-v3-xsmall",
+      "label": "DeBERTa v3 xsmall",
+      "note": "Current smallest recommended baseline, retained to measure cross-lingual degradation on the French corpus.",
+      "sizeBytes": 87246587,
+      "sizeLabel": "83.2 MB",
+      "loadDurationMs": 1359.2,
+      "mainBenchmarkDurationMs": 706273.5,
+      "hardNegativeDurationMs": 629576.4,
+      "totalDurationMs": 1337273.9,
+      "mainRawSummary": {
+        "meanAbsoluteError": 27.1,
+        "medianAbsoluteError": 27.1,
+        "within10": 105,
+        "within20": 121
+      },
+      "mainCrossValidatedSummary": {
+        "meanAbsoluteError": 17.6,
+        "medianAbsoluteError": 16,
+        "within10": 86,
+        "within20": 193
+      },
+      "mainRuntimeSummary": {
+        "meanAbsoluteError": 17.4,
+        "medianAbsoluteError": 15.8,
+        "within10": 87,
+        "within20": 195
+      },
+      "hardNegativeRuntimeSummary": {
+        "meanAbsoluteError": 21.9,
+        "medianAbsoluteError": 23.8,
+        "within10": 24,
+        "within20": 68
+      },
+      "hardNegativeCrossValidatedSummary": {
+        "meanAbsoluteError": 22,
+        "medianAbsoluteError": 23.9,
+        "within10": 24,
+        "within20": 70
+      }
+    },
+    {
+      "modelId": "Xenova/nli-deberta-v3-small",
+      "label": "DeBERTa v3 small",
+      "note": "Larger DeBERTa-family candidate kept to compare whether extra capacity helps on Canadian French prompts.",
+      "sizeBytes": 172440643,
+      "sizeLabel": "164.5 MB",
+      "loadDurationMs": 2030.2,
+      "mainBenchmarkDurationMs": 705927.7,
+      "hardNegativeDurationMs": 633436,
+      "totalDurationMs": 1341532.3,
+      "mainRawSummary": {
+        "meanAbsoluteError": 26,
+        "medianAbsoluteError": 22.5,
+        "within10": 99,
+        "within20": 136
+      },
+      "mainCrossValidatedSummary": {
+        "meanAbsoluteError": 20.8,
+        "medianAbsoluteError": 18.4,
+        "within10": 68,
+        "within20": 163
+      },
+      "mainRuntimeSummary": {
+        "meanAbsoluteError": 20.7,
+        "medianAbsoluteError": 18.3,
+        "within10": 64,
+        "within20": 166
+      },
+      "hardNegativeRuntimeSummary": {
+        "meanAbsoluteError": 22.9,
+        "medianAbsoluteError": 23.3,
+        "within10": 28,
+        "within20": 72
+      },
+      "hardNegativeCrossValidatedSummary": {
+        "meanAbsoluteError": 23,
+        "medianAbsoluteError": 23.3,
+        "within10": 29,
+        "within20": 76
+      }
+    }
+  ],
+  "failures": []
+}

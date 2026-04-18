@@ -2,6 +2,7 @@ import { access, mkdir } from 'node:fs/promises'
 import { spawn } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
 import { BENCHMARK_CASES } from '../benchmark/cases'
+import { BENCHMARK_CASES_FR_CA } from '../benchmark/cases-fr-ca'
 
 type GroupSummary = {
   name: string
@@ -171,6 +172,7 @@ type ReportKey =
   | 'low-latency'
   | 'wording-exp'
   | 'model-bakeoff'
+  | 'french-scoring'
 
 const ROOT_DIR = fileURLToPath(new URL('../../', import.meta.url))
 const REPORTS_DIR = fileURLToPath(new URL('../reports/', import.meta.url))
@@ -184,6 +186,7 @@ const PATHS = {
   wordingJson: fileURLToPath(new URL('../reports/wording-experiments.json', import.meta.url)),
   scoringImprovementJson: fileURLToPath(new URL('../reports/scoring-improvement.json', import.meta.url)),
   modelBakeoffJson: fileURLToPath(new URL('../reports/model-bakeoff.json', import.meta.url)),
+  frenchScoringJson: fileURLToPath(new URL('../reports/french-scoring.json', import.meta.url)),
   mainDoc: fileURLToPath(new URL('../../docs/guide/main-benchmark.md', import.meta.url)),
   hardNegativeDoc: fileURLToPath(new URL('../../docs/guide/hard-negative-benchmark.md', import.meta.url)),
   adaptiveDoc: fileURLToPath(new URL('../../docs/guide/adaptive-refinement.md', import.meta.url)),
@@ -191,6 +194,7 @@ const PATHS = {
   wordingDoc: fileURLToPath(new URL('../../docs/guide/wording-experiments.md', import.meta.url)),
   scoringImprovementDoc: fileURLToPath(new URL('../../docs/guide/scoring-improvement.md', import.meta.url)),
   modelBakeoffDoc: fileURLToPath(new URL('../../docs/guide/model-bakeoff.md', import.meta.url)),
+  frenchScoringDoc: fileURLToPath(new URL('../../docs/guide/french-scoring.md', import.meta.url)),
 } as const
 
 const rawReport = Bun.argv[2]
@@ -203,7 +207,7 @@ const modelsIndex = Bun.argv.findIndex((arg) => arg === '--models')
 const modelsArg = modelsIndex >= 0 ? Bun.argv[modelsIndex + 1] : null
 
 if (!report) {
-  throw new Error('Usage: bun tools/scripts/run-report.ts <main|hard-negative|adaptive|scoring-improvement|low-latency|wording-exp|model-bakeoff> [--write-json|--use-cache] [--write-md] [--use-webgpu]')
+  throw new Error('Usage: bun tools/scripts/run-report.ts <main|hard-negative|adaptive|scoring-improvement|low-latency|wording-exp|model-bakeoff|french-scoring> [--write-json|--use-cache] [--write-md] [--use-webgpu]')
 }
 
 if (writeJson && explicitUseCache) {
@@ -275,6 +279,16 @@ switch (report) {
     }
     break
   }
+  case 'french-scoring': {
+    await ensureCacheAllowed(useCache, PATHS.frenchScoringJson, 'french-scoring')
+    const data = await Bun.file(PATHS.frenchScoringJson).json() as ModelBakeoffReport
+    console.log(JSON.stringify(summarizeFrenchScoring(data), null, 2))
+    if (writeMd) {
+      await Bun.write(PATHS.frenchScoringDoc, renderFrenchScoringDoc(data))
+      console.log(`\nUpdated docs:\n- ${PATHS.frenchScoringDoc}`)
+    }
+    break
+  }
   case 'scoring-improvement': {
     const data =
       await fileExists(PATHS.scoringImprovementJson)
@@ -312,6 +326,14 @@ async function refreshArtifacts(reportKey: ReportKey, models: string | null, use
         args.push('--models', models)
       }
       await runStep('Model bakeoff report', withWebGpuFlag(args, useWebGpuFlag))
+      break
+    }
+    case 'french-scoring': {
+      const args = ['tools/scripts/update-evolution-reports.ts', '--only', 'french-scoring']
+      if (models) {
+        args.push('--models', models)
+      }
+      await runStep('French scoring report', withWebGpuFlag(args, useWebGpuFlag))
       break
     }
     case 'scoring-improvement': {
@@ -355,6 +377,7 @@ function normalizeReportKey(value: string | undefined): ReportKey | null {
     case 'low-latency':
     case 'wording-exp':
     case 'model-bakeoff':
+    case 'french-scoring':
       return value
     default:
       return null
@@ -468,6 +491,21 @@ function summarizeModelBakeoff(data: ModelBakeoffReport) {
       size: result.sizeLabel,
       mainCv: compactSummary(result.mainCrossValidatedSummary, BENCHMARK_CASES.length),
       hardCv: compactSummary(result.hardNegativeCrossValidatedSummary, BENCHMARK_CASES.length),
+      loadMs: round(result.loadDurationMs),
+      totalMs: round(result.totalDurationMs),
+    })),
+    failures: data.failures,
+  }
+}
+
+function summarizeFrenchScoring(data: ModelBakeoffReport) {
+  return {
+    report: 'french-scoring',
+    candidates: data.results.map((result) => ({
+      modelId: result.modelId,
+      size: result.sizeLabel,
+      mainCv: compactSummary(result.mainCrossValidatedSummary, BENCHMARK_CASES_FR_CA.length),
+      hardCv: compactSummary(result.hardNegativeCrossValidatedSummary, BENCHMARK_CASES_FR_CA.length),
       loadMs: round(result.loadDurationMs),
       totalMs: round(result.totalDurationMs),
     })),
@@ -713,12 +751,35 @@ function renderScoringImprovementDoc(report: ScoringImprovementReport) {
 }
 
 function renderModelBakeoffDoc(report: ModelBakeoffReport) {
+  return renderBakeoffDoc(report, {
+    title: 'Model Bakeoff',
+    command: 'bun run report:model-bakeoff --write-json --write-md',
+    corpusDescription: 'This report compares local model candidates against the same main corpus and hard-negative corpus.',
+    caseCount: BENCHMARK_CASES.length,
+  })
+}
+
+function renderFrenchScoringDoc(report: ModelBakeoffReport) {
+  return renderBakeoffDoc(report, {
+    title: 'French Bakeoff',
+    command: 'bun run report:french-scoring --write-json --write-md',
+    corpusDescription: 'This report compares three local model candidates against the handcrafted Canadian French corpus and its matching French hard-negative corpus.',
+    caseCount: BENCHMARK_CASES_FR_CA.length,
+  })
+}
+
+function renderBakeoffDoc(report: ModelBakeoffReport, input: {
+  title: string
+  command: string
+  corpusDescription: string
+  caseCount: number
+}) {
   const sortedByMain = [...report.results].sort((left, right) => left.mainCrossValidatedSummary.meanAbsoluteError - right.mainCrossValidatedSummary.meanAbsoluteError)
   const bestMain = sortedByMain[0]
   const bestHard = [...report.results].sort((left, right) => left.hardNegativeCrossValidatedSummary.meanAbsoluteError - right.hardNegativeCrossValidatedSummary.meanAbsoluteError)[0]
   return renderTemplate({
-    title: 'Model Bakeoff',
-    command: 'bun run report:model-bakeoff --write-json --write-md',
+    title: input.title,
+    command: input.command,
     atAGlance: [
       `Candidates: \`${report.results.length}\` completed`,
       `Best main benchmark: \`${bestMain?.modelId ?? 'n/a'}\``,
@@ -732,11 +793,11 @@ function renderModelBakeoffDoc(report: ModelBakeoffReport) {
       ...sortedByMain.map((result) => `| ${result.modelId} | ${result.sizeLabel} | ${result.mainCrossValidatedSummary.meanAbsoluteError} | ${result.mainCrossValidatedSummary.medianAbsoluteError} | ${result.hardNegativeCrossValidatedSummary.meanAbsoluteError} | ${result.hardNegativeCrossValidatedSummary.medianAbsoluteError} | ${formatDuration(result.loadDurationMs)} | ${formatDuration(result.totalDurationMs)} |`),
     ],
     corpusShape: [
-      'This report compares local model candidates against the same main corpus and hard-negative corpus.',
+      input.corpusDescription,
       '',
       `- \`${report.results.length}\` evaluated candidates`,
-      `- \`${BENCHMARK_CASES.length}\` main benchmark cases`,
-      `- \`${BENCHMARK_CASES.length}\` hard-negative cases`,
+      `- \`${input.caseCount}\` main benchmark cases`,
+      `- \`${input.caseCount}\` hard-negative cases`,
     ],
     byDomain: ['This artifact stores per-model summary metrics only. Domain-level slices are not persisted for the bakeoff.'],
     byProfile: ['This artifact stores per-model summary metrics only. Profile-level slices are not persisted for the bakeoff.'],

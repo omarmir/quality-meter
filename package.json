@@ -18,6 +18,7 @@
     "report:low-latency": "bun tools/scripts/run-report.ts low-latency",
     "report:wording-exp": "bun tools/scripts/run-report.ts wording-exp",
     "report:model-bakeoff": "bun tools/scripts/run-report.ts model-bakeoff",
+    "report:french-scoring": "bun tools/scripts/run-report.ts french-scoring",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",

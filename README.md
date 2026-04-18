@@ -35,6 +35,8 @@ Run benchmark tooling:
 ```bash
 bun run report:main --write-json --write-md
 bun run report:hard-negative --write-json --write-md
+bun run report:model-bakeoff --write-json --write-md
+bun run report:french-scoring --write-json --write-md
 ```
 
 ## Package

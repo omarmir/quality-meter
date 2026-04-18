@@ -19,6 +19,7 @@ Supported report names:
 - `low-latency`
 - `wording-exp`
 - `model-bakeoff`
+- `french-scoring`
 
 Shared flags:
 
@@ -70,6 +71,7 @@ bun run report:main --use-cache
 - [Low-Latency Improvement](/guide/low-latency-improvement)
 - [Wording Experiments](/guide/wording-experiments)
 - [Model Bakeoff](/guide/model-bakeoff)
+- [French Bakeoff](/guide/french-scoring)
 
 ## JSON Artifacts
 
@@ -80,11 +82,13 @@ bun run report:main --use-cache
 - [tools/reports/wording-experiments.json](/home/omar/Code/quality-meter/tools/reports/wording-experiments.json)
 - [tools/reports/scoring-improvement.json](/home/omar/Code/quality-meter/tools/reports/scoring-improvement.json)
 - [tools/reports/model-bakeoff.json](/home/omar/Code/quality-meter/tools/reports/model-bakeoff.json)
+- [tools/reports/french-scoring.json](/home/omar/Code/quality-meter/tools/reports/french-scoring.json)
 
 ## Source Files
 
 - [tools/scripts/run-report.ts](/home/omar/Code/quality-meter/tools/scripts/run-report.ts): public dispatcher for every report command
 - [tools/benchmark/cases.ts](/home/omar/Code/quality-meter/tools/benchmark/cases.ts): handwritten 300-case main corpus
+- [tools/benchmark/cases-fr-ca.ts](/home/omar/Code/quality-meter/tools/benchmark/cases-fr-ca.ts): handcrafted 300-case Canadian French corpus
 - [tools/benchmark/hard-negatives.ts](/home/omar/Code/quality-meter/tools/benchmark/hard-negatives.ts): synthetic hard-negative generation
 
 ## Typical Workflow
@@ -110,6 +114,12 @@ bun run report:wording-exp --write-json --write-md
 bun run report:scoring-improvement --use-cache --write-md
 ```
 
+If you changed the French corpus or the French three-model comparison:
+
+```bash
+bun run report:french-scoring --write-json --write-md
+```
+
 If you only changed report templates and want to regenerate pages from existing JSON:
 
 ```bash
@@ -119,6 +129,7 @@ bun run report:adaptive --use-cache --write-md
 bun run report:low-latency --use-cache --write-md
 bun run report:wording-exp --use-cache --write-md
 bun run report:scoring-improvement --use-cache --write-md
+bun run report:french-scoring --use-cache --write-md
 ```
 
 If you want to rebuild the docs site afterward:

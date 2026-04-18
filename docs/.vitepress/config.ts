@@ -44,11 +44,8 @@ export default defineConfig({
           { text: "Low-Latency Improvement", link: "/guide/low-latency-improvement" },
           { text: "Wording Experiments", link: "/guide/wording-experiments" },
           { text: "Model Bakeoff", link: "/guide/model-bakeoff" },
+          { text: "French Bakeoff", link: "/guide/french-scoring" },
         ],
-      },
-      {
-        text: "Next Steps",
-        items: [{ text: "French Scoring", link: "/guide/french-scoring" }],
       },
     ],
 

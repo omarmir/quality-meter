@@ -3,7 +3,8 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { env } from '@huggingface/transformers'
 import { BENCHMARK_CASES, type BenchmarkCase, type BenchmarkKind, type BenchmarkProfile, type BenchmarkCriterion } from '../benchmark/cases'
-import { createHardNegativeCases } from '../benchmark/hard-negatives'
+import { BENCHMARK_CASES_FR_CA } from '../benchmark/cases-fr-ca'
+import { buildFrenchHardNegativeAnswer, createHardNegativeCases } from '../benchmark/hard-negatives'
 import { WORDING_EXPERIMENTS, type WordingExperimentPattern } from '../benchmark/wording-variants'
 import {
   applyCalibrationCurve,
@@ -236,13 +237,14 @@ const requestedModels = modelsIndex >= 0 ? new Set((Bun.argv[modelsIndex + 1] ??
 const scopes = new Set(
   onlyScope
     ? [onlyScope]
-    : ['low-latency', 'adaptive', 'wording', 'model-bakeoff'],
+    : ['low-latency', 'adaptive', 'wording', 'model-bakeoff', 'french-scoring'],
 )
 
 const lowLatencyJsonPath = fileURLToPath(new URL('../reports/low-latency-iterations.json', import.meta.url))
 const adaptiveJsonPath = fileURLToPath(new URL('../reports/adaptive-refinement-results.json', import.meta.url))
 const wordingJsonPath = fileURLToPath(new URL('../reports/wording-experiments.json', import.meta.url))
 const modelBakeoffJsonPath = fileURLToPath(new URL('../reports/model-bakeoff.json', import.meta.url))
+const frenchScoringJsonPath = fileURLToPath(new URL('../reports/french-scoring.json', import.meta.url))
 const modelBakeoffDocPath = fileURLToPath(new URL('../../docs/guide/model-bakeoff.md', import.meta.url))
 const CACHE_ROOT = path.join(process.cwd(), '.model-bakeoff-cache')
 
@@ -279,6 +281,24 @@ const MODEL_CANDIDATES: ModelCandidate[] = [
   },
 ]
 
+const FRENCH_MODEL_CANDIDATES: ModelCandidate[] = [
+  {
+    id: 'onnx-community/multilingual-MiniLMv2-L6-mnli-xnli-ONNX',
+    label: 'Multilingual MiniLMv2 L6 MNLI/XNLI',
+    note: 'Multilingual XNLI-oriented candidate included to measure French-language fit directly.',
+  },
+  {
+    id: 'Xenova/nli-deberta-v3-xsmall',
+    label: 'DeBERTa v3 xsmall',
+    note: 'Current smallest recommended baseline, retained to measure cross-lingual degradation on the French corpus.',
+  },
+  {
+    id: 'Xenova/nli-deberta-v3-small',
+    label: 'DeBERTa v3 small',
+    note: 'Larger DeBERTa-family candidate kept to compare whether extra capacity helps on Canadian French prompts.',
+  },
+]
+
 const baselineConfig = resolveQualityScorerConfig({
   modelId: 'Xenova/nli-deberta-v3-xsmall',
   dtype: 'q8',
@@ -298,6 +318,7 @@ let lowLatencyResults: LowLatencyResult[] | null = null
 let adaptiveResults: { selected: AdaptiveSummary; baselineMainSummary: CaseSummary; baselineHardNegativeSummary: CaseSummary; topCandidates: AdaptiveSummary[] } | null = null
 let wordingResults: WordingReport | null = null
 let modelBakeoffResults: ModelBakeoffReport | null = null
+let frenchScoringResults: ModelBakeoffReport | null = null
 const scoringImprovementRequested = scopes.has('scoring-improvement')
 const shouldWriteScoringImprovement = writeMd && (onlyScope === null || onlyScope === 'all' || scoringImprovementRequested)
 
@@ -313,6 +334,9 @@ if (docsOnly) {
   }
   if (scopes.has('model-bakeoff')) {
     modelBakeoffResults = await Bun.file(modelBakeoffJsonPath).json()
+  }
+  if (scopes.has('french-scoring')) {
+    frenchScoringResults = await Bun.file(frenchScoringJsonPath).json()
   }
 } else {
   await mkdir(REPORTS_DIR, { recursive: true })
@@ -334,6 +358,10 @@ if (docsOnly) {
   if (scopes.has('model-bakeoff')) {
     modelBakeoffResults = await runModelBakeoffSuite()
     await Bun.write(modelBakeoffJsonPath, JSON.stringify(modelBakeoffResults, null, 2))
+  }
+  if (scopes.has('french-scoring')) {
+    frenchScoringResults = await runFrenchScoringSuite()
+    await Bun.write(frenchScoringJsonPath, JSON.stringify(frenchScoringResults, null, 2))
   }
 
   console.log(
@@ -384,6 +412,21 @@ if (docsOnly) {
                   totalMs: round(result.totalDurationMs),
                 })),
                 failures: modelBakeoffResults.failures,
+              },
+            }
+          : {}),
+        ...(frenchScoringResults
+          ? {
+              frenchScoring: {
+                candidates: frenchScoringResults.results.map((result) => ({
+                  modelId: result.modelId,
+                  size: result.sizeLabel,
+                  loadMs: round(result.loadDurationMs),
+                  totalMs: round(result.totalDurationMs),
+                  mainCv: compactSummary(result.mainCrossValidatedSummary),
+                  hardCv: compactSummary(result.hardNegativeCrossValidatedSummary),
+                })),
+                failures: frenchScoringResults.failures,
               },
             }
           : {}),
@@ -733,17 +776,39 @@ async function runWordingSuite(): Promise<WordingReport> {
 }
 
 async function runModelBakeoffSuite(): Promise<ModelBakeoffReport> {
+  return runNamedModelBakeoffSuite({
+    reportLabel: 'model-bakeoff',
+    candidates: MODEL_CANDIDATES,
+    cases: BENCHMARK_CASES,
+  })
+}
+
+async function runFrenchScoringSuite(): Promise<ModelBakeoffReport> {
+  return runNamedModelBakeoffSuite({
+    reportLabel: 'french-scoring',
+    candidates: FRENCH_MODEL_CANDIDATES,
+    cases: BENCHMARK_CASES_FR_CA,
+    hardNegativeAnswerBuilder: buildFrenchHardNegativeAnswer,
+  })
+}
+
+async function runNamedModelBakeoffSuite(input: {
+  reportLabel: string
+  candidates: ModelCandidate[]
+  cases: BenchmarkCase[]
+  hardNegativeAnswerBuilder?: (question: string, kind: BenchmarkKind) => string
+}): Promise<ModelBakeoffReport> {
   await mkdir(CACHE_ROOT, { recursive: true })
 
   const selectedCandidates =
     requestedModels && requestedModels.size > 0
-      ? MODEL_CANDIDATES.filter(
+      ? input.candidates.filter(
           (candidate) =>
             requestedModels.has(candidate.id) ||
             requestedModels.has(candidate.label) ||
             requestedModels.has(slugify(candidate.id)),
         )
-      : MODEL_CANDIDATES
+      : input.candidates
 
   if (requestedModels && requestedModels.size > 0 && selectedCandidates.length === 0) {
     throw new Error(`No matching model candidates for: ${Array.from(requestedModels).join(', ')}`)
@@ -757,7 +822,11 @@ async function runModelBakeoffSuite(): Promise<ModelBakeoffReport> {
     console.log(`\n=== ${candidate.id} ===`)
 
     try {
-      const result = await runModelCandidate(candidate)
+      const result = await runModelCandidate(candidate, {
+        reportLabel: input.reportLabel,
+        cases: input.cases,
+        hardNegativeAnswerBuilder: input.hardNegativeAnswerBuilder,
+      })
       results.push(result)
       console.log(
         JSON.stringify(
@@ -792,7 +861,14 @@ async function runModelBakeoffSuite(): Promise<ModelBakeoffReport> {
   }
 }
 
-async function runModelCandidate(candidate: ModelCandidate): Promise<ModelBakeoffResult> {
+async function runModelCandidate(
+  candidate: ModelCandidate,
+  input: {
+    reportLabel: string
+    cases: BenchmarkCase[]
+    hardNegativeAnswerBuilder?: (question: string, kind: BenchmarkKind) => string
+  },
+): Promise<ModelBakeoffResult> {
   const startedAt = performance.now()
   const sizeBytes = await fetchModelSizeBytes(candidate.id)
   const cacheDir = path.join(CACHE_ROOT, slugify(candidate.id))
@@ -827,9 +903,9 @@ async function runModelCandidate(candidate: ModelCandidate): Promise<ModelBakeof
 
   const mainStartedAt = performance.now()
   const baseResults: BaseCaseResult[] = []
-  const mainProgress = createProgressReporter(`model-bakeoff ${slugify(candidate.id)} main`, BENCHMARK_CASES.length)
+  const mainProgress = createProgressReporter(`${input.reportLabel} ${slugify(candidate.id)} main`, input.cases.length)
 
-  for (const [index, testCase] of BENCHMARK_CASES.entries()) {
+  for (const [index, testCase] of input.cases.entries()) {
     const scoreResult = await scorer.score({
       question: testCase.question,
       response: testCase.answer,
@@ -860,9 +936,11 @@ async function runModelCandidate(candidate: ModelCandidate): Promise<ModelBakeof
   const mainBenchmarkDurationMs = performance.now() - mainStartedAt
 
   const hardStartedAt = performance.now()
-  const hardNegativeCases = createHardNegativeCases(BENCHMARK_CASES)
+  const hardNegativeCases = createHardNegativeCases(input.cases, {
+    answerBuilder: input.hardNegativeAnswerBuilder,
+  })
   const hardNegativeResults: CalibrationCaseResult[] = []
-  const hardNegativeProgress = createProgressReporter(`model-bakeoff ${slugify(candidate.id)} hard-negative`, hardNegativeCases.length)
+  const hardNegativeProgress = createProgressReporter(`${input.reportLabel} ${slugify(candidate.id)} hard-negative`, hardNegativeCases.length)
 
   for (const [index, testCase] of hardNegativeCases.entries()) {
     const scoreResult = await scorer.score({

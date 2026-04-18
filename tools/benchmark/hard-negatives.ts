@@ -11,6 +11,10 @@ export type HardNegativeCase = {
   referenceOverall: number
 }
 
+type HardNegativeOptions = {
+  answerBuilder?: (question: string, kind: BenchmarkKind) => string
+}
+
 export const HARD_NEGATIVE_REFERENCE_SCORES: Record<BenchmarkKind, number[]> = {
   workforce: [0.55, 0.08, 0.12],
   health: [0.55, 0.08, 0.12],
@@ -19,7 +23,9 @@ export const HARD_NEGATIVE_REFERENCE_SCORES: Record<BenchmarkKind, number[]> = {
   community: [0.55, 0.08, 0.12],
 }
 
-export function createHardNegativeCases(cases: BenchmarkCase[]) {
+export function createHardNegativeCases(cases: BenchmarkCase[], options: HardNegativeOptions = {}) {
+  const answerBuilder = options.answerBuilder ?? buildHardNegativeAnswer
+
   return cases.map((testCase) => {
     const referenceScores = HARD_NEGATIVE_REFERENCE_SCORES[testCase.kind]
 
@@ -29,7 +35,7 @@ export function createHardNegativeCases(cases: BenchmarkCase[]) {
       kind: testCase.kind,
       question: testCase.question,
       criteria: testCase.criteria,
-      answer: buildHardNegativeAnswer(testCase.question, testCase.kind),
+      answer: answerBuilder(testCase.question, testCase.kind),
       referenceScores,
       referenceOverall: weightedPercent(testCase.criteria, referenceScores),
     } satisfies HardNegativeCase
@@ -73,16 +79,82 @@ function buildTopicHint(question: string) {
     'without',
     'would',
     'you',
+    'au',
+    'aux',
+    'ce',
+    'cette',
+    'comment',
+    'dans',
+    'de',
+    'des',
+    'du',
+    'entente',
+    'elle',
+    'est',
+    'et',
+    'il',
+    'la',
+    'le',
+    'les',
+    'ou',
+    'par',
+    'pour',
+    'quel',
+    'quelle',
+    'quelles',
+    'quels',
+    'quoi',
+    'résumez',
+    'expliquez',
+    'décrivez',
+    'selon',
+    'dit',
+    'finance',
+    'financé',
+    'financée',
+    'financées',
+    'financés',
+    'financer',
+    'livré',
+    'livrée',
+    'livrés',
+    'livrées',
+    'livrer',
+    'livrera',
+    'livrées',
+    'attendus',
+    'attendues',
+    'attendu',
+    'prévoit',
+    'prévoient',
+    'sujet',
+    'fixe',
+    'fixent',
+    'indiquant',
+    'concernant',
+    'programme',
+    'service',
+    'travail',
+    'projet',
+    'comment',
+    'sur',
+    'une',
   ])
 
   const tokens = question
     .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, ' ')
+    .replace(/[^\p{L}\p{N}\s-]/gu, ' ')
     .split(/\s+/)
-    .filter((token) => token && !stopWords.has(token))
+    .filter((token) => token && token.length > 1 && !stopWords.has(token))
     .slice(0, 5)
 
   return tokens.join(' ') || 'your situation'
+}
+
+export function buildFrenchHardNegativeAnswer(question: string) {
+  const topicHint = buildTopicHint(question)
+
+  return `Cette entente finance ${topicHint} et vise à améliorer les résultats pendant la durée de l’entente. Le travail sera livré grâce à des activités de programme, à la coordination entre partenaires et à des rapports réguliers.`
 }
 
 function weightedPercent(criteria: BenchmarkCase['criteria'], scores: number[]) {
