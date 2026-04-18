@@ -12,9 +12,11 @@ export type HardNegativeCase = {
 }
 
 export const HARD_NEGATIVE_REFERENCE_SCORES: Record<BenchmarkKind, number[]> = {
-  advice: [0.55, 0.15, 0.15, 0.1],
-  comparison: [0.6, 0.15, 0.15, 0.1],
-  planning: [0.45, 0.2, 0.15, 0.05],
+  workforce: [0.55, 0.08, 0.12],
+  health: [0.55, 0.08, 0.12],
+  housing: [0.55, 0.08, 0.12],
+  infrastructure: [0.55, 0.08, 0.12],
+  community: [0.55, 0.08, 0.12],
 }
 
 export function createHardNegativeCases(cases: BenchmarkCase[]) {
@@ -37,14 +39,7 @@ export function createHardNegativeCases(cases: BenchmarkCase[]) {
 function buildHardNegativeAnswer(question: string, kind: BenchmarkKind) {
   const topicHint = buildTopicHint(question)
 
-  switch (kind) {
-    case 'comparison':
-      return `Choose the option that seems stronger overall for ${topicHint}, because it should work better in general.`
-    case 'planning':
-      return `Start with the highest-priority part for ${topicHint}, then continue through the rest as time allows.`
-    default:
-      return `Start with the main thing for ${topicHint}, keep the process simple, and adjust later if needed.`
-  }
+  return `This agreement funds ${topicHint} and is intended to improve results over the agreement term. The work will be delivered through program activities, partner coordination, and regular reporting.`
 }
 
 function buildTopicHint(question: string) {
@@ -91,8 +86,14 @@ function buildTopicHint(question: string) {
 }
 
 function weightedPercent(criteria: BenchmarkCase['criteria'], scores: number[]) {
+  const totalWeight = criteria.reduce((sum, criterion) => sum + criterion.weight, 0)
+
+  if (totalWeight <= 0) {
+    return 0
+  }
+
   return round(
-    criteria.reduce((sum, criterion, index) => sum + criterion.weight * 100 * (scores[index] ?? 0), 0) / 100,
+    criteria.reduce((sum, criterion, index) => sum + criterion.weight * 100 * (scores[index] ?? 0), 0) / totalWeight,
   )
 }
 

@@ -1,109 +1,123 @@
 # Reports Overview
 
-This page is the short version of the benchmark and tuning story.
+This page is the stable index for the report system. It is intentionally not generated from benchmark output.
 
-If you only want the current state, the main answer is:
+## Command Pattern
 
-- the scorer is in decent shape for product-style feedback
-- the current default stack now includes an explicit topic-alignment gate
-- the current benchmark evidence comes from a handwritten 300-case corpus of structured summary tasks
-- the biggest remaining weakness is still vague on-topic answers that mention the program purpose but stay light on concrete targets or delivery detail
-- wording and rubric quality still matter a lot
+All public report entrypoints use the same form:
 
-## Current State
+```bash
+bun run report:<name> [--write-json|--use-cache] [--write-md]
+```
 
-The shipped setup is:
+Supported report names:
 
-- model: `Xenova/nli-deberta-v3-xsmall`
-- current low-latency default: task-type structure checks plus topic-alignment gating
-- adaptive refinement: conservative low-stop only
+- `main`
+- `hard-negative`
+- `adaptive`
+- `scoring-improvement`
+- `low-latency`
+- `wording-exp`
+- `model-bakeoff`
 
-The current benchmark is a handwritten 300-case corpus built around structured program and service summary tasks across workforce, health, housing, infrastructure, and community domains. Each scenario includes `bad`, `mixed`, `good`, and `off_topic` answers written directly into the repo.
+Shared flags:
 
-## Headline Metrics
+- `--write-json`: rerun the benchmark and overwrite its JSON artifact
+- `--use-cache`: read the existing JSON artifact instead of rerunning the benchmark
+- `--write-md`: rewrite the matching VitePress markdown page
 
-### Handwritten Benchmark
+`--write-json` and `--use-cache` are mutually exclusive.
 
-| Metric | Value |
-| --- | ---: |
-| Cases | 300 |
-| Runtime calibrated MAE | 4.3 |
-| Runtime calibrated median | 2.7 |
-| Within 10 points | 270/300 |
-| Within 20 points | 293/300 |
+If neither is provided, the command defaults to cache-backed output.
 
-## What Is Working Well
+## Common Commands
 
-- Off-topic answers are now handled much more reliably on this corpus than they were before the topic-alignment gate.
-- `good` answers are now very close to target on average after recalibration.
-- The `xsmall` baseline remains a good fit for this local scoring workflow because the benchmark gains came from scoring logic and calibration, not from switching to a larger model.
+Refresh a report from a fresh benchmark run and rewrite its markdown page:
 
-## Main Weakness
+```bash
+bun run report:main --write-json --write-md
+```
 
-The clearest remaining problem is still generic, topical weak answers.
+Regenerate a report page from an existing JSON artifact:
 
-These answers often:
+```bash
+bun run report:main --use-cache --write-md
+```
 
-- sound relevant
-- mirror the shape of the prompt
-- avoid obvious mistakes
-- still fail to provide concrete or grounded help
+Print the cached console summary without rewriting anything:
 
-That makes them easy to over-score unless the scorer has strong enough signals for substance, structure, specificity, and topic alignment.
+```bash
+bun run report:main --use-cache
+```
 
-## What The Tuning Work Changed
-
-- Topic-alignment gating now suppresses obviously off-domain answers before they can surface as strong fits.
-- A domain-agnostic criterion-grounding layer now caps vague answers when a rubric asks for concrete targets, outputs, or delivery details and those details are missing.
-- The handwritten benchmark also produced a new calibration curve fitted to this corpus instead of the older synthetic family generator.
-
-## What Adaptive Refinement Really Does
-
-Adaptive refinement is useful, but narrower than it sounds.
-
-The kept policy only skips the full pass for obvious failures. It does not broadly skip full scoring for strong-looking answers.
-
-That means:
-
-- better responsiveness for clearly off-track answers
-- limited overall skip rate
-- little benchmark risk
-
-It is a practical latency optimization, not a huge compute reduction.
-
-## What The Wording Experiments Showed
-
-One of the strongest findings in the whole project is that rubric wording matters a lot.
-
-The most reliable improvements came from:
-
-- making criteria explicit and concrete
-- sometimes making the question’s goal and constraint more explicit too
-
-The safest pattern was not simply “make the prompt longer.”
-
-It was:
-
-- clear question
-- explicit goal and constraint when useful
-- criteria that name the exact factors the answer should satisfy
-
-## Practical Reading Of The Results
-
-If you are using this library, the main implications are:
-
-- use it for feedback, ranking, and relative comparison, not as a perfect judge
-- test against both normal answers and hard negatives
-- spend time on rubric wording
-- expect concise and strong answers to still be the hardest cases
-
-## Where To Go Next
-
-Use the detailed pages if you need depth:
+## Report Pages
 
 - [Main Benchmark](/guide/main-benchmark)
+- [Hard Negative Benchmark](/guide/hard-negative-benchmark)
 - [Adaptive Refinement](/guide/adaptive-refinement)
 - [Scoring Improvement](/guide/scoring-improvement)
 - [Low-Latency Improvement](/guide/low-latency-improvement)
 - [Wording Experiments](/guide/wording-experiments)
 - [Model Bakeoff](/guide/model-bakeoff)
+
+## JSON Artifacts
+
+- [tools/reports/benchmark-results.json](/home/omar/Code/quality-meter/tools/reports/benchmark-results.json)
+- [tools/reports/hard-negative-results.json](/home/omar/Code/quality-meter/tools/reports/hard-negative-results.json)
+- [tools/reports/adaptive-refinement-results.json](/home/omar/Code/quality-meter/tools/reports/adaptive-refinement-results.json)
+- [tools/reports/low-latency-iterations.json](/home/omar/Code/quality-meter/tools/reports/low-latency-iterations.json)
+- [tools/reports/wording-experiments.json](/home/omar/Code/quality-meter/tools/reports/wording-experiments.json)
+- [tools/reports/scoring-improvement.json](/home/omar/Code/quality-meter/tools/reports/scoring-improvement.json)
+- [tools/reports/model-bakeoff.json](/home/omar/Code/quality-meter/tools/reports/model-bakeoff.json)
+
+## Source Files
+
+- [tools/scripts/run-report.ts](/home/omar/Code/quality-meter/tools/scripts/run-report.ts): public dispatcher for every report command
+- [tools/benchmark/cases.ts](/home/omar/Code/quality-meter/tools/benchmark/cases.ts): handwritten 300-case main corpus
+- [tools/benchmark/hard-negatives.ts](/home/omar/Code/quality-meter/tools/benchmark/hard-negatives.ts): synthetic hard-negative generation
+
+## Typical Workflow
+
+If you changed the shipped scorer and want fresh main benchmark numbers plus the markdown page:
+
+```bash
+bun run report:main --write-json --write-md
+```
+
+If you changed hard-negative generation or weak-answer handling:
+
+```bash
+bun run report:hard-negative --write-json --write-md
+```
+
+If you changed adaptive refinement, low-latency logic, or wording prompts:
+
+```bash
+bun run report:adaptive --write-json --write-md
+bun run report:low-latency --write-json --write-md
+bun run report:wording-exp --write-json --write-md
+bun run report:scoring-improvement --use-cache --write-md
+```
+
+If you only changed report templates and want to regenerate pages from existing JSON:
+
+```bash
+bun run report:main --use-cache --write-md
+bun run report:hard-negative --use-cache --write-md
+bun run report:adaptive --use-cache --write-md
+bun run report:low-latency --use-cache --write-md
+bun run report:wording-exp --use-cache --write-md
+bun run report:scoring-improvement --use-cache --write-md
+```
+
+If you want to rebuild the docs site afterward:
+
+```bash
+bun run docs:build
+```
+
+## Notes
+
+- This page is static by design and should not be rewritten by benchmark scripts.
+- Individual report pages are generated from JSON artifacts.
+- The lower-level benchmark scripts remain implementation details and are not the public documentation surface.

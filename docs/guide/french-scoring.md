@@ -22,7 +22,6 @@ The project history is benchmark-first and English-first. The safest extension i
 The existing reports already show how benchmark-driven the project is:
 
 - [Benchmark history](/guide/reports-overview)
-- [Wording experiments](/guide/wording-experiments)
 
 ## Current Blockers
 

@@ -280,5 +280,5 @@ Criteria:
 ## Related Docs
 
 - [KNOWN_LIMITATIONS.md](./KNOWN_LIMITATIONS.md)
-- [../tools/reports/scoring-patterns-and-guidance.md](../tools/reports/scoring-patterns-and-guidance.md)
-- [../tools/reports/wording-experiments.md](../tools/reports/wording-experiments.md)
+- [../docs/guide/reports-overview.md](../docs/guide/reports-overview.md)
+- [../docs/guide/main-benchmark.md](../docs/guide/main-benchmark.md)

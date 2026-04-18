@@ -168,5 +168,5 @@ To reduce these weaknesses in real use:
 ## Related Docs
 
 - [AUTHORING_GUIDE.md](./AUTHORING_GUIDE.md)
-- [../tools/reports/benchmark-history.md](../tools/reports/benchmark-history.md)
-- [../tools/reports/scoring-patterns-and-guidance.md](../tools/reports/scoring-patterns-and-guidance.md)
+- [../docs/guide/reports-overview.md](../docs/guide/reports-overview.md)
+- [../docs/guide/hard-negative-benchmark.md](../docs/guide/hard-negative-benchmark.md)

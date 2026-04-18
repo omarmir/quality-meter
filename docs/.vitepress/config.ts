@@ -39,18 +39,9 @@ export default defineConfig({
             text: "Hard Negative Benchmark",
             link: "/guide/hard-negative-benchmark",
           },
-          {
-            text: "Adaptive Refinement",
-            link: "/guide/adaptive-refinement",
-          },
-          {
-            text: "Scoring Improvement",
-            link: "/guide/scoring-improvement",
-          },
-          {
-            text: "Low-Latency Improvement",
-            link: "/guide/low-latency-improvement",
-          },
+          { text: "Adaptive Refinement", link: "/guide/adaptive-refinement" },
+          { text: "Scoring Improvement", link: "/guide/scoring-improvement" },
+          { text: "Low-Latency Improvement", link: "/guide/low-latency-improvement" },
           { text: "Wording Experiments", link: "/guide/wording-experiments" },
           { text: "Model Bakeoff", link: "/guide/model-bakeoff" },
         ],

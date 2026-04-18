@@ -72,12 +72,13 @@ const scorer = createTransformersQualityScorer({
 })
 
 const REPORTS_DIR = fileURLToPath(new URL('../reports/', import.meta.url))
+const reportProgress = createProgressReporter('main benchmark', BENCHMARK_CASES.length)
 
 await scorer.loadModel()
 
 const baseResults: BaseCaseResult[] = []
 
-for (const testCase of BENCHMARK_CASES) {
+for (const [index, testCase] of BENCHMARK_CASES.entries()) {
   const criteria = testCase.criteria.map((criterion) => criterion.label)
   const scoreResult = await scorer.score({
     question: testCase.question,
@@ -102,6 +103,8 @@ for (const testCase of BENCHMARK_CASES) {
     referenceOverall: weightedPercent(testCase.criteria, testCase.referenceScores),
     rawOverall: weightedPercent(testCase.criteria, scoreResult.rawScores),
   })
+
+  reportProgress(index + 1, testCase.id)
 }
 
 const rawResults = materializeResults(baseResults, 'raw')
@@ -475,6 +478,26 @@ function truncate(text: string, limit: number) {
 
 function round(value: number) {
   return Math.round(value * 10) / 10
+}
+
+function createProgressReporter(label: string, total: number) {
+  let previousLength = 0
+
+  return (current: number, detail?: string) => {
+    const line = `[${label}] ${current}/${total}${detail ? ` ${detail}` : ''}`
+
+    if (process.stdout.isTTY) {
+      const padded = line.padEnd(previousLength, ' ')
+      process.stdout.write(`\r${padded}`)
+      previousLength = Math.max(previousLength, line.length)
+      if (current === total) {
+        process.stdout.write('\n')
+      }
+      return
+    }
+
+    console.log(line)
+  }
 }
 
 function buildCalibrationAnchors() {

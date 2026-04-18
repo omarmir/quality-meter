@@ -3,192 +3,232 @@
     "variant": {
       "id": "baseline",
       "title": "Baseline",
-      "description": "Current scorer stack with the new low-latency layers disabled.",
+      "description": "Current scorer stack with the low-latency helper layers disabled.",
       "config": {
+        "task": "zero-shot-classification",
         "modelId": "Xenova/nli-deberta-v3-xsmall",
         "dtype": "q8",
+        "hypothesisTemplate": "{}",
         "modelSource": {
           "mode": "local",
-          "localModelPath": "./public/models/",
+          "localModelPath": "/home/omar/Code/quality-meter/library/models/",
+          "remoteHost": "https://huggingface.co/",
+          "remotePathTemplate": "{model}/resolve/{revision}/",
           "revision": "main",
           "useBrowserCache": false
         },
-        "criterionCalibration": null,
-        "overallCalibration": null,
+        "limits": {
+          "modelTokenLimit": 512,
+          "estimatedCharsPerToken": 4,
+          "tokenBuffer": 12,
+          "minSafePremiseTokens": 128
+        },
         "lowLatency": {
           "useDeterministicConstraintChecks": false,
           "useTaskStructureChecks": false,
           "useCriterionNormalization": false
-        }
+        },
+        "criterionCalibration": null,
+        "overallCalibration": null
       }
     },
     "rawSummary": {
-      "meanAbsoluteError": 7.7,
-      "medianAbsoluteError": 4.6,
-      "within10": 77,
-      "within20": 88
+      "meanAbsoluteError": 6.1,
+      "medianAbsoluteError": 3.2,
+      "within10": 229,
+      "within20": 289
     },
     "crossValidatedSummary": {
-      "meanAbsoluteError": 8.8,
-      "medianAbsoluteError": 6.9,
-      "within10": 61,
-      "within20": 87
+      "meanAbsoluteError": 4.4,
+      "medianAbsoluteError": 3.1,
+      "within10": 261,
+      "within20": 295
     },
     "runtimeSummary": {
-      "meanAbsoluteError": 7.4,
-      "medianAbsoluteError": 5.3,
-      "within10": 68,
-      "within20": 92
+      "meanAbsoluteError": 4.4,
+      "medianAbsoluteError": 3,
+      "within10": 258,
+      "within20": 295
     },
     "hardNegativeSummary": {
-      "meanAbsoluteError": 17.5,
-      "medianAbsoluteError": 16.3,
-      "within10": 4,
-      "within20": 73
+      "meanAbsoluteError": 13.8,
+      "medianAbsoluteError": 15.5,
+      "within10": 88,
+      "within20": 268
     }
   },
   {
     "variant": {
       "id": "step1_constraints",
       "title": "Step 1: Deterministic Constraint Checks",
-      "description": "Adds lightweight constraint extraction and violation checks on top of the NLI-based constraint gate.",
+      "description": "Adds lightweight deterministic constraint checks on top of the base scorer.",
       "config": {
+        "task": "zero-shot-classification",
         "modelId": "Xenova/nli-deberta-v3-xsmall",
         "dtype": "q8",
+        "hypothesisTemplate": "{}",
         "modelSource": {
           "mode": "local",
-          "localModelPath": "./public/models/",
+          "localModelPath": "/home/omar/Code/quality-meter/library/models/",
+          "remoteHost": "https://huggingface.co/",
+          "remotePathTemplate": "{model}/resolve/{revision}/",
           "revision": "main",
           "useBrowserCache": false
         },
-        "criterionCalibration": null,
-        "overallCalibration": null,
+        "limits": {
+          "modelTokenLimit": 512,
+          "estimatedCharsPerToken": 4,
+          "tokenBuffer": 12,
+          "minSafePremiseTokens": 128
+        },
         "lowLatency": {
           "useDeterministicConstraintChecks": true,
           "useTaskStructureChecks": false,
           "useCriterionNormalization": false
-        }
+        },
+        "criterionCalibration": null,
+        "overallCalibration": null
       }
     },
     "rawSummary": {
-      "meanAbsoluteError": 7.7,
-      "medianAbsoluteError": 4.6,
-      "within10": 76,
-      "within20": 87
+      "meanAbsoluteError": 6.1,
+      "medianAbsoluteError": 3.2,
+      "within10": 229,
+      "within20": 289
     },
     "crossValidatedSummary": {
-      "meanAbsoluteError": 9,
-      "medianAbsoluteError": 6.9,
-      "within10": 61,
-      "within20": 87
+      "meanAbsoluteError": 4.4,
+      "medianAbsoluteError": 3.1,
+      "within10": 261,
+      "within20": 295
     },
     "runtimeSummary": {
-      "meanAbsoluteError": 7.5,
-      "medianAbsoluteError": 5.4,
-      "within10": 68,
-      "within20": 92
+      "meanAbsoluteError": 4.4,
+      "medianAbsoluteError": 3,
+      "within10": 258,
+      "within20": 295
     },
     "hardNegativeSummary": {
-      "meanAbsoluteError": 17.5,
-      "medianAbsoluteError": 16.3,
-      "within10": 4,
-      "within20": 73
+      "meanAbsoluteError": 13.8,
+      "medianAbsoluteError": 15.5,
+      "within10": 88,
+      "within20": 268
     }
   },
   {
     "variant": {
       "id": "step2_structure",
       "title": "Step 2: Task-Type Structure Checks",
-      "description": "Keeps deterministic constraint checks and adds task-aware structure scoring for advice, comparison, and planning.",
+      "description": "Adds task-aware structure checks for the structured summary benchmark.",
       "config": {
+        "task": "zero-shot-classification",
         "modelId": "Xenova/nli-deberta-v3-xsmall",
         "dtype": "q8",
+        "hypothesisTemplate": "{}",
         "modelSource": {
           "mode": "local",
-          "localModelPath": "./public/models/",
+          "localModelPath": "/home/omar/Code/quality-meter/library/models/",
+          "remoteHost": "https://huggingface.co/",
+          "remotePathTemplate": "{model}/resolve/{revision}/",
           "revision": "main",
           "useBrowserCache": false
         },
-        "criterionCalibration": null,
-        "overallCalibration": null,
+        "limits": {
+          "modelTokenLimit": 512,
+          "estimatedCharsPerToken": 4,
+          "tokenBuffer": 12,
+          "minSafePremiseTokens": 128
+        },
         "lowLatency": {
           "useDeterministicConstraintChecks": true,
           "useTaskStructureChecks": true,
           "useCriterionNormalization": false
-        }
+        },
+        "criterionCalibration": null,
+        "overallCalibration": null
       }
     },
     "rawSummary": {
-      "meanAbsoluteError": 7.2,
-      "medianAbsoluteError": 5.2,
-      "within10": 69,
-      "within20": 92
+      "meanAbsoluteError": 5.8,
+      "medianAbsoluteError": 3.2,
+      "within10": 236,
+      "within20": 290
     },
     "crossValidatedSummary": {
-      "meanAbsoluteError": 8.9,
-      "medianAbsoluteError": 7.8,
-      "within10": 56,
-      "within20": 91
+      "meanAbsoluteError": 4.4,
+      "medianAbsoluteError": 2.8,
+      "within10": 262,
+      "within20": 295
     },
     "runtimeSummary": {
-      "meanAbsoluteError": 7.5,
-      "medianAbsoluteError": 6.3,
-      "within10": 67,
-      "within20": 95
+      "meanAbsoluteError": 4.4,
+      "medianAbsoluteError": 2.7,
+      "within10": 260,
+      "within20": 295
     },
     "hardNegativeSummary": {
-      "meanAbsoluteError": 15.9,
-      "medianAbsoluteError": 14.9,
-      "within10": 7,
-      "within20": 79
+      "meanAbsoluteError": 13.2,
+      "medianAbsoluteError": 14.3,
+      "within10": 96,
+      "within20": 272
     }
   },
   {
     "variant": {
       "id": "step3_normalization",
       "title": "Step 3: Criterion Normalization",
-      "description": "Keeps the earlier layers and rewrites generic criteria into more explicit scoring criteria before running NLI.",
+      "description": "Adds criterion normalization on top of the earlier low-latency passes.",
       "config": {
+        "task": "zero-shot-classification",
         "modelId": "Xenova/nli-deberta-v3-xsmall",
         "dtype": "q8",
+        "hypothesisTemplate": "{}",
         "modelSource": {
           "mode": "local",
-          "localModelPath": "./public/models/",
+          "localModelPath": "/home/omar/Code/quality-meter/library/models/",
+          "remoteHost": "https://huggingface.co/",
+          "remotePathTemplate": "{model}/resolve/{revision}/",
           "revision": "main",
           "useBrowserCache": false
         },
-        "criterionCalibration": null,
-        "overallCalibration": null,
+        "limits": {
+          "modelTokenLimit": 512,
+          "estimatedCharsPerToken": 4,
+          "tokenBuffer": 12,
+          "minSafePremiseTokens": 128
+        },
         "lowLatency": {
           "useDeterministicConstraintChecks": true,
           "useTaskStructureChecks": true,
           "useCriterionNormalization": true
-        }
+        },
+        "criterionCalibration": null,
+        "overallCalibration": null
       }
     },
     "rawSummary": {
-      "meanAbsoluteError": 9.2,
-      "medianAbsoluteError": 6.2,
-      "within10": 61,
-      "within20": 84
+      "meanAbsoluteError": 5.8,
+      "medianAbsoluteError": 3.2,
+      "within10": 236,
+      "within20": 290
     },
     "crossValidatedSummary": {
-      "meanAbsoluteError": 8.3,
-      "medianAbsoluteError": 6.6,
-      "within10": 62,
-      "within20": 90
+      "meanAbsoluteError": 4.4,
+      "medianAbsoluteError": 2.8,
+      "within10": 262,
+      "within20": 295
     },
     "runtimeSummary": {
-      "meanAbsoluteError": 6.9,
-      "medianAbsoluteError": 4.9,
-      "within10": 74,
-      "within20": 95
+      "meanAbsoluteError": 4.4,
+      "medianAbsoluteError": 2.7,
+      "within10": 260,
+      "within20": 295
     },
     "hardNegativeSummary": {
-      "meanAbsoluteError": 19.5,
-      "medianAbsoluteError": 20.5,
-      "within10": 4,
-      "within20": 47
+      "meanAbsoluteError": 13.2,
+      "medianAbsoluteError": 14.3,
+      "within10": 96,
+      "within20": 272
     }
   }
 ]

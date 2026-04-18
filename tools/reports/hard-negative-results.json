@@ -1,0 +1,571 @@
+{
+  "caseCount": 300,
+  "meanAbsoluteError": 15.4,
+  "medianAbsoluteError": 14.7,
+  "within10": 92,
+  "within20": 204,
+  "byKind": [
+    {
+      "name": "workforce",
+      "count": 60,
+      "meanAbsoluteError": 14.2,
+      "averageReference": 27.6,
+      "averageApp": 41.8
+    },
+    {
+      "name": "health",
+      "count": 56,
+      "meanAbsoluteError": 14,
+      "averageReference": 27.6,
+      "averageApp": 41.6
+    },
+    {
+      "name": "housing",
+      "count": 64,
+      "meanAbsoluteError": 13.1,
+      "averageReference": 27.6,
+      "averageApp": 40.5
+    },
+    {
+      "name": "infrastructure",
+      "count": 56,
+      "meanAbsoluteError": 19.3,
+      "averageReference": 27.6,
+      "averageApp": 46.9
+    },
+    {
+      "name": "community",
+      "count": 64,
+      "meanAbsoluteError": 16.5,
+      "averageReference": 27.6,
+      "averageApp": 44.1
+    }
+  ],
+  "topMisses": [
+    {
+      "id": "neighbourhood-cleanup-microgrants-bad-hard-negative",
+      "sourceId": "neighbourhood-cleanup-microgrants-bad",
+      "kind": "community",
+      "question": "Describe this neighbourhood cleanup microgrants agreement by identifying what is funded, what cleanup targets are expected, and how grants will be administered.",
+      "criteria": [
+        {
+          "label": "States that the agreement funds neighbourhood cleanup microgrants",
+          "weight": 4
+        },
+        {
+          "label": "Names the grant, volunteer, site, or cleanup targets",
+          "weight": 4
+        },
+        {
+          "label": "Explains that applications, approvals, and supported cleanup events administer the grants",
+          "weight": 2
+        }
+      ],
+      "answer": "This agreement funds describe this neighbourhood cleanup microgrants and is intended to improve results over the agreement term. The work will be delivered through program activities, partner coordination, and regular reporting.",
+      "referenceScores": [
+        0.55,
+        0.08,
+        0.12
+      ],
+      "referenceOverall": 27.6,
+      "appScores": [
+        0.8728128940481475,
+        0.34013760058309034,
+        0.8727920986959163
+      ],
+      "appOverall": 63.1,
+      "diff": 35.5,
+      "absDiff": 35.5
+    },
+    {
+      "id": "neighbourhood-cleanup-microgrants-mixed-hard-negative",
+      "sourceId": "neighbourhood-cleanup-microgrants-mixed",
+      "kind": "community",
+      "question": "Describe this neighbourhood cleanup microgrants agreement by identifying what is funded, what cleanup targets are expected, and how grants will be administered.",
+      "criteria": [
+        {
+          "label": "States that the agreement funds neighbourhood cleanup microgrants",
+          "weight": 4
+        },
+        {
+          "label": "Names the grant, volunteer, site, or cleanup targets",
+          "weight": 4
+        },
+        {
+          "label": "Explains that applications, approvals, and supported cleanup events administer the grants",
+          "weight": 2
+        }
+      ],
+      "answer": "This agreement funds describe this neighbourhood cleanup microgrants and is intended to improve results over the agreement term. The work will be delivered through program activities, partner coordination, and regular reporting.",
+      "referenceScores": [
+        0.55,
+        0.08,
+        0.12
+      ],
+      "referenceOverall": 27.6,
+      "appScores": [
+        0.8728128940481475,
+        0.34013760058309034,
+        0.8727920986959163
+      ],
+      "appOverall": 63.1,
+      "diff": 35.5,
+      "absDiff": 35.5
+    },
+    {
+      "id": "neighbourhood-cleanup-microgrants-good-hard-negative",
+      "sourceId": "neighbourhood-cleanup-microgrants-good",
+      "kind": "community",
+      "question": "Describe this neighbourhood cleanup microgrants agreement by identifying what is funded, what cleanup targets are expected, and how grants will be administered.",
+      "criteria": [
+        {
+          "label": "States that the agreement funds neighbourhood cleanup microgrants",
+          "weight": 4
+        },
+        {
+          "label": "Names the grant, volunteer, site, or cleanup targets",
+          "weight": 4
+        },
+        {
+          "label": "Explains that applications, approvals, and supported cleanup events administer the grants",
+          "weight": 2
+        }
+      ],
+      "answer": "This agreement funds describe this neighbourhood cleanup microgrants and is intended to improve results over the agreement term. The work will be delivered through program activities, partner coordination, and regular reporting.",
+      "referenceScores": [
+        0.55,
+        0.08,
+        0.12
+      ],
+      "referenceOverall": 27.6,
+      "appScores": [
+        0.8728128940481475,
+        0.34013760058309034,
+        0.8727920986959163
+      ],
+      "appOverall": 63.1,
+      "diff": 35.5,
+      "absDiff": 35.5
+    },
+    {
+      "id": "neighbourhood-cleanup-microgrants-off-topic-hard-negative",
+      "sourceId": "neighbourhood-cleanup-microgrants-off-topic",
+      "kind": "community",
+      "question": "Describe this neighbourhood cleanup microgrants agreement by identifying what is funded, what cleanup targets are expected, and how grants will be administered.",
+      "criteria": [
+        {
+          "label": "States that the agreement funds neighbourhood cleanup microgrants",
+          "weight": 4
+        },
+        {
+          "label": "Names the grant, volunteer, site, or cleanup targets",
+          "weight": 4
+        },
+        {
+          "label": "Explains that applications, approvals, and supported cleanup events administer the grants",
+          "weight": 2
+        }
+      ],
+      "answer": "This agreement funds describe this neighbourhood cleanup microgrants and is intended to improve results over the agreement term. The work will be delivered through program activities, partner coordination, and regular reporting.",
+      "referenceScores": [
+        0.55,
+        0.08,
+        0.12
+      ],
+      "referenceOverall": 27.6,
+      "appScores": [
+        0.8728128940481475,
+        0.34013760058309034,
+        0.8727920986959163
+      ],
+      "appOverall": 63.1,
+      "diff": 35.5,
+      "absDiff": 35.5
+    },
+    {
+      "id": "food-security-breakfast-bad-hard-negative",
+      "sourceId": "food-security-breakfast-bad",
+      "kind": "community",
+      "question": "Explain this school breakfast agreement: what is funded, what meal or student targets it expects, and how the service will be delivered.",
+      "criteria": [
+        {
+          "label": "States that the agreement funds a school breakfast or food security program",
+          "weight": 4
+        },
+        {
+          "label": "Names the meal, school, and student targets",
+          "weight": 4
+        },
+        {
+          "label": "Explains that food purchasing, school distribution, and volunteer or staff coordination deliver the work",
+          "weight": 2
+        }
+      ],
+      "answer": "This agreement funds explain this school breakfast agreement and is intended to improve results over the agreement term. The work will be delivered through program activities, partner coordination, and regular reporting.",
+      "referenceScores": [
+        0.55,
+        0.08,
+        0.12
+      ],
+      "referenceOverall": 27.6,
+      "appScores": [
+        0.8451522349717996,
+        0.34013760058309034,
+        0.836660269757632
+      ],
+      "appOverall": 61.8,
+      "diff": 34.199999999999996,
+      "absDiff": 34.199999999999996
+    },
+    {
+      "id": "food-security-breakfast-mixed-hard-negative",
+      "sourceId": "food-security-breakfast-mixed",
+      "kind": "community",
+      "question": "Explain this school breakfast agreement: what is funded, what meal or student targets it expects, and how the service will be delivered.",
+      "criteria": [
+        {
+          "label": "States that the agreement funds a school breakfast or food security program",
+          "weight": 4
+        },
+        {
+          "label": "Names the meal, school, and student targets",
+          "weight": 4
+        },
+        {
+          "label": "Explains that food purchasing, school distribution, and volunteer or staff coordination deliver the work",
+          "weight": 2
+        }
+      ],
+      "answer": "This agreement funds explain this school breakfast agreement and is intended to improve results over the agreement term. The work will be delivered through program activities, partner coordination, and regular reporting.",
+      "referenceScores": [
+        0.55,
+        0.08,
+        0.12
+      ],
+      "referenceOverall": 27.6,
+      "appScores": [
+        0.8451522349717996,
+        0.34013760058309034,
+        0.836660269757632
+      ],
+      "appOverall": 61.8,
+      "diff": 34.199999999999996,
+      "absDiff": 34.199999999999996
+    },
+    {
+      "id": "food-security-breakfast-good-hard-negative",
+      "sourceId": "food-security-breakfast-good",
+      "kind": "community",
+      "question": "Explain this school breakfast agreement: what is funded, what meal or student targets it expects, and how the service will be delivered.",
+      "criteria": [
+        {
+          "label": "States that the agreement funds a school breakfast or food security program",
+          "weight": 4
+        },
+        {
+          "label": "Names the meal, school, and student targets",
+          "weight": 4
+        },
+        {
+          "label": "Explains that food purchasing, school distribution, and volunteer or staff coordination deliver the work",
+          "weight": 2
+        }
+      ],
+      "answer": "This agreement funds explain this school breakfast agreement and is intended to improve results over the agreement term. The work will be delivered through program activities, partner coordination, and regular reporting.",
+      "referenceScores": [
+        0.55,
+        0.08,
+        0.12
+      ],
+      "referenceOverall": 27.6,
+      "appScores": [
+        0.8451522349717996,
+        0.34013760058309034,
+        0.836660269757632
+      ],
+      "appOverall": 61.8,
+      "diff": 34.199999999999996,
+      "absDiff": 34.199999999999996
+    },
+    {
+      "id": "food-security-breakfast-off-topic-hard-negative",
+      "sourceId": "food-security-breakfast-off-topic",
+      "kind": "community",
+      "question": "Explain this school breakfast agreement: what is funded, what meal or student targets it expects, and how the service will be delivered.",
+      "criteria": [
+        {
+          "label": "States that the agreement funds a school breakfast or food security program",
+          "weight": 4
+        },
+        {
+          "label": "Names the meal, school, and student targets",
+          "weight": 4
+        },
+        {
+          "label": "Explains that food purchasing, school distribution, and volunteer or staff coordination deliver the work",
+          "weight": 2
+        }
+      ],
+      "answer": "This agreement funds explain this school breakfast agreement and is intended to improve results over the agreement term. The work will be delivered through program activities, partner coordination, and regular reporting.",
+      "referenceScores": [
+        0.55,
+        0.08,
+        0.12
+      ],
+      "referenceOverall": 27.6,
+      "appScores": [
+        0.8451522349717996,
+        0.34013760058309034,
+        0.836660269757632
+      ],
+      "appOverall": 61.8,
+      "diff": 34.199999999999996,
+      "absDiff": 34.199999999999996
+    },
+    {
+      "id": "harbour-dock-repair-bad-hard-negative",
+      "sourceId": "harbour-dock-repair-bad",
+      "kind": "infrastructure",
+      "question": "Summarize this harbour dock repair agreement by saying what is funded, what repair targets it sets, and how the repair work will be delivered.",
+      "criteria": [
+        {
+          "label": "States that the agreement funds harbour dock repair work",
+          "weight": 4
+        },
+        {
+          "label": "Names the dock, pile, deck, or reopening targets",
+          "weight": 4
+        },
+        {
+          "label": "Explains that marine engineering, contractor repair, and inspection deliver the work",
+          "weight": 2
+        }
+      ],
+      "answer": "This agreement funds summarize this harbour dock repair and is intended to improve results over the agreement term. The work will be delivered through program activities, partner coordination, and regular reporting.",
+      "referenceScores": [
+        0.55,
+        0.08,
+        0.12
+      ],
+      "referenceOverall": 27.6,
+      "appScores": [
+        0.8731155309503502,
+        0.34013760058309034,
+        0.7456751716972776
+      ],
+      "appOverall": 61.2,
+      "diff": 33.6,
+      "absDiff": 33.6
+    },
+    {
+      "id": "harbour-dock-repair-mixed-hard-negative",
+      "sourceId": "harbour-dock-repair-mixed",
+      "kind": "infrastructure",
+      "question": "Summarize this harbour dock repair agreement by saying what is funded, what repair targets it sets, and how the repair work will be delivered.",
+      "criteria": [
+        {
+          "label": "States that the agreement funds harbour dock repair work",
+          "weight": 4
+        },
+        {
+          "label": "Names the dock, pile, deck, or reopening targets",
+          "weight": 4
+        },
+        {
+          "label": "Explains that marine engineering, contractor repair, and inspection deliver the work",
+          "weight": 2
+        }
+      ],
+      "answer": "This agreement funds summarize this harbour dock repair and is intended to improve results over the agreement term. The work will be delivered through program activities, partner coordination, and regular reporting.",
+      "referenceScores": [
+        0.55,
+        0.08,
+        0.12
+      ],
+      "referenceOverall": 27.6,
+      "appScores": [
+        0.8731155309503502,
+        0.34013760058309034,
+        0.7456751716972776
+      ],
+      "appOverall": 61.2,
+      "diff": 33.6,
+      "absDiff": 33.6
+    },
+    {
+      "id": "harbour-dock-repair-good-hard-negative",
+      "sourceId": "harbour-dock-repair-good",
+      "kind": "infrastructure",
+      "question": "Summarize this harbour dock repair agreement by saying what is funded, what repair targets it sets, and how the repair work will be delivered.",
+      "criteria": [
+        {
+          "label": "States that the agreement funds harbour dock repair work",
+          "weight": 4
+        },
+        {
+          "label": "Names the dock, pile, deck, or reopening targets",
+          "weight": 4
+        },
+        {
+          "label": "Explains that marine engineering, contractor repair, and inspection deliver the work",
+          "weight": 2
+        }
+      ],
+      "answer": "This agreement funds summarize this harbour dock repair and is intended to improve results over the agreement term. The work will be delivered through program activities, partner coordination, and regular reporting.",
+      "referenceScores": [
+        0.55,
+        0.08,
+        0.12
+      ],
+      "referenceOverall": 27.6,
+      "appScores": [
+        0.8731155309503502,
+        0.34013760058309034,
+        0.7456751716972776
+      ],
+      "appOverall": 61.2,
+      "diff": 33.6,
+      "absDiff": 33.6
+    },
+    {
+      "id": "harbour-dock-repair-off-topic-hard-negative",
+      "sourceId": "harbour-dock-repair-off-topic",
+      "kind": "infrastructure",
+      "question": "Summarize this harbour dock repair agreement by saying what is funded, what repair targets it sets, and how the repair work will be delivered.",
+      "criteria": [
+        {
+          "label": "States that the agreement funds harbour dock repair work",
+          "weight": 4
+        },
+        {
+          "label": "Names the dock, pile, deck, or reopening targets",
+          "weight": 4
+        },
+        {
+          "label": "Explains that marine engineering, contractor repair, and inspection deliver the work",
+          "weight": 2
+        }
+      ],
+      "answer": "This agreement funds summarize this harbour dock repair and is intended to improve results over the agreement term. The work will be delivered through program activities, partner coordination, and regular reporting.",
+      "referenceScores": [
+        0.55,
+        0.08,
+        0.12
+      ],
+      "referenceOverall": 27.6,
+      "appScores": [
+        0.8731155309503502,
+        0.34013760058309034,
+        0.7456751716972776
+      ],
+      "appOverall": 61.2,
+      "diff": 33.6,
+      "absDiff": 33.6
+    },
+    {
+      "id": "farm-irrigation-upgrades-bad-hard-negative",
+      "sourceId": "farm-irrigation-upgrades-bad",
+      "kind": "infrastructure",
+      "question": "Explain this farm irrigation upgrade agreement: what work it funds, what installation outcomes it sets, and how the upgrades will be delivered.",
+      "criteria": [
+        {
+          "label": "States that the agreement funds irrigation efficiency upgrades on farms",
+          "weight": 4
+        },
+        {
+          "label": "Names the farm, equipment, and water-savings targets",
+          "weight": 4
+        },
+        {
+          "label": "Explains that assessments, equipment installation, and producer training deliver the work",
+          "weight": 2
+        }
+      ],
+      "answer": "This agreement funds explain this farm irrigation upgrade and is intended to improve results over the agreement term. The work will be delivered through program activities, partner coordination, and regular reporting.",
+      "referenceScores": [
+        0.55,
+        0.08,
+        0.12
+      ],
+      "referenceOverall": 27.6,
+      "appScores": [
+        0.810860611420383,
+        0.34013760058309034,
+        0.7456751716972776
+      ],
+      "appOverall": 59.5,
+      "diff": 31.9,
+      "absDiff": 31.9
+    },
+    {
+      "id": "farm-irrigation-upgrades-mixed-hard-negative",
+      "sourceId": "farm-irrigation-upgrades-mixed",
+      "kind": "infrastructure",
+      "question": "Explain this farm irrigation upgrade agreement: what work it funds, what installation outcomes it sets, and how the upgrades will be delivered.",
+      "criteria": [
+        {
+          "label": "States that the agreement funds irrigation efficiency upgrades on farms",
+          "weight": 4
+        },
+        {
+          "label": "Names the farm, equipment, and water-savings targets",
+          "weight": 4
+        },
+        {
+          "label": "Explains that assessments, equipment installation, and producer training deliver the work",
+          "weight": 2
+        }
+      ],
+      "answer": "This agreement funds explain this farm irrigation upgrade and is intended to improve results over the agreement term. The work will be delivered through program activities, partner coordination, and regular reporting.",
+      "referenceScores": [
+        0.55,
+        0.08,
+        0.12
+      ],
+      "referenceOverall": 27.6,
+      "appScores": [
+        0.810860611420383,
+        0.34013760058309034,
+        0.7456751716972776
+      ],
+      "appOverall": 59.5,
+      "diff": 31.9,
+      "absDiff": 31.9
+    },
+    {
+      "id": "farm-irrigation-upgrades-good-hard-negative",
+      "sourceId": "farm-irrigation-upgrades-good",
+      "kind": "infrastructure",
+      "question": "Explain this farm irrigation upgrade agreement: what work it funds, what installation outcomes it sets, and how the upgrades will be delivered.",
+      "criteria": [
+        {
+          "label": "States that the agreement funds irrigation efficiency upgrades on farms",
+          "weight": 4
+        },
+        {
+          "label": "Names the farm, equipment, and water-savings targets",
+          "weight": 4
+        },
+        {
+          "label": "Explains that assessments, equipment installation, and producer training deliver the work",
+          "weight": 2
+        }
+      ],
+      "answer": "This agreement funds explain this farm irrigation upgrade and is intended to improve results over the agreement term. The work will be delivered through program activities, partner coordination, and regular reporting.",
+      "referenceScores": [
+        0.55,
+        0.08,
+        0.12
+      ],
+      "referenceOverall": 27.6,
+      "appScores": [
+        0.810860611420383,
+        0.34013760058309034,
+        0.7456751716972776
+      ],
+      "appOverall": 59.5,
+      "diff": 31.9,
+      "absDiff": 31.9
+    }
+  ]
+}

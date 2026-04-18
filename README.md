@@ -33,12 +33,8 @@ bun run docs:build
 Run benchmark tooling:
 
 ```bash
-bun run benchmark
-bun run benchmark:hard-negative
-bun run benchmark:adaptive
-bun run benchmark:low-latency
-bun run benchmark:model-bakeoff
-bun run benchmark:wording
+bun run report:main --write-json --write-md
+bun run report:hard-negative --write-json --write-md
 ```
 
 ## Package
