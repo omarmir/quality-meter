@@ -1,34 +1,24 @@
 {
-  "name": "quality-meter-monorepo",
-  "private": true,
+  "name": "@browser-quality-scorer/core",
+  "version": "1.0.2",
   "type": "module",
-  "workspaces": [
-    "docs",
-    "library"
-  ],
-  "scripts": {
-    "dev": "vitepress dev docs",
-    "build": "vitepress build docs",
-    "build:library": "tsup --config library/tsup.config.ts",
-    "preview": "vitepress preview docs",
-    "benchmark": "bun tools/scripts/run-benchmark.ts",
-    "benchmark:adaptive": "bun tools/scripts/run-adaptive-refinement-benchmark.ts",
-    "benchmark:hard-negative": "bun tools/scripts/run-hard-negative-benchmark.ts",
-    "benchmark:low-latency": "bun tools/scripts/run-low-latency-iterations.ts",
-    "benchmark:model-bakeoff": "bun tools/scripts/run-model-bakeoff.ts",
-    "benchmark:wording": "bun tools/scripts/run-wording-experiments.ts",
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs",
-    "package:library": "bun tools/scripts/create-package-release.ts"
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./worker-runtime": "./dist/worker-runtime.js"
   },
-  "dependencies": {
-    "@browser-quality-scorer/core": "workspace:*",
+  "files": [
+    "dist",
+    "models",
+    "README.md",
+    "AUTHORING_GUIDE.md",
+    "KNOWN_LIMITATIONS.md",
+    "LICENSE.md"
+  ],
+  "peerDependencies": {
     "@huggingface/transformers": "^4.0.1"
   },
-  "devDependencies": {
-    "tsup": "^8.5.1",
-    "typescript": "^6.0.3",
-    "vitepress": "^2.0.0-alpha.17"
-  }
+  "sideEffects": false
 }
