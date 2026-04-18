@@ -1,0 +1,24 @@
+{
+  "name": "@browser-quality-scorer/core",
+  "version": "1.0.1",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./worker-runtime": "./dist/worker-runtime.js"
+  },
+  "files": [
+    "dist",
+    "models",
+    "README.md",
+    "AUTHORING_GUIDE.md",
+    "KNOWN_LIMITATIONS.md",
+    "LICENSE.md"
+  ],
+  "peerDependencies": {
+    "@huggingface/transformers": "^4.0.1"
+  },
+  "sideEffects": false
+}
