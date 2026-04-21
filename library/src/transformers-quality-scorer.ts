@@ -108,7 +108,7 @@ export function createTransformersQualityScorer(config: QualityScorerConfigInput
 
         const instance = (await pipeline(resolvedConfig.task, resolvedConfig.modelId, {
           dtype: resolvedConfig.dtype,
-          device: resolvedConfig.execution.device,
+          device: resolvePipelineDevice(resolvedConfig),
           local_files_only: resolvedConfig.modelSource.mode === 'local',
           revision: resolvedConfig.modelSource.revision,
           progress_callback: (progress: ProgressInfo) => {
@@ -160,6 +160,22 @@ function applyEnvironmentConfig(config: QualityScorerConfig) {
   env.remoteHost = config.modelSource.remoteHost
   env.remotePathTemplate = config.modelSource.remotePathTemplate
   env.useBrowserCache = resolveBrowserCacheSetting(config)
+}
+
+function resolvePipelineDevice(config: QualityScorerConfig) {
+  if (config.execution.device !== 'cpu') {
+    return config.execution.device
+  }
+
+  return isBrowserExecutionContext() ? 'wasm' : 'cpu'
+}
+
+function isBrowserExecutionContext() {
+  if (typeof WorkerGlobalScope !== 'undefined' && globalThis instanceof WorkerGlobalScope) {
+    return true
+  }
+
+  return typeof window !== 'undefined' && typeof document !== 'undefined'
 }
 
 function resolveBrowserCacheSetting(config: QualityScorerConfig) {
