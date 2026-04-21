@@ -28,7 +28,7 @@ export type QualityLowLatencyConfig = {
 }
 
 export type QualityExecutionConfig = {
-  device: 'cpu' | 'webgpu'
+  device: 'cpu' | 'wasm' | 'webgpu'
   useBatchedZeroShot: boolean
 }
 
